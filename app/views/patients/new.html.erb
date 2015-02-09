@@ -1,0 +1,18 @@
+<!-- 
+<form action="/movies" method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="name" class="form-control" id="name">
+  </div>
+  And so on...
+  <button class="btn btn-success" name="button" type="submit">Create Movie</button>
+</form>
+-->
+
+<%= form_for @patient do |form| %>
+  <div class="form-group">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "form-control" %>
+  </div>
+  <%= form.button 'Create Patient', class: "btn btn-success" %>
+<% end %>

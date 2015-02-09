@@ -1,0 +1,109 @@
+Clinician:
+  first_name: string
+  last_name: string
+  occupation: string
+  gender: integer
+  email: string
+  password: string
+  office_number: string
+  mobile_number: string
+  emergency_message: string
+  care_group_id: integer
+
+Patient:
+  clinician_id: integer
+  first_name: string
+  last_name: string
+  username: string
+  diagnosis: string
+  gender: integer
+  age: string
+  address: string
+  email: string
+  password: string
+  phone_number: string
+  caregiver_name: string
+  other_sypmtom: integer
+  goals_of_care: text
+  shared_with: integer
+  patient_deceased: boolean
+  patient_archived: boolean
+
+Gender:
+  gender_type: string
+
+Inputter:
+  inputter_type: string
+
+OtherSypmtom:
+  sypmtom_type: string
+
+EsasAssesment:
+  patient_id: integer
+  clinician_id: integer
+  time: string
+  inputter_name: string
+  inputter_id: integer
+  pain: integer
+  pain_comment: string
+  tiredness: integer
+  tiredness_comment: string
+  drowsiness: integer
+  drowsiness_comment: string
+  nausea: integer
+  nausea_comment: string
+  lack_of_appetitie: integer
+  lack_of_appetitie_comment: string
+  shortness_of_breath: integer
+  shortness_of_breath_comment: string
+  depression: integer
+  depression_comment: string
+  wellbeing: integer
+  wellbeing_comment: string
+  other_sypmtom_id: integer
+  other_sypmtom_score: integer
+  other_sypmtom_comment: string
+  esas_comment: string
+
+PrfsAssesment:
+  patient_id: integer
+  clinician_id: integer
+  time: string
+  inputter_name: string
+  inputter_id: integer
+  activity_and_function: integer
+  prfs_comment: string
+
+Comment:
+  patient_id: integer
+  clinician_id: integer
+  from: integer
+  time: string
+  general_comment: string
+
+Notification:
+  clinician_id: integer
+  esas_yellow_highest_symptom: integer
+  esas_yellow_increase_of: integer
+  esas_yellow_email: integer
+  esas_yellow_text: integer
+  esas_orange_highest_symptom: integer
+  esas_orange_increase_of: integer
+  esas_orange_email: integer
+  esas_orange_text: integer
+  esas_red_highest_symptom: integer
+  esas_red_increase_of: integer
+  esas_red_email: integer
+  esas_red_text: integer
+  prfs_yellow: integer
+  prfs_yellow_email: integer
+  prfs_yellow_text: integer
+  prfs_orange: integer
+  prfs_orange_email: integer
+  prfs_orange_text: integer
+  prfs_red: integer
+  prfs_red_email: integer
+  prfs_red_text: integer
+
+  CareGroup:
+  name: string

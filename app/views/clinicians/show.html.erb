@@ -1,0 +1,47 @@
+<!-- Use view helpers (e.g. link_to and image_tag) -->
+<!-- and implement real data -->
+
+<h1 class="title">
+  <%= @clinician.first_name @clinician.last_name%>
+  <span class="occupation"><%= @clinician.occupation %></span>
+</h1>
+
+<div class="row">
+  <div class="col-md-3 text-center">
+    <p><%= image_tag(@clinician.image) %></p>
+    <p><strong>Gender:</strong> <%= @clinician.gender %></p>
+    <p><strong>Email:</strong> <%= @clinician.email %></p>
+    <p><strong>Office number:</strong> <%= @clinician.office_number %></p>
+    <p><strong>Mobile number:</strong> <%= @clinician.mobile_number %></p>
+  </div>
+  <div class="col-md-4 summary">
+    <h2>Emergency message</h2>
+    <p>
+      <%= @clinician.emergency_message %>
+    </p>
+  </div>
+  <div class="col-md-3 actors">
+    <h2>ESAS Scores from:</h2>
+    <ul class="list-unstyled">
+    <% @esas_assesment.each do |esas_assesment| %>
+      <li><%= Patient.find_by(id: esas_assesment.patient_id).name %> at <%= esas_assesment.time %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-9 col-md-offset-3 reviews">
+    <h2 class="page-header">Information</h2>
+    <table class="table table-striped table-bordered">
+      <tr>
+        <td><strong>Care Group</strong></td>
+        <td><%= @clinician.care_group.name %></td>
+      </tr>
+      <tr>
+        <td><strong>Password</strong></td>
+        <td><%= @clinician.password %></td>
+      </tr>
+    </table>
+  </div>
+</div>
