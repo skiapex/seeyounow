@@ -13,6 +13,10 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "care_groups", force: true do |t|
+    t.string "name"
+  end
+
   create_table "clinicians", force: true do |t|
     t.string  "first_name"
     t.string  "last_name"
@@ -103,8 +107,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "prfs_red"
     t.integer "prfs_red_email"
     t.integer "prfs_red_text"
-    t.string  "CareGroup"
-    t.string  "name"
   end
 
   add_index "notifications", ["clinician_id"], name: "index_notifications_on_clinician_id"

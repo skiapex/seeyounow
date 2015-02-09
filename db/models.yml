@@ -105,5 +105,5 @@ Notification:
   prfs_red_email: integer
   prfs_red_text: integer
 
-  CareGroup:
+CareGroup:
   name: string

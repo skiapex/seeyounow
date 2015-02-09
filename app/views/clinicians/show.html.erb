@@ -2,13 +2,12 @@
 <!-- and implement real data -->
 
 <h1 class="title">
-  <%= @clinician.first_name @clinician.last_name%>
+  <%= @clinician.first_name %> <%= @clinician.last_name %>
   <span class="occupation"><%= @clinician.occupation %></span>
 </h1>
 
 <div class="row">
   <div class="col-md-3 text-center">
-    <p><%= image_tag(@clinician.image) %></p>
     <p><strong>Gender:</strong> <%= @clinician.gender %></p>
     <p><strong>Email:</strong> <%= @clinician.email %></p>
     <p><strong>Office number:</strong> <%= @clinician.office_number %></p>
@@ -23,7 +22,7 @@
   <div class="col-md-3 actors">
     <h2>ESAS Scores from:</h2>
     <ul class="list-unstyled">
-    <% @esas_assesment.each do |esas_assesment| %>
+    <% @esas_assesments.each do |esas_assesment| %>
       <li><%= Patient.find_by(id: esas_assesment.patient_id).name %> at <%= esas_assesment.time %></li>
     <% end %>
     </ul>

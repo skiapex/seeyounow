@@ -5,10 +5,9 @@
   <% @clinicians.each do |clinician| %>
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <%= link_to image_tag(clinician.image), clinician_path(clinician) %>
+        <%= link_to clinician.occupation, clinician_path(clinician) %>
         <div class="caption">
-          <h3><%= link_to clinician.first_name clinician.last_name, clinician_path(cclinician) %></h3>
-          <p><%= clinician.occupation %></p>
+          <h3><%= link_to clinician.first_name, clinician_path(clinician) %> <%= link_to clinician.last_name, clinician_path(clinician) %></h3>
         </div>
       </div>
     </div>
