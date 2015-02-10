@@ -1,9 +1,9 @@
 <!-- Use view helpers (e.g. link_to and image_tag) -->
 <!-- and implement real data -->
 
-<h1 class="title">
+<h1 class="occupation">
   <%= @clinician.occupation %>
-  <span class="occupation"><%= @clinician.first_name %> <%= @clinician.last_name %></span>
+  <span class="title"><%= @clinician.first_name %> <%= @clinician.last_name %></span>
 </h1>
 
 <div class="row">
@@ -23,7 +23,7 @@
     <h2>ESAS Scores from:</h2>
     <ul class="list-unstyled">
     <% @esas_assesments.each do |esas_assesment| %>
-      <li><%= Patient.find_by(id: esas_assesment.patient_id).name %> at <%= esas_assesment.time %></li>
+      <li><%= Patient.find_by(id: esas_assesment.patient_id).first_name %> at <%= esas_assesment.time %></li>
     <% end %>
     </ul>
   </div>
