@@ -21,13 +21,18 @@
     <h2>Emergency message</h2>
     <p>
       <%= @clinician.emergency_message %>
+      def _dump(*args)
+        obj = dup
+        obj.instance_variable_set('@_zone', zone)
+        obj.send :_dump_without_zone, *args
+      end
     </p>
   </div>
   <div class="col-md-3 esas">
     <h2>ESAS Scores from:</h2>
     <ul class="list-unstyled">
     <% @esas_assesments.each do |esas_assesment| %>
-      <li><%= Patient.find_by(id: esas_assesment.patient_id).first_name %> at <%= esas_assesment.time %></li>
+      <li>For <%= Patient.find_by(id: esas_assesment.patient_id).first_name %> <%= Patient.find_by(id: esas_assesment.patient_id).last_name %> at <%= link_to esas_assesment.time, esas_assesment_path(esas_assesment) %></li>
     <% end %>
     </ul>
   </div>

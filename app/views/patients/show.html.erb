@@ -9,17 +9,17 @@
 </h3>
  <h3 span class="diagnosis"><%= @patient.diagnosis %>
  <span class="pull-right">
-    <%= link_to "Complete ESAS assesment", new_patient_path, class: 'btn btn-sm btn-success' %>
+    <%= link_to "Complete ESAS assesment", new_esas_assesment_path, class: 'btn btn-sm btn-success' %>
   </span>
 </h3>
 <h3 span class="nul">
  <span class="pull-right">
-    <%= link_to "Complete PFRS assesment", new_patient_path, class: 'btn btn-sm btn-success' %>
+    <%= link_to "Complete PFRS assesment", new_esas_assesment_path, class: 'btn btn-sm btn-success' %>
   </span>
 </h3>
 
 <div class="row">
-  <div class="col-md-3 text-center">
+  <div class="col-md-3">
     <p><strong>Username:</strong> <%= @patient.username %></p>
     <p><strong>Gender:</strong> <%= @patient.gender %></p>
     <p><strong>Age:</strong> <%= @patient.age %></p>
@@ -29,17 +29,17 @@
     <p><strong>Other sypmtom:</strong> <%= @patient.other_sypmtom %></p>
     <p><strong>Caregiver name:</strong> <%= @patient.caregiver_name %></p>
   </div>
-  <div class="col-md-4 summary">
+  <div class="col-md-3 summary">
     <h2>Goals of care:</h2>
     <p>
       <%= @patient.goals_of_care %>
     </p>
   </div>
-  <div class="col-md-3 actors">
+  <div class="col-md-4 actors">
     <h2>ESAS Scores:</h2>
     <ul class="list-unstyled">
     <% @esas_assesments.each do |esas_assesment| %>
-      <li>For <%= esas_assesment.clinician_id %> at <%= esas_assesment.time %></li>
+      <li>For <%= Clinician.find_by(id: esas_assesment.clinician_id).occupation %> <%= Clinician.find_by(id: esas_assesment.clinician_id).last_name %> at <%= link_to esas_assesment.time, esas_assesment_path(esas_assesment) %></li>
     <% end %>
     </ul>
   </div>
