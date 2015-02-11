@@ -52,8 +52,8 @@ EsasAssesment:
   drowsiness_comment: string
   nausea: integer
   nausea_comment: string
-  lack_of_appetitie: integer
-  lack_of_appetitie_comment: string
+  lack_of_appetite: integer
+  lack_of_appetite_comment: string
   shortness_of_breath: integer
   shortness_of_breath_comment: string
   depression: integer

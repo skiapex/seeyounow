@@ -39,7 +39,7 @@
     <h2>ESAS Scores:</h2>
     <ul class="list-unstyled">
     <% @esas_assesments.each do |esas_assesment| %>
-      <li><%= EsasAssesment.find_by(id: esas_assesment.patient_id).clinician_id %> at <%= esas_assesment.time %></li>
+      <li>For <%= esas_assesment.clinician_id %> at <%= esas_assesment.time %></li>
     <% end %>
     </ul>
   </div>

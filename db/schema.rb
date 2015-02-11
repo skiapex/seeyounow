@@ -57,8 +57,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "drowsiness_comment"
     t.integer "nausea"
     t.string  "nausea_comment"
-    t.integer "lack_of_appetitie"
-    t.string  "lack_of_appetitie_comment"
     t.integer "shortness_of_breath"
     t.string  "shortness_of_breath_comment"
     t.integer "depression"
@@ -69,6 +67,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "other_sypmtom_score"
     t.string  "other_sypmtom_comment"
     t.string  "esas_comment"
+    t.integer "lack_of_appetite"
+    t.string  "lack_of_appetite_comment"
   end
 
   add_index "esas_assesments", ["clinician_id"], name: "index_esas_assesments_on_clinician_id"

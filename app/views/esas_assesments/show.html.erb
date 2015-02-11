@@ -7,19 +7,64 @@
     <%= link_to "Edit", edit_esas_assesment_path, class: 'btn btn-sm btn-success' %>
   </span>
 </h1>
- <h3 span class="time"><%= @esas_assesment.time %></span>
+ <h3 span class="time">Completed at <%= @esas_assesment.time %></span>
 </h3>
 
 <div class="row">
-  <div class="col-md-9 col-md-offset-3 information">
+  <div class="col-md-6 col-md-offset-1 information">
+    <h2 class="page-header">Scores</h2>
+    <table class="table table-striped table-bordered">
+      <tr>
+        <td><strong>Pain:</strong></td><td><%= @esas_assesment.pain %></td>
+        <td><strong>Comment:</strong></td><td><%= @esas_assesment.pain_comment %></td>
+      </tr>
+      <tr>
+        <td><strong>Tiredness:</strong></td><td><%= @esas_assesment.tiredness %></td>
+        <td><strong>Comment:</strong></td><td><%= @esas_assesment.tiredness_comment %></td>
+      </tr>
+      <tr>
+        <td><strong>Drowsiness:</strong></td><td><%= @esas_assesment.drowsiness %></td>
+        <td><strong>Comment:</strong></td><td><%= @esas_assesment.drowsiness_comment %></td>
+      </tr>
+      <tr>
+        <td><strong>Nausea:</strong></td><td><%= @esas_assesment.nausea %></td>
+        <td><strong>Comment:</strong></td><td><%= @esas_assesment.nausea_comment %></td>
+      </tr>
+      <tr>
+        <td><strong>Lack of Appetite:</strong></td><td><%= @esas_assesment.lack_of_appetite %></td>
+        <td><strong>Comment:</strong></td><td><%= @esas_assesment.lack_of_appetite_comment %></td>
+      </tr>
+      <tr>
+        <td><strong>Shortness of Breath:</strong></td><td><%= @esas_assesment.shortness_of_breath %></td>
+        <td><strong>Comment:</strong></td><td><%= @esas_assesment.shortness_of_breath_comment %></td>
+      </tr>
+      <tr>
+        <td><strong>Depression:</strong></td><td><%= @esas_assesment.depression %></td>
+        <td><strong>Comment:</strong></td><td><%= @esas_assesment.depression_comment %></td>
+      </tr>
+      <tr>
+        <td><strong>Wellbeing:</strong></td><td><%= @esas_assesment.wellbeing %></td>
+       <td><strong>Comment:</strong></td><td><%= @esas_assesment.wellbeing_comment %></td>
+      </tr>
+      <tr>
+        <td><strong>Other Sypmtom Type:</strong></td><td><%= @esas_assesment.other_sypmtom_id %></p>
+        <td><strong>Other Sypmtom Score:</strong></td><td><%= @esas_assesment.other_sypmtom_score %></p>
+        <td><strong>Comment:</strong></td><td><%= @esas_assesment.wellbeing_comment %></p>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-1 information">
     <h2 class="page-header">Information</h2>
     <table class="table table-striped table-bordered">
       <tr>
-        <td><strong>Inputter Name</strong></td>
+        <td><strong>Inputter name</strong></td>
         <td><%= @esas_assesment.inputter_name %></td>
       </tr>
       <tr>
-        <td><strong>Inputter ID</strong></td>
+        <td><strong>Inputter type</strong></td>
         <td><%= @esas_assesment.inputter_id %></td>
       </tr>
     </table>
@@ -27,12 +72,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-3 text-center">
-    <p><strong>Pain:</strong> <%= @esas_assesment.pain %></p>
-    <p><strong>Comment:</strong> <%= @esas_assesment.pain_comment %></p>
-
-  </div>
-  <div class="col-md-4 summary">
+  <div class="col-md-6 comment">
     <h2>Overall Comment</h2>
     <p>
       <%= @esas_assesment.esas_comment %>
