@@ -1,15 +1,12 @@
-<!-- Use view helpers (e.g. link_to and image_tag) -->
-<!-- and implement real data -->
+<h3 class="page-header">
+  All Clinicians
+  <span class="pull-right">
+    <%= link_to "New Clinician", new_clinician_path, class: 'btn btn-sm btn-success' %>
+  </span>
+</h3>
 
-<div class="row">
+<ul>
   <% @clinicians.each do |clinician| %>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <%= link_to clinician.occupation, clinician_path(clinician) %>
-        <div class="caption">
-          <h3><%= link_to "#{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %></h3>
-        </div>
-      </div>
-    </div>
+    <li><h3><%= link_to "#{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %></h3><h4><%= clinician.occupation %></h4> <%= link_to "Edit", edit_clinician_path(clinician) %> <%= link_to "Delete", clinician_path(clinician), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></li>
   <% end %>
-</div>
+</ul>

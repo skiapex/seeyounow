@@ -1,10 +1,14 @@
 <!-- Use view helpers (e.g. link_to and image_tag) -->
 <!-- and implement real data -->
 
-<h1 class="occupation">
-  <%= @clinician.occupation %>
-  <span class="title"><%= @clinician.first_name %> <%= @clinician.last_name %></span>
+<h1 class="page-header">
+  <%= @clinician.first_name %> <%= @clinician.last_name %>
+  <span class="pull-right">
+    <%= link_to "Edit", edit_clinician_path, class: 'btn btn-sm btn-success' %>
+  </span>
 </h1>
+ <h3 span class="diagnosis"><%= @clinician.occupation %></span>
+</h3>
 
 <div class="row">
   <div class="col-md-3 text-center">
@@ -19,7 +23,7 @@
       <%= @clinician.emergency_message %>
     </p>
   </div>
-  <div class="col-md-3 actors">
+  <div class="col-md-3 esas">
     <h2>ESAS Scores from:</h2>
     <ul class="list-unstyled">
     <% @esas_assesments.each do |esas_assesment| %>
@@ -30,7 +34,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-9 col-md-offset-3 reviews">
+  <div class="col-md-9 col-md-offset-3 information">
     <h2 class="page-header">Information</h2>
     <table class="table table-striped table-bordered">
       <tr>

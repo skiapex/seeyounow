@@ -7,7 +7,15 @@
     <%= link_to "Edit", edit_patient_path, class: 'btn btn-sm btn-success' %>
   </span>
 </h3>
- <h3 span class="diagnosis"><%= @patient.diagnosis %></span>
+ <h3 span class="diagnosis"><%= @patient.diagnosis %>
+ <span class="pull-right">
+    <%= link_to "Complete ESAS assesment", new_patient_path, class: 'btn btn-sm btn-success' %>
+  </span>
+</h3>
+<h3 span class="nul">
+ <span class="pull-right">
+    <%= link_to "Complete PFRS assesment", new_patient_path, class: 'btn btn-sm btn-success' %>
+  </span>
 </h3>
 
 <div class="row">
