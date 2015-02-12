@@ -6,9 +6,10 @@ class EsasAssesmentsController < ApplicationController
 
   def show
     @esas_assesment = EsasAssesment.find_by(id: params["id"])
+    @other_symptom = OtherSypmtom.where(id: @esas_assesment.other_sypmtom_id)
   end
 
-  def new
+  def newS
     @esas_assesment = EsasAssesment.new
   end
 
