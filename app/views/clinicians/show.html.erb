@@ -12,7 +12,7 @@
 
 <div class="row">
   <div class="col-md-3 text-center">
-    <p><strong>Gender:</strong> <%= @clinician.gender %></p>
+    <p><strong>Gender:</strong> <%= Gender.find_by(id: @clinician.gender).gender_type %></p>
     <p><strong>Email:</strong> <%= @clinician.email %></p>
     <p><strong>Office number:</strong> <%= @clinician.office_number %></p>
     <p><strong>Mobile number:</strong> <%= @clinician.mobile_number %></p>

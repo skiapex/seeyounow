@@ -21,12 +21,12 @@
 <div class="row">
   <div class="col-md-3">
     <p><strong>Username:</strong> <%= @patient.username %></p>
-    <p><strong>Gender:</strong> <%= @patient.gender %></p>
+    <p><strong>Gender:</strong> <%= Gender.find_by(id: @patient.gender).gender_type %></p>
     <p><strong>Age:</strong> <%= @patient.age %></p>
     <p><strong>Address:</strong> <%= @patient.address %></p>
     <p><strong>Email:</strong> <%= @patient.email %></p>
     <p><strong>Phone number:</strong> <%= @patient.phone_number %></p>
-    <p><strong>Other sypmtom:</strong> <%= @patient.other_sypmtom %></p>
+    <p><strong>Other symptom:</strong> <%= OtherSypmtom.find_by(id: @patient.other_symptom).symptom_type %></p>
     <p><strong>Caregiver name:</strong> <%= @patient.caregiver_name %></p>
   </div>
   <div class="col-md-3 summary">

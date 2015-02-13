@@ -1,14 +1,16 @@
 <!-- Use view helpers (e.g. link_to and image_tag) -->
 <!-- and implement real data -->
 
-<h1 class="page-header">
-  <%= @esas_assesment.patient_id %> for <%= @esas_assesment.clinician_id %>
-  <span class="pull-right">
+<h3 class="page-header">
+  <p><strong>Completed by:</strong> <%= Patient.find_by(id: @esas_assesment.patient_id).first_name %> <%= Patient.find_by(id: @esas_assesment.patient_id).last_name %></p>
+    <span class="pull-right">
     <%= link_to "Edit", edit_esas_assesment_path, class: 'btn btn-sm btn-success' %>
-  </span>
-</h1>
- <h3 span class="time">Completed at <%= @esas_assesment.time %></span>
+    </span>
+  <p><strong>For:</strong> <%= Clinician.find_by(id: @esas_assesment.clinician_id).occupation %> <%= Clinician.find_by(id: @esas_assesment.clinician_id).first_name %> <%= Clinician.find_by(id: @esas_assesment.clinician_id).last_name %></p>
+
 </h3>
+ <h2 span class="time"><strong>Completed at:</strong> <%= @esas_assesment.time %></span>
+</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-1 information">
@@ -47,8 +49,8 @@
        <td><strong>Comment:</strong></td><td><%= @esas_assesment.wellbeing_comment %></td>
       </tr>
       <tr>
-        <td><strong>Other Sypmtom Type:</strong></td><td><%= @esas_assesment.other_symptom.sypmtom_type %></p>
-        <td><strong>Other Sypmtom Score:</strong></td><td><%= @esas_assesment.other_sypmtom_score %></p>
+        <td><strong>Other Sypmtom Type:</strong></td><td><%= OtherSypmtom.find_by(id: @esas_assesment.other_symptom_id).symptom_type %></p>
+        <td><strong>Other Sypmtom Score:</strong></td><td><%= @esas_assesment.other_symptom_score %></p>
         <td><strong>Comment:</strong></td><td><%= @esas_assesment.wellbeing_comment %></p>
       </tr>
     </table>
@@ -65,7 +67,7 @@
       </tr>
       <tr>
         <td><strong>Inputter type</strong></td>
-        <td><%= @esas_assesment.inputter_id %></td>
+        <td><%= Inputter.find_by(id: @esas_assesment.inputter_id).inputter_type %></td>
       </tr>
     </table>
   </div>

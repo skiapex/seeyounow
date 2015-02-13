@@ -23,7 +23,7 @@ Patient:
   password: string
   phone_number: string
   caregiver_name: string
-  other_sypmtom: integer
+  other_symptom: integer
   goals_of_care: text
   shared_with: integer
   patient_deceased: boolean
@@ -36,7 +36,7 @@ Inputter:
   inputter_type: string
 
 OtherSypmtom:
-  sypmtom_type: string
+  symptom_type: string
 
 EsasAssesment:
   patient_id: integer
@@ -60,9 +60,9 @@ EsasAssesment:
   depression_comment: string
   wellbeing: integer
   wellbeing_comment: string
-  other_sypmtom_id: integer
-  other_sypmtom_score: integer
-  other_sypmtom_comment: string
+  other_symptom_id: integer
+  other_symptom_score: integer
+  other_symptom_comment: string
   esas_comment: string
 
 PrfsAssesment:

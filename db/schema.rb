@@ -63,17 +63,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "depression_comment"
     t.integer "wellbeing"
     t.string  "wellbeing_comment"
-    t.integer "other_sypmtom_id"
-    t.integer "other_sypmtom_score"
-    t.string  "other_sypmtom_comment"
     t.string  "esas_comment"
     t.integer "lack_of_appetite"
     t.string  "lack_of_appetite_comment"
+    t.integer "other_symptom_id"
+    t.integer "other_symptom_score"
+    t.string  "other_symptom_comment"
   end
 
   add_index "esas_assesments", ["clinician_id"], name: "index_esas_assesments_on_clinician_id"
   add_index "esas_assesments", ["inputter_id"], name: "index_esas_assesments_on_inputter_id"
-  add_index "esas_assesments", ["other_sypmtom_id"], name: "index_esas_assesments_on_other_sypmtom_id"
+  add_index "esas_assesments", ["other_symptom_id"], name: "index_esas_assesments_on_other_symptom_id"
   add_index "esas_assesments", ["patient_id"], name: "index_esas_assesments_on_patient_id"
 
   create_table "genders", force: true do |t|
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "notifications", ["clinician_id"], name: "index_notifications_on_clinician_id"
 
   create_table "other_sypmtoms", force: true do |t|
-    t.string "sypmtom_type"
+    t.string "symptom_type"
   end
 
   create_table "patients", force: true do |t|
@@ -128,11 +128,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "password"
     t.string  "phone_number"
     t.string  "caregiver_name"
-    t.integer "other_sypmtom"
     t.text    "goals_of_care"
     t.integer "shared_with"
     t.boolean "patient_deceased", default: false
     t.boolean "patient_archived", default: false
+    t.integer "other_symptom"
   end
 
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id"
