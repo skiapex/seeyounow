@@ -25,12 +25,12 @@
 
   <div class="form-group">
     <%= form.label :occupation_id %>
-    <%= form.collection_select: :occupation_id, Occupation.all, :id, :name, { include_blank: true }, class: "form-control" %>
+    <%= form.collection_select :occupation_id, Occupation.all, :id, :name, { include_blank: true }, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= form.label :gender %>
-    <%= form.text_field :gender, class: "form-control" %>
+    <%= form.label :gender_id %>
+    <%= form.collection_select :gender_id, Gender.all, :id, :gender_type, { include_blank: true }, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -55,12 +55,12 @@
 
   <div class="form-group">
     <%= form.label :emergency_message %>
-    <%= form.text_field :emergency_message, class: "form-control", rows: 5 %>
+    <%= form.text_area :emergency_message, class: "form-control", rows: 5 %>
   </div>
 
   <div class="form-group">
     <%= form.label :care_group_id %>
-    <%= form.text_field :care_group_id, class: "form-control" %>
+    <%= form.collection_select :care_group_id, CareGroup.all, :id, :name, { include_blank: true }, class: "form-control" %>
   </div>
   <%= form.button 'Create Clinician', class: "btn btn-success" %>
 <% end %>

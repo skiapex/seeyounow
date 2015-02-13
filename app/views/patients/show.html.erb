@@ -21,7 +21,7 @@
 <div class="row">
   <div class="col-md-3">
     <p><strong>Username:</strong> <%= @patient.username %></p>
-    <p><strong>Gender:</strong> <%= @patient.gender.gender_type %></p>
+    <p><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></p>
     <p><strong>Age:</strong> <%= @patient.age %></p>
     <p><strong>Address:</strong> <%= @patient.address %></p>
     <p><strong>Email:</strong> <%= @patient.email %></p>
@@ -56,6 +56,14 @@
       <tr>
         <td><strong>Password</strong></td>
         <td><%= @patient.password %></td>
+      </tr>
+      <tr>
+        <td><strong>Patient deceased</strong></td>
+        <td><%= @patient.patient_deceased %></td>
+      </tr>
+      <tr>
+        <td><strong>Patient archived</strong></td>
+        <td><%= @patient.patient_archived %></td>
       </tr>
     </table>
   </div>

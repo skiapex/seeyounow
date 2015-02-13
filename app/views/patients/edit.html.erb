@@ -20,8 +20,8 @@
   </div>
 
   <div class="form-group">
-  	<%= form.label :gender %>
-  	<%= form.text_field :gender, class: "form-control" %>
+  	<%= form.label :gender_id %>
+  	<%= form.text_field :gender_id, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -56,12 +56,22 @@
 
   <div class="form-group">
   	<%= form.label :other_sypmtom %>
-  	<%= form.text_field :other_sypmtom, class: "form-control" %>
+  	<%= form.text_field :other_symptom, class: "form-control" %>
   </div>
 
   <div class="form-group">
   	<%= form.label :goals_of_care %>
   	<%= form.text_field :goals_of_care, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :patient_deceased %>
+    <%= form.check_box :patient_deceased %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :patient_archived %>
+    <%= form.check_box :patient_archived %>
   </div>
   <%= form.button 'Update Patient', class: "btn btn-success" %>
 <% end %>

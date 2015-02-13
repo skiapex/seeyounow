@@ -75,9 +75,14 @@
     <%= form.text_field :goals_of_care, class: "form-control" %>
   </div>
 
-   <div class="form-group">
+  <div class="form-group">
     <%= form.label :patient_deceased %>
     <%= form.check_box :patient_deceased %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :patient_archived %>
+    <%= form.check_box :patient_archived %>
   </div>
   <%= form.button 'Create Patient', class: "btn btn-success" %>
 <% end %>

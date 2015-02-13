@@ -16,7 +16,7 @@ class CliniciansController < ApplicationController
   end
 
   def create
-    clinician_params = params.require(:clinician).permit(:first_name,:last_name,:occupation,:gender, :email, :password, :office_number, :mobile_number, :emergency_message, :care_group_id)
+    clinician_params = params.require(:clinician).permit(:first_name,:last_name,:occupation_id,:gender_id, :email, :password, :office_number, :mobile_number, :emergency_message, :care_group_id)
     Clinician.create(clinician_params)
     #render text: params["clinician"]
     redirect_to clinicians_path
@@ -27,7 +27,7 @@ class CliniciansController < ApplicationController
   end
 
   def update
-    clinician_params = params.require(:clinician).permit(:first_name,:last_name,:occupation,:gender, :email, :password, :office_number, :mobile_number, :emergency_message, :care_group_id)
+    clinician_params = params.require(:clinician).permit(:first_name,:last_name,:occupation_id,:gender_id, :email, :password, :office_number, :mobile_number, :emergency_message, :care_group_id)
     @clinician = Clinician.find_by(id: params["id"])
     @clinician.update_attributes(clinician_params)
     redirect_to clinicians_path
