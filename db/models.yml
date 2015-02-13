@@ -1,8 +1,8 @@
 Clinician:
   first_name: string
   last_name: string
-  occupation: string
-  gender: integer
+  occupation_id: integer
+  gender_id: integer
   email: string
   password: string
   office_number: string
@@ -16,7 +16,7 @@ Patient:
   last_name: string
   username: string
   diagnosis: string
-  gender: integer
+  gender_id: integer
   age: string
   address: string
   email: string
@@ -31,6 +31,9 @@ Patient:
 
 Gender:
   gender_type: string
+
+Occupation:
+  name: string
 
 Inputter:
   inputter_type: string

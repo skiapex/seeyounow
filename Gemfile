@@ -19,6 +19,7 @@ group :development do
   gem 'groupdate'
   gem 'hightop'
   gem 'active_median'
+  gem 'country_select'
 end
 
 source 'https://rubygems.org'

@@ -39,6 +39,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    countries (0.9.3)
+      currencies (~> 0.4.2)
+    country_select (2.1.1)
+      countries (>= 0.9.3, < 0.10.0)
+    currencies (0.4.2)
     erubis (2.7.0)
     execjs (2.2.2)
     ez (1.2.0)
@@ -127,6 +132,7 @@ DEPENDENCIES
   active_median
   chartkick
   coffee-rails (~> 4.0.0)
+  country_select
   ez
   groupdate
   hightop

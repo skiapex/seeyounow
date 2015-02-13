@@ -20,17 +20,19 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "clinicians", force: true do |t|
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "occupation"
-    t.integer "gender"
     t.string  "email"
     t.string  "password"
     t.string  "office_number"
     t.string  "mobile_number"
     t.string  "emergency_message"
     t.integer "care_group_id"
+    t.integer "occupation_id"
+    t.integer "gender_id"
   end
 
   add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id"
+  add_index "clinicians", ["gender_id"], name: "index_clinicians_on_gender_id"
+  add_index "clinicians", ["occupation_id"], name: "index_clinicians_on_occupation_id"
 
   create_table "comments", force: true do |t|
     t.integer "patient_id"
@@ -111,6 +113,10 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "notifications", ["clinician_id"], name: "index_notifications_on_clinician_id"
 
+  create_table "occupations", force: true do |t|
+    t.string "name"
+  end
+
   create_table "other_sypmtoms", force: true do |t|
     t.string "symptom_type"
   end
@@ -121,7 +127,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "last_name"
     t.string  "username"
     t.string  "diagnosis"
-    t.integer "gender"
     t.string  "age"
     t.string  "address"
     t.string  "email"
@@ -133,9 +138,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "patient_deceased", default: false
     t.boolean "patient_archived", default: false
     t.integer "other_symptom"
+    t.integer "gender_id"
   end
 
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id"
+  add_index "patients", ["gender_id"], name: "index_patients_on_gender_id"
 
   create_table "prfs_assesments", force: true do |t|
     t.integer "patient_id"

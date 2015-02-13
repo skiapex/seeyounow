@@ -6,9 +6,9 @@ class CliniciansController < ApplicationController
 
   def show
     @clinician = Clinician.find_by(id: params["id"])
-    @care_group = CareGroup.find_by(id: @clinician.care_group_id)
-    @esas_assesments = EsasAssesment.where(clinician_id: @clinician.id)
-
+    @care_group = @clinician.care_group
+    @gender = @clinician.gender
+    @esas_assesments = @clinician.esas_assesments
   end
 
   def new

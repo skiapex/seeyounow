@@ -15,7 +15,6 @@ class EsasAssesmentsController < ApplicationController
   def create
     esas_assesment_params = params.require(:esas_assesment).permit(:patient_id,:clinician_id,:time,:inputter_name, :inputter_id, :pain, :pain_comment, :tiredness, :tiredness_comment, :drowsiness, :drowsiness_comment, :nausea, :nausea_comment, :lack_of_appetite, :lack_of_appetite_comment, :shortness_of_breath, :shortness_of_breath_comment, :depression, :depression_comment, :wellbeing, :wellbeing_comment, :other_symptom_id, :other_symptom_score, :other_symptom_comment, :esas_comment)
     EsasAssesment.create(esas_assesment_params)
-    #render text: params["esas_assesment"]
     redirect_to esas_assesments_path
   end
 

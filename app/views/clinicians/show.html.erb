@@ -7,12 +7,12 @@
     <%= link_to "Edit", edit_clinician_path, class: 'btn btn-sm btn-success' %>
   </span>
 </h1>
- <h3 span class="diagnosis"><%= @clinician.occupation %></span>
+ <h3 span class="diagnosis"><%= @clinician.occupation_id %></span>
 </h3>
 
 <div class="row">
   <div class="col-md-3 text-center">
-    <p><strong>Gender:</strong> <%= Gender.find_by(id: @clinician.gender).gender_type %></p>
+    <p><strong>Gender:</strong> <%= @clinician.gender.gender_type %></p>
     <p><strong>Email:</strong> <%= @clinician.email %></p>
     <p><strong>Office number:</strong> <%= @clinician.office_number %></p>
     <p><strong>Mobile number:</strong> <%= @clinician.mobile_number %></p>
@@ -27,7 +27,7 @@
     <h2 class="page-header">ESAS Scores from:</h2>
     <ul class="list-unstyled">
     <% @esas_assesments.each do |esas_assesment| %>
-      <li><strong>For:</strong> <%= Patient.find_by(id: esas_assesment.patient_id).first_name %> <%= Patient.find_by(id: esas_assesment.patient_id).last_name %></li>
+      <li><strong>For:</strong> <%= esas_assesment.patient.first_name %> <%= esas_assesment.patient.last_name %></li>
       <li><strong>At:</strong> <%= link_to esas_assesment.time, esas_assesment_path(esas_assesment) %></li><li class="divider"></li>
     <% end %>
     </ul>

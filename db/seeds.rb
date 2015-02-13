@@ -19,6 +19,7 @@ Comment.delete_all
 Notification.delete_all
 OtherSypmtom.delete_all
 CareGroup.delete_all
+Occupation.delete_all
 
 puts "Creating gender types..."
 # Create different possible genders
@@ -46,13 +47,20 @@ clinician = Inputter.create(inputter_type: "Medical team")
 care_aid = Inputter.create(inputter_type: "Care aid")
 
 puts "Creating care groups..."
+# Create different occupations
+doctor = Occupation.create(name: "Doctor")
+rn = Occupation.create(name: "Registered Nurse")
+nursepractitioner = Occupation.create(name: "Nurse Practitioner")
+nursemanager = Occupation.create(name: "Nurse Manager")
+
+puts "Creating occupations..."
 # Create different care groups
 brameast = CareGroup.create(name: "Brameast")
 torcentral = CareGroup.create(name: "Toronto Central")
 
 # Create the clinicians
 puts "Creating clinicians..."
-drmarshallsmith = Clinician.create(first_name: "Marshall", last_name: "Smith", occupation: "Doctor", gender: male.id, email: "mnsmith@medportal.ca", password: "password123", office_number: "(905) 792-2212", mobile_number: "(416) 232-5094", emergency_message: "INSTEAD OF CALLING 911
+drmarshallsmith = Clinician.create(first_name: "Marshall", last_name: "Smith", occupation_id: doctor.id, gender_id: male.id, email: "mnsmith@medportal.ca", password: "password123", office_number: "(905) 792-2212", mobile_number: "(416) 232-5094", emergency_message: "INSTEAD OF CALLING 911
 Your doctor and nurses would like you to call the Health Care team instead.
 From 8am-8pm call your CCAC nurse at (866) 570-8505,
 Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212.
@@ -60,17 +68,17 @@ If this is after office hours have closed: from 8 pm to 8 am or on the weekend
 please call the oncall Brameast physician at (416) 232-5094. Leave a message
 and your phone number twice so that the oncall physician can call you back.
 Please speak clearly.", care_group_id: brameast.id)
-joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation: "Registered Nurse", gender: female.id, email: "ejdixon@medportal.ca", password: "y*tXa90e", office_number: "(905) 792-2212", mobile_number: "(416) 657-1145", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
-rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation: "Nurse Practitioner", gender: female.id, email: "rldmiddleton@medportal.ca", password: "&(kjhl450", office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
-macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation: "Nurse Manager", gender: male.id, email: "macariogarcia@medportal.ca", password: "*0hk#$jbk", office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
+joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation_id: rn.id, gender_id: female.id, email: "ejdixon@medportal.ca", password: "y*tXa90e", office_number: "(905) 792-2212", mobile_number: "(416) 657-1145", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
+rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation_id: nursepractitioner.id, gender_id: female.id, email: "rldmiddleton@medportal.ca", password: "&(kjhl450", office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
+macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: nursemanager.id, gender_id: male.id, email: "macariogarcia@medportal.ca", password: "*0hk#$jbk", office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
 
 
 # Create the patients
 puts "Creating patients..."
-johndoe = Patient.create(clinician_id: drmarshallsmith.id, first_name: "John", last_name: "Doe", username: "jdoe3", diagnosis: "Non-Hodgkin lymphoma", gender: male.id, age: "37", address: "12 Bramalea Rd, Brampton, ON", email: "johndoe@abc.com", password: "a3sh4", phone_number: "(905) 890-8108", caregiver_name: "Jane Doe", other_symptom: constipation.id, goals_of_care: "Quality of life and freedom from pain", shared_with: [drmarshallsmith.id, joandixon.id], patient_deceased: false, patient_archived: false)
-cindypeters = Patient.create(clinician_id: joandixon.id, first_name: "Cindy", last_name: "Peters", username: "cpeters8", diagnosis: "Gastrointestinal cancer", gender: female.id, age: "83", address: "4652 Rosebank Cr, Orangeville, ON", email: "c.t.peters12@yahoo.com", password: "mrfluffy", phone_number: "(905) 489-4875", caregiver_name: "Sue Jeenes", other_symptom: sweating.id, goals_of_care: "Quality of life and freedom from pain See the birth of my grandchild in February", shared_with: [drmarshallsmith.id, joandixon.id], patient_deceased: false, patient_archived: false)
-yiwang = Patient.create(clinician_id: rachellmiddleton.id, first_name: "Yi", last_name: "Wang", username: "ywang23", diagnosis: "Congestive heart failure", gender: male.id, age: "62", address: "16 Madoc Dr, Brampton, ON", email: "yi_wang@deloitte.com", password: "39yiwang22", phone_number: "(905) 489-9446", caregiver_name: "Tania Abbot", other_symptom: sweating.id, goals_of_care: "Maintenance of function", shared_with: [drmarshallsmith.id, rachellmiddleton.id], patient_deceased: false, patient_archived: false)
-apwinderbrar = Patient.create(clinician_id: macariogarcia.id, first_name: "Apwinder", last_name: "Brar", username: "abrar3", diagnosis: "Kidney failure", gender: male.id, age: "38", address: "3 Rainstorm Rd, Brampton, ON", email: "apwinderb@gmail.com", password: "AB76cats", phone_number: "(905) 234-9409", caregiver_name: "Saranjit Brar", other_symptom: urine.id, goals_of_care: "A good death and relief of suffering", shared_with: [joandixon.id, rachellmiddleton.id], patient_deceased: false, patient_archived: false)
+johndoe = Patient.create(clinician_id: drmarshallsmith.id, first_name: "John", last_name: "Doe", username: "jdoe3", diagnosis: "Non-Hodgkin lymphoma", gender_id: male.id, age: "37", address: "12 Bramalea Rd, Brampton, ON", email: "johndoe@abc.com", password: "a3sh4", phone_number: "(905) 890-8108", caregiver_name: "Jane Doe", other_symptom: constipation.id, goals_of_care: "Quality of life and freedom from pain", shared_with: [drmarshallsmith.id, joandixon.id], patient_deceased: false, patient_archived: false)
+cindypeters = Patient.create(clinician_id: joandixon.id, first_name: "Cindy", last_name: "Peters", username: "cpeters8", diagnosis: "Gastrointestinal cancer", gender_id: female.id, age: "83", address: "4652 Rosebank Cr, Orangeville, ON", email: "c.t.peters12@yahoo.com", password: "mrfluffy", phone_number: "(905) 489-4875", caregiver_name: "Sue Jeenes", other_symptom: sweating.id, goals_of_care: "Quality of life and freedom from pain See the birth of my grandchild in February", shared_with: [drmarshallsmith.id, joandixon.id], patient_deceased: false, patient_archived: false)
+yiwang = Patient.create(clinician_id: rachellmiddleton.id, first_name: "Yi", last_name: "Wang", username: "ywang23", diagnosis: "Congestive heart failure", gender_id: male.id, age: "62", address: "16 Madoc Dr, Brampton, ON", email: "yi_wang@deloitte.com", password: "39yiwang22", phone_number: "(905) 489-9446", caregiver_name: "Tania Abbot", other_symptom: sweating.id, goals_of_care: "Maintenance of function", shared_with: [drmarshallsmith.id, rachellmiddleton.id], patient_deceased: false, patient_archived: false)
+apwinderbrar = Patient.create(clinician_id: macariogarcia.id, first_name: "Apwinder", last_name: "Brar", username: "abrar3", diagnosis: "Kidney failure", gender_id: male.id, age: "38", address: "3 Rainstorm Rd, Brampton, ON", email: "apwinderb@gmail.com", password: "AB76cats", phone_number: "(905) 234-9409", caregiver_name: "Saranjit Brar", other_symptom: urine.id, goals_of_care: "A good death and relief of suffering", shared_with: [joandixon.id, rachellmiddleton.id], patient_deceased: false, patient_archived: false)
 
 puts "Creating assesment scores..."
 
