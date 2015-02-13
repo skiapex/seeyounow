@@ -15,6 +15,10 @@ group :development do
   gem 'ez'
   gem 'quiet_assets'
   gem 'tzinfo-data', platforms: [:mingw, :mswin]
+  gem "chartkick"
+  gem 'groupdate'
+  gem 'hightop'
+  gem 'active_median'
 end
 
 source 'https://rubygems.org'

@@ -18,16 +18,17 @@
     <p><strong>Mobile number:</strong> <%= @clinician.mobile_number %></p>
   </div>
   <div class="col-md-4 summary">
-    <h2>Emergency message</h2>
+    <h2 class="page-header">Emergency message</h2>
     <p>
       <%= @clinician.emergency_message %>
     </p>
   </div>
   <div class="col-md-3 actors">
-    <h2>ESAS Scores from:</h2>
+    <h2 class="page-header">ESAS Scores from:</h2>
     <ul class="list-unstyled">
     <% @esas_assesments.each do |esas_assesment| %>
-      <li>For <%= Patient.find_by(id: esas_assesment.patient_id).first_name %> <%= Patient.find_by(id: esas_assesment.patient_id).last_name %> at <%= link_to esas_assesment.time, esas_assesment_path(esas_assesment) %></li>
+      <li><strong>For:</strong> <%= Patient.find_by(id: esas_assesment.patient_id).first_name %> <%= Patient.find_by(id: esas_assesment.patient_id).last_name %></li>
+      <li><strong>At:</strong> <%= link_to esas_assesment.time, esas_assesment_path(esas_assesment) %></li><li class="divider"></li>
     <% end %>
     </ul>
   </div>

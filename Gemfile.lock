@@ -14,6 +14,8 @@ GEM
       activesupport (= 4.1.8)
       builder (~> 3.1)
       erubis (~> 2.7.0)
+    active_median (0.1.2)
+      activerecord
     activemodel (4.1.8)
       activesupport (= 4.1.8)
       builder (~> 3.1)
@@ -29,6 +31,7 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
+    chartkick (1.3.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -40,6 +43,10 @@ GEM
     execjs (2.2.2)
     ez (1.2.0)
       hirb (~> 0.7)
+    groupdate (2.4.0)
+      activesupport (>= 3)
+    hightop (0.1.2)
+      activerecord
     hike (1.2.3)
     hirb (0.7.2)
     i18n (0.7.0)
@@ -117,8 +124,12 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  active_median
+  chartkick
   coffee-rails (~> 4.0.0)
   ez
+  groupdate
+  hightop
   jbuilder (~> 2.0)
   jquery-rails
   quiet_assets
