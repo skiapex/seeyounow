@@ -1,4 +1,5 @@
 class EsasAssesmentsController < ApplicationController
+  skip_before_action :require_clinician, only: [:new]
 
   def index
     @esas_assesments = EsasAssesment.all

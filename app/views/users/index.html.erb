@@ -1,0 +1,12 @@
+<h3 class="page-header">
+  All Users
+  <span class="pull-right">
+    <%= link_to "New User", new_user_path, class: 'btn btn-sm btn-success' %>
+  </span>
+</h3>
+
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.name %> <%= link_to "Edit", edit_user_path(user) %> <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  <% end %>
+</ul>

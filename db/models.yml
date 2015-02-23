@@ -9,12 +9,13 @@ Clinician:
   mobile_number: string
   emergency_message: string
   care_group_id: integer
+  user_id: string
 
 Patient:
   clinician_id: integer
   first_name: string
   last_name: string
-  username: string
+  user_id: string
   diagnosis: string
   gender_id: integer
   age: string
@@ -110,3 +111,7 @@ Notification:
 
 CareGroup:
   name: string
+
+User:
+  email: string
+  password_digest: string

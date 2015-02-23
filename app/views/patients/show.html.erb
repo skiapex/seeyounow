@@ -20,7 +20,6 @@
 
 <div class="row">
   <div class="col-md-3">
-    <p><strong>Username:</strong> <%= @patient.username %></p>
     <p><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></p>
     <p><strong>Age:</strong> <%= @patient.age %></p>
     <p><strong>Address:</strong> <%= @patient.address %></p>
@@ -39,7 +38,7 @@
     <h2>ESAS Scores:</h2>
     <ul class="list-unstyled">
     <% @esas_assesments.each do |esas_assesment| %>
-      <li>For <%= @patient.clinician.occupation_id %> <%= Clinician.find_by(id: esas_assesment.clinician_id).last_name %> at <%= link_to esas_assesment.time, esas_assesment_path(esas_assesment) %></li>
+      <li>For <%= @patient.clinician.occupation.name %> <%= Clinician.find_by(id: esas_assesment.clinician_id).last_name %> at <%= link_to esas_assesment.time, esas_assesment_path(esas_assesment) %></li>
     <% end %>
     </ul>
   </div>

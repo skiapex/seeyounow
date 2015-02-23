@@ -21,18 +21,20 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "first_name"
     t.string  "last_name"
     t.string  "email"
-    t.string  "password"
     t.string  "office_number"
     t.string  "mobile_number"
     t.string  "emergency_message"
     t.integer "care_group_id"
     t.integer "occupation_id"
     t.integer "gender_id"
+    t.string  "password_digest"
+    t.string  "user_id"
   end
 
   add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id"
   add_index "clinicians", ["gender_id"], name: "index_clinicians_on_gender_id"
   add_index "clinicians", ["occupation_id"], name: "index_clinicians_on_occupation_id"
+  add_index "clinicians", ["user_id"], name: "index_clinicians_on_user_id"
 
   create_table "comments", force: true do |t|
     t.integer "patient_id"
@@ -125,12 +127,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "clinician_id"
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "username"
     t.string  "diagnosis"
     t.string  "age"
     t.string  "address"
     t.string  "email"
-    t.string  "password"
     t.string  "phone_number"
     t.string  "caregiver_name"
     t.text    "goals_of_care"
@@ -139,10 +139,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "patient_archived", default: false
     t.integer "other_symptom"
     t.integer "gender_id"
+    t.string  "user_id"
+    t.string  "password_digest"
   end
 
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id"
   add_index "patients", ["gender_id"], name: "index_patients_on_gender_id"
+  add_index "patients", ["user_id"], name: "index_patients_on_user_id"
 
   create_table "prfs_assesments", force: true do |t|
     t.integer "patient_id"
@@ -157,5 +160,10 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "prfs_assesments", ["clinician_id"], name: "index_prfs_assesments_on_clinician_id"
   add_index "prfs_assesments", ["inputter_id"], name: "index_prfs_assesments_on_inputter_id"
   add_index "prfs_assesments", ["patient_id"], name: "index_prfs_assesments_on_patient_id"
+
+  create_table "users", force: true do |t|
+    t.string "email"
+    t.string "password_digest"
+  end
 
 end

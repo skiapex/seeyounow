@@ -81,7 +81,18 @@
             <ul class="nav navbar-nav navbar-right">
               <li>
               <!-- <i class="fa fa-user-md"></i> -->
-              <a href="#">Profile</a></li>
+              <% if current_user %>
+                <a href="#">
+                  <i class="fa fa-user"></i>
+                  <% if Clinician.find_by(user_id: session["user_id"]).nil?  %>
+                    Hi, <%= link_to Patient.find_by(user_id: session["user_id"]).first_name, esas_assesments_path %>
+                  <% else %>
+                    Hi, <%= link_to Clinician.find_by(user_id: session["user_id"]).first_name, esas_assesments_path %>
+                  <% end %>
+                </a>
+              <% else %>
+                <%= link_to "Log In", login_path %>
+              <% end %></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -89,7 +100,11 @@
                   <li><a href="#">Change Password</a></li>
                   <li><a href="#">Notification Settings</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Log out</a></li>
+                  <li>
+                    <% if current_user %>
+                      <%= link_to "Log Out", logout_path %>
+                    <% end %>
+                  </li>
                 </ul>
               </li>
             </ul>

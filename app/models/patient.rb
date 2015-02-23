@@ -5,5 +5,5 @@ class Patient < ActiveRecord::Base
 	validates :first_name, presence: true
 
 	validates :first_name, presence: true
-  validates :clinician_id, presence: true, numericality: true
+  	validates :clinician_id, presence: true, numericality: true
 end

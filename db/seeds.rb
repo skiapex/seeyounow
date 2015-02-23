@@ -9,6 +9,7 @@
 
 # Deletes everything from the database so that you start fresh
 puts "Deleting all records from the database..."
+User.delete_all
 Clinician.delete_all
 Patient.delete_all
 Gender.delete_all
@@ -59,28 +60,41 @@ puts "Creating occupations..."
 brameast = CareGroup.create(name: "Brameast")
 torcentral = CareGroup.create(name: "Toronto Central")
 
+# Create the users
+puts "Creating users..."
+userjohndoe = User.create(email: "johndoe@abc.com", password: "a3sh4")
+usercindypeters = User.create(email: "c.t.peters12@yahoo.com", password: "mrfluffy")
+useryiwang = User.create(email: "yi_wang@deloitte.com", password: "39yiwang22")
+userapwinderbrar = User.create(email: "apwinderb@gmail.com", password: "AB76cats")
+
+userdrmarshallsmith = User.create(email: "mnsmith@medportal.ca", password: "password123")
+userjoandixon = User.create(email: "ejdixon@medportal.ca", password: "y*tXa90e")
+userrachellmiddleton = User.create(email: "rldmiddleton@medportal.ca", password: "&(kjhl450")
+usermacariogarcia = User.create(email: "macariogarcia@medportal.ca", password: "*0hk#$jbk")
+userdebralin = User.create(email: "debralin@medportal.ca", password: "*0hk#$jbk")
+
 # Create the clinicians
 puts "Creating clinicians..."
-drmarshallsmith = Clinician.create(first_name: "Marshall", last_name: "Smith", occupation_id: doctor.id, gender_id: male.id, email: "mnsmith@medportal.ca", password: "password123", office_number: "(905) 792-2212", mobile_number: "(416) 232-5094", emergency_message: "INSTEAD OF CALLING 911
+drmarshallsmith = Clinician.create(first_name: "Marshall", last_name: "Smith", occupation_id: doctor.id, gender_id: male.id, office_number: "(905) 792-2212", mobile_number: "(416) 232-5094", emergency_message: "INSTEAD OF CALLING 911
 Your doctor and nurses would like you to call the Health Care team instead.
 From 8am-8pm call your CCAC nurse at (866) 570-8505,
 Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212.
 If this is after office hours have closed: from 8 pm to 8 am or on the weekend
 please call the oncall Brameast physician at (416) 232-5094. Leave a message
 and your phone number twice so that the oncall physician can call you back.
-Please speak clearly.", care_group_id: brameast.id)
-joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation_id: rn.id, gender_id: female.id, email: "ejdixon@medportal.ca", password: "y*tXa90e", office_number: "(905) 792-2212", mobile_number: "(416) 657-1145", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
-rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation_id: nursepractitioner.id, gender_id: female.id, email: "rldmiddleton@medportal.ca", password: "&(kjhl450", office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
-macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: nursemanager.id, gender_id: male.id, email: "macariogarcia@medportal.ca", password: "*0hk#$jbk", office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
-debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: oncologist.id, gender_id: female.id, email: "debralin@medportal.ca", password: "*0hk#$jbk", office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id)
+Please speak clearly.", care_group_id: brameast.id, user_id: "userdrmarshallsmith")
+joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation_id: rn.id, gender_id: female.id, office_number: "(905) 792-2212", mobile_number: "(416) 657-1145", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, user_id: "userjoandixon")
+rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation_id: nursepractitioner.id, gender_id: female.id, office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, user_id: "userrachellmiddleton")
+macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: nursemanager.id, gender_id: male.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, user_id: "usermacariogarcia")
+debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: oncologist.id, gender_id: female.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id, user_id: "userdebralin")
 
 
 # Create the patients
 puts "Creating patients..."
-johndoe = Patient.create(clinician_id: drmarshallsmith.id, first_name: "John", last_name: "Doe", username: "jdoe3", diagnosis: "Non-Hodgkin lymphoma", gender_id: male.id, age: "37", address: "12 Bramalea Rd, Brampton, ON", email: "johndoe@abc.com", password: "a3sh4", phone_number: "(905) 890-8108", caregiver_name: "Jane Doe", other_symptom: constipation.id, goals_of_care: "Quality of life and freedom from pain", shared_with: [drmarshallsmith.id, joandixon.id], patient_deceased: false, patient_archived: false)
-cindypeters = Patient.create(clinician_id: joandixon.id, first_name: "Cindy", last_name: "Peters", username: "cpeters8", diagnosis: "Gastrointestinal cancer", gender_id: female.id, age: "83", address: "4652 Rosebank Cr, Orangeville, ON", email: "c.t.peters12@yahoo.com", password: "mrfluffy", phone_number: "(905) 489-4875", caregiver_name: "Sue Jeenes", other_symptom: sweating.id, goals_of_care: "Quality of life and freedom from pain See the birth of my grandchild in February", shared_with: [drmarshallsmith.id, joandixon.id], patient_deceased: false, patient_archived: false)
-yiwang = Patient.create(clinician_id: rachellmiddleton.id, first_name: "Yi", last_name: "Wang", username: "ywang23", diagnosis: "Congestive heart failure", gender_id: male.id, age: "62", address: "16 Madoc Dr, Brampton, ON", email: "yi_wang@deloitte.com", password: "39yiwang22", phone_number: "(905) 489-9446", caregiver_name: "Tania Abbot", other_symptom: sweating.id, goals_of_care: "Maintenance of function", shared_with: [drmarshallsmith.id, rachellmiddleton.id], patient_deceased: false, patient_archived: false)
-apwinderbrar = Patient.create(clinician_id: macariogarcia.id, first_name: "Apwinder", last_name: "Brar", username: "abrar3", diagnosis: "Kidney failure", gender_id: male.id, age: "38", address: "3 Rainstorm Rd, Brampton, ON", email: "apwinderb@gmail.com", password: "AB76cats", phone_number: "(905) 234-9409", caregiver_name: "Saranjit Brar", other_symptom: urine.id, goals_of_care: "A good death and relief of suffering", shared_with: [joandixon.id, rachellmiddleton.id], patient_deceased: false, patient_archived: false)
+johndoe = Patient.create(clinician_id: drmarshallsmith.id, first_name: "John", last_name: "Doe", user_id: "userjohndoe", diagnosis: "Non-Hodgkin lymphoma", gender_id: male.id, age: "37", address: "12 Bramalea Rd, Brampton, ON", phone_number: "(905) 890-8108", caregiver_name: "Jane Doe", other_symptom: constipation.id, goals_of_care: "Quality of life and freedom from pain", shared_with: [drmarshallsmith.id, joandixon.id], patient_deceased: false, patient_archived: false)
+cindypeters = Patient.create(clinician_id: joandixon.id, first_name: "Cindy", last_name: "Peters", user_id: "usercindypeters", diagnosis: "Gastrointestinal cancer", gender_id: female.id, age: "83", address: "4652 Rosebank Cr, Orangeville, ON", phone_number: "(905) 489-4875", caregiver_name: "Sue Jeenes", other_symptom: sweating.id, goals_of_care: "Quality of life and freedom from pain See the birth of my grandchild in February", shared_with: [drmarshallsmith.id, joandixon.id], patient_deceased: false, patient_archived: false)
+yiwang = Patient.create(clinician_id: rachellmiddleton.id, first_name: "Yi", last_name: "Wang", user_id: "useryiwang", diagnosis: "Congestive heart failure", gender_id: male.id, age: "62", address: "16 Madoc Dr, Brampton, ON", phone_number: "(905) 489-9446", caregiver_name: "Tania Abbot", other_symptom: sweating.id, goals_of_care: "Maintenance of function", shared_with: [drmarshallsmith.id, rachellmiddleton.id], patient_deceased: false, patient_archived: false)
+apwinderbrar = Patient.create(clinician_id: macariogarcia.id, first_name: "Apwinder", last_name: "Brar", user_id: "userapwinderbrar", diagnosis: "Kidney failure", gender_id: male.id, age: "38", address: "3 Rainstorm Rd, Brampton, ON", phone_number: "(905) 234-9409", caregiver_name: "Saranjit Brar", other_symptom: urine.id, goals_of_care: "A good death and relief of suffering", shared_with: [joandixon.id, rachellmiddleton.id], patient_deceased: false, patient_archived: false)
 
 puts "Creating assesment scores..."
 
@@ -115,4 +129,5 @@ Comment.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, from
 # Create the notification settings
 default = Notification.create(clinician_id: drmarshallsmith.id, esas_yellow_highest_symptom: 6, esas_yellow_increase_of: 3, esas_yellow_email: 0, esas_yellow_text: 0, esas_orange_highest_symptom: 8, esas_orange_increase_of: 4, esas_orange_email: 1, esas_orange_text: 0, esas_red_highest_symptom: 10, esas_red_increase_of: 5, esas_red_email: 1, esas_red_text: 1, prfs_yellow: 3, prfs_yellow_email: 0, prfs_yellow_text: 0, prfs_orange: 4, prfs_orange_email: 1, prfs_orange_text: 0, prfs_red: 5, prfs_red_email: 1, prfs_red_text: 1)
 
-puts "There are now #{Clinician.count} clinicians, #{Patient.count} patients, #{Occupation.count} occupations, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssesment.count} scores for an ESAS assesment, #{PrfsAssesment.count} scores for a PFRS assesment, #{Comment.count} comments between patients and clinicians, and #{OtherSymptom.count} other symptoms in the database."
+
+puts "There are now #{User.count} users, #{Clinician.count} clinicians, #{Patient.count} patients, #{Occupation.count} occupations, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssesment.count} scores for an ESAS assesment, #{PrfsAssesment.count} scores for a PFRS assesment, #{Comment.count} comments between patients and clinicians, and #{OtherSymptom.count} other symptoms in the database."
