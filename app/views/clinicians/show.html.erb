@@ -7,7 +7,7 @@
     <%= link_to "Edit", edit_clinician_path, class: 'btn btn-sm btn-success' %>
   </span>
 </h1>
- <h3 span class="diagnosis"><%= @clinician.occupation_id %></span>
+ <h3 span class="diagnosis"><%= @clinician.occupation.name %></span>
 </h3>
 
 <div class="row">

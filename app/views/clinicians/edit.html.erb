@@ -1,3 +1,14 @@
+<% if @clinician.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this movie from being saved:</h2>
+    <ul>
+      <% @clinician.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h3 class="page-header">
   Edit information for <%= @clinician.occupation_id %> <%= @clinician.first_name %> <%= @clinician.last_name %>
 </h3>

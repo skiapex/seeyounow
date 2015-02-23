@@ -1,13 +1,14 @@
-<!-- 
-<form action="/movies" method="POST">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="name" class="form-control" id="name">
-  </div>
-  And so on...
-  <button class="btn btn-success" name="button" type="submit">Create Movie</button>
-</form>
--->
+<% if @clinician.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this movie from being saved:</h2>
+    <ul>
+      <% @clinician.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h3 class="page-header">
   Create New Clinician
 </h3>

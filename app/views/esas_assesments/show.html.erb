@@ -6,7 +6,7 @@
     <span class="pull-right">
     <%= link_to "Edit", edit_esas_assesment_path, class: 'btn btn-sm btn-success' %>
     </span>
-  <p><strong>For:</strong> <%= Clinician.find_by(id: @esas_assesment.clinician_id).occupation %> <%= Clinician.find_by(id: @esas_assesment.clinician_id).first_name %> <%= Clinician.find_by(id: @esas_assesment.clinician_id).last_name %></p>
+  <p><strong>For:</strong> <%= @esas_assesment.clinician.occupation.name %> <%= Clinician.find_by(id: @esas_assesment.clinician_id).first_name %> <%= Clinician.find_by(id: @esas_assesment.clinician_id).last_name %></p>
 
 </h3>
  <h2 span class="time"><strong>Completed at:</strong> <%= @esas_assesment.time %></span>
@@ -49,8 +49,8 @@
        <td><strong>Comment:</strong></td><td><%= @esas_assesment.wellbeing_comment %></td>
       </tr>
       <tr>
-        <td><strong>Other Sypmtom Type:</strong></td><td><%= OtherSypmtom.find_by(id: @esas_assesment.other_symptom_id).symptom_type %></p>
-        <td><strong>Other Sypmtom Score:</strong></td><td><%= @esas_assesment.other_symptom_score %></p>
+        <td><strong>Other Symptom Type:</strong></td><td><%= @esas_assesment.other_symptom.symptom_type %></p>
+        <td><strong>Other Symptom Score:</strong></td><td><%= @esas_assesment.other_symptom_score %></p>
         <td><strong>Comment:</strong></td><td><%= @esas_assesment.wellbeing_comment %></p>
       </tr>
     </table>

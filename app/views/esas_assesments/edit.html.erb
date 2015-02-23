@@ -1,3 +1,14 @@
+<% if @esas_assesment.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @esas_assesment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h3 class="page-header">
   Edit ESAS assesment done at <%= @esas_assesment.time %> for <%= @esas_assesment.patient_id %>
 </h3>

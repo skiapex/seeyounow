@@ -17,7 +17,7 @@ EsasAssesment.delete_all
 PrfsAssesment.delete_all
 Comment.delete_all
 Notification.delete_all
-OtherSypmtom.delete_all
+OtherSymptom.delete_all
 CareGroup.delete_all
 Occupation.delete_all
 
@@ -29,9 +29,9 @@ transgender = Gender.create(gender_type: "transgender")
 
 puts "Creating additional symptom types..."
 # Create different symptom types
-constipation = OtherSypmtom.create(symptom_type: "constipation")
-sweating = OtherSypmtom.create(symptom_type: "sweating")
-urine = OtherSypmtom.create(symptom_type: "discoloured urine")
+constipation = OtherSymptom.create(symptom_type: "constipation")
+sweating = OtherSymptom.create(symptom_type: "sweating")
+urine = OtherSymptom.create(symptom_type: "discoloured urine")
 
 puts "Creating inputter types..."
 # Create different possible inputter types
@@ -52,6 +52,7 @@ doctor = Occupation.create(name: "Doctor")
 rn = Occupation.create(name: "Registered Nurse")
 nursepractitioner = Occupation.create(name: "Nurse Practitioner")
 nursemanager = Occupation.create(name: "Nurse Manager")
+oncologist = Occupation.create(name: "Oncologist")
 
 puts "Creating occupations..."
 # Create different care groups
@@ -71,6 +72,7 @@ Please speak clearly.", care_group_id: brameast.id)
 joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation_id: rn.id, gender_id: female.id, email: "ejdixon@medportal.ca", password: "y*tXa90e", office_number: "(905) 792-2212", mobile_number: "(416) 657-1145", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
 rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation_id: nursepractitioner.id, gender_id: female.id, email: "rldmiddleton@medportal.ca", password: "&(kjhl450", office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
 macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: nursemanager.id, gender_id: male.id, email: "macariogarcia@medportal.ca", password: "*0hk#$jbk", office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id)
+debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: oncologist.id, gender_id: female.id, email: "debralin@medportal.ca", password: "*0hk#$jbk", office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id)
 
 
 # Create the patients
@@ -96,7 +98,7 @@ EsasAssesment.create(patient_id: yiwang.id, clinician_id: rachellmiddleton.id, t
 EsasAssesment.create(patient_id: yiwang.id, clinician_id: macariogarcia.id, time: "2014-10-06 15:43:21 -0600", inputter_name: "Louis Wang", inputter_id: son.id, pain: 4, pain_comment: nil, tiredness: 5, tiredness_comment: nil, drowsiness: 7, drowsiness_comment: nil, nausea: 3, nausea_comment: nil, lack_of_appetite: 7, lack_of_appetite_comment: nil, shortness_of_breath: 3, shortness_of_breath_comment: nil, depression: 3, depression_comment: nil, wellbeing: 4, wellbeing_comment: nil, other_symptom_id: sweating.id, other_symptom_score: 7, other_symptom_comment: nil, esas_comment: nil)
 
 EsasAssesment.create(patient_id: apwinderbrar.id, clinician_id: rachellmiddleton.id, time: "2014-10-04 09:08:56 -0600", inputter_name: "Saranjit Brar", inputter_id: partner.id, pain: 7, pain_comment: nil, tiredness: 5, tiredness_comment: nil, drowsiness: 6, drowsiness_comment: nil, nausea: 8, nausea_comment: nil, lack_of_appetite: 7, lack_of_appetite_comment: nil, shortness_of_breath: 4, shortness_of_breath_comment: nil, depression: 5, depression_comment: nil, wellbeing: 6, wellbeing_comment: nil, other_symptom_id: urine.id, other_symptom_score: 4, other_symptom_comment: "Blood in urine", esas_comment: nil)
-EsasAssesment.create(patient_id: apwinderbrar.id, clinician_id: rachellmiddleton.id, time: "2014-10-06 08:43:21 -0600", inputter_name: "Saranjit Brar", inputter_id: partner.id, pain: 8, pain_comment: nil, tiredness: 6, tiredness_comment: nil, drowsiness: 5, drowsiness_comment: nil, nausea: 7, nausea_comment: nil, lack_of_appetite: 8, lack_of_appetite_comment: nil, shortness_of_breath: 5, shortness_of_breath_comment: nil, depression: 5, depression_comment: nil, wellbeing: 7, wellbeing_comment: nil, other_symptom_id: urine.id, other_symptom_score: 6, other_symptom_comment: "Brown in urine", esas_comment: "He is worried that he is feeling worse today")
+EsasAssesment.create(patient_id: apwinderbrar.id, clinician_id: debralin.id, time: "2014-10-06 08:43:21 -0600", inputter_name: "Saranjit Brar", inputter_id: partner.id, pain: 8, pain_comment: nil, tiredness: 6, tiredness_comment: nil, drowsiness: 5, drowsiness_comment: nil, nausea: 7, nausea_comment: nil, lack_of_appetite: 8, lack_of_appetite_comment: nil, shortness_of_breath: 5, shortness_of_breath_comment: nil, depression: 5, depression_comment: nil, wellbeing: 7, wellbeing_comment: nil, other_symptom_id: urine.id, other_symptom_score: 6, other_symptom_comment: "Brown in urine", esas_comment: "He is worried that he is feeling worse today")
 EsasAssesment.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, time: "2014-10-08 09:02:34 -0600", inputter_name: "Saranjit Brar", inputter_id: partner.id, pain: 9, pain_comment: nil, tiredness: 5, tiredness_comment: nil, drowsiness: 7, drowsiness_comment: nil, nausea: 8, nausea_comment: nil, lack_of_appetite: 9, lack_of_appetite_comment: nil, shortness_of_breath: 5, shortness_of_breath_comment: nil, depression: 5, depression_comment: nil, wellbeing: 7, wellbeing_comment: nil, other_symptom_id: urine.id, other_symptom_score: 3, other_symptom_comment: "Slightly better today", esas_comment: nil)
 
 # Create the scores for an PFRS assesment
@@ -113,4 +115,4 @@ Comment.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, from
 # Create the notification settings
 default = Notification.create(clinician_id: drmarshallsmith.id, esas_yellow_highest_symptom: 6, esas_yellow_increase_of: 3, esas_yellow_email: 0, esas_yellow_text: 0, esas_orange_highest_symptom: 8, esas_orange_increase_of: 4, esas_orange_email: 1, esas_orange_text: 0, esas_red_highest_symptom: 10, esas_red_increase_of: 5, esas_red_email: 1, esas_red_text: 1, prfs_yellow: 3, prfs_yellow_email: 0, prfs_yellow_text: 0, prfs_orange: 4, prfs_orange_email: 1, prfs_orange_text: 0, prfs_red: 5, prfs_red_email: 1, prfs_red_text: 1)
 
-puts "There are now #{Clinician.count} clinicians, #{Patient.count} patients, #{EsasAssesment.count} scores for an ESAS assesment, #{PrfsAssesment.count} scores for a PFRS assesment, #{Comment.count} comments between patients and clinicians, and #{OtherSypmtom.count} other symptoms in the database."
+puts "There are now #{Clinician.count} clinicians, #{Patient.count} patients, #{Occupation.count} occupations, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssesment.count} scores for an ESAS assesment, #{PrfsAssesment.count} scores for a PFRS assesment, #{Comment.count} comments between patients and clinicians, and #{OtherSymptom.count} other symptoms in the database."

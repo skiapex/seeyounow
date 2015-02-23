@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name"
   end
 
-  create_table "other_sypmtoms", force: true do |t|
+  create_table "other_symptoms", force: true do |t|
     t.string "symptom_type"
   end
 

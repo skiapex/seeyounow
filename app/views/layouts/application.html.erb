@@ -26,6 +26,15 @@
   </head>
   <body>
     <div class="container">
+
+          <!-- Alerts -->
+      <% if notice %>
+        <div class="alert alert-success" role="alert"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger" role="alert"><%= alert %></div>
+      <% end %>
+      
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <!-- SeeYouNow and toggle get grouped for better mobile display -->
