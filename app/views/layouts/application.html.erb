@@ -84,10 +84,10 @@
               <% if current_user %>
                 <a href="#">
                   <i class="fa fa-user"></i>
-                  <% if Clinician.find_by(user_id: session["user_id"]).nil?  %>
-                    Hi, <%= link_to Patient.find_by(user_id: session["user_id"]).first_name, esas_assesments_path %>
+                  <% if current_user.clinician.nil?  %>
+                    <%= current_user.patient.first_name %>
                   <% else %>
-                    Hi, <%= link_to Clinician.find_by(user_id: session["user_id"]).first_name, esas_assesments_path %>
+                    Hi, <%= link_to current_user.clinician.first_name, clinician_path(clinician) %>
                   <% end %>
                 </a>
               <% else %>
