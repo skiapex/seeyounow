@@ -1,3 +1,14 @@
+<% if @user.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this user from being saved:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @user do |form| %>
   <div class="form-group">
     <%= form.label :email %>
@@ -7,9 +18,5 @@
     <%= form.label :password %>
     <%= form.password_field :password, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
-  </div>
-  <%= form.button 'Update', class: "btn btn-success" %>
+  <%= form.button 'Update User', class: "btn btn-success" %>
 <% end %>

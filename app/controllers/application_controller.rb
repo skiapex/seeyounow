@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   before_action :require_user
+  helper_method :current_clinician
+  before_action :require_clinician
 
   def current_user
     User.find_by(id: session["user_id"])
@@ -18,12 +20,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_clinician
-    Clinician.find_by(user_id: User.find_by(email: params["email"]).id)
+    Clinician.find_by(user_id: User.find_by(id: session["user_id"]))
   end
 
   def require_clinician
     if current_clinician.nil?
-      redirect_to patient_path(current_user.patient)
+      redirect_to new_session_path
     end
   end
 

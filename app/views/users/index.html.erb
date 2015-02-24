@@ -7,6 +7,7 @@
 
 <ul>
   <% @users.each do |user| %>
-    <li><%= user.name %> <%= link_to "Edit", edit_user_path(user) %> <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <li><%= link_to user.email, clinician_path(current_user.clinician) %>
+    <%= link_to "Edit", edit_user_path(current_user) %> <%= link_to "Delete", user_path(current_user), method: :delete, data: { confirm: 'Confirm Deletion?' } %></li>
   <% end %>
 </ul>

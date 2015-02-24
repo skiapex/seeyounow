@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   layout false
   skip_before_action :require_user
+  skip_before_action :require_clinician
 
   def create
     user = User.find_by(email: params["email"])
@@ -8,7 +9,6 @@ class SessionsController < ApplicationController
       session["user_id"] = user.id
 
       clinician = Clinician.find_by(user_id: User.find_by(email: params["email"]).id)
-      patient = Patient.find_by(user_id: User.find_by(email: params["email"]).id)
       if clinician
         redirect_to clinician_path(current_user.clinician), notice: "Login successful!"
       else
