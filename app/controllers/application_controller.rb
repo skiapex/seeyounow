@@ -18,10 +18,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_clinician
-    Clinician.find_by(user_id: session["user_id"])
+    Clinician.find_by(user_id: User.find_by(email: params["email"]).id)
   end
 
-  def current_patient
-    Patient.find_by(user_id: session["user_id"])
+  def require_clinician
+    if current_clinician.nil?
+      redirect_to patient_path(current_user.patient)
+    end
   end
+
 end

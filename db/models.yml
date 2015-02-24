@@ -3,8 +3,6 @@ Clinician:
   last_name: string
   occupation_id: integer
   gender_id: integer
-  email: string
-  password_digest: string
   office_number: string
   mobile_number: string
   emergency_message: string
@@ -20,8 +18,6 @@ Patient:
   gender_id: integer
   age: string
   address: string
-  email: string
-  password_digest: string
   phone_number: string
   caregiver_name: string
   other_symptom: integer

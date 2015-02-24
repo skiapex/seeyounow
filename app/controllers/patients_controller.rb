@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  skip_before_action :require_user, only: [:show]
+  skip_before_action :require_clinician, except: [:show]
 
   def index
     @patients = Patient.all

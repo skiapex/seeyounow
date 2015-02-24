@@ -23,7 +23,7 @@
     <p><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></p>
     <p><strong>Age:</strong> <%= @patient.age %></p>
     <p><strong>Address:</strong> <%= @patient.address %></p>
-    <p><strong>Email:</strong> <%= @patient.email %></p>
+    <p><strong>Email:</strong> <%= current_user.try(:email) %></p>
     <p><strong>Phone number:</strong> <%= @patient.phone_number %></p>
     <p><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></p>
     <p><strong>Caregiver name:</strong> <%= @patient.caregiver_name %></p>
@@ -54,7 +54,7 @@
       </tr>
       <tr>
         <td><strong>Password</strong></td>
-        <td><%= @patient.password %></td>
+        <td>"Link here?"</td>
       </tr>
       <tr>
         <td><strong>Patient deceased</strong></td>
