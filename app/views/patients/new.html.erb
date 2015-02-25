@@ -12,52 +12,52 @@
 <%= form_for @patient do |form| %>
   <div class="form-group">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name, class: "form-control" %>
+    <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
   </div>
 
   <div class="form-group">
     <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: "form-control" %>
+    <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
   </div>
 
   <div class="form-group">
     <%= form.label :diagnosis %>
-    <%= form.text_field :diagnosis, class: "form-control" %>
+    <%= form.text_field :diagnosis, class: "form-control", placeholder: "Diagnosis" %>
   </div>
 
   <div class="form-group">
     <%= form.label :gender %>
-    <%= form.text_field :gender, class: "form-control" %>
+    <%= form.collection_select :gender, Gender.all, :id, :gender_type, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :age %>
-    <%= form.text_field :age, class: "form-control" %>
+    <%= form.text_field :age, class: "form-control", placeholder: "Age" %>
   </div>
 
   <div class="form-group">
     <%= form.label :address %>
-    <%= form.text_field :address, class: "form-control" %>
+    <%= form.text_field :address, class: "form-control", placeholder: "Steet address" %>
   </div>
 
   <div class="form-group">
     <%= form.label :phone_number %>
-    <%= form.text_field :phone_number, class: "form-control" %>
+    <%= form.text_field :phone_number, class: "form-control", placeholder: "Phone number" %>
   </div>
 
   <div class="form-group">
     <%= form.label :caregiver_name %>
-    <%= form.text_field :caregiver_name, class: "form-control" %>
+    <%= form.text_field :caregiver_name, class: "form-control", placeholder: "Caregiver name" %>
   </div>
 
   <div class="form-group">
     <%= form.label :other_symptom %>
-    <%= form.text_field :other_symptom, class: "form-control" %>
+    <%= form.collection_select :other_symptom, OtherSymptom.all, :id, :symptom_type, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :goals_of_care %>
-    <%= form.text_field :goals_of_care, class: "form-control" %>
+    <%= form.text_field :goals_of_care, class: "form-control", placeholder: "Goals of care" %>
   </div>
 
   <div class="form-group">

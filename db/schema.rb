@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "comments", ["clinician_id"], name: "index_comments_on_clinician_id"
   add_index "comments", ["patient_id"], name: "index_comments_on_patient_id"
 
-  create_table "esas_assesments", force: true do |t|
+  create_table "esas_assessments", force: true do |t|
     t.integer "patient_id"
     t.integer "clinician_id"
     t.string  "time"
@@ -59,24 +59,24 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "drowsiness_comment"
     t.integer "nausea"
     t.string  "nausea_comment"
+    t.integer "lack_of_appetite"
+    t.string  "lack_of_appetite_comment"
     t.integer "shortness_of_breath"
     t.string  "shortness_of_breath_comment"
     t.integer "depression"
     t.string  "depression_comment"
     t.integer "wellbeing"
     t.string  "wellbeing_comment"
-    t.string  "esas_comment"
-    t.integer "lack_of_appetite"
-    t.string  "lack_of_appetite_comment"
     t.integer "other_symptom_id"
     t.integer "other_symptom_score"
     t.string  "other_symptom_comment"
+    t.string  "esas_comment"
   end
 
-  add_index "esas_assesments", ["clinician_id"], name: "index_esas_assesments_on_clinician_id"
-  add_index "esas_assesments", ["inputter_id"], name: "index_esas_assesments_on_inputter_id"
-  add_index "esas_assesments", ["other_symptom_id"], name: "index_esas_assesments_on_other_symptom_id"
-  add_index "esas_assesments", ["patient_id"], name: "index_esas_assesments_on_patient_id"
+  add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id"
+  add_index "esas_assessments", ["inputter_id"], name: "index_esas_assessments_on_inputter_id"
+  add_index "esas_assessments", ["other_symptom_id"], name: "index_esas_assessments_on_other_symptom_id"
+  add_index "esas_assessments", ["patient_id"], name: "index_esas_assessments_on_patient_id"
 
   create_table "genders", force: true do |t|
     t.string "gender_type"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "patients", ["gender_id"], name: "index_patients_on_gender_id"
   add_index "patients", ["user_id"], name: "index_patients_on_user_id"
 
-  create_table "prfs_assesments", force: true do |t|
+  create_table "prfs_assessments", force: true do |t|
     t.integer "patient_id"
     t.integer "clinician_id"
     t.string  "time"
@@ -153,9 +153,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "prfs_comment"
   end
 
-  add_index "prfs_assesments", ["clinician_id"], name: "index_prfs_assesments_on_clinician_id"
-  add_index "prfs_assesments", ["inputter_id"], name: "index_prfs_assesments_on_inputter_id"
-  add_index "prfs_assesments", ["patient_id"], name: "index_prfs_assesments_on_patient_id"
+  add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id"
+  add_index "prfs_assessments", ["inputter_id"], name: "index_prfs_assessments_on_inputter_id"
+  add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id"
 
   create_table "users", force: true do |t|
     t.string "email"

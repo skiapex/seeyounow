@@ -26,9 +26,9 @@
   <div class="col-md-3 actors">
     <h2 class="page-header">ESAS Scores from:</h2>
     <ul class="list-unstyled">
-    <% @esas_assesments.each do |esas_assesment| %>
-      <li><strong>For:</strong> <%= esas_assesment.patient.first_name %> <%= esas_assesment.patient.last_name %></li>
-      <li><strong>At:</strong> <%= link_to esas_assesment.time, esas_assesment_path(esas_assesment) %></li><li class="divider"></li>
+    <% @esas_assessments.each do |esas_assessment| %>
+      <li><strong>For:</strong> <%= esas_assessment.patient.first_name %> <%= esas_assessment.patient.last_name %></li>
+      <li><strong>At:</strong> <%= link_to esas_assessment.time, esas_assessment_path(esas_assessment) %></li><li class="divider"></li>
     <% end %>
     </ul>
   </div>

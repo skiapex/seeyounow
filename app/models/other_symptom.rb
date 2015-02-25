@@ -1,3 +1,3 @@
 class OtherSymptom < ActiveRecord::Base
-	has_many :esas_assesments
+	has_many :esas_assessments
 end

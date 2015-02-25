@@ -11,7 +11,7 @@ class PatientsController < ApplicationController
 
   def show
     @patient = Patient.find_by(id: params["id"])
-    @esas_assesments = EsasAssesment.where(patient_id: @patient.id)
+    @esas_assessments = EsasAssessment.where(patient_id: @patient.id)
     @gender = @patient.gender
     @clinician = @patient.clinician
     @occupation = @clinician.occupation
@@ -32,7 +32,7 @@ class PatientsController < ApplicationController
 	end
 
 	def update
-    patient_params = params.require(:patient).permit(:first_name,:last_name,:user_id,:diagnosis,:gender_id,:age,:address, :email, :password, :phone_number, :caregiver_name, :other_symptom, :goals_of_care, :patient_deceased, :patient_archived, :patient_deceased, :patient_archived)
+    patient_params = params.require(:patient).permit(:first_name,:last_name,:user_id,:diagnosis,:gender_id,:age,:address, :email, :password, :phone_number, :caregiver_name, :other_symptom, :goals_of_care, :patient_deceased, :patient_archived)
     @patient = Patient.find_by(id: params["id"])
     @patient.update_attributes(patient_params)
     if @patient.valid?

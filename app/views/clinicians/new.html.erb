@@ -21,7 +21,7 @@
 
   <div class="form-group">
     <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: "form-control" %>
+    <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
   </div>
 
   <div class="form-group">
@@ -36,22 +36,22 @@
 
   <div class="form-group">
     <%= form.label :office_number %>
-    <%= form.text_field :office_number, class: "form-control" %>
+    <%= form.text_field :office_number, class: "form-control", placeholder: "Office number" %>
   </div>
 
   <div class="form-group">
     <%= form.label :mobile_number %>
-    <%= form.text_field :mobile_number, class: "form-control" %>
+    <%= form.text_field :mobile_number, class: "form-control", placeholder: "Mobile number" %>
   </div>
 
   <div class="form-group">
     <%= form.label :emergency_message %>
-    <%= form.text_area :emergency_message, class: "form-control", rows: 5 %>
+    <%= form.text_area :emergency_message, class: "form-control", rows: 5, placeholder: "Emergency Message" %>
   </div>
 
   <div class="form-group">
     <%= form.label :care_group_id %>
-    <%= form.collection_select :care_group_id, CareGroup.all, :id, :name, { include_blank: true }, class: "form-control" %>
+    <%= form.collection_select :care_group_id, CareGroup.all, :id, :name, class: "form-control" %>
   </div>
   <%= form.button 'Create Clinician', class: "btn btn-success" %>
 <% end %>

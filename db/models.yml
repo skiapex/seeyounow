@@ -38,7 +38,7 @@ Inputter:
 OtherSymptom:
   symptom_type: string
 
-EsasAssesment:
+EsasAssessment:
   patient_id: integer
   clinician_id: integer
   time: string
@@ -65,7 +65,7 @@ EsasAssesment:
   other_symptom_comment: string
   esas_comment: string
 
-PrfsAssesment:
+PrfsAssessment:
   patient_id: integer
   clinician_id: integer
   time: string
