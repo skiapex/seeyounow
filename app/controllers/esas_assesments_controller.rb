@@ -1,5 +1,5 @@
 class EsasAssesmentsController < ApplicationController
-  skip_before_action :require_clinician, only: [:new, :edit]
+  skip_before_action :require_clinician, only: [:new, :show]
 
   def index
     @esas_assesments = EsasAssesment.all
@@ -35,7 +35,7 @@ class EsasAssesmentsController < ApplicationController
     @esas_assesment = EsasAssesment.find_by(id: params["id"])
     @esas_assesment.update_attributes(esas_assesment_params)
     if @esas_assesment.valid?
-      redirect_to esas_assesments_path(esas_assesment), notice: "ESAS assessment edited!"
+      redirect_to esas_assesment_path(@esas_assesment), notice: "ESAS assessment edited!"
     else
       render "edit", alert: "ESAS assessment not edited!"
     end

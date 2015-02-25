@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     user_params = params.require(:user).permit!
     @user = User.create(user_params)
     if @user.valid?
-      redirect_to users_path, notice: "User created!"
+      redirect_to user_path(@user), notice: "User created!"
     else
       render "new"
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     user_params = params.require(:user).permit!
     @user = User.find_by(id: params["id"])
     @user.update(user_params)
-    redirect_to users_path(@user), notice: "User updated!"
+    redirect_to user_path(@user), notice: "User updated!"
   end
 
   def destroy

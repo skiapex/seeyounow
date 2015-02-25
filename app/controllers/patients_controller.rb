@@ -21,7 +21,7 @@ class PatientsController < ApplicationController
   	patient_params = params.require(:patient).permit!
     @patient = Patient.create(patient_params)
     if @patient.valid?
-      redirect_to patients_path, notice: "New patient created!"
+      redirect_to patient_path(@patient), notice: "New patient created!"
     else
       render "new"
     end
@@ -36,7 +36,7 @@ class PatientsController < ApplicationController
     @patient = Patient.find_by(id: params["id"])
     @patient.update_attributes(patient_params)
     if @patient.valid?
-      redirect_to patients_path, notice: "New patient created!"
+      redirect_to patient_path(@patient), notice: "New patient created!"
     else
       render "edit"
     end

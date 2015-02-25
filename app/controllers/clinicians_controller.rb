@@ -19,7 +19,7 @@ class CliniciansController < ApplicationController
     clinician_params = params.require(:clinician).permit!
     @clinician = Clinician.create(clinician_params)
     if @clinician.valid?
-      redirect_to clinicians_path, notice: "Clinician created!"
+      redirect_to clinicians_path(@clinician), notice: "Clinician created!"
     else
       render "new"
     end
@@ -34,7 +34,7 @@ class CliniciansController < ApplicationController
     @clinician = Clinician.find_by(id: params["id"])
     @clinician.update_attributes(clinician_params)
     if @clinician.valid?
-      redirect_to clinicians_path, notice: "Clinician edited!"
+      redirect_to clinician_path(@clinician), notice: "Clinician edited!"
     else
       render "edit"
     end
