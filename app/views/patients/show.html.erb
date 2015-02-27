@@ -64,25 +64,12 @@
   </div>
 </div>
 
-<% scores = Array.new(9) %>
 <% $i = 0 %>
 
 <% @esas_assessments.each do |esas_assessment| %>
-
-
-  <%= puts "#{name}. #{$i}" %>
+  [<%= "#{$i}, #{esas_assessment.pain}, #{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
   <% $i +=1 %>
-
-  <li><%= name %><%= $i %></li>
-
 <% end %>
-
-<!-- <% @esas_assessments.each do |esas_assessment| %> -->
-<!-- <li>ESAS <%= $i %> = [<%= @patient.last_name %>,<%= esas_assessment.time %>]
-  <% $i +=1 %></li> -->
-
-
-
 
 <head>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -107,17 +94,6 @@
         [1,  5,      3,      8,      7,      4,      6,      2,      3],
         [2,  4,      2,      7,      6,      5,      5,      3,      5],
         [3,  5,      5,      7,      5,      6,      6,      1,      4],
-        [4,  6,      4,      8,      4,      9,      5,      3,      6],
-        [5,  6,      4,      8,      4,      9,      5,      3,      6],
-        [6,  6,      4,      8,      4,      9,      5,      3,      6],
-        [7,  6,      4,      8,      4,      9,      5,      3,      6],
-        [8,  6,      4,      8,      4,      9,      5,      3,      6],
-        [9,  6,      4,      8,      4,      9,      5,      3,      6],
-        [10, 6,      4,      8,      4,      9,      5,      3,      6],
-        [11, 6,      4,      8,      4,      9,      5,      3,      6],
-        [12, 6,      4,      8,      4,      9,      5,      3,      6],
-        [13, 6,      4,      8,      4,      9,      5,      3,      6],
-        [14, 6,      4,      8,      4,      9,      5,      3,      6]
       ]);
 
       var options = {

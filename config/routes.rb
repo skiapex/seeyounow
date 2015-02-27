@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :users
   resources :clinicians
   resources :patients
   resources :esas_assessments
