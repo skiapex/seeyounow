@@ -24,4 +24,9 @@ group :development do
   gem 'country_select'
 end
 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
 source 'https://rubygems.org'
