@@ -18,6 +18,61 @@
   </span>
 </h3>
 
+<% if current_clinician %>
+<head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('visualization', '1.1', {packages: ['line']});
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'Day');
+      data.addColumn('number', 'Pain');
+      data.addColumn('number', 'Tiredness');
+      data.addColumn('number', 'Drowsiness');
+      data.addColumn('number', 'Nausea');
+      data.addColumn('number', 'Lack of Appetite');
+      data.addColumn('number', 'Shortness of Breath');
+      data.addColumn('number', 'Depression');
+      data.addColumn('number', 'Wellbeing');
+      data.addColumn('number', 'Other Problem');
+
+      data.addRows([
+
+        <% $i = 1 %>
+
+        <% @esas_assessments.each do |esas_assessment| %>
+
+          [<%= "#{$i}, #{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
+
+          <% $i +=1 %>
+
+        <% end %>
+
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Profile of Symptom Severity Over Time',
+          subtitle: 'severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity'
+        },
+        width: 900,
+        height: 500
+      };
+
+      var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="linechart_material"></div>
+</body>
+<% end %>
+
 <div class="row">
   <div class="col-md-3">
     <p><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></p>
@@ -44,8 +99,10 @@
   </div>
 </div>
 
+<% if current_clinician %>
 <div class="row">
-  <div class="col-md-9 col-md-offset-3 reviews">
+  <div class="col-md-3 col-md-offset-1 reviews">
+  <span class="pull-left">
     <h2 class="page-header">Information</h2>
     <table class="table table-striped table-bordered">
       <tr>
@@ -61,58 +118,8 @@
         <td><%= @patient.patient_archived %></td>
       </tr>
     </table>
+  </span>
   </div>
 </div>
-
-<% $i = 1 %>
-
-<% @esas_assessments.each do |esas_assessment| %>
-  [<%= "#{$i}, #{esas_assessment.pain}, #{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
-  <% $i +=1 %>
 <% end %>
 
-<head>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-    google.load('visualization', '1.1', {packages: ['line']});
-    google.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'Day');
-      data.addColumn('number', 'Pain');
-      data.addColumn('number', 'Tiredness');
-      data.addColumn('number', 'Drowsiness');
-      data.addColumn('number', 'Nausea');
-      data.addColumn('number', 'Lack of Appetite');
-      data.addColumn('number', 'Shortness of Breath');
-      data.addColumn('number', 'Depression');
-      data.addColumn('number', 'Wellbeing');
-
-      data.addRows([
-        [1,  5,      3,      8,      7,      4,      6,      2,      3],
-        [6,  4,      2,      7,      6,      5,      5,      3,      5],
-        [9,  5,      5,      7,      5,      6,      6,      1,      4],
-
-
-      ]);
-
-      var options = {
-        chart: {
-          title: 'Profile of Symptom Severity Over Time',
-          subtitle: 'severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity'
-        },
-        width: 900,
-        height: 500
-      };
-
-      var chart = new google.charts.Line(document.getElementById('linechart_material'));
-
-      chart.draw(data, options);
-    }
-  </script>
-</head>
-<body>
-  <div id="linechart_material"></div>
-</body>

@@ -10,16 +10,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 gem 'ez'
+gem "chartkick"
+gem 'groupdate'
+gem 'hightop'
+gem 'active_median'
+gem 'country_select'
 
 group :development do
   gem 'spring'
   gem 'quiet_assets'
   gem 'tzinfo-data', platforms: [:mingw, :mswin]
-  gem "chartkick"
-  gem 'groupdate'
-  gem 'hightop'
-  gem 'active_median'
-  gem 'country_select'
   gem 'sqlite3'
 end
 
