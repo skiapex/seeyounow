@@ -64,6 +64,24 @@
   </div>
 </div>
 
+<% scores = Array.new(9) %>
+<% $i = 0 %>
+
+<% @esas_assessments.each do |esas_assessment| %>
+
+
+  <%= puts "#{name}. #{$i}" %>
+  <% $i +=1 %>
+
+  <li><%= name %><%= $i %></li>
+
+<% end %>
+
+<!-- <% @esas_assessments.each do |esas_assessment| %> -->
+<!-- <li>ESAS <%= $i %> = [<%= @patient.last_name %>,<%= esas_assessment.time %>]
+  <% $i +=1 %></li> -->
+
+
 
 
 <head>
@@ -120,46 +138,3 @@
 <body>
   <div id="linechart_material"></div>
 </body>
-
-
-<!--
-<html>
-  <head>
-    <script type="text/javascript"
-          src="https://www.google.com/jsapi?autoload={
-            'modules':[{
-              'name':'visualization',
-              'version':'1',
-              'packages':['corechart']
-            }]
-          }"></script>
-
-    <script type="text/javascript">
-      google.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Pain', 'Tiredness', 'Drowsiness', 'Nausea', 'Lack of Appetite', 'Shortness of Breath', 'Depression', 'Wellbeing'],
-          ['2004',  5,      3,      8,      7,      4,      6,      2,      3],
-          ['2005',  4,      2,      7,      6,      5,      5,      3,      5],
-          ['2006',  5,      5,      7,      5,      6,      6,      1,      4],
-          ['2007',  6,      4,      8,      4,      9,      5,      3,      6]
-        ]);
-
-        var options = {
-          title: 'Symptom History',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
-  </body>
-</html>
--->
