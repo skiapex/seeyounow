@@ -5,7 +5,7 @@ Clinician:
   gender_id: integer
   office_number: string
   mobile_number: string
-  emergency_message: string
+  emergency_message: text
   care_group_id: integer
   user_id: string
 

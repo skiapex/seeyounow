@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "last_name"
     t.string  "office_number"
     t.string  "mobile_number"
-    t.string  "emergency_message"
+    t.text    "emergency_message", limit: 255
     t.integer "care_group_id"
     t.integer "occupation_id"
     t.integer "gender_id"
