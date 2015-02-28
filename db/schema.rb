@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "clinicians", force: true do |t|
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "office_number"
-    t.string  "mobile_number"
-    t.text    "emergency_message", limit: 255
-    t.integer "care_group_id"
     t.integer "occupation_id"
     t.integer "gender_id"
+    t.string  "office_number"
+    t.string  "mobile_number"
+    t.text    "emergency_message"
+    t.integer "care_group_id"
     t.string  "user_id"
   end
 
@@ -125,18 +125,18 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "clinician_id"
     t.string  "first_name"
     t.string  "last_name"
+    t.string  "user_id"
     t.string  "diagnosis"
+    t.integer "gender_id"
     t.string  "age"
     t.string  "address"
     t.string  "phone_number"
     t.string  "caregiver_name"
+    t.integer "other_symptom"
     t.text    "goals_of_care"
     t.integer "shared_with"
     t.boolean "patient_deceased", default: false
     t.boolean "patient_archived", default: false
-    t.integer "other_symptom"
-    t.integer "gender_id"
-    t.string  "user_id"
   end
 
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id"
