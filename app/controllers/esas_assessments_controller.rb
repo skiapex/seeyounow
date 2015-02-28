@@ -2,7 +2,7 @@ class EsasAssessmentsController < ApplicationController
   skip_before_action :require_clinician, only: [:new, :show]
 
   def index
-    @esas_assessments = EsasAssessment.all
+    @esas_assessments = current_clinician.esas_assessments
   end
 
   def show
