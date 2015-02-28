@@ -10,6 +10,7 @@ class EsasAssessmentsController < ApplicationController
     @clinician = @esas_assessment.clinician
     @occupation = @clinician.occupation
     @other_symptom = @esas_assessment.other_symptom
+    @patient = @esas_assessment.patient
   end
 
   def new
@@ -31,7 +32,7 @@ class EsasAssessmentsController < ApplicationController
   end
 
   def update
-    esas_assessment_params = params.require(:esas_assessment).permit(:patient_id,:clinician_id,:time,:inputter_name, :inputter_id, :pain, :pain_comment, :tiredness, :tiredness_comment, :drowsiness, :drowsiness_comment, :nausea, :nausea_comment, :lack_of_appetite, :lack_of_appetite_comment, :shortness_of_breath, :shortness_of_breath_comment, :depression, :depression_comment, :wellbeing, :wellbeing_comment, :other_symptom_id, :other_symptom_score, :other_symptom_comment, :esas_comment)
+    esas_assessment_params = params.require(:esas_assessment).permit(:patient_id, :clinician_id, :time, :year, :month, :day, :inputter_name, :inputter_id, :pain, :pain_comment, :tiredness, :tiredness_comment, :drowsiness, :drowsiness_comment, :nausea, :nausea_comment, :lack_of_appetite, :lack_of_appetite_comment, :shortness_of_breath, :shortness_of_breath_comment, :depression, :depression_comment, :wellbeing, :wellbeing_comment, :other_symptom_id, :other_symptom_score, :other_symptom_comment, :esas_comment)
     @esas_assessment = EsasAssessment.find_by(id: params["id"])
     @esas_assessment.update_attributes(esas_assessment_params)
     if @esas_assessment.valid?

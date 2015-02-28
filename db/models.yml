@@ -7,13 +7,13 @@ Clinician:
   mobile_number: string
   emergency_message: text
   care_group_id: integer
-  user_id: string
+  user_id: integer
 
 Patient:
   clinician_id: integer
   first_name: string
   last_name: string
-  user_id: string
+  user_id: integer
   diagnosis: string
   gender_id: integer
   age: string
@@ -42,6 +42,9 @@ EsasAssessment:
   patient_id: integer
   clinician_id: integer
   time: string
+  year: integer
+  month: integer
+  day: integer
   inputter_name: string
   inputter_id: integer
   pain: integer
@@ -69,6 +72,9 @@ PrfsAssessment:
   patient_id: integer
   clinician_id: integer
   time: string
+  year: integer
+  month: integer
+  day: integer
   inputter_name: string
   inputter_id: integer
   activity_and_function: integer

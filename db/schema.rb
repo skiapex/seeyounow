@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "mobile_number"
     t.text    "emergency_message"
     t.integer "care_group_id"
-    t.string  "user_id"
+    t.integer "user_id",           limit: 255
   end
 
   add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id"
@@ -71,6 +71,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "other_symptom_score"
     t.string  "other_symptom_comment"
     t.string  "esas_comment"
+    t.integer "year"
+    t.integer "month"
+    t.integer "day"
   end
 
   add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id"
@@ -125,7 +128,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "clinician_id"
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "user_id"
+    t.integer "user_id",          limit: 255
     t.string  "diagnosis"
     t.integer "gender_id"
     t.string  "age"
@@ -135,8 +138,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "other_symptom"
     t.text    "goals_of_care"
     t.integer "shared_with"
-    t.boolean "patient_deceased", default: false
-    t.boolean "patient_archived", default: false
+    t.boolean "patient_deceased",             default: false
+    t.boolean "patient_archived",             default: false
   end
 
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id"
@@ -151,6 +154,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "inputter_id"
     t.integer "activity_and_function"
     t.string  "prfs_comment"
+    t.integer "year"
+    t.integer "month"
+    t.integer "day"
   end
 
   add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id"
