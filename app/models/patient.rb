@@ -3,6 +3,7 @@ class Patient < ActiveRecord::Base
 	belongs_to :gender
 	belongs_to :clinician
 	belongs_to :user
+  has_many :comments, dependent: :destroy
 
   	validates :first_name, presence: true
   	validates :last_name, presence: true

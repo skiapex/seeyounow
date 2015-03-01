@@ -1,6 +1,7 @@
 class Clinician < ActiveRecord::Base
 	belongs_to :care_group
 	has_many :esas_assessments
+  has_many :comments
 	belongs_to :gender
 	has_many :patients, through: :esas_assessments
 	belongs_to :occupation

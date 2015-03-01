@@ -1,0 +1,15 @@
+<h3 class="page-header">
+  All conversations
+  <span class="pull-right">
+    <%= link_to "New comment", new_comment_path, class: 'btn btn-sm btn-success' %>
+  </span>
+</h3>
+
+<ul>
+
+
+  <% @comments.each do |comment| %>
+	    <li><h4><%= link_to "#{ comment.patient.first_name } #{ comment.patient.last_name} at #{comment.time}", comment_path(comment) %></h4> 
+	    <%= link_to "Edit", edit_comment_path(comment) %> <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></li>
+  <% end %>
+</ul>

@@ -120,11 +120,11 @@ PrfsAssessment.create(patient_id: johndoe.id, clinician_id: drmarshallsmith.id, 
 PrfsAssessment.create(patient_id: cindypeters.id, clinician_id: joandixon.id, time: "2015-02-06 17:53:21 -0600", year: 2015, month: 2, day: 6, inputter_name: "Paul Ku", inputter_id: care_aid.id, activity_and_function: 3, prfs_comment: nil)
 
 # Create the comments
-Comment.create(patient_id: johndoe.id, clinician_id: drmarshallsmith.id, from: drmarshallsmith.id, time: "2015-02-05 13:26:32 -0600", general_comment: "Good. Please comment in the morning on how you feel")
-Comment.create(patient_id: johndoe.id, clinician_id: drmarshallsmith.id, from: johndoe.id, time: "2015-02-05 14:39:01 -0600", general_comment: "Feeling good this morning. Thanks")
+Comment.create(patient_id: johndoe.id, clinician_id: drmarshallsmith.id, from: userdrmarshallsmith.id, time: "2015-02-05 13:26:32 -0600", general_comment: "Good. Please comment in the morning on how you feel")
+Comment.create(patient_id: johndoe.id, clinician_id: drmarshallsmith.id, from: userjohndoe.id, time: "2015-02-05 14:39:01 -0600", general_comment: "Feeling good this morning. Thanks")
 
-Comment.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, from: macariogarcia.id, time: "2015-02-04 09:08:56 -0600", general_comment: "Let me know if it's still bad tomorrow and we can schedule something from there")
-Comment.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, from: apwinderbrar.id, time: "2015-02-06 08:43:21 -0600", general_comment: "Seems like it was just a bad day")
+Comment.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, from: usermacariogarcia.id, time: "2015-02-04 09:08:56 -0600", general_comment: "Let me know if it's still bad tomorrow and we can schedule something from there")
+Comment.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, from: userapwinderbrar.id, time: "2015-02-06 08:43:21 -0600", general_comment: "Seems like it was just a bad day")
 
 # Create the notification settings
 default = Notification.create(clinician_id: drmarshallsmith.id, esas_yellow_highest_symptom: 6, esas_yellow_increase_of: 3, esas_yellow_email: 0, esas_yellow_text: 0, esas_orange_highest_symptom: 8, esas_orange_increase_of: 4, esas_orange_email: 1, esas_orange_text: 0, esas_red_highest_symptom: 10, esas_red_increase_of: 5, esas_red_email: 1, esas_red_text: 1, prfs_yellow: 3, prfs_yellow_email: 0, prfs_yellow_text: 0, prfs_orange: 4, prfs_orange_email: 1, prfs_orange_text: 0, prfs_red: 5, prfs_red_email: 1, prfs_red_text: 1)
