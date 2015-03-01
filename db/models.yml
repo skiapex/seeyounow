@@ -84,7 +84,7 @@ Comment:
   patient_id: integer
   clinician_id: integer
   from: integer
-  time: string
+  time: DateTimeField
   general_comment: string
 
 Notification:

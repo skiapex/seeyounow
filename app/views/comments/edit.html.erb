@@ -10,35 +10,27 @@
 <% end %>
 
 <h3 class="page-header">
-  
-    Edit comment done at <%= @comment.time %> by <%= user.clinician %> <%= @user %>
- 
+  <% if @clinician.nil? %>
+    Edit comment written by <%= @patient.first_name %> <%= @patient.last_name %> at <%= @comment.time %> 
+  <% else %>
+    Edit comment written by <%= @clinician.first_name %> <%= @clinician.last_name %> at <%= @comment.time %> 
+  <% end %>
 </h3>
 
 <%= form_for @comment do |form| %>
   <div class="form-group">
-    <%= form.label :patient_id %>
+    <%= form.label "Between patient:" %>
     <%= form.collection_select :patient_id, Patient.all, :id, :first_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= form.label :clinician_id %>
+    <%= form.label "And clinician:" %>
     <%= form.collection_select :clinician_id, Clinician.all, :id, :first_name, class: "form-control" %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :from %>
-    <%= form.text_field :from, class: "form-control", placeholder: "Who is sending the message" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :time %>
-    <%= form.text_field :time, class: "form-control", placeholder: "Time of day" %>
-  </div>
-
+  
   <div class="form-group">
     <%= form.label :general_comment %>
-    <%= form.text_field :general_comment, class: "form-control", placeholder: "Leave a comment" %>
+    <%= form.text_area :general_comment, class: "form-control", rows: 5, placeholder: "Leave a comment" %>
   </div>
  
   <%= form.button 'Update Comment', class: "btn btn-success" %>

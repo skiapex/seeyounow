@@ -42,7 +42,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to "SeeYouNow", root_path, class: "navbar-brand" %>
+            <% if current_clinician %>
+              <%= link_to "SeeYouNow", root_path, class: "navbar-brand" %>
+            <% else %>
+              <%= link_to "SeeYouNow", patient_path(current_user.patient), class: "navbar-brand" %>
+            <% end %>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -65,7 +69,7 @@
                 <ul class="dropdown-menu" role="menu">
                   <li>
                     <% if current_clinician %>
-                      <%= link_to "ESAS scores", esas_assessments_path %>
+                      <%= link_to "ESAS Assessment", esas_assessments_path %>
                     <% end %>
                   </li>
                   <li>
@@ -82,7 +86,7 @@
                   <li class="divider"></li>
                   <li>
                     <% if current_clinician %>
-                      <a href="#">Comments</a>
+                      <a href="#"><%= link_to "Comments", comments_path %></a>
                      <% end %>
                   </li>
                 </ul>
@@ -94,6 +98,34 @@
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
+            <% end %>
+
+            <% if current_clinician.nil? %>
+          
+            <ul class="nav navbar-nav">
+              <li>
+              <a href="/">
+                <i class="fa fa-medkit"></i><span class="sr-only">
+                <%= link_to "Home", patient_path(current_user.patient) %></span></a></li>
+
+              <li>
+              <a href="/">
+                <i class="fa fa-comments"></i><span class="sr-only">
+                <%= link_to "Conversations", comments_path %></span></a></li>
+
+              <li>
+              <a href="/">
+                <i class="fa fa-list"></i><span class="sr-only">
+                <%= link_to "ESAS Assessment", new_esas_assessment_path %></span></a></li>
+
+              <li>
+              <a href="/">
+                <i class="fa fa-list"></i><span class="sr-only">
+                <%= link_to "PFRS Assessment", new_esas_assessment_path %></span></a></li>
+
+                
+                            
+            </ul>
             <% end %>
 
             <ul class="nav navbar-nav navbar-right">
@@ -119,9 +151,14 @@
                     <% end %>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-cog"></i> Settings <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#"><%= link_to "Settings", edit_user_path(current_user) %></a></li>
+                  <% if current_clinician %>
+                    <li><a href="#"><%= link_to "Edit Profile", edit_clinician_path(current_user.clinician) %></a></li>
+                  <% else %>
+                    <li><a href="#"><%= link_to "Edit Profile", edit_patient_path(current_user.patient) %></a></li>
+                  <% end %>
                   <li><a href="#"><% if current_clinician %>
                       <%= link_to "Notification Settings", logout_path %>
                     <% end %></a></li>

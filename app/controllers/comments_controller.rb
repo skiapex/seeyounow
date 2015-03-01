@@ -2,7 +2,11 @@ class CommentsController < ApplicationController
   skip_before_action :require_clinician, only: [:new, :show, :index]
 
   def index
-    @comments = current_clinician.comments
+    if current_clinician
+      @comments = current_clinician.comments
+    else
+      @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments
+    end
   end
 
   def show
@@ -28,6 +32,8 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find_by(id: params["id"])
     @user = @comment.from
+    @clinician = Clinician.find_by(user_id: @user)
+    @patient = Patient.find_by(user_id: @user)
   end
 
   def update

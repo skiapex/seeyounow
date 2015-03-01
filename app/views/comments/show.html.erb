@@ -20,44 +20,15 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-1 information">
-    <h2 class="page-header">Scores</h2>
+    <h2 class="page-header">Conversation</h2>
     <table class="table table-striped table-bordered">
       <tr>
-        <td><strong>Pain:</strong></td><td><%= @comment.pain %></td>
+        <td>
+          <% @comment.each do |comment| %>
+          <%= comment.patient.first_name %>
+          <% end %>
+        </td>
         <td><strong>Comment:</strong></td><td><%= @comment.pain_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Tiredness:</strong></td><td><%= @comment.tiredness %></td>
-        <td><strong>Comment:</strong></td><td><%= @comment.tiredness_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Drowsiness:</strong></td><td><%= @comment.drowsiness %></td>
-        <td><strong>Comment:</strong></td><td><%= @comment.drowsiness_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Nausea:</strong></td><td><%= @comment.nausea %></td>
-        <td><strong>Comment:</strong></td><td><%= @comment.nausea_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Lack of Appetite:</strong></td><td><%= @comment.lack_of_appetite %></td>
-        <td><strong>Comment:</strong></td><td><%= @comment.lack_of_appetite_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Shortness of Breath:</strong></td><td><%= @comment.shortness_of_breath %></td>
-        <td><strong>Comment:</strong></td><td><%= @comment.shortness_of_breath_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Depression:</strong></td><td><%= @comment.depression %></td>
-        <td><strong>Comment:</strong></td><td><%= @comment.depression_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Wellbeing:</strong></td><td><%= @comment.wellbeing %></td>
-       <td><strong>Comment:</strong></td><td><%= @comment.wellbeing_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Other Symptom Type:</strong></td><td><%= @comment.other_symptom.symptom_type %></p>
-        <td><strong>Other Symptom Score:</strong></td><td><%= @comment.other_symptom_score %></p>
-        <td><strong>Comment:</strong></td><td><%= @comment.wellbeing_comment %></p>
       </tr>
     </table>
   </div>

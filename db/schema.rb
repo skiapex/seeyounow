@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "clinicians", ["user_id"], name: "index_clinicians_on_user_id"
 
   create_table "comments", force: true do |t|
-    t.integer "patient_id"
-    t.integer "clinician_id"
-    t.integer "from"
-    t.string  "time"
-    t.string  "general_comment"
+    t.integer  "patient_id"
+    t.integer  "clinician_id"
+    t.integer  "from"
+    t.datetime "time"
+    t.string   "general_comment"
   end
 
   add_index "comments", ["clinician_id"], name: "index_comments_on_clinician_id"
