@@ -1,4 +1,5 @@
 class Clinician < ActiveRecord::Base
+  #acts_as_messageable
 	belongs_to :care_group
 	has_many :esas_assessments
   has_many :comments

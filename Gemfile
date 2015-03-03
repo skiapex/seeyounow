@@ -15,6 +15,7 @@ gem 'groupdate'
 gem 'hightop'
 gem 'active_median'
 gem 'country_select'
+gem 'mailboxer', '~> 0.12.5'
 
 group :development do
   gem 'spring'

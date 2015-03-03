@@ -33,6 +33,11 @@ GEM
     bcrypt (3.1.10)
     bcrypt (3.1.10-x86-mingw32)
     builder (3.2.2)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     chartkick (1.3.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -50,6 +55,8 @@ GEM
     execjs (2.2.2)
     ez (1.2.0)
       hirb (~> 0.7)
+    foreigner (1.7.2)
+      activerecord (>= 3.0.0)
     groupdate (2.4.0)
       activesupport (>= 3)
     hightop (0.1.2)
@@ -66,9 +73,14 @@ GEM
     json (1.8.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailboxer (0.12.5)
+      carrierwave (>= 0.5.8)
+      foreigner (>= 0.9.1)
+      rails (>= 3.2.0)
     mime-types (2.4.3)
     minitest (5.5.1)
     multi_json (1.10.1)
+    pg (0.18.1)
     pg (0.18.1-x86-mingw32)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
@@ -147,6 +159,7 @@ DEPENDENCIES
   hightop
   jbuilder (~> 2.0)
   jquery-rails
+  mailboxer (~> 0.12.5)
   pg
   quiet_assets
   rails (= 4.1.8)
