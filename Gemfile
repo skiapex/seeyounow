@@ -16,6 +16,7 @@ gem 'hightop'
 gem 'active_median'
 gem 'country_select'
 gem 'mailboxer', '~> 0.12.5'
+gem 'twitter-bootstrap-rails'
 
 group :development do
   gem 'spring'
@@ -27,14 +28,6 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'twitter-bootstrap-rails'
-  gem 'less-rails', '~> 2.6.0'
-  gem 'libv8', '~> 3.16.14.7'
 end
 
 source 'https://rubygems.org'
