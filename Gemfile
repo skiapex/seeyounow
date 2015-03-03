@@ -29,4 +29,12 @@ group :production do
   gem 'rails_12factor'
 end
 
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'twitter-bootstrap-rails'
+  gem 'less-rails', '~> 2.6.0'
+  gem 'libv8', '~> 3.16.14.7'
+end
+
 source 'https://rubygems.org'
