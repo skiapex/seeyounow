@@ -12,26 +12,30 @@
     <meta name="author" content="SeeYouNow">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="/favicon.ico">
+    <%= favicon_link_tag 'favicon.ico'  %>
 
     <!-- CSS Global Compulsory -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track' => true %>
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+    <%= stylesheet_link_tag "line-icons", media: "all", "data-turbolinks-track" => true %>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- CSS Page Style -->    
-    <link rel="stylesheet" href="assets/css/pages/page_log_reg_v2.css">    
+    <%= stylesheet_link_tag "page_log_reg_v2", media: "all", "data-turbolinks-track" => true %>
 
     <!-- CSS Theme -->    
-    <link rel="stylesheet" href="assets/css/theme-colors/default.css">
-
+    <%= stylesheet_link_tag "default", media: "all", "data-turbolinks-track" => true %>
+    
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <%= stylesheet_link_tag "custom", media: "all", "data-turbolinks-track" => true %>
+
+    <%= csrf_meta_tags %>
 </head> 
 
 <body>
@@ -44,10 +48,11 @@
             <ul class="social-icons text-center">
                 <li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
                 <li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
-                <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
+                <!-- <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>-->
                 <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
             </ul>
-            <p>Don't Have Account? Click <a class="color-green" href="page_registration1.html">Sign Up</a> to registration.</p>            
+            <p>Don't Have Account? Click <a class="color-green" href="http://unbouncepages.com/seeyounow/">here</a> for more informatio.</p>
+            <!-- <p>Don't Have Account? Click <a class="color-green" href="page_registration1.html">Sign Up</a> to registration.</p> -->           
         </div>
         <%= form_tag sessions_path, class: "form-signin" do %>
         <div class="input-group margin-bottom-20">
@@ -99,26 +104,34 @@
 <!--=== End Sticky-Footer ===-->
 
 <!-- JS Global Compulsory -->           
-<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+<%= javascript_include_tag "jquery.min", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "jquery-migrate.min", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+
 <!-- JS Implementing Plugins -->           
-<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="assets/plugins/countdown/jquery.countdown.js"></script>
-<script type="text/javascript" src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+<%= javascript_include_tag "back-to-top", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "jquery.countdown", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "jquery.backstretch.min", "data-turbolinks-track" => true %>
+
 <script type="text/javascript">
     $.backstretch([
-      "assets/img/bg/5.jpg",
-      "assets/img/bg/4.jpg",
+      <%= image_tag "bg/5.jpg" %>,
+      <%= image_tag "bg/4.jpg" %>,
       ], {
         fade: 1000,
         duration: 7000
     });
 </script>
 <!-- JS Customization -->
-<script type="text/javascript" src="assets/js/custom.js"></script>
+<%= javascript_include_tag "custom", "data-turbolinks-track" => true %>
+
 <!-- JS Page Level -->           
-<script type="text/javascript" src="assets/js/app.js"></script>
+<%= javascript_include_tag "app", "data-turbolinks-track" => true %>
+
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();      

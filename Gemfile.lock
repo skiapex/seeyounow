@@ -59,6 +59,7 @@ GEM
       activerecord (>= 3.0.0)
     groupdate (2.4.0)
       activesupport (>= 3)
+    high_voltage (2.2.1)
     hightop (0.1.2)
       activerecord
     hike (1.2.3)
@@ -161,6 +162,7 @@ DEPENDENCIES
   country_select
   ez
   groupdate
+  high_voltage (~> 2.2.1)
   hightop
   jbuilder (~> 2.0)
   jquery-rails

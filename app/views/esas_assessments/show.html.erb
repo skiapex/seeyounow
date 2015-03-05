@@ -10,13 +10,57 @@
   <% end %>
   <p><strong>For:</strong> <%= @esas_assessment.clinician.occupation.name %> <%= @esas_assessment.clinician.first_name %> <%= @esas_assessment.clinician.last_name %></p>
 </h4>
-<h4 span class="time"><strong>Completed at:</strong> <%= @esas_assessment.time %> <%= @esas_assessment.month %> <%= @esas_assessment.day %>
+<h4 span class="time"><strong>Completed at:</strong> <%= @esas_assessment.time %> <%= @esas_assessment.month -=1 %>/<%= @esas_assessment.day %>/<%= @esas_assessment.year %>
+
   <% if current_clinician %>
     <span class="pull-right">
     <%= link_to "Delete", esas_assessment_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-sm btn-success' %>
     </span>
   <% end %>
 </h4>
+
+<head>
+   <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+    
+          <div id="ex0"></div>
+    <script type="text/javascript">
+    google.load('visualization', '1', {packages: ['corechart']});
+    google.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+         ['Symptom', 'Intensity'],
+         ['Pain', <%= @esas_assessment.pain %> ],
+         ['Tiredness', <%= @esas_assessment.tiredness %> ],
+         ['Drowsiness', <%= @esas_assessment.drowsiness %> ],
+         ['Nausea', <%= @esas_assessment.nausea %> ],
+         ['Lack of Appetite', <%= @esas_assessment.lack_of_appetite %> ],
+         ['Shortness of Breath', <%= @esas_assessment.shortness_of_breath %> ],
+         ['Depression', <%= @esas_assessment.depression %> ],
+         ['Wellbeing', <%= @esas_assessment.wellbeing %> ],
+         ['<%= @esas_assessment.other_symptom.symptom_type.capitalize %>', <%= @esas_assessment.other_symptom_score %> ],
+      ]);
+
+      var options = {
+        width: 1000,
+        height: 563,
+        hAxis: {
+          title: 'Symptom',
+          gridlines: {count: 10}
+        },
+        vAxis: {
+          title: 'Intensity (scale of 1-10)'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('ex0'));
+
+      chart.draw(data, options);
+    }
+    </script>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-1 information">
