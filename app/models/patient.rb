@@ -1,4 +1,5 @@
 class Patient < ActiveRecord::Base
+  #acts_as_messageable
 	has_many :esas_assessments, dependent: :destroy
 	belongs_to :gender
 	belongs_to :clinician

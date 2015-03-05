@@ -1,38 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SeeYouNow</title>
-  <!-- Logo Font -->
-  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <title>SeeYouNow | Login Page </title>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="SeeYouNow">
 
-  <%= csrf_meta_tags %>
-</head>
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico">
+    <%= favicon_link_tag 'favicon.ico'  %>
+
+    <!-- CSS Global Compulsory -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track' => true %>
+
+    <!-- CSS Implementing Plugins -->
+    <%= stylesheet_link_tag "line-icons", media: "all", "data-turbolinks-track" => true %>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- CSS Page Style -->    
+    <%= stylesheet_link_tag "page_log_reg_v2", media: "all", "data-turbolinks-track" => true %>
+
+    <!-- CSS Theme -->    
+    <%= stylesheet_link_tag "default", media: "all", "data-turbolinks-track" => true %>
+    
+    <!-- CSS Customization -->
+    <%= stylesheet_link_tag "custom", media: "all", "data-turbolinks-track" => true %>
+
+    <%= csrf_meta_tags %>
+</head> 
+
 <body>
+<!--=== Content Part ===-->    
+<div class="container">
+    <!--Reg Block-->
+    <div class="reg-block">
+        <div class="reg-block-header">
+            <h2>Sign In</h2>
+            <ul class="social-icons text-center">
+                <li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
+                <li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
+                <!-- <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>-->
+                <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
+            </ul>
+            <p>Don't Have Account? Click <a class="color-green" href="http://unbouncepages.com/seeyounow/">here</a> for more informatio.</p>
+            <!-- <p>Don't Have Account? Click <a class="color-green" href="page_registration1.html">Sign Up</a> to registration.</p> -->           
+        </div>
+        <%= form_tag sessions_path, class: "form-signin" do %>
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <%= text_field_tag :email, "", class: "form-control", placeholder: "Email Address" %>
+        </div>
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <%= password_field_tag :password, "", class: "form-control", placeholder: "Password" %>
+        </div>
+        <hr>
 
-  <div class="container">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> 
+                <p>Always stay signed in</p>
+            </label>            
+        </div>
+                                
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <%= button_tag "Log In", class: "btn-u btn-block" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    <!--End Reg Block-->
+</div><!--/container-->
+<!--=== End Content Part ===-->
 
-    <%= form_tag sessions_path, class: "form-signin" do %>
-      <h1>SeeYouNow</h1>
-      <h2 class="form-signin-heading">Please sign in</h2>
-      <%= text_field_tag :email, "", class: "form-control", placeholder: "Email Address" %>
-      <%= password_field_tag :password, "", class: "form-control", placeholder: "Password" %>
-      <%= button_tag "Sign In", class: "btn btn-lg btn-primary btn-block" %>
-    <% end %>
+<!--=== Sticky Footer ===-->
+<div class="sticky-footer">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-6 text-left">
+                <p class="color-light">
+                    2015 &copy; SeeYouNow. ALL Rights Reserved. 
+                </p>  
+            </div>
+            <div class="col-sm-6 text-right">
+                <ul class="list-inline coming-soon-social">
+                    <li><a target="_blank" href="https://twitter.com/SeeYouNowTools"><i class="fa fa-twitter"></i></a></li>
+                    <li><a target="_blank" href="https://www.facebook.com/see.you.now.health.tools"><i class="fa fa-facebook"></i></a></li>
+                </ul>            
+            </div>
+        </div>
+    </div>
+</div>
+<!--=== End Sticky-Footer ===-->
 
-  </div>
+<!-- JS Global Compulsory -->           
+<%= javascript_include_tag "jquery.min", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "jquery-migrate.min", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+
+<!-- JS Implementing Plugins -->           
+<%= javascript_include_tag "back-to-top", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "jquery.countdown", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "jquery.backstretch.min", "data-turbolinks-track" => true %>
+
+<script type="text/javascript">
+    $.backstretch([
+      <%= image_tag "bg/5.jpg" %>,
+      <%= image_tag "bg/4.jpg" %>,
+      ], {
+        fade: 1000,
+        duration: 7000
+    });
+</script>
+<!-- JS Customization -->
+<%= javascript_include_tag "custom", "data-turbolinks-track" => true %>
+
+<!-- JS Page Level -->           
+<%= javascript_include_tag "app", "data-turbolinks-track" => true %>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();      
+    });
+</script>
+<!--[if lt IE 9]>
+    <script src="assets/plugins/respond.js"></script>
+    <script src="assets/plugins/html5shiv.js"></script>
+    <script src="assets/js/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29166220-1']);
+  _gaq.push(['_setDomainName', 'htmlstream.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
 </body>
-</html>
+</html> 
