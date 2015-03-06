@@ -173,6 +173,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.1.8)
   rails_12factor
+  railties (~> 4.1.8)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
