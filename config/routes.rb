@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :sessions
   resources :comments
 
+  get 'clinicians/:id/home', to: 'pages#clinicianhome'
+  get 'clinicians/:id/profile', to: 'pages#profile'
+
   get "/login", to: "sessions#new"
   get "/logout", to: "sessions#destroy"
 

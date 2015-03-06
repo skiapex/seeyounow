@@ -27,6 +27,9 @@ Rails.application.config.assets.precompile += %w( page_log_reg_v2.css )
 Rails.application.config.assets.precompile += %w( default.css )
 Rails.application.config.assets.precompile += %w( custom.css )
 Rails.application.config.assets.precompile += %w( portfolio-v2.css )
+Rails.application.config.assets.precompile += %w( custom-sky-forms.css )
+Rails.application.config.assets.precompile += %w( perfect-scrollbar.css )
+Rails.application.config.assets.precompile += %w( profile.css )
 
 #Import Javascript Plugins
 Rails.application.config.assets.precompile += %w( jquery.min.js )
@@ -41,6 +44,12 @@ Rails.application.config.assets.precompile += %w( circles.js )
 Rails.application.config.assets.precompile += %w( jquery.mixitup.min.js )
 Rails.application.config.assets.precompile += %w( circles-master.js )
 Rails.application.config.assets.precompile += %w( page_portfolio.js )
+Rails.application.config.assets.precompile += %w( waypoints.min.js )
+Rails.application.config.assets.precompile += %w( jquery.counterup.min.js )
+Rails.application.config.assets.precompile += %w( jquery.mousewheel.js )
+Rails.application.config.assets.precompile += %w( perfect-scrollbar.js )
+Rails.application.config.assets.precompile += %w( datepicker.js )
+Rails.application.config.assets.precompile += %w( jquery-ui.min.js )
 
 #Import Headers
 Rails.application.config.assets.precompile += %w( headers/header-default.css )

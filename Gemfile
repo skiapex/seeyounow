@@ -19,14 +19,12 @@ gem 'mailboxer', '~> 0.12.5'
 gem 'twitter-bootstrap-rails'
 gem 'high_voltage', '~> 2.2.1'
 gem 'rails_12factor', group: :production
-gem 'railties', '~> 4.1.8'
 
 group :development do
   gem 'spring'
   gem 'quiet_assets'
   gem 'tzinfo-data', platforms: [:mingw, :mswin]
   gem 'sqlite3'
-  gem 'sprockets_better_errors'
 end
 
 group :production do

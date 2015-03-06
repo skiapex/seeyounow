@@ -36,7 +36,4 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.assets.paths << Rails.root.join("app", "assets", "fonts")
-
-  #Sprockets Better Errors = We try to catch all mistakes but we're not perfect. Here's a list of the things we watch out for
-  config.assets.raise_production_errors = true
 end
