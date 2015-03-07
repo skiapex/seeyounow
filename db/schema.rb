@@ -38,8 +38,9 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer  "patient_id"
     t.integer  "clinician_id"
     t.integer  "from"
-    t.datetime "time"
     t.string   "general_comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "comments", ["clinician_id"], name: "index_comments_on_clinician_id"
@@ -48,7 +49,6 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   create_table "esas_assessments", force: true do |t|
     t.integer  "patient_id"
     t.integer  "clinician_id"
-    t.datetime "time"
     t.string   "inputter_name"
     t.integer  "inputter_id"
     t.integer  "pain"
@@ -73,9 +73,6 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string   "esas_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "year"
-    t.integer  "month"
-    t.integer  "day"
   end
 
   add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id"
@@ -149,16 +146,17 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   add_index "patients", ["user_id"], name: "index_patients_on_user_id"
 
   create_table "prfs_assessments", force: true do |t|
-    t.integer "patient_id"
-    t.integer "clinician_id"
-    t.string  "time"
-    t.string  "inputter_name"
-    t.integer "inputter_id"
-    t.integer "activity_and_function"
-    t.string  "prfs_comment"
-    t.integer "year"
-    t.integer "month"
-    t.integer "day"
+    t.integer  "patient_id"
+    t.integer  "clinician_id"
+    t.string   "inputter_name"
+    t.integer  "inputter_id"
+    t.integer  "activity_and_function"
+    t.string   "prfs_comment"
+    t.integer  "year"
+    t.integer  "month"
+    t.integer  "day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id"

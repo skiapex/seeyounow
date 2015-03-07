@@ -26,13 +26,6 @@
 
   <%= form.text_area :from, class: "form-control", value: current_user %>
 
-  
-
-  <div class="form-group">
-    <%= form.label :time %>
-    <%= form.datetime_select :time, :default => Time.now %>
-  </div>
-
   <div class="form-group">
     <%= form.label :general_comment %>
     <%= form.text_area :general_comment, class: "form-control", rows: 5, placeholder: "Leave a comment" %>

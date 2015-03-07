@@ -43,10 +43,6 @@ EsasAssessment:
   clinician_id: integer
   created_at: datetime
   updated_at: datetime
-  time: datetime
-  year: integer
-  month: integer
-  day: integer
   inputter_name: string
   inputter_id: integer
   pain: integer
@@ -73,7 +69,8 @@ EsasAssessment:
 PrfsAssessment:
   patient_id: integer
   clinician_id: integer
-  time: string
+  created_at: datetime
+  updated_at: datetime
   year: integer
   month: integer
   day: integer
@@ -86,7 +83,8 @@ Comment:
   patient_id: integer
   clinician_id: integer
   from: integer
-  time: datetime
+  created_at: datetime
+  updated_at: datetime
   general_comment: string
 
 Notification:

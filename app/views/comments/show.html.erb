@@ -10,7 +10,7 @@
   <% end %>
   <p><strong>For:</strong> <%= @comment.clinician.occupation.name %> <%= @comment.clinician.first_name %> <%= @comment.clinician.last_name %></p>
 </h4>
-<h4 span class="time"><strong>Completed at:</strong> <%= @comment.time %>
+<h4 span class="time"><strong>Completed at:</strong> <%= @comment.created_at.strftime("%a, %d %b %Y at %H:%M:%S") %>
   <% if current_clinician %>
     <span class="pull-right">
     <%= link_to "Delete", comment_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-sm btn-success' %>
