@@ -41,7 +41,7 @@
 
       data.addRows([
         <% @esas_assessments.each do |esas_assessment| %>
-          [ new Date(<%= esas_assessment.year %>, <%= esas_assessment.month -=1 %>, <%= esas_assessment.day %>), <%= "#{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
+          [ new Date(<%= esas_assessment.created_at.strftime("%Y, %m, %d" ) %>), <%= "#{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
         <% end %>
       ]);
 
@@ -86,7 +86,7 @@
     <h2>ESAS Scores:</h2>
     <ul class="list-unstyled">
     <% @esas_assessments.each do |esas_assessment| %>
-      <li>For <%= @patient.clinician.occupation.name %> <%= @patient.clinician.last_name %> at <%= link_to esas_assessment.time, esas_assessment_path(esas_assessment) %></li>
+      <li>For <%= @patient.clinician.occupation.name %> <%= @patient.clinician.last_name %> on <%= link_to esas_assessment.created_at.strftime("%a, %d %b %Y at %H:%M:%S"), esas_assessment_path(esas_assessment) %></li>
     <% end %>
     </ul>
   </div>

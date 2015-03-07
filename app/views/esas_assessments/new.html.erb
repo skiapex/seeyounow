@@ -16,7 +16,7 @@
 <%= form_for @esas_assessment do |form| %>
   <div class="form-group">
     <%= form.label :patient_id %>
-    <%= form.collection_select :patient_id, Patient.all, :id, :first_name, class: "form-control" %>
+    <%= form.collection_select :patient_id, Patient.all, :id, :full_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -24,23 +24,7 @@
     <%= form.collection_select :clinician_id, Clinician.all, :id, :first_name, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :time %>
-    <%= form.text_field :time, class: "form-control", placeholder: "Time of day" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :year %>
-    <%= form.select :year, options_for_select(2015..2018) %>
-
-    <%= form.label :month %>
-    <%= form.select :month, options_for_select(1..12) %>
-
-    <%= form.label :day %>
-    <%= form.select :day, options_for_select(1..31) %>
-  </div>
-
-  <div class="form-group">
+    <div class="form-group">
     <%= form.label :inputter_name %>
     <%= form.text_field :inputter_name, class: "form-control", placeholder: "Imputter name" %>
   </div>

@@ -32,7 +32,6 @@ Rails.application.config.assets.precompile += %w( perfect-scrollbar.css )
 Rails.application.config.assets.precompile += %w( profile.css )
 
 #Import Javascript Plugins
-Rails.application.config.assets.precompile += %w( jquery.min.js )
 Rails.application.config.assets.precompile += %w( jquery-migrate.min.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( back-to-top.js )

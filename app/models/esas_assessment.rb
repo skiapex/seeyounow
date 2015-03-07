@@ -3,10 +3,6 @@ class EsasAssessment < ActiveRecord::Base
 	belongs_to :clinician
 	belongs_to :patient
 
-  validates :patient_id, presence: true
-  validates :clinician_id, presence: true
-  validates :inputter_name, presence: true
-  validates :inputter_id, presence: true
   validates :pain, presence: true, numericality: true
   validates :tiredness, presence: true, numericality: true
   validates :drowsiness, presence: true, numericality: true

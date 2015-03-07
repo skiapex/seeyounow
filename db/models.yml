@@ -41,7 +41,9 @@ OtherSymptom:
 EsasAssessment:
   patient_id: integer
   clinician_id: integer
-  time: string
+  created_at: datetime
+  updated_at: datetime
+  time: datetime
   year: integer
   month: integer
   day: integer
@@ -84,7 +86,7 @@ Comment:
   patient_id: integer
   clinician_id: integer
   from: integer
-  time: DateTimeField
+  time: datetime
   general_comment: string
 
 Notification:
