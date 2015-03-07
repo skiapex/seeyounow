@@ -86,7 +86,7 @@
     <h2>ESAS Scores:</h2>
     <ul class="list-unstyled">
     <% @esas_assessments.each do |esas_assessment| %>
-      <li>For <%= @patient.clinician.occupation.name %> <%= @patient.clinician.last_name %> on <%= link_to esas_assessment.created_at.strftime("%a, %d %b %Y at %H:%M:%S"), esas_assessment_path(esas_assessment) %></li>
+      <li>For <%= @patient.clinician.occupation.name %> <%= @patient.clinician.last_name %> on <%= link_to esas_assessment.created_at.in_time_zone.to_s(:long), esas_assessment_path(esas_assessment) %></li>
     <% end %>
     </ul>
   </div>
