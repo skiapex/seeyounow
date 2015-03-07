@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  layout false
+  skip_before_action :require_clinician
 
   def index
     @clinicians = Clinician.all

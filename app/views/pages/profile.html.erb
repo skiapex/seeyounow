@@ -32,267 +32,138 @@
                     <ul class="nav navbar-nav">
                         <!-- Home -->
                         <li class="dropdown">
-                            <a href="/home">Home <span class="sr-only">(current)</a>
+                            <a href="/home">Home <span class="sr-only"></a>
                         </li>
                         <!-- End Home -->
 
+                        <% if current_clinician %> 
+
                         <!-- Patients -->                        
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 Patients
                             </a>
                             <ul class="dropdown-menu">
-                                <!-- Current Patient Pages -->
                                 <li class="dropdown-submenu">
-                                    <a href="javascript:void(0);">Current Patients</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page_about1.html">John Doe</a></li>
-                                        <li><a href="page_about.html">Other patient</a></li>
-                                    </ul>                          
-                                </li>
-                                <!-- End Current Patients Pages -->
-
-                                <!-- New Patient Pages -->
+                                    <a href="/patients">Current Patients</a></li>
                                 <li><a href="/patients/new">New Patient</a></li>
-                                <!-- End New Patient Pages -->
                             </ul>
                         </li>
                         <!-- End Patient -->
 
-                        <!-- Features -->
-                        <li class="dropdown mega-menu-fullwidth">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                                Features
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="mega-menu-content disable-icons">
-                                        <div class="container">
-                                            <div class="row equal-height">
-                                                <div class="col-md-3 equal-height-in">
-                                                    <ul class="list-unstyled equal-height-list">
-                                                        <li><h3>Typography &amp; Components</h3></li>
-
-                                                        <!-- Typography -->
-                                                        <li><a href="feature_typo_general.html"><i class="fa fa-sort-alpha-asc"></i> General Typography</a></li>
-                                                        <li><a href="feature_typo_headings.html"><i class="fa fa-magic"></i> Headings Options</a></li>
-                                                        <li><a href="feature_typo_dividers.html"><i class="fa fa-ellipsis-h"></i> Dividers</a></li>
-                                                        <li><a href="feature_typo_blockquote.html"><i class="fa fa-quote-left"></i> Blockquote Blocks</a></li>
-                                                        <li><a href="feature_typo_boxshadows.html"><i class="fa fa-asterisk"></i> Box Shadows</a></li>
-                                                        <li><a href="feature_typo_testimonials.html"><i class="fa fa-comments"></i> Testimonials</a></li>
-                                                        <li><a href="feature_typo_tagline_boxes.html"><i class="fa fa-tasks"></i> Tagline Boxes</a></li>
-                                                        <li><a href="feature_typo_grid.html"><i class="fa fa-align-justify"></i> Grid Layouts</a></li>
-                                                        <!-- End Typography -->
-                                                        
-                                                        <!-- Components -->
-                                                        <li><a href="feature_compo_messages.html"><i class="fa fa-comment"></i> Alerts &amp; Messages</a></li>
-                                                        <li><a href="feature_compo_labels.html"><i class="fa fa-tags"></i> Labels &amp; Badges</a></li>
-                                                        <li><a href="feature_compo_media.html"><i class="fa fa-volume-down"></i> Audio/Videos &amp; Images</a></li>
-                                                        <li><a href="feature_compo_pagination.html"><i class="fa fa-arrows-h"></i> Paginations</a></li>
-                                                        <!-- End Components -->
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-3 equal-height-in">
-                                                    <ul class="list-unstyled equal-height-list">
-                                                        <li><h3>Header &amp; Footers</h3></li>
-                                                   
-                                                        <!-- Header & Footer -->
-                                                        <li><a href="feature_headers.html"><i class="fa fa-navicon"></i> Headers</a></li>
-                                                        <li><a href="feature_footers.html"><i class="fa fa-navicon"></i> Footers</a></li>
-                                                        <!-- End Header & Footer -->
-
-                                                        <li class="big-screen-space"></li>
-                                                        
-                                                        <li><h3>Buttons &amp; Icons</h3></li>
-                                                    
-                                                        <!-- Buttons -->
-                                                        <li><a href="feature_btn_general.html"><i class="fa fa-flask"></i> General Buttons</a></li>
-                                                        <li><a href="feature_btn_brands.html"><i class="fa fa-html5"></i> Brand &amp; Social Buttons</a></li>
-                                                        <li><a href="feature_btn_effects.html"><i class="fa fa-bolt"></i> Loading &amp; Hover Effects</a></li>
-                                                        <!-- End Buttons -->
-                                                        
-                                                        <!-- Icons -->
-                                                        <li><a href="feature_icon_general.html"><i class="fa fa-chevron-circle-right"></i> General Icons</a></li>
-                                                        <li><a href="feature_icon_fa.html"><i class="fa fa-chevron-circle-right"></i> Font Awesome Icons</a></li>
-                                                        <li><a href="feature_icon_line.html"><i class="fa fa-chevron-circle-right"></i> Line Icons</a></li>
-                                                        <li><a href="feature_icon_glyph.html"><i class="fa fa-chevron-circle-right"></i> Glyphicons Icons (Bootstrap)</a></li>
-                                                        <li><a href="feature_icon_glyph_pro.html"><i class="fa fa-chevron-circle-right"></i> Glyphicons Icons Pro</a></li>  
-                                                        <!-- End Icons -->
-                                                    </ul>                                
-                                                </div>
-                                                <div class="col-md-3 equal-height-in">
-                                                    <ul class="list-unstyled equal-height-list">
-                                                        <li><h3>Common elements</h3></li>
-
-                                                        <!-- Content Boxes -->
-                                                        <li><a href="feature_box_general.html"><i class="fa fa-cog"></i> General Content Boxes</a></li>
-                                                        <li><a href="feature_box_colored.html"><i class="fa fa-align-center"></i> Colored Boxes</a></li>
-                                                        <li><a href="feature_box_funny.html"><i class="fa fa-bars"></i> Funny Boxes</a></li>
-                                                        <li><a href="feature_thumbails.html"><i class="fa fa-image"></i> Thumbnails</a></li>
-                                                        <li><a href="feature_accordion_and_tabs.html"><i class="fa fa-list-ol"></i> Accordion &amp; Tabs</a></li>
-                                                        <li><a href="feature_timeline1.html"><i class="fa fa-dot-circle-o"></i> Timeline Option 1</a></li>
-                                                        <li><a href="feature_timeline2.html"><i class="fa fa-dot-circle-o"></i> Timeline Option 2</a></li>
-                                                        <li><a href="feature_table_general.html"><i class="fa fa-table"></i> Tables</a></li>
-                                                        <li><a href="feature_compo_progress_bars.html"><i class="fa fa-align-left"></i> Progress Bars</a></li>
-                                                        <li><a href="feature_compo_panels.html"><i class="fa fa-columns"></i> Panels</a></li>
-                                                        <!-- End Common Elements -->
-                                                    </ul>    
-                                                </div>
-                                                <div class="col-md-3 equal-height-in">
-                                                    <ul class="list-unstyled equal-height-list">
-                                                        <li><h3>Forms &amp; Infographics</h3></li>
-
-                                                        <!-- Forms -->
-                                                        <li><a href="feature_form_general.html"><i class="fa fa-bars"></i> Common Bootstrap Forms</a></li>
-                                                        <li><a href="feature_form_general1.html"><i class="fa fa-bars"></i> General Unify Forms</a></li>
-                                                        <li><a href="feature_form_advanced.html"><i class="fa fa-bars"></i> Advanced Forms</a></li>
-                                                        <li><a href="feature_form_layouts.html"><i class="fa fa-bars"></i> Form Layouts</a></li>
-                                                        <li><a href="feature_form_layouts_advanced.html"><i class="fa fa-bars"></i> Advanced Layout Forms</a></li>
-                                                        <li><a href="feature_form_states.html"><i class="fa fa-bars"></i> Form States</a></li>
-                                                        <li><a href="feature_form_sliders.html"><i class="fa fa-bars"></i> Form Sliders</a></li>
-                                                        <li><a href="feature_form_modals.html"><i class="fa fa-bars"></i> Modals</a></li>
-                                                        <!-- End Forms -->
-                                                        
-                                                        <!-- Infographics -->
-                                                        <li><a href="feature_carousels.html"><i class="fa fa-sliders"></i> Carousel Examples</a></li>
-                                                        <li><a href="feature_compo_charts.html"><i class="fa fa-pie-chart"></i> Charts &amp; Countdowns</a></li>
-                                                        <li><a href="feature_maps_google.html"><i class="fa fa-map-marker"></i> Google Maps</a></li>
-                                                        <li><a href="feature_maps_vector.html"><i class="fa fa-align-center"></i> Vector Maps</a></li>
-                                                        <!-- End Infographics -->
-                                                    </ul>                                
-                                                </div>
-                                            </div>
-                                        </div>    
-                                    </div>    
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- End Features -->
-
-                        <!-- Portfolio -->
-                        <li class="dropdown mega-menu-fullwidth">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                                Portfolio
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="mega-menu-content">
-                                        <div class="container">
-                                            <div class="row equal-height">
-                                                <div class="col-md-3 equal-height-in">
-                                                    <ul class="list-unstyled equal-height-list">
-                                                        <li><h3>Default</h3></li>
-
-                                                        <!-- Default -->
-                                                        <li><a href="portfolio_single_item.html">Portfolio Item Option</a></li>
-                                                        <li><a href="portfolio_item.html">Portfolio Item Option 1</a></li>
-                                                        <li><a href="portfolio_item1.html">Portfolio Item Option 2</a></li>
-                                                        <li><a href="portfolio_2_column.html">Portfolio 2 Columns</a></li>
-                                                        <li><a href="portfolio_3_column.html">Portfolio 3 Columns</a></li>
-                                                        <li><a href="portfolio_4_column.html">Portfolio 4 Columns</a></li>
-                                                        <li><a href="portfolio_text_blocks.html">Portfolio 4 Columns With Text</a></li>
-                                                        
-                                                        <!-- End Default -->
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-3 equal-height-in">
-                                                    <ul class="list-unstyled equal-height-list">
-                                                        <li><h3>2 Columns</h3></li>
-                                                   
-                                                        <!-- 2 Columns -->
-                                                        <li><a href="portfolio_2_columns_grid_no_space.html">2 Columns No Sapce</a></li>
-                                                        <li><a href="portfolio_2_columns_grid_text.html">2 Columns Grid Text</a></li>
-                                                        <li><a href="portfolio_2_columns_grid.html">2 Columns Grid</a></li>
-
-                                                        <!-- End 2 Columns -->
-
-                                                        <li class="big-screen-space"></li>
-                                                        
-                                                        <li><h3>3 Columns</h3></li>
-                                                    
-                                                        <!-- 3 Columns -->
-                                                        <li><a href="portfolio_3_columns_grid_no_space.html">3 Columns No Sapce</a></li>
-                                                        <li><a href="portfolio_3_columns_grid_text.html">3 Columns Grid Text</a></li>
-                                                        <li><a href="portfolio_3_columns_grid.html">3 Columns Grid</a></li>
-                                                        <!-- End 3 Columns -->
-                                                    </ul>                                
-                                                </div>
-                                                <div class="col-md-3 equal-height-in">
-                                                    <ul class="list-unstyled equal-height-list">
-                                                        <li><h3>4 Columns</h3></li>
-                                                        <!-- 4 Columns -->
-                                                        <li><a href="portfolio_4_columns_fullwidth_no_space.html">4 Columns Full Width No Sapce</a></li>
-                                                        <li><a href="portfolio_4_columns_fullwidth_text.html">4 Columns Fullwidth Grid Text</a></li>
-                                                        <li><a href="portfolio_4_columns_fullwidth.html">4 Columns Fullwidth Grid</a></li>
-                                                        <li><a href="portfolio_4_columns_grid_no_space.html">4 Columns No Sapce</a></li>
-                                                        <li><a href="portfolio_4_columns_grid_text.html">4 Columns Grid Text</a></li>
-                                                        <li><a href="portfolio_4_columns_grid.html">4 Columns Grid</a></li>
-                                                        <!-- End 4 Columns -->
-                                                    </ul>                                
-                                                </div>
-                                                <div class="col-md-3 equal-height-in">
-                                                    <ul class="list-unstyled equal-height-list">
-                                                        <li><h3>5 Columns</h3></li>
-                                                   
-                                                        <!-- 5 Columns -->
-                                                        <li><a href="portfolio_5_columns_fullwidth_no_space.html">5 Columns Fullwidth No Sapce</a></li>
-                                                        <li><a href="portfolio_5_columns_fullwidth_text.html">5 Columns Fullwidth Grid Text</a></li>
-                                                        <li><a href="portfolio_5_columns_fullwidth.html">5 Columns Fullwidth Grid</a></li>
-                                                        <!-- End 5 Columns -->
-
-                                                        <li class="big-screen-space"></li>
-                                                        
-                                                        <li><h3>6 Columns</h6></li>
-                                                    
-                                                        <!-- 6 Columns -->
-                                                        <li><a href="portfolio_6_columns_fullwidth_no_space.html">6 Columns Fullwidth No Sapce</a></li>
-                                                        <li><a href="portfolio_6_columns_fullwidth_text.html">6 Columns Fullwidth Grid Text</a></li>
-                                                        <li><a href="portfolio_6_columns_fullwidth.html">6 Columns Fullwidth Grid</a></li>
-                                                        <!-- End 6 Columns -->
-                                                    </ul>                                
-                                                </div>
-                                            </div>
-                                        </div>    
-                                    </div>    
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Ens Portfolio -->
-
-                        <!-- Blog -->
+                        <!-- ESAS Assessments -->                        
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                                Blog
+                                ESAS Assessments
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="blog_page.html">Blog Page</a></li>
-                                <li><a href="blog_large.html">Blog Large</a></li>
-                                <li><a href="blog_medium.html">Blog Medium</a></li>
-                                <li><a href="blog_full_width.html">Blog Full Width</a></li>
-                                <li><a href="blog_timeline.html">Blog Timeline</a></li>
-                                <li><a href="blog_masonry_3col.html">Masonry Grid Blog</a></li>
-                                <li><a href="blog_right_sidebar.html">Blog Right Sidebar</a></li>
-                                <li><a href="blog_left_sidebar.html">Blog Left Sidebar</a></li>
-                                <li><a href="blog_item_option1.html">Blog Item Option 1</a></li>
-                                <li><a href="blog_item_option2.html">Blog Item Option 2</a></li>
+                                <li class="dropdown-submenu">
+                                    <a href="/esas_assessments">View scores</a></li>
+                                <li><a href="/esas_assessments/new">New assessment</a></li>
+                                <li><a href="/esas_assessments/new">Other symptoms</a></li>
                             </ul>
                         </li>
-                        <!-- End Blog -->
+                        <!-- End ESAS Assessments -->
+                        
 
-                        <!-- Contacts -->
+                        <!-- PFRS Assessments -->                        
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                                Contacts
+                                PFRS Assessments
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="page_contact1.html">Contacts Default</a></li>
-                                <li><a href="page_contact_advanced.php">Contacts Advanced</a></li>
-                                <li><a href="page_contact2.html">Contacts Option 1</a></li>
-                                <li><a href="page_contact3.html">Contacts Option 2</a></li>
-                                <li><a href="page_contact4.html">Contacts Option 3</a></li>
+                                <li class="dropdown-submenu">
+                                    <a href="/esas_assessments">View scores</a></li>
+                                <li><a href="/esas_assessments/new">New assessment</a></li>
                             </ul>
-                        </li>                    
-                        <!-- End Contacts -->
+                        </li>
+                        <!-- End PFRS Assessments -->
+
+                        <!-- Comments -->                        
+                        <li class="dropdown">
+                            <a href="/comments">Comments <span class="sr-only"></a>
+                        </li>
+                        <!-- End Comments -->
+
+                        <% else %>  <!-- start patient section -->
+                        
+                        <!-- ESAS Assessments -->                        
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                ESAS Assessments
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="/esas_assessments">View scores</a></li>
+                                <li><a href="/esas_assessments/new">New assessment</a></li>
+                            </ul>
+                        </li>
+                        <!-- End ESAS Assessments -->
+                        
+
+                        <!-- PFRS Assessments -->                        
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                PFRS Assessments
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="/esas_assessments">View scores</a></li>
+                                <li><a href="/esas_assessments/new">New assessment</a></li>
+                            </ul>
+                        </li>
+                        <!-- End PFRS Assessments -->
+
+                        <!-- Comments -->                        
+                        <li class="dropdown">
+                            <a href="/comments">Comments <span class="sr-only"></a>
+                        </li>
+                        <!-- End Comments -->
+
+                        <!-- Emergency Message -->
+                        <li class="dropdown">
+                          <%= link_to "Emergency Message", clinician_path(current_user.patient.clinician) %> <span class="sr-only">
+                        </li>
+                        <!-- Emergency Message -->
+
+                        <% end %> <!-- end of left hand nav bar -->
+
+                        <!-- Profile -->
+                        <% if current_clinician %>
+                          <li class="dropdown">
+                            <%= link_to "View Profile", clinician_path(current_user.clinician) %> <span class="sr-only">
+                          </li>
+                        <% else %>
+                          <li class="dropdown">
+                            <%= link_to "View Profile", patient_path(current_user.patient) %> <span class="sr-only">
+                          </li>
+                        <% end %>
+                        <!-- End Profile -->
+                        
+                        <!-- Settings -->
+                        <% if current_user %>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i> Settings
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><%= link_to "Edit email and password", edit_user_path(current_user) %></li>
+                                <% if current_clinician %>
+                                  <li><%= link_to "Edit Profile", edit_clinician_path(current_user.clinician) %></li>
+                                  <li><a href="#">Notification settings</a></li>
+                                <% else %>
+                                  <li><%= link_to "Edit Profile", edit_patient_path(current_user.patient) %></li>
+                                <% end %>
+                                <li class="divider"></li>
+                                <li><a href="/logout">Log out</a></li>
+                            </ul>
+                        </li>  
+                        <% else %>
+                        <li class="dropdown">
+                            <a href="/login">Log In <span class="sr-only">(current)</a>
+                        </li>
+                        <% end %>
+                        <!-- End Settings -->
                         
                     </ul>
                 </div><!--/navbar-collapse-->
