@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   resources :comments
 
   get 'clinicians/:id/home', to: 'pages#clinicianhome'
-  get '/home', to: 'pages#profile'
+  get '/home', to: 'pages#home'
 
   get "/login", to: "sessions#new"
   get "/logout", to: "sessions#destroy"
 
-  root to: "clinicians#index"
+  root to: "pages#home"
 
 end
