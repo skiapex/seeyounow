@@ -25,7 +25,7 @@ class PagesController < ApplicationController
     
   end
 
-  def destroy
+  def _patientfooter
     
   end
 

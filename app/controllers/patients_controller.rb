@@ -48,4 +48,8 @@ class PatientsController < ApplicationController
     redirect_to patients_path
   end
 
+  def _patientfooter
+    
+  end
+
 end

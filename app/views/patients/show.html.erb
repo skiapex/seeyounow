@@ -1,6 +1,10 @@
 <!-- Use view helpers (e.g. link_to and image_tag) -->
 <!-- and implement real data -->
 
+<head>
+    <title>SeeYouNow | Patient Profile</title>
+</head> 
+
 <h3 class="page-header">
   <%= @patient.first_name %> <%= @patient.last_name %>
   <span class="pull-right">
@@ -116,3 +120,4 @@
 </div>
 <% end %>
 
+<%= render "patientfooter" %>
