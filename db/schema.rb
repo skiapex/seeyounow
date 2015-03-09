@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string "email"
     t.string "password_digest"
     t.string "name"
+    t.string "timezone"
   end
 
 end
