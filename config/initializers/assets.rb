@@ -33,7 +33,6 @@ Rails.application.config.assets.precompile += %w( profile.css )
 
 #Import Javascript Plugins
 Rails.application.config.assets.precompile += %w( jquery-migrate.min.js )
-Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( back-to-top.js )
 Rails.application.config.assets.precompile += %w( jquery.min.js )
 Rails.application.config.assets.precompile += %w( jquery.countdown.js )
@@ -52,20 +51,9 @@ Rails.application.config.assets.precompile += %w( jquery-ui.min.js )
 
 #Import Headers
 Rails.application.config.assets.precompile += %w( headers/header-default.css )
-Rails.application.config.assets.precompile += %w( headers/header-v1.css )
-Rails.application.config.assets.precompile += %w( headers/header-v2.css )
-Rails.application.config.assets.precompile += %w( headers/header-v3.css )
-Rails.application.config.assets.precompile += %w( headers/header-v4.css )
 
 #Import Footers
 Rails.application.config.assets.precompile += %w( footers/footer-default.css )
-Rails.application.config.assets.precompile += %w( footers/footer-v1.css )
-Rails.application.config.assets.precompile += %w( footers/footer-v2.css )
-Rails.application.config.assets.precompile += %w( footers/footer-v3.css )
-Rails.application.config.assets.precompile += %w( footers/footer-v4.css )
-Rails.application.config.assets.precompile += %w( footers/footer-v5.css )
-Rails.application.config.assets.precompile += %w( footers/footer-v6.css )
-Rails.application.config.assets.precompile += %w( footers/footer-v7.css )
 
 #Import Google Font
 Rails.application.config.assets.precompile += %w( http://fonts.googleapis.com/css?family=Open+Sans:300,400 )

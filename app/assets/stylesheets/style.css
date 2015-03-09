@@ -74,7 +74,7 @@ a:hover {
 /*Parallax Counter
 ------------------------------------*/
 .parallax-bg {
-	background: url(/assets/img1.jpg) 50% 0 repeat fixed;		
+	background: url(images/img1.jpg) 50% 0 repeat fixed;		
 }
 
 /*Parallax Counter Block*/
@@ -180,7 +180,7 @@ a:hover {
 /*Parallax Team
 ------------------------------------*/
 .parallax-team {
-	background: url(/assets/faces.jpg) 50% 0 repeat fixed;	
+	background: url(images/faces.jpg) 50% 0 repeat fixed;	
 }
 
 .parallax-team,
@@ -204,7 +204,7 @@ a:hover {
 .purchase {
 	padding: 25px 0 30px;
 	border-bottom: solid 1px #eee;
-	background: url(/assets/breadcrumbs.png) repeat;
+	background: url(images/breadcrumbs.png) repeat;
 }
 .purchase p {
 	margin-bottom: 0;
