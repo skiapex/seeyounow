@@ -3,30 +3,21 @@
         <div class="footer">
             <div class="container">
                 <div class="row">
-                    <!-- About -->
-                    <div class="col-md-3 md-margin-bottom-40">
-                        <a href="index.html"><img id="logo-footer" class="footer-logo" src="assets/img/logo2-default.png" alt=""></a>
-                        <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
-                        <p>Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.</p>    
-                    </div><!--/col-md-3-->
-                    <!-- End About -->
+                    
 
-                    <!-- Latest -->
-                    <div class="col-md-3 md-margin-bottom-40">
+                    <!-- Emergency Message -->
+                    <div class="col-md-6 md-margin-bottom-40">
                         <div class="posts">
-                            <div class="headline"><h2>Latest Posts</h2></div>
+                            <div class="headline"><h2>Emergency Message</h2></div>
                             <ul class="list-unstyled latest-list">
                                 <li>
-                                    <a href="#">Incredible content</a>
-                                    <small>May 8, 2014</small>
-                                </li>
-                                <li>
-                                    <a href="#">Best shoots</a>
-                                    <small>June 23, 2014</small>
-                                </li>
-                                <li>
-                                    <a href="#">New Terms and Conditions</a>
-                                    <small>September 15, 2014</small>
+                                    <% if current_clinician %>
+                                        <a href="#"><%= current_clinician.emergency_message %></a>
+                                        <small>May 8, 2014</small>
+                                    <% else %>
+                                        <a href="#"><%= current_user.patient.clinician.emergency_message %></a>
+                                        <small>May 8, 2014</small>
+                                    <% end %>
                                 </li>
                             </ul>
                         </div>
