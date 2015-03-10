@@ -12,11 +12,11 @@
                             <ul class="list-unstyled latest-list">
                                 <li>
                                     <% if current_clinician %>
-                                        <a href="#"><%= current_clinician.emergency_message %></a>
-                                        <small>May 8, 2014</small>
+                                        <a><%= current_clinician.emergency_message %></a>
+                                        <small><%= current_clinician.care_group.name %> Care Group</small>
                                     <% else %>
-                                        <a href="#"><%= current_user.patient.clinician.emergency_message %></a>
-                                        <small>May 8, 2014</small>
+                                        <a><%= current_user.patient.clinician.emergency_message %></a>
+                                        <small><%= current_user.patient.clinician.care_group.name %> Care Group</small>
                                     <% end %>
                                 </li>
                             </ul>
