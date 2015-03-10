@@ -744,7 +744,7 @@
   height: auto;
   padding: 50px 0;
   position: relative;
-  background: url(images/bg/11.jpg) repeat fixed; 
+  background: url(/assets/bg/11.jpg) repeat fixed; 
 }
 
 .bg-image-v1:before {
@@ -764,7 +764,7 @@
   height: auto;
   padding: 50px 0;
   position: relative;
-  background: url(images/bg/15.jpg) repeat fixed;
+  background: url(/assets/bg/15.jpg) repeat fixed;
 }
 
 .bg-image-v2:before {
@@ -782,7 +782,7 @@
 /*Parallax Counter Block*/
 .parallax-counter {
   padding: 30px 0;
-  background: url(images/patterns/5.png) repeat fixed;
+  background: url(/assets/patterns/5.png) repeat fixed;
 }
 
 .parallax-counter .counters {
@@ -802,7 +802,7 @@
 
 /*Parallax Team*/
 .parallax-team {
-  background: url(images/team/faces.jpg) 50% 0 repeat fixed;  
+  background: url(/assets/team/faces.jpg) 50% 0 repeat fixed;  
 }
 
 .parallax-team,
@@ -826,7 +826,7 @@
   padding: 100px 0;
   position: relative;
   text-align: center;
-  background: url(images/contents/faces.jpg) 50% 0 repeat fixed;  
+  background: url(/assets/contents/faces.jpg) 50% 0 repeat fixed;  
 }
 
 .parallax-quote:after {
@@ -846,7 +846,7 @@
   height: 100%; 
   content: " ";
   position: absolute;
-  background: url(images/patterns/gridtile.png) repeat;
+  background: url(/assets/patterns/gridtile.png) repeat;
 }
 
 .parallax-quote-in {
@@ -898,7 +898,7 @@
 ------------------------------------*/
 .flat-bg-block-v1 {
   padding: 40px 0;
-  background: url(images/patterns/16.png) repeat;
+  background: url(/assets/patterns/16.png) repeat;
 }
 
 .flat-bg-block-v1 .checked-list.first-child {

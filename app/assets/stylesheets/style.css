@@ -68,19 +68,19 @@ a:hover {
   box-shadow: 0 0 5px #ccc;
   margin-left: auto !important;
   margin-right: auto !important;
-  background: url(images/patterns/15.png) repeat;
+  background: url(/assets/patterns/15.png) repeat;
 }
 
 /*Parallax Counter
 ------------------------------------*/
 .parallax-bg {
-	background: url(images/img1.jpg) 50% 0 repeat fixed;		
+	background: url(/assets/img1.jpg) 50% 0 repeat fixed;		
 }
 
 /*Parallax Counter Block*/
 .parallax-counter {
 	padding: 60px 0;
-	background: url(images/bg/9.jpg) 50% 0 no-repeat fixed;	
+	background: url(/assets/bg/9.jpg) 50% 0 no-repeat fixed;	
 }
 
 .parallax-counter h4 {
@@ -100,7 +100,7 @@ a:hover {
 /*Parallax Counter Block*/
 .parallax-counter-v1 {
 	padding: 60px 0;
-	background: url(images/patterns/5.png) repeat fixed;
+	background: url(/assets/patterns/5.png) repeat fixed;
 }
 
 .parallax-counter-v1 .counters {
@@ -125,7 +125,7 @@ a:hover {
 .parallax-counter-v2 {
 	position: relative;
 	padding: 80px 0 60px;
-	background: url(images/patterns/16.png) repeat fixed;
+	background: url(/assets/patterns/16.png) repeat fixed;
 }
 
 .parallax-counter-v2:after {
@@ -180,7 +180,7 @@ a:hover {
 /*Parallax Team
 ------------------------------------*/
 .parallax-team {
-	background: url(images/faces.jpg) 50% 0 repeat fixed;	
+	background: url(/assets/faces.jpg) 50% 0 repeat fixed;	
 }
 
 .parallax-team,
@@ -204,7 +204,7 @@ a:hover {
 .purchase {
 	padding: 25px 0 30px;
 	border-bottom: solid 1px #eee;
-	background: url(images/breadcrumbs.png) repeat;
+	background: url(/assets/breadcrumbs.png) repeat;
 }
 .purchase p {
 	margin-bottom: 0;
@@ -1704,7 +1704,7 @@ ul.labels-demo li {
 .breadcrumbs-v2 {
 	text-align: center;
 	position: relative;
-	background: url(images/bg/11.jpg) no-repeat center;
+	background: url(/assets/bg/11.jpg) no-repeat center;
 }
 
 .breadcrumbs-v2-in {
@@ -2136,7 +2136,7 @@ img.img-mouse {
 .service-info {
 	position: relative;
 	padding: 40px 0 50px;
-	background: url(images/patterns/17.png) repeat;
+	background: url(/assets/patterns/17.png) repeat;
 }
 
 .service-info .info-description {
@@ -2187,7 +2187,7 @@ img.img-mouse {
 ------------------------------------*/
 .testimonials-bs {
   padding: 50px 0;
-  background: url(images/bg/16.jpg) 50% 0 repeat fixed;  
+  background: url(/assets/bg/16.jpg) 50% 0 repeat fixed;  
 }
 
 .testimonials-bs .headline-center-v2 span.author {
