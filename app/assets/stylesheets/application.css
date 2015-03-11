@@ -12,4 +12,32 @@
  *
  *= require_tree .
  *= require_self
+ *= require custom-sky-forms
+ *= require line-icons
+ *= require app
+ *= require ie8
+ *= require blocks
+ *= require plugins
+ *= require animate
+ *= require box-shadows
+ *= require header-default
+ *= require style-switcher
+ *= require header-v1
+ *= require footer-default
+ *= require footer-v1
+ *= require login5.jpg
+ *= require login4.jpg
+ *= require app
+ *= require animate
+ *= require blocks
+ *= require plugins
+ *= require ie8
+ *= require box-shadows
+ *= require footer-v1
+ *= require header-default
+ *= require footer-default
+ *= require header-v1
+ *= require style-switcher
+
+
  */
