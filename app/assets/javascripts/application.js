@@ -15,6 +15,24 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= jquery-migrate.min
+//= back-to-top
+//= jquery.min
+//= jquery.countdown
+//= jquery.backstretch.min
+//= circles
+//= jquery.mixitup.min
+//= circles-master
+//= page_portfolio
+//= waypoints.min
+//= jquery.counterup.min
+//= jquery.mousewheel
+//= perfect-scrollbar
+//= datepicker
+//= jquery-ui.min
 
+//= custom
+//= app
+//= login
 
 //= require chartkick

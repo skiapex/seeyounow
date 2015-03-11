@@ -10,7 +10,6 @@ Rails.application.config.assets.version = '1.0'
 #Import Global Compulsory CSS Files
 Rails.application.config.assets.precompile += %w( style.css )
 Rails.application.config.assets.precompile += %w( plugins.css )
-Rails.application.config.assets.precompile += %w( font-awesome.css.scss.erb )
 Rails.application.config.assets.precompile += %w( blocks.css )
 
 #Import Global Compulsory Javascript Files
@@ -37,7 +36,6 @@ Rails.application.config.assets.precompile += %w( back-to-top.js )
 Rails.application.config.assets.precompile += %w( jquery.min.js )
 Rails.application.config.assets.precompile += %w( jquery.countdown.js )
 Rails.application.config.assets.precompile += %w( jquery.backstretch.min.js )
-Rails.application.config.assets.precompile += %w( jquery.min.js )
 Rails.application.config.assets.precompile += %w( circles.js )
 Rails.application.config.assets.precompile += %w( jquery.mixitup.min.js )
 Rails.application.config.assets.precompile += %w( circles-master.js )
@@ -50,10 +48,10 @@ Rails.application.config.assets.precompile += %w( datepicker.js )
 Rails.application.config.assets.precompile += %w( jquery-ui.min.js )
 
 #Import Headers
-Rails.application.config.assets.precompile += %w( headers/header-default.css )
+Rails.application.config.assets.precompile += %w( header-default.css )
 
 #Import Footers
-Rails.application.config.assets.precompile += %w( footers/footer-default.css )
+Rails.application.config.assets.precompile += %w( footer-default.css )
 
 #Import Google Font
 Rails.application.config.assets.precompile += %w( http://fonts.googleapis.com/css?family=Open+Sans:300,400 )
