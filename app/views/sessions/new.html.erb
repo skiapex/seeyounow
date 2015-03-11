@@ -16,24 +16,13 @@
 
     <!-- CSS Global Compulsory -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track' => true %>
-
-    <!-- CSS Implementing Plugins -->
-    <%= stylesheet_link_tag "line-icons", media: "all", "data-turbolinks-track" => true %>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <!-- CSS Page Style -->    
-    <%= stylesheet_link_tag "page_log_reg_v2", media: "all", "data-turbolinks-track" => true %>
-
-    <!-- CSS Theme -->    
-    <%= stylesheet_link_tag "default", media: "all", "data-turbolinks-track" => true %>
-    
-    <!-- CSS Customization -->
-    <%= stylesheet_link_tag "custom", media: "all", "data-turbolinks-track" => true %>
+    <!-- All stylesheets -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
     <%= csrf_meta_tags %>
 </head> 
@@ -104,17 +93,14 @@
 </div>
 <!--=== End Sticky-Footer ===-->
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <!-- JS Global Compulsory -->           
-<%= javascript_include_tag "jquery.min", "data-turbolinks-track" => true %>
+<%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
-<%= javascript_include_tag "jquery-migrate.min", "data-turbolinks-track" => true %>
-
-<!-- JS Implementing Plugins -->           
-<%= javascript_include_tag "back-to-top", "data-turbolinks-track" => true %>
-
-<%= javascript_include_tag "jquery.countdown", "data-turbolinks-track" => true %>
-
-<%= javascript_include_tag "jquery.backstretch.min", "data-turbolinks-track" => true %>
 
 <script type="text/javascript">
     $.backstretch([
@@ -125,11 +111,6 @@
         duration: 7000
     });
 </script>
-<!-- JS Customization -->
-<%= javascript_include_tag "custom", "data-turbolinks-track" => true %>
-
-<!-- JS Page Level -->           
-<%= javascript_include_tag "app", "data-turbolinks-track" => true %>
 
 <script type="text/javascript">
     jQuery(document).ready(function() {

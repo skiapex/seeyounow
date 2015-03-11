@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require style
  *= require custom-sky-forms
  *= require line-icons
  *= require app
@@ -25,19 +26,10 @@
  *= require header-v1
  *= require footer-default
  *= require footer-v1
- *= require login5.jpg
- *= require login4.jpg
- *= require app
  *= require animate
- *= require blocks
- *= require plugins
- *= require ie8
- *= require box-shadows
- *= require footer-v1
- *= require header-default
- *= require footer-default
- *= require header-v1
- *= require style-switcher
-
-
+ *= require custom
+ *= require page_log_reg_v2
+ *= require perfect-scrollbar
+ *= require portfolio-v2
+ *= require profile
  */
