@@ -30,6 +30,14 @@
 //= perfect-scrollbar
 //= datepicker
 //= jquery-ui.min
+//= modernizer
+//= main
+//= page_login
+//= prettify
+//= style-switcher
+//= touch
+
+
 
 //= custom
 //= app
