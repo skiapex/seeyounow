@@ -10,37 +10,30 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require jquery-ui.min
 //= require turbolinks
-//= require_tree .
-//= jquery-migrate.min
-//= back-to-top
-//= jquery.min
-//= jquery.countdown
-//= jquery.backstretch.min
-//= circles
-//= jquery.mixitup.min
-//= circles-master
-//= page_portfolio
-//= waypoints.min
-//= jquery.counterup.min
-//= jquery.mousewheel
-//= perfect-scrollbar
-//= datepicker
-//= jquery-ui.min
-//= modernizer
-//= main
-//= page_login
-//= prettify
-//= style-switcher
-//= touch
-
-
-
-//= custom
-//= app
-//= login
+//= require jquery-migrate.min
+//= require back-to-top
+//= require jquery.countdown
+//= require jquery.backstretch.min
+//= require circles
+//= require jquery.mixitup.min
+//= require circles-master
+//= require page_portfolio
+//= require waypoints.min
+//= require jquery.counterup.min
+//= require jquery.mousewheel
+//= require perfect-scrollbar
+//= require datepicker
+//= require modernizr
+//= require main
+//= require page_login
+//= require prettify
+//= require style-switcher
+//= require touch
+//= require custom
+//= require app
+//= require login
 
 //= require chartkick
