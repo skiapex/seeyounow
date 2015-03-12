@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery_ujs
+//= require_tree .
 //= require jquery-ui.min
 //= require turbolinks
 //= require jquery-migrate.min
