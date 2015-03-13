@@ -14,7 +14,7 @@
     	<div class="row">
             <!--Left Sidebar-->
             <div class="col-md-3 md-margin-bottom-40">
-                <img class="img-responsive profile-img margin-bottom-20" src="/assets/images/team/5.jpg" alt="">
+                <!-- <img class="img-responsive profile-img margin-bottom-20" src="/assets/images/team/5.jpg" alt=""> -->
 
                 <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                     <li class="list-group-item active">
@@ -30,7 +30,7 @@
                         <a href="profile_projects.html"><i class="fa fa-cubes"></i> My Projects</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="profile_comments.html"><i class="fa fa-comments"></i> Comments</a>
+                        <a href="/comments"><i class="fa fa-comments"></i> Comments</a>
                     </li>                                        
                     <li class="list-group-item">
                         <a href="profile_history.html"><i class="fa fa-history"></i> History</a>
@@ -73,7 +73,7 @@
                         <i class="icon-custom icon-sm rounded-x icon-bg-red icon-line icon-envelope"></i>
                         <div class="overflow-h">
                             <span><strong><%= link_to "#{ esas_assessment.patient.first_name } #{ esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %></strong> has competed an ESAS assesment</span>
-                            <small><%= esas_assessment.created_at.to_s(:long) %></small>
+                            <small><%= esas_assessment.updated_at.to_s(:long) %></small>
                         </div>    
                     </li>
                   <% end %>
@@ -322,6 +322,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="profile-blog blog-border">
+                                        <%= image_tag "testimonials/img1.jpg" %>
                                         <img class="rounded-x" src="assets/images/testimonials/img1.jpg" alt="">
                                         <div class="name-location">
                                             <strong>Mikel Andrews</strong>

@@ -15,17 +15,18 @@
   <% end %>
 </ul>
 
-<div class="row margin-bottom-20">
+<div class="row margin-bottom-20"><!--start row-->
   <!--Profile Post-->
   <div class="col-sm-6">
       <div class="panel panel-profile no-bg">
           <div class="panel-heading overflow-h">
-              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Patients Assigned to You</h2>
+              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Current Patients Assigned to You</h2>
               <a href="#"><i class="fa fa-cog pull-right"></i></a>
           </div>
           <div id="scrollbar" class="panel-body contentHolder">
           <% $i == 0 %>
           <% @patients.each do |patient| %>
+          	<% if patient.patient_deceased = true %>
               <div class="profile-post color-one">
                   <span class="profile-post-numb"><% $i=+1 %></span>
                   <div class="profile-post-in">
@@ -33,6 +34,7 @@
                       <p><%= patient.diagnosis %></p>
                   </div>
               </div>
+            <% end %>
           <% end %>
           </div>
       </div>        
@@ -42,78 +44,51 @@
   <div class="col-sm-6 md-margin-bottom-20">
       <div class="panel panel-profile no-bg">
           <div class="panel-heading overflow-h">
-              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Upcoming Events</h2>
+              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Shared Patients</h2>
               <a href="#"><i class="fa fa-cog pull-right"></i></a>
           </div>
           <div id="scrollbar2" class="panel-body contentHolder">
-              <div class="profile-event">
-                  <div class="date-formats">
-                      <span>25</span>
-                      <small>05, 2014</small>
+          <% $i == 0 %>
+          <% @esas_assessments.each do |esas_assessment| %>
+              <div class="profile-post color-one">
+                  <span class="profile-post-numb"><% $i=+1 %></span>
+                  <div class="profile-post-in">
+                      <h3 class="heading-xs"><a><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %></a></h3>
+                      <p><%= esas_assessment.patient.diagnosis %></p>
                   </div>
-                  <div class="overflow-h">
-                      <h3 class="heading-xs"><a href="#">GitHub seminars in Japan.</a></h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
-                  </div>    
               </div>
-              <div class="profile-event">
-                  <div class="date-formats">
-                      <span>31</span>
-                      <small>06, 2014</small>
-                  </div>
-                  <div class="overflow-h">
-                      <h3 class="heading-xs"><a href="#">Bootstrap Update</a></h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
-                  </div>    
-              </div>
-              <div class="profile-event">
-                  <div class="date-formats">
-                      <span>07</span>
-                      <small>08, 2014</small>
-                  </div>
-                  <div class="overflow-h">
-                      <h3 class="heading-xs"><a href="#">Apple Conference</a></h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
-                  </div>    
-              </div>
-              <div class="profile-event">
-                  <div class="date-formats">
-                      <span>22</span>
-                      <small>10, 2014</small>
-                  </div>
-                  <div class="overflow-h">
-                      <h3 class="heading-xs"><a href="#">Backend Meeting</a></h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
-                  </div>    
-              </div>
-              <div class="profile-event">
-                  <div class="date-formats">
-                      <span>14</span>
-                      <small>11, 2014</small>
-                  </div>
-                  <div class="overflow-h">
-                      <h3 class="heading-xs"><a href="#">Google Conference</a></h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
-                  </div>    
-              </div>
-              <div class="profile-event">
-                  <div class="date-formats">
-                      <span>05</span>
-                      <small>12, 2014</small>
-                  </div>
-                  <div class="overflow-h">
-                      <h3 class="heading-xs"><a href="#">FontAwesome Update</a></h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
-                  </div>    
-              </div>
+          <% end %>
           </div>    
       </div>
   </div>
   <!--End Profile Event-->
 </div><!--/end row-->
 
-<ul>
-  <% @esas_assessments.each do |esas_assessment| %>
-    <li><h3><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %></h3> <%= link_to "Edit", edit_esas_assessment_path(esas_assessment) %> <%= link_to "Delete", esas_assessment_path(esas_assessment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></li>
-  <% end %>
-</ul>
+<hr>
+
+<div class="row margin-bottom-20"><!--start row-->
+  <!--Profile Post-->
+  <div class="col-sm-6">
+      <div class="panel panel-profile no-bg">
+          <div class="panel-heading overflow-h">
+              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Previous Patients</h2>
+              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+          </div>
+          <div id="scrollbar" class="panel-body contentHolder">
+          <% $i == 0 %>
+          <% @patients.each do |patient| %>
+          	<% if patient.patient_deceased = false %>
+              <div class="profile-post color-one">
+                  <span class="profile-post-numb"><% $i=+1 %></span>
+                  <div class="profile-post-in">
+                      <h3 class="heading-xs"><a><%= link_to "#{patient.first_name} #{patient.last_name}", patient_path(patient) %></a></h3>
+                      <p><%= patient.diagnosis %></p>
+                  </div>
+              </div>
+            <% end %>
+          <% end %>
+          </div>
+      </div>        
+  </div>
+  <!--End Profile Post-->
+</div><!--/end row-->

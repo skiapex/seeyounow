@@ -10,11 +10,11 @@
 
   <% @comments.each do |comment| %>
   		<% if current_clinician %>
-	    	<li><h4><%= link_to "With #{ comment.patient.first_name } #{ comment.patient.last_name} from #{comment.created_at.to_s(:long)}", comment_path(comment) %></h4> 
+	    	<li><h4><%= link_to "With #{ comment.patient.first_name } #{ comment.patient.last_name} from #{comment.updated_at.to_s(:long)}", comment_path(comment) %></h4> 
 	    
 	    	<%= link_to "Edit", edit_comment_path(comment) %>
 	    <% else %>
-	    	<li><h4><%= link_to "With #{ comment.clinician.first_name } #{ comment.clinician.last_name} from #{comment.created_at.to_s(:long)}", comment_path(comment) %></h4>
+	    	<li><h4><%= link_to "With #{ comment.clinician.first_name } #{ comment.clinician.last_name} from #{comment.updated_at.to_s(:long)}", comment_path(comment) %></h4>
 	    <% end %>
 
 	    <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></li>

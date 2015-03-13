@@ -10,7 +10,7 @@
 <% end %>
 
 <h3 class="page-header">
-  Edit ESAS assessment done at <%= @esas_assessment.time %> for <%= @esas_assessment.patient.first_name %> <%= @esas_assessment.patient.last_name %>
+  Edit ESAS assessment done at <%= @esas_assessment.updated_at.to_s(:long) %> for <%= @esas_assessment.patient.first_name %> <%= @esas_assessment.patient.last_name %>
 </h3>
 
 <%= form_for @esas_assessment do |form| %>
@@ -22,22 +22,6 @@
   <div class="form-group">
     <%= form.label :clinician_id %>
     <%= form.collection_select :clinician_id, Clinician.all, :id, :first_name, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :time %>
-    <%= form.text_field :time, class: "form-control", placeholder: "Time of day" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :year %>
-    <%= form.select :year, options_for_select(2015..2018) %>
-
-    <%= form.label :month %>
-    <%= form.select :month, options_for_select(1..12) %>
-
-    <%= form.label :day %>
-    <%= form.select :day, options_for_select(1..31) %>
   </div>
 
   <div class="form-group">

@@ -10,7 +10,7 @@
   <% end %>
   <p><strong>For:</strong> <%= @esas_assessment.clinician.occupation.name %> <%= @esas_assessment.clinician.first_name %> <%= @esas_assessment.clinician.last_name %></p>
 </h4>
-<h4 span class="time"><strong>Completed at:</strong> <%= @esas_assessment.created_at.to_s(:long) %>
+<h4 span class="time"><strong>Completed at:</strong> <%= @esas_assessment.updated_at.to_s(:long) %>
 
   <% if current_clinician %>
     <span class="pull-right">
