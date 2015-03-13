@@ -24,6 +24,20 @@
   <!-- JS Global Compulsory -->           
 <%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+        App.initCounter();
+        Datepicker.initDatepicker();      
+    });
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+        "use strict";
+        $('.contentHolder').perfectScrollbar();
+    });
+</script>
+
   <!-- All stylesheets -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
@@ -244,22 +258,6 @@
   <%= render "pages/patientfooter" %>
 
   </div><!--/wrapper-->
-
-
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        App.init();
-        App.initCounter();
-        Datepicker.initDatepicker();      
-    });
-</script>
-<script>
-    jQuery(document).ready(function ($) {
-        "use strict";
-        $('.contentHolder').perfectScrollbar();
-    });
-</script>
 
 
 </body> 
