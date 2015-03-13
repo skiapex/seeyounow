@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap.min
  *= require style
  *= require custom-sky-forms
  *= require line-icons
@@ -38,7 +39,6 @@
  *= require jquery.countdown
  *= require light-green
  *= require light
- *= require main
  *= require owl.carousel
  *= require owl.theme
  *= require page_job_inner
@@ -48,7 +48,6 @@
  *= require portfolio-v2
  *= require profile
  *= require prettify
- *= require reset
  *= require settings
  *= require skin
  */

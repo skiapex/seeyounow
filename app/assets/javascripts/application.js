@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery.min
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require turbolinks
@@ -17,6 +18,7 @@
 //= require back-to-top
 //= require jquery.countdown
 //= require jquery.backstretch.min
+//= require bootstrap.min
 //= require circles
 //= require jquery.mixitup.min
 //= require circles-master
