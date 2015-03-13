@@ -3,10 +3,11 @@ class PagesController < ApplicationController
 
   def index
     @clinicians = Clinician.all
+    @esas_assessments = current_clinician.esas_assessments
   end
 
   def home
-    
+    @esas_assessments = current_clinician.esas_assessments
   end
 
   def new

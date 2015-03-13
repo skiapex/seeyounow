@@ -2,7 +2,9 @@ class PatientsController < ApplicationController
   skip_before_action :require_clinician
 
   def index
-    @patients = Patient.all
+    # @patients = Patient.all
+    @patients = current_clinician.patients
+    @esas_assessments = current_clinician.esas_assessments
   end
 
   def new
