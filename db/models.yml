@@ -87,7 +87,7 @@ Comment:
   updated_at: datetime
   general_comment: string
 
-Notification:
+Notification_Settings:
   clinician_id: integer
   esas_yellow_highest_symptom: integer
   esas_yellow_increase_of: integer
