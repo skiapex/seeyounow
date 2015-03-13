@@ -60,7 +60,7 @@ $(document).ready(function () {
                     }
                 }
 
-                hash = (hash) ? hash : t.offset[0].el.attr('name');
+                // hash = (hash) ? hash : t.offset[0].el.attr('name');
 
                 $('#navigation').children().removeClass('active');
 

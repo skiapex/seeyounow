@@ -196,7 +196,7 @@ DEPENDENCIES
   mailboxer
   pg
   quiet_assets
-  rails
+  rails (= 4.1.8)
   rails_12factor
   sass-rails
   sdoc
