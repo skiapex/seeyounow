@@ -18,11 +18,11 @@
   <!-- Logo Font -->
   <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
 
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <!-- JS Global Compulsory -->           
+<%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <!-- All stylesheets -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -245,8 +245,7 @@
 
   </div><!--/wrapper-->
 
-<!-- JS Global Compulsory -->           
-<%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
