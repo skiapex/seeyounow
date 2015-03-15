@@ -39,200 +39,199 @@
 </head>
 <body>
 <div class="wrapper">
- <!--=== Header ===-->    
-  <div class="header">
-    <!-- Topbar -->
-    <div class="topbar">
-        <div class="container">
-            <!-- Topbar Navigation -->
-            <ul class="loginbar pull-right">
-                <li>
-                    <i class="fa fa-globe"></i>
-                    <a>Languages</a>
-                    <ul class="languages">
-                        <li class="active">
+    <!--=== Header ===-->    
+    <div class="header">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <!-- Topbar Navigation -->
+                <ul class="loginbar pull-right">
+                    <li>
+                        <i class="fa fa-globe"></i>
+                        <a>Languages</a>
+                        <ul class="languages">
+                            <li class="active">
                             <a href="#">English <i class="fa fa-check"></i></a> 
-                        </li>
-                    </ul>
-                </li>
-                <li class="topbar-devider"></li>   
-                <li><a href="page_faq.html">Help</a></li>  
-                <li class="topbar-devider"></li>
-                <% if current_user %>   
-                  <li><a href="/logout.html">Logout</a></li>
-                <% else %>
-                  <li><a href="/login.html">Login</a></li>
-                <% end %>
-            </ul>
-            <!-- End Topbar Navigation -->
-        </div>
-    </div>
-    <!-- End Topbar -->
-
-
-    <!-- Navbar -->
-    <div class="navbar navbar-default mega-menu" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="fa fa-bars"></span>
-                </button>
-                <% if current_clinician %>
-                  <%= link_to image_tag("synlogo.png", size: "178x39"), root_path, class: "navbar-brand" %>
-                <% else %>
-                  <%= link_to image_tag("synlogo.png", size: "178x39"), patient_path(current_user.patient), class: "navbar-brand" %>
-                <% end %>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-responsive-collapse">
-                    <ul class="nav navbar-nav">
-                      <!-- Home -->
-                      <li class="dropdown">
-                          <a href="/home">
-                              Home<span class="sr-only">
-                          </a>
-                      </li>
-                    <!-- End Home -->
-
-                    <% if current_clinician %> 
-
-                    <!-- Patients -->                        
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            Patients
-                        </a>
-                            <ul class="dropdown-menu">
-                                <!-- About Pages -->
-                                <li class="dropdown-submenu">
-                                <a href="/patients">Current Patients</a></li>
-                            <li><a href="/patients/new">New Patient</a></li>
-                        </ul>
-                    </li>
-                    <!-- End Patient -->
-
-                    <!-- ESAS Assessments -->                        
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            Assessments
-                        </a>
-                        <ul class="dropdown-menu">
-                        <!-- ESAS Assessments -->
-                            <li class="dropdown-submenu">
-                                <a href="/esas_assessments">ESAS Assessments</a></li>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/esas_assessments">View scores</a></li>
-                                    <li><a href="/esas_assessments/new">New assessment</a></li>
-                                </ul>
                             </li>
-                            <!-- PFRS Assessments -->
-                            <li class="dropdown-submenu">
-                                <a href="/esas_assessments/new">PFRS Assessments</a></li>
-                                <ul class="dropdown-menu">
-                                    <li><a target="_blank" href="/esas_assessments">View scores</a></li>
-                                    <li><a href="/esas_assessments/new">New assessment</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/esas_assessments/new">Other symptoms</a></li>
                         </ul>
                     </li>
-                    <!-- End ESAS Assessments -->
-
-                    <!-- Comments -->                        
-                    <li class="dropdown">
-                        <a href="/comments">Comments <span class="sr-only"></a>
-                    </li>
-                    <!-- End Comments -->
-
-                    <% else %>  <!-- start patient section -->
-                    
-                    <!-- ESAS Assessments -->                        
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            ESAS Assessments
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="/esas_assessments">View scores</a></li>
-                            <li><a href="/esas_assessments/new">New assessment</a></li>
-                        </ul>
-                    </li>
-                    <!-- End ESAS Assessments -->
-                    
-
-                    <!-- PFRS Assessments -->                        
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            PFRS Assessments
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="/esas_assessments">View scores</a></li>
-                            <li><a href="/esas_assessments/new">New assessment</a></li>
-                        </ul>
-                    </li>
-                    <!-- End PFRS Assessments -->
-
-                    <!-- Comments -->                        
-                    <li class="dropdown">
-                        <a href="/comments">Comments <span class="sr-only"></a>
-                    </li>
-                    <!-- End Comments -->
-
-                    <!-- Emergency Message -->
-                    <li class="dropdown">
-                      <%= link_to "Emergency Message", clinician_path(current_user.patient.clinician) %> <span class="sr-only">
-                    </li>
-                    <!-- Emergency Message -->
-
-                    <% end %> <!-- end of left hand nav bar -->
-
-                    <!-- Profile -->
-                    <% if current_clinician %>
-                      <li class="dropdown">
-                        <%= link_to "View Profile", clinician_path(current_user.clinician) %> <span class="sr-only">
-                      </li>
-                    <% else %>
-                      <li class="dropdown">
-                        <%= link_to "View Profile", patient_path(current_user.patient) %> <span class="sr-only">
-                      </li>
-                    <% end %>
-                    <!-- End Profile -->
-                    
-                    <!-- Settings -->
-                    <% if current_user %>
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-cog"></i> Settings
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to "Edit email and password", edit_user_path(current_user) %></li>
-                            <% if current_clinician %>
-                              <li><%= link_to "Edit Profile", edit_clinician_path(current_user.clinician) %></li>
-                              <li><a href="#">Notification settings</a></li>
-                            <% else %>
-                              <li><%= link_to "Edit Profile", edit_patient_path(current_user.patient) %></li>
-                            <% end %>
-                            <li class="divider"></li>
-                            <li><a href="/logout">Log out</a></li>
-                        </ul>
-                    </li>  
-                    <% else %>
-                    <li class="dropdown">
-                        <a href="/login">Log In <span class="sr-only">(current)</a>
-                    </li>
-                    <% end %>
-                    <!-- End Settings -->
-                    
+                    <li class="topbar-devider"></li>   
+                    <li><a href="page_faq.html">Help</a></li>  
+                    <li class="topbar-devider"></li>
+                      <% if current_user %>   
+                        <li><a href="/logout.html">Logout</a></li>
+                      <% else %>
+                        <li><a href="/login.html">Login</a></li>
+                      <% end %>
                 </ul>
-            </div><!--/navbar-collapse-->
-        </div>    
-    </div>            
-    <!-- End Navbar -->
-  </div>
-  <!--=== End Header ===-->
+                <!-- End Topbar Navigation -->
+            </div>
+        </div>
+        <!-- End Topbar -->
+
+
+        <!-- Navbar -->
+        <div class="navbar navbar-default mega-menu" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <% if current_clinician %>
+                      <%= link_to image_tag("synlogo.png", size: "178x39"), root_path, class: "navbar-brand" %>
+                    <% else %>
+                      <%= link_to image_tag("synlogo.png", size: "178x39"), patient_path(current_user.patient), class: "navbar-brand" %>
+                    <% end %>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                        <ul class="nav navbar-nav">
+                          <!-- Home -->
+                          <li class="dropdown">
+                              <a href="/home">
+                                  Home<span class="sr-only">
+                              </a>
+                          </li>
+                        <!-- End Home -->
+
+                        <% if current_clinician %> 
+
+                        <!-- Patients -->                        
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                Patients
+                            </a>
+                                <ul class="dropdown-menu">
+                                    <!-- About Pages -->
+                                    <li><a href="/patients">Patient List</a></li>
+                                    <li><a href="/patients/new">New Patient</a></li>
+                                </ul>
+                        </li>
+                        <!-- End Patient -->
+
+                        <!-- Assessments -->                        
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                Assessments
+                            </a>
+                            <ul class="dropdown-menu">
+                            <!-- ESAS Assessments -->
+                                <li class="dropdown-submenu">
+                                    <a href="javascript:void(0);">ESAS Assessments</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/esas_assessments">View scores</a></li>
+                                        <li><a href="/esas_assessments/new">New assessment</a></li>
+                                    </ul>
+                                </li>
+                                <!-- PFRS Assessments -->
+                                <li class="dropdown-submenu">
+                                    <a href="javascript:void(0);">PFRS Assessments</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a target="_blank" href="/esas_assessments">View scores</a></li>
+                                        <li><a href="/esas_assessments/new">New assessment</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/esas_assessments/new">Other symptoms</a></li>
+                            </ul>
+                        </li>
+                        <!-- End Assessments -->
+
+                        <!-- Comments -->                        
+                        <li class="dropdown">
+                            <a href="/comments">Comments <span class="sr-only"></a>
+                        </li>
+                        <!-- End Comments -->
+
+                        <% else %>  <!-- start patient section -->
+                        
+                        <!-- ESAS Assessments -->                        
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                ESAS Assessments
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="/esas_assessments">View scores</a></li>
+                                <li><a href="/esas_assessments/new">New assessment</a></li>
+                            </ul>
+                        </li>
+                        <!-- End ESAS Assessments -->
+                        
+
+                        <!-- PFRS Assessments -->                        
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                PFRS Assessments
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="/esas_assessments">View scores</a></li>
+                                <li><a href="/esas_assessments/new">New assessment</a></li>
+                            </ul>
+                        </li>
+                        <!-- End PFRS Assessments -->
+
+                        <!-- Comments -->                        
+                        <li class="dropdown">
+                            <a href="/comments">Comments <span class="sr-only"></a>
+                        </li>
+                        <!-- End Comments -->
+
+                        <!-- Emergency Message -->
+                        <li class="dropdown">
+                          <%= link_to "Emergency Message", clinician_path(current_user.patient.clinician) %> <span class="sr-only">
+                        </li>
+                        <!-- Emergency Message -->
+
+                        <% end %> <!-- end of left hand nav bar -->
+
+                        <!-- Profile -->
+                        <% if current_clinician %>
+                          <li class="dropdown">
+                            <%= link_to "View Profile", clinician_path(current_user.clinician) %> <span class="sr-only">
+                          </li>
+                        <% else %>
+                          <li class="dropdown">
+                            <%= link_to "View Profile", patient_path(current_user.patient) %> <span class="sr-only">
+                          </li>
+                        <% end %>
+                        <!-- End Profile -->
+                        
+                        <!-- Settings -->
+                        <% if current_user %>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i> Settings
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><%= link_to "Edit email and password", edit_user_path(current_user) %></li>
+                                <% if current_clinician %>
+                                  <li><%= link_to "Edit Profile", edit_clinician_path(current_user.clinician) %></li>
+                                  <li><a href="#">Notification settings</a></li>
+                                <% else %>
+                                  <li><%= link_to "Edit Profile", edit_patient_path(current_user.patient) %></li>
+                                <% end %>
+                                <li class="divider"></li>
+                                <li><a href="/logout">Log out</a></li>
+                            </ul>
+                        </li>  
+                        <% else %>
+                        <li class="dropdown">
+                            <a href="/login">Log In <span class="sr-only">(current)</a>
+                        </li>
+                        <% end %>
+                        <!-- End Settings -->
+                        
+                    </ul>
+                </div><!--/navbar-collapse-->
+            </div>    
+        </div>            
+        <!-- End Navbar -->
+    </div>
+    <!--=== End Header ===-->
 
   <div class="container">
     <% if notice %>
