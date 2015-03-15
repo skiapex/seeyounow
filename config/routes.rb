@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :comments
+  resources :notification_settings
 
   get 'clinicians/:id/home', to: 'pages#clinicianhome'
   get '/home', to: 'pages#home'

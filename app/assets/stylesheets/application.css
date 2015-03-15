@@ -15,6 +15,7 @@
  *= require bootstrap.min
  *= require style
  *= require custom-sky-forms
+ *= require font-awesome.min
  *= require line-icons
  *= require app
  *= require animate

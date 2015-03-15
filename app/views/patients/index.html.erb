@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
     <title>SeeYouNow | Patient Index</title>
 </head>	
@@ -15,85 +16,96 @@
   <% end %>
 </ul>
 
-<div class="col-md-12">
-	<!--Profile Body-->
-	<div class="profile-body">
+<body>
 
-		<div class="row margin-bottom-20"><!--start row-->
-		  <!--Profile Post-->
-		  <div class="col-sm-6">
-		      <div class="panel panel-profile no-bg">
-		          <div class="panel-heading overflow-h">
-		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Current Patients Assigned to You</h2>
-		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
-		          </div>
-		          <div id="scrollbar" class="panel-body contentHolder">
-		          
-		          <% @patients.each_with_index do |patient, index| %>
-		          	<% if patient.patient_deceased = true %>
-		              <div class="profile-post color-one">
-		                  <span class="profile-post-numb"><% index+1 %></span>
-		                  <div class="profile-post-in">
-		                      <h3 class="heading-xs"><a><%= link_to "#{patient.first_name} #{patient.last_name}", patient_path(patient) %></a></h3>
-		                      <p><%= patient.diagnosis %></p>
-		                  </div>
-		              </div>
-		            <% end %>
-		          <% end %>
-		          </div>
-		      </div>        
-		  </div>
-		  <!--End Profile Post-->
-		  <!--Profile Event-->
-		  <div class="col-sm-6 md-margin-bottom-20">
-		      <div class="panel panel-profile no-bg">
-		          <div class="panel-heading overflow-h">
-		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Shared Patients</h2>
-		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
-		          </div>
-		          <div id="scrollbar2" class="panel-body contentHolder">
-		          <% @esas_assessments.each_with_index do |esas_assessment, index| %>
-		              <div class="profile-post color-one">
-		                  <span class="profile-post-numb"><% 1 %></span>
-		                  <div class="profile-post-in">
-		                      <h3 class="heading-xs"><a><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %></a></h3>
-		                      <p><%= esas_assessment.patient.diagnosis %></p>
-		                  </div>
-		              </div>
-		          <% end %>
-		          </div>    
-		      </div>
-		  </div>
-		  <!--End Profile Event-->
-		</div><!--/end row-->
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+            	<!--Profile Body-->
+            	<div class="profile-body">
 
-		<hr>
+            		<div class="row margin-bottom-20"><!--start row-->
+            		  <!--Profile Post-->
+            		  <div class="col-sm-6">
+            		      <div class="panel panel-profile no-bg">
+            		          <div class="panel-heading overflow-h">
+            		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Current Patients Assigned to You</h2>
+            		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+            		          </div>
+            		          <div id="scrollbar" class="panel-body contentHolder">
+            		          
+            		          <% @patients.each_with_index do |patient, index| %>
+            		          	<% if patient.patient_deceased = true %>
+            		              <div class="profile-post color-one">
+            		                  <span class="profile-post-numb"><% index+1 %></span>
+            		                  <div class="profile-post-in">
+            		                      <h3 class="heading-xs"><a><%= link_to "#{patient.first_name} #{patient.last_name}", patient_path(patient) %></a></h3>
+            		                      <p><%= patient.diagnosis %></p>
+            		                  </div>
+            		              </div>
+            		            <% end %>
+            		          <% end %>
+            		          </div>
+            		      </div>        
+            		  </div>
+            		  <!--End Profile Post-->
+            		  <!--Profile Event-->
+            		  <div class="col-sm-6">
+                      <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+            		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Shared Patients</h2>
+            		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+            		          </div>
+            		          <div id="scrollbar" class="panel-body contentHolder">
+            		          <% @esas_assessments.each_with_index do |esas_assessment, index| %>
+            		              <div class="profile-post color-one">
+            		                  <span class="profile-post-numb"><% 1 %></span>
+            		                  <div class="profile-post-in">
+            		                      <h3 class="heading-xs"><a><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %></a></h3>
+            		                      <p><%= esas_assessment.patient.diagnosis %></p>
+            		                  </div>
+            		              </div>
+            		          <% end %>
+            		          </div>    
+            		      </div>
+            		  </div>
+            		  <!--End Profile Event-->
+            		</div><!--/end row-->
 
-		<div class="row margin-bottom-20"><!--start row-->
-		  <!--Profile Post-->
-		  <div class="col-sm-6">
-		      <div class="panel panel-profile no-bg">
-		          <div class="panel-heading overflow-h">
-		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Previous Patients</h2>
-		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
-		          </div>
-		          <div id="scrollbar" class="panel-body contentHolder">
-		          <% $i == 0 %>
-		          <% @patients.each do |patient| %>
-		          	<% if patient.patient_deceased = false %>
-		              <div class="profile-post color-one">
-		                  <span class="profile-post-numb"><% $i=+1 %></span>
-		                  <div class="profile-post-in">
-		                      <h3 class="heading-xs"><a><%= link_to "#{patient.first_name} #{patient.last_name}", patient_path(patient) %></a></h3>
-		                      <p><%= patient.diagnosis %></p>
-		                  </div>
-		              </div>
-		            <% end %>
-		          <% end %>
-		          </div>
-		      </div>        
-		  </div>
-		  <!--End Profile Post-->
-		</div><!--/end row-->
-	</div><!--End Profile Body-->
-</div>
+            		<hr>
+
+            		<div class="row margin-bottom-20"><!--start row-->
+            		  <!--Profile Post-->
+            		  <div class="col-sm-6">
+            		      <div class="panel panel-profile no-bg">
+            		          <div class="panel-heading overflow-h">
+            		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Previous Patients</h2>
+            		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+            		          </div>
+            		          <div id="scrollbar" class="panel-body contentHolder">
+            		          <% $i == 0 %>
+            		          <% @patients.each do |patient| %>
+            		          	<% if patient.patient_deceased = false %>
+            		              <div class="profile-post color-one">
+            		                  <span class="profile-post-numb"><% $i=+1 %></span>
+            		                  <div class="profile-post-in">
+            		                      <h3 class="heading-xs"><a><%= link_to "#{patient.first_name} #{patient.last_name}", patient_path(patient) %></a></h3>
+            		                      <p><%= patient.diagnosis %></p>
+            		                  </div>
+            		              </div>
+            		            <% end %>
+            		          <% end %>
+            		          </div>
+            		      </div>        
+            		  </div>
+            		  <!--End Profile Post-->
+            		</div><!--/end row-->
+            	</div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html>	
