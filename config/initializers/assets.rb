@@ -13,6 +13,7 @@ Rails.application.config.assets.precompile += %w( plugins.css )
 Rails.application.config.assets.precompile += %w( blocks.css )
 
 #Import Global Compulsory Javascript Files
+Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( custom.js )
 Rails.application.config.assets.precompile += %w( app.js )
 Rails.application.config.assets.precompile += %w( login.js )
