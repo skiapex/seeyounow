@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>SeeYouNow | Home</title>
+</head>	
+
+<body>
+
+    <!--=== Profile ===-->
+    <div class="profile container content">
+    	<div class="row">
+            <!--Left Sidebar-->
+            <div class="col-md-3 md-margin-bottom-40">
+                <!-- <img class="img-responsive profile-img margin-bottom-20" src="/assets/images/team/5.jpg" alt=""> -->
+
+                <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                    <li class="list-group-item active">
+                        <a href="profile.html"><i class="fa fa-bar-chart-o"></i> Overall</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="profile_me.html"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="profile_users.html"><i class="fa fa-group"></i> Users</a>
+                    </li>                                        
+                    <li class="list-group-item">
+                        <a href="profile_projects.html"><i class="fa fa-cubes"></i> My Projects</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/comments"><i class="fa fa-comments"></i> Comments</a>
+                    </li>                                        
+                    <li class="list-group-item">
+                        <a href="profile_history.html"><i class="fa fa-history"></i> History</a>
+                    </li>                                       
+                    <li class="list-group-item">
+                        <a href="profile_settings.html"><i class="fa fa-cog"></i> Settings</a>
+                    </li> 
+                </ul>   
+
+                <hr>
+
+                <!--Notification-->
+                <div class="panel-heading-v2 overflow-h">
+                    <h2 class="heading-xs pull-left"><i class="fa fa-bell-o"></i> Notification</h2>
+                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                </div>
+                <ul id="scrollbar5" class="list-unstyled contentHolder margin-bottom-20">
+                  <% @notifications.sort_by{|e| e[:created_at]}.reverse.each do |notification| %>
+                    <li class="notification">
+
+                    <% if notification.is_a?(EsasAssessment) %>
+                        <i class="icon-custom icon-sm rounded-x icon-bg-red icon-line fa fa-line-chart"></i>
+                        <div class="overflow-h">
+                            <span><strong><%= notification.patient.first_name %> <%= notification.patient.last_name %></strong> has competed an ESAS assesment</span>
+                            <small><%= time_ago_in_words(notification.created_at) %> ago</small>
+                        </div>
+                    <% else %>
+                      <% if notification.is_a?(PrfsAssessment) %>
+                          <i class="icon-custom icon-sm rounded-x icon-bg-yellow icon-line fa fa-envelope"></i>
+                          <div class="overflow-h">
+                              <span><strong><%= notification.patient.first_name %> <%= notification.patient.last_name %></strong> has competed an PRFS assesment</span>
+                              <small><%= time_ago_in_words(notification.created_at) %> ago</small>
+                          </div>
+                      <% else %>
+                          <i class="icon-custom icon-sm rounded-x icon-bg-blue icon-line fa fa-comments"></i>
+                          <div class="overflow-h">
+                              <span><strong><%= notification.patient.first_name %> <%= notification.patient.last_name %></strong> has left a comment</span>
+                              <small><%= time_ago_in_words(notification.created_at) %> ago</small>
+                          </div>
+                      <% end %>
+                    <% end %>
+
+                    </li>
+                  <% end %>
+                </ul>    
+
+                <button type="button" class="btn-u btn-u-default btn-u-sm btn-block">Load More</button>
+                <!--End Notification-->
+
+                <div class="margin-bottom-50"></div>
+
+                <!--Datepicker-->
+                <form action="" id="sky-form2" class="sky-form">
+                    <div id="inline-start"></div>
+                </form> 
+                <!--End Datepicker-->
+            </div>
+            <!--End Left Sidebar-->
+            
+            <div class="col-md-9">
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+
+                    <div class="row margin-bottom-20">
+                        <!--Profile Post-->
+                        <div class="col-sm-6">
+                            <div class="panel panel-profile no-bg">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i>Notes</h2>
+                                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                                </div>
+                                <div id="scrollbar" class="panel-body contentHolder">
+                                    <div class="profile-post color-one">
+                                        <span class="profile-post-numb">01</span>
+                                        <div class="profile-post-in">
+                                            <h3 class="heading-xs"><a href="#">Creative Blog</a></h3>
+                                            <p>How to market yourself as a freelance designer</p>
+                                        </div>
+                                    </div>
+                                    <div class="profile-post color-two">
+                                        <span class="profile-post-numb">02</span>
+                                        <div class="profile-post-in">
+                                            <h3 class="heading-xs"><a href="#">Codrops Collective #117</a></h3>
+                                            <p>Web Design &amp; Development News</p>
+                                        </div>
+                                    </div>
+                                    <div class="profile-post color-three">
+                                        <span class="profile-post-numb">03</span>
+                                        <div class="profile-post-in">
+                                            <h3 class="heading-xs"><a href="#">Sketch Toolbox</a></h3>
+                                            <p>Basic prototype of a package manager for Sketch</p>
+                                        </div>
+                                    </div>
+                                    <div class="profile-post color-four">
+                                        <span class="profile-post-numb">04</span>
+                                        <div class="profile-post-in">
+                                            <h3 class="heading-xs"><a href="#">Amazing Portfolio</a></h3>
+                                            <p>Create a free online portfolio lookbook with Readz</p>
+                                        </div>
+                                    </div>
+                                    <div class="profile-post color-five">
+                                        <span class="profile-post-numb">05</span>
+                                        <div class="profile-post-in">
+                                            <h3 class="heading-xs"><a href="#">Discover New Features</a></h3>
+                                            <p>More than 100+ amazing add-ons coming soon...</p>
+                                        </div>
+                                    </div>
+                                    <div class="profile-post color-six">
+                                        <span class="profile-post-numb">06</span>
+                                        <div class="profile-post-in">
+                                            <h3 class="heading-xs"><a href="#">Corporation Plans</a></h3>
+                                            <p>Discussion of new corporation plans</p>
+                                        </div>
+                                    </div>
+                                    <div class="profile-post color-seven">
+                                        <span class="profile-post-numb">07</span>
+                                        <div class="profile-post-in">
+                                            <h3 class="heading-xs"><a href="#">Project Updates</a></h3>
+                                            <p>New features of coming update</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
+                        </div>
+                        <!--End Profile Post-->
+
+                        <!--Profile Event-->
+                        <div class="col-sm-6 md-margin-bottom-20">
+                            <div class="panel panel-profile no-bg">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i>Upcoming Events</h2>
+                                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                                </div>
+                                <div id="scrollbar2" class="panel-body contentHolder">
+                                    <div class="profile-event">
+                                        <div class="date-formats">
+                                            <span>25</span>
+                                            <small>05, 2014</small>
+                                        </div>
+                                        <div class="overflow-h">
+                                            <h3 class="heading-xs"><a href="#">GitHub seminars in Japan.</a></h3>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="profile-event">
+                                        <div class="date-formats">
+                                            <span>31</span>
+                                            <small>06, 2014</small>
+                                        </div>
+                                        <div class="overflow-h">
+                                            <h3 class="heading-xs"><a href="#">Bootstrap Update</a></h3>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="profile-event">
+                                        <div class="date-formats">
+                                            <span>07</span>
+                                            <small>08, 2014</small>
+                                        </div>
+                                        <div class="overflow-h">
+                                            <h3 class="heading-xs"><a href="#">Apple Conference</a></h3>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="profile-event">
+                                        <div class="date-formats">
+                                            <span>22</span>
+                                            <small>10, 2014</small>
+                                        </div>
+                                        <div class="overflow-h">
+                                            <h3 class="heading-xs"><a href="#">Backend Meeting</a></h3>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="profile-event">
+                                        <div class="date-formats">
+                                            <span>14</span>
+                                            <small>11, 2014</small>
+                                        </div>
+                                        <div class="overflow-h">
+                                            <h3 class="heading-xs"><a href="#">Google Conference</a></h3>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="profile-event">
+                                        <div class="date-formats">
+                                            <span>05</span>
+                                            <small>12, 2014</small>
+                                        </div>
+                                        <div class="overflow-h">
+                                            <h3 class="heading-xs"><a href="#">FontAwesome Update</a></h3>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing.</p>
+                                        </div>    
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                        <!--End Profile Event-->
+                    </div><!--/end row-->
+
+                    <hr>
+
+
+                    <div class="row">
+                        <!--Alert-->
+                        <div class="col-sm-7 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Alarm Notification</h2>
+                                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                                </div>
+                                <div id="scrollbar3" class="panel-body contentHolder">
+                                    <div class="alert-blocks alert-blocks-pending alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="assets/images/testimonials/img3.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-yellow">Pending... <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p>Your friend request has been sent.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-success alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="assets/images/testimonials/img2.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-green">Accepted. <small class="pull-right"><em>7 hours ago</em></small></strong> 
+                                            <p>Your friend request has been accepted.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-info alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-blue fa fa-bolt"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-blue">Info <small class="pull-right"><em>2 days ago</em></small></strong> 
+                                            <p>Your friend request has been denied :)</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-error alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <img class="rounded-x" src="assets/images/testimonials/img6.jpg" alt="">
+                                        <div class="overflow-h">
+                                            <strong class="color-red">Denied! <small class="pull-right"><em>2 days ago</em></small></strong> 
+                                            <p>Your friend request has been denied.</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-dark fa fa-magic"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-dark">Default <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p><strong>Adam Johnson's</strong> friend request pending..</p>
+                                        </div>    
+                                    </div>
+                                    <div class="alert-blocks alert-blocks-pending alert-dismissable">
+                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                        <i class="icon-custom rounded-x icon-bg-yellow fa fa-info"></i>
+                                        <div class="overflow-h">
+                                            <strong class="color-yellow">Pending <small class="pull-right"><em>Just now</em></small></strong> 
+                                            <p><strong>Adam Johnson's</strong> friend request pending..</p>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Alert-->
+                        
+                        <!--End Comments Post-->
+                        <div class="col-sm-5">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
+                                </div>
+                                <div id="scrollbar4" class="panel-body contentHolder">
+                                <% if current_clinician %>
+                                  <% @comments.each_with_index do |comment, index| %>
+                                    <div class="comment">
+                                        <div class="overflow-h">
+                                            <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                            <p><%= comment.general_comment %></p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heartbeat"></i> <%= comment.patient.diagnosis %></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                  <% end %>
+                                <% else %>
+                                  <% @comments.each_with_index do |comment, index| %>
+                                    <div class="comment">
+                                        <div class="overflow-h">
+                                            <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                            <p><%= comment.general_comment %></p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                  <% end %>
+                                <% end %>
+                                </div>
+                            </div>    
+                        </div><!--End Comments Post-->
+                    </div><!--/end row-->        
+
+                </div>
+                <!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html>	

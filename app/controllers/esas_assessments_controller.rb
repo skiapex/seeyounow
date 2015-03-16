@@ -19,14 +19,14 @@ class EsasAssessmentsController < ApplicationController
 
   def create
     esas_assessment_params = params.require(:esas_assessment).permit(:patient_id, :clinician_id, :time, :year, :month, :day, :inputter_name, :inputter_id, :pain, :pain_comment, :tiredness, :tiredness_comment, :drowsiness, :drowsiness_comment, :nausea, :nausea_comment, :lack_of_appetite, :lack_of_appetite_comment, :shortness_of_breath, :shortness_of_breath_comment, :depression, :depression_comment, :wellbeing, :wellbeing_comment, :other_symptom_id, :other_symptom_score, :other_symptom_comment, :esas_comment)
-    @esas_assessment = EsasAssessment.create(esas_assessment_params)
+    @esas_assessment = EsasAssessment.new(esas_assessment_params)
     if current_clinician
       @esas_assessment.clinician = current_user.clinician
     else
       @esas_assessment.patient = current_user.patient
       @esas_assessment.clinician = current_user.patient.clinician
     end
-    if @esas_assessment.valid?
+    if @esas_assessment.save
       redirect_to esas_assessments_path, notice: "ESAS assessment submitted!"
     else
       render "new", alert: "ESAS assessment not submitted!"
