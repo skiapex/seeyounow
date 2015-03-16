@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.find_by(id: params["id"])
-    @clinician = @comment.clinician
-    @patient = @comment.patient
+    @patient = Patient.find_by(id: params["id"])
+    # @clinician = @comment.clinician
+    # @comment = @comment.patient
   end
 
   def new
@@ -20,14 +20,34 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment_params = params.require(:comment).permit!
-    @comment = Comment.create(comment_params)
-    if @comment.valid?
-      redirect_to comments_path, notice: "Comment submitted!"
+    if current_clinician
+      @comments = current_clinician.comments
     else
-      render "new", alert: "Comment not submitted!"
+      @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments
+    end
+
+    comment_params = params.require(:comment).permit!
+    if current_clinician
+      @comment = @patient.comments.new(comment_params)
+      @comment.clinician = current_clinician
+      @comment.from = current_clinician
+      if @comment.save
+        redirect_to comments_path, notice: "Comment submitted!"
+      else
+        render "new", alert: "Comment not submitted!"
+      end
+    else
+      @comment = @clinician.comments.new(comment_params)
+      @comment.patient = current_user.patient
+      @comment.from = current_user.patient
+      if @comment.save
+        redirect_to comments_path, notice: "Comment submitted!"
+      else
+        render "new", alert: "Comment not submitted!"
+      end
     end
   end
+
 
   def edit
     @comment = Comment.find_by(id: params["id"])

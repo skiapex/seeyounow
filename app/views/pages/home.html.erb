@@ -48,12 +48,12 @@
                     <a href="#"><i class="fa fa-cog pull-right"></i></a>
                 </div>
                 <ul id="scrollbar5" class="list-unstyled contentHolder margin-bottom-20">
-                  <% @esas_assessments.each do |esas_assessment| %>
+                  <% @esas_assessments.each & @pfrs_assessments.each do |esas_assessment| %>
                     <li class="notification">
                         <i class="icon-custom icon-sm rounded-x icon-bg-red icon-line icon-envelope"></i>
                         <div class="overflow-h">
                             <span><strong><%= link_to "#{ esas_assessment.patient.first_name } #{ esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %></strong> has competed an ESAS assesment</span>
-                            <small><%= esas_assessment.updated_at.to_s(:long) %></small>
+                            <small><%= esas_assessment.created_at.to_s(:long) %></small>
                         </div>    
                     </li>
                   <% end %>
@@ -293,71 +293,41 @@
                         </div>
                         <!--End Alert-->
                         
+                        <!--End Comments Post-->
                         <div class="col-sm-5">
                             <div class="panel panel-profile">
                                 <div class="panel-heading overflow-h">
-                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Discussions</h2>
-                                    <a href="profile_comments.html" class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right">View All</a>
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
                                 </div>
                                 <div id="scrollbar4" class="panel-body contentHolder">
+                                <% if current_clinician %>
+                                  <% @comments.each_with_index do |comment, index| %>
                                     <div class="comment">
-                                        <img src="assets/images/testimonials/img6.jpg" alt="">
                                         <div class="overflow-h">
-                                            <strong>Taylor Lee<small class="pull-right"> 25m</small></strong> 
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                            <p><%= comment.general_comment %></p>
                                             <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                                <li><i class="fa fa-heartbeat"></i> <%= comment.patient.diagnosis %></li>
                                             </ul>
                                         </div>    
                                     </div>
+                                  <% end %>
+                                <% else %>
+                                  <% @comments.each_with_index do |comment, index| %>
                                     <div class="comment">
-                                        <img src="assets/images/testimonials/img2.jpg" alt="">
                                         <div class="overflow-h">
-                                            <strong>Miranda Clarsson<small class="pull-right"> 44m</small></strong> 
-                                            <p>Donec cursus, orci non posuere luctus, risus massa luctus nisi, sit amet cursus leo massa id arcu. Nunc tincidunt magna sit amet sapien congue.</p>
+                                            <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                            <p><%= comment.general_comment %></p>
                                             <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
+                                                <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
                                             </ul>
                                         </div>    
                                     </div>
-                                    <div class="comment">
-                                        <img src="assets/images/testimonials/img4.jpg" alt="">
-                                        <div class="overflow-h">
-                                            <strong>Natasha Kolnikova<small class="pull-right"> 7h</small></strong> 
-                                            <p>Suspendisse est est, sollicitudin eget auctor et, pharetra eu sapien. Mauris mollis libero ac auctor iaculis.</p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                    <div class="comment">
-                                        <img src="assets/images/testimonials/img1.jpg" alt="">
-                                        <div class="overflow-h">
-                                            <strong>Mikel Andrews<small class="pull-right"> 15h</small></strong> 
-                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus.</p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">20</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                    <div class="comment">
-                                        <img src="assets/images/testimonials/img7.jpg" alt="">
-                                        <div class="overflow-h">
-                                            <strong>Edward Rooster<small class="pull-right"> 1d</small></strong> 
-                                            <p>Nam ut dolor cursus nibh aliquet bibendum in eget risus. Mauris mollis libero ac auctor iaculis.</p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heart"></i> <a href="#">23</a></li>
-                                                <li><i class="fa fa-comments"></i> <a href="#">5</a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
+                                  <% end %>
+                                <% end %>
                                 </div>
                             </div>    
-                        </div>
+                        </div><!--End Comments Post-->
                     </div><!--/end row-->        
 
                 </div>

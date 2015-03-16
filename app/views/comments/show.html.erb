@@ -1,35 +1,64 @@
-<!-- Use view helpers (e.g. link_to and image_tag) -->
-<!-- and implement real data -->
+<!DOCTYPE html>
+<h3 class="page-header">
+  All conversations
+  <span class="pull-right">
+    <%= link_to "New comment", new_comment_path, class: 'btn btn-sm btn-success' %>
+  </span>
+</h3>
 
-<h4 class="page-header">
-  <p><strong>Completed by:</strong> <%= link_to "#{@comment.patient.first_name} #{@comment.patient.last_name}", patient_path(@comment.patient) %></p>
-  <% if current_clinician %>
-    <span class="pull-right">
-    <%= link_to "Edit", edit_comment_path, class: 'btn btn-sm btn-success' %>
-    </span>
-  <% end %>
-  <p><strong>For:</strong> <%= @comment.clinician.occupation.name %> <%= @comment.clinician.first_name %> <%= @comment.clinician.last_name %></p>
-</h4>
-<h4 span class="time"><strong>Completed at:</strong> <%= @comment.updated_at.strftime("%a, %d %b %Y at %H:%M:%S") %>
-  <% if current_clinician %>
-    <span class="pull-right">
-    <%= link_to "Delete", comment_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-sm btn-success' %>
-    </span>
-  <% end %>
-</h4>
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-1 information">
-    <h2 class="page-header">Conversation</h2>
-    <table class="table table-striped table-bordered">
-      <tr>
-        <td>
-          <% @comment.each do |comment| %>
-          <%= comment.patient.first_name %>
-          <% end %>
-        </td>
-        <td><strong>Comment:</strong></td><td><%= @comment.pain_comment %></td>
-      </tr>
-    </table>
-  </div>
-</div>
+                <div class="row margin-bottom-20"><!--start row-->
+                  
+                  <!--End Comments Post-->
+                  <div class="col-sm-7">
+                      <div class="panel panel-profile">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
+                          </div>
+                          <div id="scrollbar4" class="panel-body contentHolder">
+                          <% if current_clinician %>
+                            <% @patient.map(&:comments).uniq.each_with_index do |patient, index| %>
+                              <div class="comment">
+                                  <div class="overflow-h">
+                                      <strong><%= patient.first_name %> <%= patient.last_name %><small class="pull-right"> <%= time_ago_in_words(patient.updated_at) %></small></strong> 
+                                      <p><%= patient.general_comment %></p>
+                                      <ul class="list-inline comment-list">
+                                          <li><i class="fa fa-heartbeat"></i> <%= patient.diagnosis %></li>
+                                      </ul>
+                                  </div>    
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <% @comments.each_with_index do |comment, index| %>
+                              <div class="comment">
+                                  <div class="overflow-h">
+                                      <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                      <p><%= comment.general_comment %></p>
+                                      <ul class="list-inline comment-list">
+                                          <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
+                                      </ul>
+                                  </div>    
+                              </div>
+                            <% end %>
+                          <% end %>
+                          </div>
+                      </div>    
+                  </div><!--End Comments Post-->
+
+
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html> 

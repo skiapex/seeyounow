@@ -7,7 +7,15 @@ class PagesController < ApplicationController
   end
 
   def home
-    @esas_assessments = current_clinician.esas_assessments
+    if current_clinician
+      @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
+      @pfrs_assessments = current_clinician.pfrs_assessments.order("created_at desc")
+      @comments = current_clinician.comments.order("created_at desc")
+    else
+      @esas_assessments = current_user.patient.esas_assessments.order("created_at desc")
+      @pfrs_assessments = current_user.patient.pfrs_assessments.order("created_at desc")
+      @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments.order("created_at desc")
+    end
   end
 
   def new

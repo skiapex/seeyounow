@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <% if @comment.errors.any? %>
   <div class="alert alert-warning">
     <h2>Some errors kept this assessment from being saved:</h2>
@@ -13,23 +14,92 @@
   Write new comment
 </h3>
 
-<%= form_for @comment do |form| %>
-  <div class="form-group">
-    <%= form.label :patient_id %>
-    <%= form.collection_select :patient_id, Patient.all, :id, :first_name, class: "form-control" %>
-  </div>
+<body>
 
-  <div class="form-group">
-    <%= form.label :clinician_id %>
-    <%= form.collection_select :clinician_id, Clinician.all, :id, :first_name, class: "form-control" %>
-  </div>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
 
-  <%= form.text_area :from, class: "form-control", value: current_user %>
+                <div class="row margin-bottom-20"><!--start row-->
 
-  <div class="form-group">
-    <%= form.label :general_comment %>
-    <%= form.text_area :general_comment, class: "form-control", rows: 5, placeholder: "Leave a comment" %>
-  </div>
+                  <!--End Comments Post-->
+                  <div class="col-sm-7">
+                      <div class="panel panel-profile">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
+                          </div>
+                          <div id="scrollbar4" class="panel-body contentHolder">
+                          <% if current_clinician %>
+                            <% @comments.each_with_index do |comment, index| %>
+                              <div class="comment">
+                                  <div class="overflow-h">
+                                      <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                      <p><%= comment.general_comment %></p>
+                                      <ul class="list-inline comment-list">
+                                          <li><i class="fa fa-heartbeat"></i> <%= comment.patient.diagnosis %></li>
+                                      </ul>
+                                  </div>    
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <% @comments.each_with_index do |comment, index| %>
+                              <div class="comment">
+                                  <div class="overflow-h">
+                                      <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                      <p><%= comment.general_comment %></p>
+                                      <ul class="list-inline comment-list">
+                                          <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
+                                      </ul>
+                                  </div>    
+                              </div>
+                            <% end %>
+                          <% end %>
+                          </div>
+                      </div>    
+                  </div><!--End Comments Post-->
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
 
-  <%= form.button 'Submit Comment', class: "btn btn-success" %>
+
+
+
+<% if current_clinician %>
+  <%= form_for [@patient, @comment] do |form| %>
+    <div class="form-group">
+      <%= form.label :patient_id %>
+      <%= form.collection_select :patient_id, Patient.all, :id, :first_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :general_comment %>
+      <%= form.text_area :general_comment, class: "form-control", rows: 5, placeholder: "Leave a comment" %>
+    </div>
+
+    <%= form.button 'Submit Comment', class: "btn btn-success" %>
+  <% end %>
+<% else %>
+  <%= form_for [@patient, @comment] do |form| %>
+
+    <div class="form-group">
+      <%= form.label :clinician_id %>
+      <%= form.collection_select :clinician_id, Clinician.all, :id, :first_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :general_comment %>
+      <%= form.text_area :general_comment, class: "form-control", rows: 5, placeholder: "Leave a comment" %>
+    </div>
+
+    <%= form.button 'Submit Comment', class: "btn btn-success" %>
+  <% end %>
 <% end %>
+
+</body>
+</html> 
