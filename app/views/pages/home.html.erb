@@ -12,7 +12,7 @@
     <!--=== Profile ===-->
     <div class="profile container content">
     	<div class="row">
-                       
+          <% if current_clinician %>            
             <div class="col-md-12">
                 <!--Profile Body-->
                 <div class="profile-body">
@@ -102,8 +102,76 @@
 
                 </div>
                 <!--End Profile Body-->
-            </div>
-        </div><!--/end row-->
+
+          <% else %>
+            <div class="col-md-12">
+                <!--=== Content Part ===-->
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                        
+                    <div class="row">
+                                               
+                        <!--Comments Post-->
+                        <div class="col-sm-5">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
+                                </div>
+                                <div id="scrollbar4" class="panel-body contentHolder">
+                                <% if current_clinician %>
+                                  <% @comments.each_with_index do |comment, index| %>
+                                    <div class="comment">
+                                        <div class="overflow-h">
+                                            <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                            <p><%= comment.general_comment %></p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-heartbeat"></i> <%= comment.patient.diagnosis %></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                  <% end %>
+                                <% else %>
+                                  <% @comments.each_with_index do |comment, index| %>
+                                    <div class="comment">
+                                        <div class="overflow-h">
+                                            <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                            <p><%= comment.general_comment %></p>
+                                            <ul class="list-inline comment-list">
+                                                <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
+                                            </ul>
+                                        </div>    
+                                    </div>
+                                  <% end %>
+                                <% end %>
+                                </div>
+                            </div>    
+                        </div><!--End Comments Post-->
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-block service-block-u">            
+                                <i class="icon-2x color-light fa fa-line-chart", href="#collapseOne"></i>
+                                <h2 class="heading-md"><%= link_to "New ESAS Assessment", new_esas_assessment_path %></h2>
+                                <p>The Edmonton Symptom Assessment System (ESAS) is a valid and reliable assessment tool to assist in the assessment of nine common symptoms experienced by patients.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-block service-block-blue">
+                                <i class="icon-2x color-light icon-line icon-trophy"></i>
+                                <h2 class="heading-md">Blue Box</h2>
+                                <p>Donec id elit non mi porta gravida at eget metus id elit mi egetine usce dapibus elit nondapibus</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-block service-block-dark">
+                                <i class="icon-2x color-light fa fa-bell-o"></i>
+                                <h2 class="heading-md">Dark Box</h2>
+                                <p>Donec id elit non mi porta gravida at eget metus id elit mi egetine. Fusce dapibus</p>                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/end row-->
+      <% end %>
     </div><!--/container-->    
     <!--=== End Profile ===-->
 

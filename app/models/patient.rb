@@ -11,10 +11,6 @@ class Patient < ActiveRecord::Base
     first_name + " " + last_name
   end
 
-  def month
-    created_at.strftime("%m") - 1
-  end
-
   	validates :first_name, presence: true
   	validates :last_name, presence: true
   	validates :diagnosis, presence: true
