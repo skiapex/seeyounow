@@ -41,6 +41,9 @@
             		          <div id="scrollbar" class="panel-body contentHolder">
             		          <% if current_clinician %>
               		          <% @comments.group(:patient_id).each_with_index do |comment, index| %>
+                              <% if comment.from == current_user.id %>
+                                <% Something %>
+                              <% else %>
               		              <div class="profile-post color-one">
               		                  <span class="profile-post-numb"><%= index+1 %></span>
               		                  <div class="profile-post-in">
@@ -48,14 +51,15 @@
               		                      <p>Lastest comment from <%= time_ago_in_words(comment.updated_at) %> ago<i class="pull-right"><%= link_to "Edit", edit_comment_path(comment) %> <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
               		                  </div>
               		              </div>
+                              <% end %>
               		          <% end %>
                           <% else %>
-                            <% @comments.map(&:clinician).uniq.each_with_index do |comment, index| %>
+                            <% @comments.group(:clinician_id).each_with_index do |comment, index| %>
                                 <div class="profile-post color-one">
                                     <span class="profile-post-numb"><%= index+1 %></span>
                                     <div class="profile-post-in">
-                                        <h3 class="heading-xs"><a><%= link_to "#{comment.first_name} #{comment.last_name}", comment_path(comment) %></a></h3>
-                                        <p><%= comment.occupation.name %><i class="pull-right"><%= link_to "Edit", edit_comment_path(comment) %> <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                        <h3 class="heading-xs"><a><%= link_to "#{comment.from.first_name} #{comment.from.last_name}", comment_path(comment) %></a></h3>
+                                        <p><%= comment.fromoccupation.name %><i class="pull-right"><%= link_to "Edit", edit_comment_path(comment) %> <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
                                     </div>
                                 </div>
                             <% end %>
