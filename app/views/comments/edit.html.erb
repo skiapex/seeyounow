@@ -11,9 +11,9 @@
 
 <h3 class="page-header">
   <% if @clinician.nil? %>
-    Edit comment written by <%= @patient.first_name %> <%= @patient.last_name %> at <%= @comment.time %> 
+    Edit comment written by <%= @patient.first_name %> <%= @patient.last_name %> at <%= @comment.created_at.to_s(:long) %> 
   <% else %>
-    Edit comment written by <%= @clinician.first_name %> <%= @clinician.last_name %> at <%= @comment.time %> 
+    Edit comment written by <%= @clinician.first_name %> <%= @clinician.last_name %> at <%= @comment.created_at.to_s(:long) %> 
   <% end %>
 </h3>
 

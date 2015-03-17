@@ -14,6 +14,7 @@ class PatientsController < ApplicationController
   def show
     @patient = Patient.find_by(id: params["id"])
     @esas_assessments = EsasAssessment.where(patient_id: @patient.id).order("created_at desc")
+    
     @gender = @patient.gender
     @clinician = @patient.clinician
     @occupation = @clinician.occupation
