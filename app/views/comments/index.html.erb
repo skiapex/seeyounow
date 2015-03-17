@@ -90,15 +90,19 @@
                             <% end %>
                           <% else %>
                             <% @comments.each_with_index do |comment, index| %>
-                              <div class="comment">
-                                  <div class="overflow-h">
-                                      <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
-                                      <p><%= comment.general_comment %></p>
-                                      <ul class="list-inline comment-list">
-                                          <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
-                                      </ul>
-                                  </div>    
-                              </div>
+                              <% if comment.from == current_user.id %>
+                                  <% "Something" %>
+                              <% else %>
+                                <div class="comment">
+                                    <div class="overflow-h">
+                                        <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                        <p><%= comment.general_comment %></p>
+                                        <ul class="list-inline comment-list">
+                                            <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
+                                        </ul>
+                                    </div>    
+                                </div>
+                              <% end %>
                             <% end %>
                           <% end %>
                           </div>

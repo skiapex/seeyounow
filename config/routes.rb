@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :comments
   resources :notification_settings
 
-  get 'clinicians/:id/home', to: 'pages#clinicianhome'
   get '/home', to: 'pages#home'
 
   get "/login", to: "sessions#new"

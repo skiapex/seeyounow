@@ -10,18 +10,18 @@ class SessionsController < ApplicationController
 
       clinician = Clinician.find_by(user_id: User.find_by(email: params["email"]).id)
       if clinician
-        redirect_to clinician_path(current_user.clinician), notice: "Login successful!"
+        redirect_to root_path, notice: "Login successful!"
       else
-        redirect_to patient_path(current_user.patient), notice: "Login successful!"
+        redirect_to root_path, notice: "Login successful!"
       end
     else
-      redirect_to root_path, alert: "Email or password incorrect"
+      redirect_to new_session_path, alert: "Email or password incorrect"
     end
   end
 
   def destroy
     session["user_id"] = nil
-    redirect_to root_path, notice: "Logout successful!"
+    redirect_to new_session_path, notice: "Logout successful!"
   end
 
 end

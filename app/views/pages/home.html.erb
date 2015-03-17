@@ -47,14 +47,18 @@
                                           </div>    
                                         </div>
                                       <% else %>
-                                        <div class="alert-blocks alert-dismissable">
-                                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                          <i class="icon-custom rounded-x icon-bg-dark fa fa-comments"></i>
-                                          <div class="overflow-h">
-                                              <strong class="color-dark"><%= link_to "New Comment", comment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
-                                              <p>From <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
-                                          </div>    
-                                        </div>
+                                        <% if notification.from == current_user.id %>
+                                          <% "Something" %>
+                                        <% else %>
+                                          <div class="alert-blocks alert-dismissable">
+                                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                            <i class="icon-custom rounded-x icon-bg-dark fa fa-comments"></i>
+                                            <div class="overflow-h">
+                                                <strong class="color-dark"><%= link_to "New Comment", comment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
+                                                <p>From <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
+                                            </div>    
+                                          </div>
+                                        <% end %>
                                       <% end %>
                                     <% end %>
                                   <% end %>
@@ -70,31 +74,21 @@
                                     <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
                                 </div>
                                 <div id="scrollbar4" class="panel-body contentHolder">
-                                <% if current_clinician %>
                                   <% @comments.each_with_index do |comment, index| %>
-                                    <div class="comment">
-                                        <div class="overflow-h">
-                                            <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
-                                            <p><%= comment.general_comment %></p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heartbeat"></i> <%= comment.patient.diagnosis %></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
+                                    <% if comment.from == current_user.id %>
+                                        <% "Something" %>
+                                    <% else %>
+                                      <div class="comment">
+                                          <div class="overflow-h">
+                                              <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                              <p><%= comment.general_comment %></p>
+                                              <ul class="list-inline comment-list">
+                                                  <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.patient.diagnosis %></a></li>
+                                              </ul>
+                                          </div>    
+                                      </div>
+                                    <% end %>
                                   <% end %>
-                                <% else %>
-                                  <% @comments.each_with_index do |comment, index| %>
-                                    <div class="comment">
-                                        <div class="overflow-h">
-                                            <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
-                                            <p><%= comment.general_comment %></p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                  <% end %>
-                                <% end %>
                                 </div>
                             </div>    
                         </div><!--End Comments Post-->
@@ -103,7 +97,10 @@
                 </div>
                 <!--End Profile Body-->
 
+
           <% else %>
+
+
             <div class="col-md-12">
                 <!--=== Content Part ===-->
                 <!--Profile Body-->
@@ -120,31 +117,21 @@
                                     <a href="/comments/new"><i class="fa fa-envelope pull-right"> new</i></a>
                                 </div>
                                 <div id="scrollbar4" class="panel-body contentHolder">
-                                <% if current_clinician %>
                                   <% @comments.each_with_index do |comment, index| %>
-                                    <div class="comment">
-                                        <div class="overflow-h">
-                                            <strong><%= comment.from.first_name %> <%= comment.from.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
-                                            <p><%= comment.general_comment %></p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-heartbeat"></i> <%= comment.patient.diagnosis %></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
+                                    <% if comment.from == current_user.id %>
+                                        <% "Something" %>
+                                    <% else %>
+                                      <div class="comment">
+                                          <div class="overflow-h">
+                                              <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                              <p><%= comment.general_comment %></p>
+                                              <ul class="list-inline comment-list">
+                                                  <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
+                                              </ul>
+                                          </div>    
+                                      </div>
+                                    <% end %>
                                   <% end %>
-                                <% else %>
-                                  <% @comments.each_with_index do |comment, index| %>
-                                    <div class="comment">
-                                        <div class="overflow-h">
-                                            <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
-                                            <p><%= comment.general_comment %></p>
-                                            <ul class="list-inline comment-list">
-                                                <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
-                                            </ul>
-                                        </div>    
-                                    </div>
-                                  <% end %>
-                                <% end %>
                                 </div>
                             </div>    
                         </div><!--End Comments Post-->
