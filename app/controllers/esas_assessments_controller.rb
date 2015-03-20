@@ -2,7 +2,11 @@ class EsasAssessmentsController < ApplicationController
   skip_before_action :require_clinician, only: [:new, :show]
 
   def index
-    @esas_assessments = current_clinician.esas_assessments
+    if current_clinician
+      @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
+    else
+      @esas_assessments = Patient.find_by(user_id: User.find_by(id: current_user)).esas_assessments.order("created_at desc")
+    end
   end
 
   def show

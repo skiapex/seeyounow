@@ -1,6 +1,11 @@
 <!DOCTYPE html>
+
+<head>
+    <title>SeeYouNow | Comments</title>
+</head>
+
 <h3 class="page-header">
-  All conversations
+  All Conversations
   <span class="pull-right">
     <%= link_to "New comment", new_comment_path, class: 'btn btn-sm btn-success' %>
   </span>
@@ -44,7 +49,7 @@
               		              <div class="profile-post color-one">
               		                  <span class="profile-post-numb"><%= index+1 %></span>
               		                  <div class="profile-post-in">
-              		                      <h3 class="heading-xs"><a><%= link_to "#{User.find_by(id: comment.from).patient.first_name} #{comment.patient.last_name}", comment_path(comment) %></a></h3>
+              		                      <h3 class="heading-xs"><a><%= link_to "#{comment.patient.first_name} #{comment.patient.last_name}", comment_path(comment) %></a></h3>
               		                      <p>Lastest comment from <%= time_ago_in_words(comment.updated_at) %> ago<i class="pull-right"><%= link_to "Edit", edit_comment_path(comment) %> <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
               		                  </div>
               		              </div>
@@ -54,8 +59,8 @@
                                 <div class="profile-post color-one">
                                     <span class="profile-post-numb"><%= index+1 %></span>
                                     <div class="profile-post-in">
-                                        <h3 class="heading-xs"><a><%= link_to "#{comment.from.first_name} #{comment.from.last_name}", comment_path(comment) %></a></h3>
-                                        <p><%= comment.fromoccupation.name %><i class="pull-right"><%= link_to "Edit", edit_comment_path(comment) %> <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                        <h3 class="heading-xs"><a><%= link_to "#{comment.clinician.first_name} #{comment.clinician.last_name}", comment_path(comment) %></a></h3>
+                                        <p><%= comment.clinician.occupation.name %></p>
                                     </div>
                                 </div>
                             <% end %>
@@ -79,10 +84,10 @@
                               <% else %>
                                 <div class="comment">
                                     <div class="overflow-h">
-                                        <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                        <strong><%= link_to "#{comment.patient.first_name} #{comment.patient.last_name}", comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
                                         <p><%= comment.general_comment %></p>
                                         <ul class="list-inline comment-list">
-                                            <li><i class="fa fa-heartbeat"></i><%= comment.patient.diagnosis %></li>
+                                            <li><i class="fa fa-heartbeat"> </i> <%= comment.patient.diagnosis %></li>
                                         </ul>
                                     </div>    
                                 </div>
@@ -95,10 +100,10 @@
                               <% else %>
                                 <div class="comment">
                                     <div class="overflow-h">
-                                        <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                        <strong><%= link_to "#{comment.clinician.first_name} #{comment.clinician.last_name}", comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
                                         <p><%= comment.general_comment %></p>
                                         <ul class="list-inline comment-list">
-                                            <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
+                                            <li><i class="fa fa-user-md"> </i> <%= comment.clinician.occupation.name %></li>
                                         </ul>
                                     </div>    
                                 </div>

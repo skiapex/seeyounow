@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+
+<head>
+    <title>SeeYouNow | ESAS Assessments</title>
+</head>
+
 <h3 class="page-header">
   All ESAS assessments
   <span class="pull-right">
@@ -5,6 +11,7 @@
   </span>
 </h3>
 
+<!-- 
 <ul>
 
 
@@ -13,3 +20,104 @@
 	    <%= link_to "Edit", edit_esas_assessment_path(esas_assessment) %> <%= link_to "Delete", esas_assessment_path(esas_assessment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></li>
   <% end %>
 </ul>
+ -->
+
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
+
+                <div class="row margin-bottom-20"><!--start row-->
+                  <!--Conversations-->
+                  <div class="col-sm-5">
+                      <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Most Recent from each Patient</h2>
+                              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                          </div>
+                          <div id="scrollbar" class="panel-body contentHolder">
+                          <% if current_clinician %>
+                            <% @esas_assessments.group(:patient_id).each_with_index do |esas_assessment, index| %>
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"><%= index+1 %></span>
+                                    <div class="profile-post-in">
+                                        <h3 class="heading-xs"><a><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", comment_path(esas_assessment) %></a></h3>
+                                        <p>Lastest ESAS Assessment from <%= time_ago_in_words(esas_assessment.updated_at) %> ago<i class="pull-right"><%= link_to "Edit", edit_comment_path(esas_assessment) %> <%= link_to "Delete", comment_path(esas_assessment), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                          <% else %>
+                            <% @esas_assessments.group(:clinician_id).each_with_index do |esas_assessment, index| %>
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"><%= index+1 %></span>
+                                    <div class="profile-post-in">
+                                        <h3 class="heading-xs"><a><%= link_to "#{esas_assessment.clinician.first_name} #{esas_assessment.clinician.last_name}", comment_path(esas_assessment) %></a></h3>
+                                        <p><%= esas_assessment.clinician.occupation.name %></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                          <% end %>
+                          </div>
+                      </div>        
+                  </div>
+                  <!--End Conversations-->
+
+                  <!--End Comments Post-->
+                  <div class="col-sm-7">
+                      <div class="panel panel-profile">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i>ESAS Assessments</h2>
+                          </div>
+                          <div id="scrollbar4" class="panel-body contentHolder">
+                          <% if current_clinician %>
+                            <% @esas_assessments.each_with_index do |esas_assessment, index| %>
+                                <div class="comment">
+                                    <div class="overflow-h">
+                                        <strong><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", comment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.updated_at) %></small></strong> 
+                                        <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>, 
+                                        <% if esas_assessment.esas_comment == nil %>
+                                        <% else %>
+                                            Comment: <%= esas_assessment.esas_comment %>,
+                                        <% end %>
+                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %></p>
+                                        <ul class="list-inline comment-list">
+                                            <li><i class="fa fa-heartbeat"> </i> <%= esas_assessment.patient.diagnosis %></li>
+                                        </ul>
+                                    </div>    
+                                </div>
+                            <% end %>
+                          <% else %>
+                            <% @esas_assessments.each_with_index do |esas_assessment, index| %>
+                                <div class="comment">
+                                    <div class="overflow-h">
+                                        <strong><%= link_to "#{esas_assessment.clinician.first_name} #{esas_assessment.clinician.last_name}", comment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.updated_at) %></small></strong> 
+                                        <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>, 
+                                        <% if esas_assessment.esas_comment == nil %>
+                                        <% else %>
+                                            Comment: <%= esas_assessment.esas_comment %>,
+                                        <% end %>
+                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %></p>
+                                        <ul class="list-inline comment-list">
+                                            <li><i class="fa fa-user-md"> </i> <%= esas_assessment.clinician.occupation.name %></li>
+                                        </ul>
+                                    </div>    
+                                </div>
+                            <% end %>
+                          <% end %>
+                          </div>
+                      </div>    
+                  </div><!--End Comments Post-->
+
+
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html>

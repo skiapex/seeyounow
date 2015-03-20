@@ -1,6 +1,10 @@
 <!-- Use view helpers (e.g. link_to and image_tag) -->
 <!-- and implement real data -->
 
+<head>
+    <title>SeeYouNow | ESAS Assessment</title>
+</head>
+
 <h4 class="page-header">
   <p><strong>Completed by:</strong> <%= link_to "#{@esas_assessment.patient.first_name} #{@esas_assessment.patient.last_name}", patient_path(@esas_assessment.patient) %></p>
   <% if current_clinician %>
