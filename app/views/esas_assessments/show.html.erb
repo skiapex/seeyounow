@@ -9,16 +9,16 @@
   <p><strong>Completed by:</strong> <%= link_to "#{@esas_assessment.patient.first_name} #{@esas_assessment.patient.last_name}", patient_path(@esas_assessment.patient) %></p>
   <% if current_clinician %>
     <span class="pull-right">
-    <%= link_to "Edit", edit_esas_assessment_path, class: 'btn btn-sm btn-success' %>
+    <%= link_to "Edit", edit_esas_assessment_path, class: 'btn btn-u btn-success' %>
     </span>
   <% end %>
   <p><strong>For:</strong> <%= @esas_assessment.clinician.occupation.name %> <%= @esas_assessment.clinician.first_name %> <%= @esas_assessment.clinician.last_name %></p>
 </h4>
-<h4 span class="time"><strong>Completed at:</strong> <%= @esas_assessment.updated_at.to_s(:long) %>
+<h4 span class="time"><strong>Completed:</strong> <%= @esas_assessment.updated_at.strftime("%B %d, %Y") %> at <%= @esas_assessment.updated_at.strftime("%H:%M") %>
 
   <% if current_clinician %>
     <span class="pull-right">
-    <%= link_to "Delete", esas_assessment_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-sm btn-success' %>
+    <%= link_to "Delete", esas_assessment_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-u btn-success' %>
     </span>
   <% end %>
 </h4>
@@ -135,3 +135,112 @@
     </p>
   </div>
 </div>
+
+<!--=== Content Part ===-->
+    <div class="container content">
+        <div class="row">
+            
+
+            <!-- Begin Content -->
+            <div class="col-md-9">
+                <!--Basic Table-->
+                <div class="panel panel-unify margin-bottom-40">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Scores</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity</p>
+                    </div>                                      
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th class="hidden-sm">Last Name</th>
+                                <th>Username</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td class="hidden-sm">Otto</td>
+                                <td>@mdo</td>
+                                <td><span class="label label-warning">Expiring</span></td>                          
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td class="hidden-sm">Thornton</td>
+                                <td>@fat</td>
+                                <td><span class="label label-success">Success</span></td>                           
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry</td>
+                                <td class="hidden-sm">the Bird</td>
+                                <td>@twitter</td>
+                                <td><span class="label label-danger">Error!</span></td>                         
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>htmlstream</td>
+                                <td class="hidden-sm">Web Design</td>
+                                <td>@htmlstream</td>
+                                <td><span class="label label-info">Pending..</span></td>                            
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--End Basic Table-->
+
+              
+                    <!--Hover Rows-->
+                    <div class="col-md-6">
+                        <div class="panel panel-yellow margin-bottom-40">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-gear"></i> Hover rows</h3>
+                            </div>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Username</th>
+                                        <th>Link</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Mark</td>
+                                        <td><a class="btn btn-danger btn-xs">Pending</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Jacob</td>
+                                        <td><a class="btn btn-warning btn-xs">Demo Link</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Larry</td>
+                                        <td><a class="btn btn-info btn-xs">Share Info</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>htmlstream</td>
+                                        <td><a class="btn btn-success btn-xs">Testing Box</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>                  
+                    </div>
+                    <!--End Hover Rows-->
+                </div>
+                <!--End Striped and Hover Rows-->
+                
+            </div>
+            <!-- End Content -->
+        </div>          
+    </div><!--/container-->     
+    <!--=== End Content Part ===-->
