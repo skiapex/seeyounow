@@ -67,49 +67,103 @@
     </script>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-1 information">
-    <h2 class="page-header">Scores</h2>
-    <table class="table table-striped table-bordered">
-      <tr>
-        <td><strong>Pain:</strong></td><td><%= @esas_assessment.pain %></td>
-        <td><strong>Comment:</strong></td><td><%= @esas_assessment.pain_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Tiredness:</strong></td><td><%= @esas_assessment.tiredness %></td>
-        <td><strong>Comment:</strong></td><td><%= @esas_assessment.tiredness_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Drowsiness:</strong></td><td><%= @esas_assessment.drowsiness %></td>
-        <td><strong>Comment:</strong></td><td><%= @esas_assessment.drowsiness_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Nausea:</strong></td><td><%= @esas_assessment.nausea %></td>
-        <td><strong>Comment:</strong></td><td><%= @esas_assessment.nausea_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Lack of Appetite:</strong></td><td><%= @esas_assessment.lack_of_appetite %></td>
-        <td><strong>Comment:</strong></td><td><%= @esas_assessment.lack_of_appetite_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Shortness of Breath:</strong></td><td><%= @esas_assessment.shortness_of_breath %></td>
-        <td><strong>Comment:</strong></td><td><%= @esas_assessment.shortness_of_breath_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Depression:</strong></td><td><%= @esas_assessment.depression %></td>
-        <td><strong>Comment:</strong></td><td><%= @esas_assessment.depression_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Wellbeing:</strong></td><td><%= @esas_assessment.wellbeing %></td>
-       <td><strong>Comment:</strong></td><td><%= @esas_assessment.wellbeing_comment %></td>
-      </tr>
-      <tr>
-        <td><strong>Other Symptom Type:</strong></td><td><%= @esas_assessment.other_symptom.symptom_type %></p>
-        <td><strong>Other Symptom Score:</strong></td><td><%= @esas_assessment.other_symptom_score %></p>
-        <td><strong>Comment:</strong></td><td><%= @esas_assessment.wellbeing_comment %></p>
-      </tr>
-    </table>
+  <div class="col-md-6 comment">
+    <h2>Overall Comment</h2>
+    <p>
+      <%= @esas_assessment.esas_comment %>
+    </p>
   </div>
 </div>
+
+<!--=== Content Part ===-->
+<div class="container content">
+    <div class="row">
+        
+
+        <!-- Begin Content -->
+        <div class="col-md-9">
+            <!--Basic Table-->
+            <div class="panel panel-blue margin-bottom-40">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-tasks"></i> Scores</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity</p>
+                </div>                                      
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Symptom</th>
+                            <th class="hidden-sm">Intensity</th>
+                            <th>Comment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pain</td>
+                            <td class="hidden-sm"><%= @esas_assessment.pain %></td>
+                            <td><%= @esas_assessment.pain_comment %></td>
+                            <td><span class="label label-warning">Expiring</span></td>
+                        </tr>
+                        <tr>
+                            <td>Tiredness</td>
+                            <td class="hidden-sm"><%= @esas_assessment.tiredness %></td>
+                            <td><%= @esas_assessment.tiredness_comment %></td>
+                            <td><span class="label label-success">Success</span></td>                           
+                        </tr>
+                        <tr>
+                            <td>Drowsiness</td>
+                            <td class="hidden-sm"><%= @esas_assessment.drowsiness %></td>
+                            <td><%= @esas_assessment.drowsiness_comment %></td>
+                            <td><span class="label label-danger">Error!</span></td>
+                        </tr>
+                        <tr>
+                            <td>Nausea</td>
+                            <td class="hidden-sm"><%= @esas_assessment.nausea %></td>
+                            <td><%= @esas_assessment.nausea_comment %></td>
+                            <td><span class="label label-info">Pending..</span></td>
+                        </tr>
+                        <tr>
+                            <td>Lack of Appetite</td>
+                            <td class="hidden-sm"><%= @esas_assessment.lack_of_appetite %></td>
+                            <td><%= @esas_assessment.lack_of_appetite_comment %></td>
+                            <td><span class="label label-warning">Expiring</span></td>
+                        </tr>
+                        <tr>
+                            <td>Shortness of Breath</td>
+                            <td class="hidden-sm"><%= @esas_assessment.shortness_of_breath %></td>
+                            <td><%= @esas_assessment.shortness_of_breath_comment %></td>
+                            <td><span class="label label-success">Success</span></td>                           
+                        </tr>
+                        <tr>
+                            <td>Depression</td>
+                            <td class="hidden-sm"><%= @esas_assessment.depression %></td>
+                            <td><%= @esas_assessment.depression_comment %></td>
+                            <td><span class="label label-danger">Error!</span></td>
+                        </tr>
+                        <tr>
+                            <td>Wellbeing</td>
+                            <td class="hidden-sm"><%= @esas_assessment.wellbeing %></td>
+                            <td><%= @esas_assessment.wellbeing_comment %></td>
+                            <td><span class="label label-info">Pending..</span></td>
+                        </tr>
+                        <tr>
+                            <td><%= @esas_assessment.other_symptom.symptom_type.capitalize %></td>
+                            <td class="hidden-sm"><%= @esas_assessment.other_symptom_score %></td>
+                            <td><%= @esas_assessment.other_symptom_comment %></td>
+                            <td><span class="label label-warning">Expiring</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--End Basic Table-->
+        </div>
+        <!-- End Content -->
+    </div>          
+</div><!--/container-->     
+<!--=== End Content Part ===-->
+
 
 <div class="row">
   <div class="col-md-6 col-md-offset-1 information">
@@ -126,121 +180,3 @@
     </table>
   </div>
 </div>
-
-<div class="row">
-  <div class="col-md-6 comment">
-    <h2>Overall Comment</h2>
-    <p>
-      <%= @esas_assessment.esas_comment %>
-    </p>
-  </div>
-</div>
-
-<!--=== Content Part ===-->
-    <div class="container content">
-        <div class="row">
-            
-
-            <!-- Begin Content -->
-            <div class="col-md-9">
-                <!--Basic Table-->
-                <div class="panel panel-unify margin-bottom-40">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-tasks"></i> Scores</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p>Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity</p>
-                    </div>                                      
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th class="hidden-sm">Last Name</th>
-                                <th>Username</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td class="hidden-sm">Otto</td>
-                                <td>@mdo</td>
-                                <td><span class="label label-warning">Expiring</span></td>                          
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td class="hidden-sm">Thornton</td>
-                                <td>@fat</td>
-                                <td><span class="label label-success">Success</span></td>                           
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                                <td class="hidden-sm">the Bird</td>
-                                <td>@twitter</td>
-                                <td><span class="label label-danger">Error!</span></td>                         
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>htmlstream</td>
-                                <td class="hidden-sm">Web Design</td>
-                                <td>@htmlstream</td>
-                                <td><span class="label label-info">Pending..</span></td>                            
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!--End Basic Table-->
-
-              
-                    <!--Hover Rows-->
-                    <div class="col-md-6">
-                        <div class="panel panel-yellow margin-bottom-40">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-gear"></i> Hover rows</h3>
-                            </div>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Username</th>
-                                        <th>Link</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td><a class="btn btn-danger btn-xs">Pending</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td><a class="btn btn-warning btn-xs">Demo Link</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td><a class="btn btn-info btn-xs">Share Info</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>htmlstream</td>
-                                        <td><a class="btn btn-success btn-xs">Testing Box</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>                  
-                    </div>
-                    <!--End Hover Rows-->
-                </div>
-                <!--End Striped and Hover Rows-->
-                
-            </div>
-            <!-- End Content -->
-        </div>          
-    </div><!--/container-->     
-    <!--=== End Content Part ===-->
