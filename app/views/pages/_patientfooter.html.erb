@@ -4,6 +4,8 @@
             <div class="container">
                 <div class="row">
                     
+              <!-- Start Clinician -->
+                <% if current_clinician %>
 
                     <!-- Emergency Message -->
                     <div class="col-md-6 md-margin-bottom-40">
@@ -36,7 +38,7 @@
                     </div><!--/col-md-3-->
                     <!-- End Link List -->                    
 
-                    <!-- Address -->
+                    <!-- Contact Us -->
                     <div class="col-md-3 map-img md-margin-bottom-40">
                         <div class="headline"><h2>Contact Us</h2></div>                         
                         <address class="md-margin-bottom-40">
@@ -46,7 +48,46 @@
                             Email: <a href="mailto:info@seeyounow.ca" class="">info@seeyounow.ca</a>
                         </address>
                     </div><!--/col-md-3-->
-                    <!-- End Address -->
+                    <!-- End Contact Us-->
+
+                <!-- End Clinician -->
+                  <% else %>
+                <!-- Start Patient -->
+
+                    <!-- Emergency Message -->
+                    <div class="col-md-8 md-margin-bottom-40">
+                        <div class="posts">
+                            <div class="headline"><h2>Emergency Message</h2></div>
+                            <ul class="list-unstyled latest-list">
+                                <li>
+                                    <% if current_clinician %>
+                                        <a><%= current_clinician.emergency_message %></a>
+                                        <small><%= current_clinician.care_group.name %> Care Group</small>
+                                    <% else %>
+                                        <a><%= current_user.patient.clinician.emergency_message %></a>
+                                        <small><%= current_user.patient.clinician.care_group.name %> Care Group</small>
+                                    <% end %>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!--/col-md-3-->  
+                    <!-- End Latest --> 
+                    
+                    <!-- Link List -->
+                    <div class="col-md-4 map-img md-margin-bottom-40">
+                        <div class="headline"><h2>Useful Links</h2></div>
+                        <ul class="list-unstyled link-list">
+                            <li><a href="#">About us</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">Recent Publications</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">Care Community</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">Recommend Changes</a><i class="fa fa-angle-right"></i></li>
+                        </ul>
+                    </div><!--/col-md-3-->
+                    <!-- End Link List -->  
+
+                  <% end %>
+                <!-- End Patient -->
+
                 </div>
             </div> 
         </div><!--/footer-->
