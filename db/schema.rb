@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string  "mobile_number"
     t.text    "emergency_message"
     t.integer "care_group_id"
-    t.integer "user_id",           limit: 255
+    t.integer "user_id"
   end
 
   add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id"
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer  "patient_id"
     t.integer  "clinician_id"
     t.integer  "from"
-    t.string   "general_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "general_comment"
   end
 
   add_index "comments", ["clinician_id"], name: "index_comments_on_clinician_id"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   create_table "esas_assessments", force: true do |t|
     t.integer  "patient_id"
     t.integer  "clinician_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "inputter_name"
     t.integer  "inputter_id"
     t.integer  "pain"
@@ -71,8 +73,6 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer  "other_symptom_score"
     t.string   "other_symptom_comment"
     t.string   "esas_comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id"
@@ -87,6 +87,59 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   create_table "inputters", force: true do |t|
     t.string "inputter_type"
   end
+
+  create_table "mailboxer_conversation_opt_outs", force: true do |t|
+    t.integer "unsubscriber_id"
+    t.string  "unsubscriber_type"
+    t.integer "conversation_id"
+  end
+
+  add_index "mailboxer_conversation_opt_outs", ["conversation_id"], name: "index_mailboxer_conversation_opt_outs_on_conversation_id"
+  add_index "mailboxer_conversation_opt_outs", ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type"
+
+  create_table "mailboxer_conversations", force: true do |t|
+    t.string   "subject",    default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "mailboxer_notifications", force: true do |t|
+    t.string   "type"
+    t.text     "body"
+    t.string   "subject",              default: ""
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.integer  "conversation_id"
+    t.boolean  "draft",                default: false
+    t.string   "notification_code"
+    t.integer  "notified_object_id"
+    t.string   "notified_object_type"
+    t.string   "attachment"
+    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                           null: false
+    t.boolean  "global",               default: false
+    t.datetime "expires"
+  end
+
+  add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id"
+  add_index "mailboxer_notifications", ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type"
+  add_index "mailboxer_notifications", ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type"
+  add_index "mailboxer_notifications", ["type"], name: "index_mailboxer_notifications_on_type"
+
+  create_table "mailboxer_receipts", force: true do |t|
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
+    t.integer  "notification_id",                            null: false
+    t.boolean  "is_read",                    default: false
+    t.boolean  "trashed",                    default: false
+    t.boolean  "deleted",                    default: false
+    t.string   "mailbox_type",    limit: 25
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
+  add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
 
   create_table "notification_settings", force: true do |t|
     t.integer "clinician_id"
@@ -127,7 +180,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer "clinician_id"
     t.string  "first_name"
     t.string  "last_name"
-    t.integer "user_id",          limit: 255
+    t.integer "user_id"
     t.string  "diagnosis"
     t.integer "gender_id"
     t.string  "age"
@@ -137,8 +190,8 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer "other_symptom"
     t.text    "goals_of_care"
     t.integer "shared_with"
-    t.boolean "patient_deceased",             default: false
-    t.boolean "patient_archived",             default: false
+    t.boolean "patient_deceased", default: false
+    t.boolean "patient_archived", default: false
   end
 
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id"
@@ -148,15 +201,15 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   create_table "prfs_assessments", force: true do |t|
     t.integer  "patient_id"
     t.integer  "clinician_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "year"
+    t.integer  "month"
+    t.integer  "day"
     t.string   "inputter_name"
     t.integer  "inputter_id"
     t.integer  "activity_and_function"
     t.string   "prfs_comment"
-    t.integer  "year"
-    t.integer  "month"
-    t.integer  "day"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id"
@@ -164,9 +217,9 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id"
 
   create_table "users", force: true do |t|
+    t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "name"
     t.string "timezone"
   end
 
