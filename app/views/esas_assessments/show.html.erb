@@ -104,55 +104,163 @@
                             <td>Pain</td>
                             <td class="hidden-sm"><%= @esas_assessment.pain %></td>
                             <td><%= @esas_assessment.pain_comment %></td>
-                            <td><span class="label label-warning">Expiring</span></td>
+                            <% if (@esas_assessment.pain.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.pain.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.pain.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
                         </tr>
                         <tr>
                             <td>Tiredness</td>
                             <td class="hidden-sm"><%= @esas_assessment.tiredness %></td>
                             <td><%= @esas_assessment.tiredness_comment %></td>
-                            <td><span class="label label-success">Success</span></td>                           
+                            <% if (@esas_assessment.tiredness.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.tiredness.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.tiredness.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>                           
                         </tr>
                         <tr>
                             <td>Drowsiness</td>
                             <td class="hidden-sm"><%= @esas_assessment.drowsiness %></td>
                             <td><%= @esas_assessment.drowsiness_comment %></td>
-                            <td><span class="label label-danger">Error!</span></td>
+                            <% if (@esas_assessment.drowsiness.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.drowsiness.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.drowsiness.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
                         </tr>
                         <tr>
                             <td>Nausea</td>
                             <td class="hidden-sm"><%= @esas_assessment.nausea %></td>
                             <td><%= @esas_assessment.nausea_comment %></td>
-                            <td><span class="label label-info">Pending..</span></td>
+                            <% if (@esas_assessment.nausea.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.nausea.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.nausea.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
                         </tr>
                         <tr>
                             <td>Lack of Appetite</td>
                             <td class="hidden-sm"><%= @esas_assessment.lack_of_appetite %></td>
                             <td><%= @esas_assessment.lack_of_appetite_comment %></td>
-                            <td><span class="label label-warning">Expiring</span></td>
+                            <% if (@esas_assessment.lack_of_appetite.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.lack_of_appetite.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.lack_of_appetite.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
                         </tr>
                         <tr>
                             <td>Shortness of Breath</td>
                             <td class="hidden-sm"><%= @esas_assessment.shortness_of_breath %></td>
                             <td><%= @esas_assessment.shortness_of_breath_comment %></td>
-                            <td><span class="label label-success">Success</span></td>                           
+                            <% if (@esas_assessment.shortness_of_breath.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.shortness_of_breath.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.shortness_of_breath.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>                           
                         </tr>
                         <tr>
                             <td>Depression</td>
                             <td class="hidden-sm"><%= @esas_assessment.depression %></td>
                             <td><%= @esas_assessment.depression_comment %></td>
-                            <td><span class="label label-danger">Error!</span></td>
+                            <% if (@esas_assessment.depression.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.depression.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.depression.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
                         </tr>
                         <tr>
                             <td>Wellbeing</td>
                             <td class="hidden-sm"><%= @esas_assessment.wellbeing %></td>
                             <td><%= @esas_assessment.wellbeing_comment %></td>
-                            <td><span class="label label-info">Pending..</span></td>
+                            <% if (@esas_assessment.wellbeing.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.wellbeing.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.wellbeing.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
                         </tr>
                         <tr>
                             <td><%= @esas_assessment.other_symptom.symptom_type.capitalize %></td>
                             <td class="hidden-sm"><%= @esas_assessment.other_symptom_score %></td>
                             <td><%= @esas_assessment.other_symptom_comment %></td>
-                            <td><span class="label label-warning">Expiring</span></td>
+                            <% if (@esas_assessment.other_symptom_score.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.other_symptom_score.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.other_symptom_score.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
                         </tr>
                     </tbody>
                 </table>
