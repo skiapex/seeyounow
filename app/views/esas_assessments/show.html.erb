@@ -35,19 +35,20 @@
     function drawChart() {
 
       var data = google.visualization.arrayToDataTable([
-         ['Symptom', 'Intensity'],
-         ['Pain', <%= @esas_assessment.pain %> ],
-         ['Tiredness', <%= @esas_assessment.tiredness %> ],
-         ['Drowsiness', <%= @esas_assessment.drowsiness %> ],
-         ['Nausea', <%= @esas_assessment.nausea %> ],
-         ['Lack of Appetite', <%= @esas_assessment.lack_of_appetite %> ],
-         ['Shortness of Breath', <%= @esas_assessment.shortness_of_breath %> ],
-         ['Depression', <%= @esas_assessment.depression %> ],
-         ['Wellbeing', <%= @esas_assessment.wellbeing %> ],
-         ['<%= @esas_assessment.other_symptom.symptom_type.capitalize %>', <%= @esas_assessment.other_symptom_score %> ],
+         ['Symptom', 'Intensity', { role: 'style' }],
+         ['Pain', <%= @esas_assessment.pain %>, '#3498db' ],
+         ['Tiredness', <%= @esas_assessment.tiredness %>, '#3498db' ],
+         ['Drowsiness', <%= @esas_assessment.drowsiness %>, '#3498db' ],
+         ['Nausea', <%= @esas_assessment.nausea %>, '#3498db' ],
+         ['Lack of Appetite', <%= @esas_assessment.lack_of_appetite %>, '#3498db' ],
+         ['Shortness of Breath', <%= @esas_assessment.shortness_of_breath %>, '#3498db' ],
+         ['Depression', <%= @esas_assessment.depression %>, '#3498db' ],
+         ['Wellbeing', <%= @esas_assessment.wellbeing %>, '#3498db' ],
+         ['<%= @esas_assessment.other_symptom.symptom_type.capitalize %>', <%= @esas_assessment.other_symptom_score %>, '#3498db' ],
       ]);
 
       var options = {
+        // chartArea:{left:20,top:0,width:'50%',height:'75%'}
         width: 1000,
         height: 563,
         hAxis: {
@@ -56,6 +57,11 @@
         },
         vAxis: {
           title: 'Intensity (scale of 1-10)'
+          // {minValue: 0}
+          // viewWindowMode:'explicit',
+          // viewWindow:{
+          //   max:10,
+          //   min:1
         }
       };
 
@@ -83,7 +89,7 @@
         <!-- Begin Content -->
         <div class="col-md-9">
             <!--Basic Table-->
-            <div class="panel panel-blue margin-bottom-40">
+            <div class="panel panel-blue">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-tasks"></i> Scores</h3>
                 </div>
@@ -273,62 +279,24 @@
 <!--=== End Content Part ===-->
 
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-1 information">
-    <h2 class="page-header">Information</h2>
-    <table class="table table-striped table-bordered">
-      <tr>
-        <td><strong>Inputter name</strong></td>
-        <td><%= @esas_assessment.inputter_name %></td>
-      </tr>
-      <tr>
-        <td><strong>Inputter type</strong></td>
-        <td><%= Inputter.find_by(id: @esas_assessment.inputter_id).inputter_type %></td>
-      </tr>
-    </table>
+<div class="container content">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i> Information</h3>
+        </div>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <td><strong>Inputter name</strong></td>
+            <td><%= @esas_assessment.inputter_name %></td>
+          </tr>
+          <tr>
+            <td><strong>Inputter type</strong></td>
+            <td><%= Inputter.find_by(id: @esas_assessment.inputter_id).inputter_type %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
-
-<!--Table Striped-->
-  <table class="table table-striped">
-      <thead>
-          <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th class="hidden-sm">Last Name</th>
-              <th>Username</th>
-              <th>Status</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td class="hidden-sm">Otto</td>
-              <td>@mdo</td>
-              <td><span class="label label-warning">Expiring</span></td>                          
-          </tr>
-          <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td class="hidden-sm">Thornton</td>
-              <td>@fat</td>
-              <td><span class="label label-success">Success</span></td>                           
-          </tr>
-          <tr>
-              <td>3</td>
-              <td>Larry</td>
-              <td class="hidden-sm">the Bird</td>
-              <td>@twitter</td>
-              <td><span class="label label-danger">Error!</span></td>                         
-          </tr>
-          <tr>
-              <td>4</td>
-              <td>htmlstream</td>
-              <td class="hidden-sm">Web Design</td>
-              <td>@htmlstream</td>
-              <td><span class="label label-info">Pending..</span></td>                            
-          </tr>
-      </tbody>
-  </table>
-<!--End Table Striped-->

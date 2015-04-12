@@ -10,13 +10,24 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @patient = Patient.find_by(id: params["id"])
-    # @clinician = @comment.clinician
-    # @comment = @comment.patient
+    @comment = Comment.find_by(id: params["id"])
+    @patient = @comment.patient
+    @clinician = @comment.clinician
+    if current_clinician
+      @comments = @patient.comments.order("created_at desc")
+    else
+      @comments = @clinician.comments.order("created_at desc")
+    end
   end
 
   def new
     @comment = Comment.new
+
+    if current_clinician
+      @comments = current_clinician.comments.order("created_at desc")
+    else
+      @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments.order("created_at desc")
+    end
   end
 
   def create

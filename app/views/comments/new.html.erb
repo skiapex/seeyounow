@@ -36,7 +36,7 @@
                           </div>
                           <div id="scrollbar4" class="panel-body contentHolder">
                           <% if current_clinician %>
-                            <% @comments.each_with_index do |comment, index| %>
+                            <% @comments.group(:patient_id).each_with_index do |comment, index| %>
                               <div class="comment">
                                   <div class="overflow-h">
                                       <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
