@@ -39,7 +39,7 @@
                             <% @comments.group(:patient_id).each_with_index do |comment, index| %>
                               <div class="comment">
                                   <div class="overflow-h">
-                                      <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                      <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong> 
                                       <p><%= comment.general_comment %></p>
                                       <ul class="list-inline comment-list">
                                           <li><i class="fa fa-heartbeat"></i> <%= comment.patient.diagnosis %></li>
@@ -51,7 +51,7 @@
                             <% @comments.each_with_index do |comment, index| %>
                               <div class="comment">
                                   <div class="overflow-h">
-                                      <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong> 
+                                      <strong><%= comment.clinician.first_name %> <%= comment.clinician.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong> 
                                       <p><%= comment.general_comment %></p>
                                       <ul class="list-inline comment-list">
                                           <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.clinician.occupation.name %></a></li>
