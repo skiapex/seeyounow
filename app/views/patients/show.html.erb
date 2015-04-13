@@ -32,7 +32,7 @@
     function drawChart() {
 
       var data = new google.visualization.DataTable();
-      data.addColumn('date', 'Date');
+      data.addColumn('datetime', 'Tate');
       data.addColumn('number', 'Pain');
       data.addColumn('number', 'Tiredness');
       data.addColumn('number', 'Drowsiness');
@@ -45,7 +45,7 @@
 
       data.addRows([
         <% @esas_assessments.each do |esas_assessment| %>
-          [ new Date(<%= esas_assessment.created_at.year %>, <%= esas_assessment.created_at.month.to_i - 1 %>, <%= esas_assessment.created_at.day %>), <%= "#{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
+          [ new Date(<%= esas_assessment.created_at.year %>, <%= esas_assessment.created_at.month.to_i - 1 %>, <%= esas_assessment.created_at.day %>, <%= esas_assessment.created_at.hour %>, <%= esas_assessment.created_at.min %>, 0), <%= "#{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
         <% end %>
       ]);
 
@@ -75,7 +75,7 @@
     <p><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></p>
     <p><strong>Age:</strong> <%= @patient.age %></p>
     <p><strong>Address:</strong> <%= @patient.address %></p>
-    <p><strong>Email:</strong> <%= current_user.try(:email) %></p>
+    <p><strong>Email:</strong> <%= User.find_by(id: @patient.user_id).email %></p>
     <p><strong>Phone number:</strong> <%= @patient.phone_number %></p>
     <p><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></p>
     <p><strong>Caregiver name:</strong> <%= @patient.caregiver_name %></p>

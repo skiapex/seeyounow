@@ -3,8 +3,8 @@ class PatientsController < ApplicationController
 
   def index
     # @patients = Patient.all
-    @patients = current_clinician.patients
-    @esas_assessments = current_clinician.esas_assessments
+    @patients = current_clinician.patients.order("first_name asc")
+    @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
   end
 
   def new
