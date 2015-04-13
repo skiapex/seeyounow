@@ -16,7 +16,7 @@ gem 'groupdate'
 gem 'hightop'
 gem 'active_median'
 gem 'country_select'
-gem 'mailboxer' #, '~> 0.12.5'
+#gem 'mailboxer' #, '~> 0.12.5'
 gem 'twitter-bootstrap-rails'
 gem 'high_voltage' #, '~> 2.2.1'
 gem 'rails_12factor', group: :production
