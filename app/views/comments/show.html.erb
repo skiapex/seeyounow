@@ -23,14 +23,13 @@
                               <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
                           </div>
                           <div id="scrollbar4" class="panel-body contentHolder">
-                          
                             <% @comments.each_with_index do |comment, index| %>
                               <div class="comment">
                                   <div class="overflow-h">
-                                    <% if comment.from == comment.patient.id %>
-                                      <strong><%= link_to "#{comment.patient.first_name} #{comment.patient.last_name}", comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong>
+                                    <% if comment.from == comment.patient.user_id %>
+                                      <strong><%= link_to "#{comment.patient.first_name} #{comment.patient.last_name}", comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong>
                                     <% else %>
-                                      <strong><%= link_to "#{comment.clinician.first_name} #{comment.clinician.last_name}", comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.updated_at) %></small></strong>
+                                      <strong><%= link_to "#{comment.clinician.first_name} #{comment.clinician.last_name }", comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong>
                                     <% end %>
                                         <p><%= comment.general_comment %></p>
                                   </div>    
