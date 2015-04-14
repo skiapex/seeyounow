@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string  "mobile_number"
     t.text    "emergency_message"
     t.integer "care_group_id"
-    t.integer "user_id"
+    t.integer "user_id",           limit: 255
   end
 
   add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id"
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer  "patient_id"
     t.integer  "clinician_id"
     t.integer  "from"
+    t.string   "general_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "general_comment"
   end
 
   add_index "comments", ["clinician_id"], name: "index_comments_on_clinician_id"
@@ -49,8 +49,6 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   create_table "esas_assessments", force: true do |t|
     t.integer  "patient_id"
     t.integer  "clinician_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "inputter_name"
     t.integer  "inputter_id"
     t.integer  "pain"
@@ -73,6 +71,8 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer  "other_symptom_score"
     t.string   "other_symptom_comment"
     t.string   "esas_comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer "clinician_id"
     t.string  "first_name"
     t.string  "last_name"
-    t.integer "user_id"
+    t.integer "user_id",          limit: 255
     t.string  "diagnosis"
     t.integer "gender_id"
     t.string  "age"
@@ -137,8 +137,8 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer "other_symptom"
     t.text    "goals_of_care"
     t.integer "shared_with"
-    t.boolean "patient_deceased", default: false
-    t.boolean "patient_archived", default: false
+    t.boolean "patient_deceased",             default: false
+    t.boolean "patient_archived",             default: false
   end
 
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id"
@@ -148,15 +148,15 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   create_table "prfs_assessments", force: true do |t|
     t.integer  "patient_id"
     t.integer  "clinician_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "year"
-    t.integer  "month"
-    t.integer  "day"
     t.string   "inputter_name"
     t.integer  "inputter_id"
     t.integer  "activity_and_function"
     t.string   "prfs_comment"
+    t.integer  "year"
+    t.integer  "month"
+    t.integer  "day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id"
@@ -164,9 +164,9 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id"
 
   create_table "users", force: true do |t|
-    t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "name"
     t.string "timezone"
   end
 

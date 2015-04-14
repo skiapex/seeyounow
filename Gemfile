@@ -22,6 +22,7 @@ gem 'high_voltage' #, '~> 2.2.1'
 gem 'rails_12factor', group: :production
 gem 'compass' #, '~> 1.0.3'
 gem 'faker', '~> 1.4.3'
+gem 'raygun4ruby'
 
 group :development do
   gem 'spring'
