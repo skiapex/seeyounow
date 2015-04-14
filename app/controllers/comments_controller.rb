@@ -38,19 +38,18 @@ class CommentsController < ApplicationController
     end
 
     comment_params = params.require(:comment).permit!
+    @comment = Comment.new(comment_params)
     if current_clinician
-      @comment = @patient.comments.new(comment_params)
-      @comment.clinician = current_clinician
-      @comment.from = current_clinician
+      @comment.clinician = current_user.clinician
+      @comment.from = current_user.clinician.user_id
       if @comment.save
         redirect_to comments_path, notice: "Comment submitted!"
       else
         render "new", alert: "Comment not submitted!"
       end
     else
-      @comment = @clinician.comments.new(comment_params)
       @comment.patient = current_user.patient
-      @comment.from = current_user.patient
+      @comment.from = current_user.patient.user_id
       if @comment.save
         redirect_to comments_path, notice: "Comment submitted!"
       else
