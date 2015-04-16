@@ -3,7 +3,7 @@ class EsasAssessmentsController < ApplicationController
 
   def index
     if current_clinician
-      @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
+      @esas_assessments = current_clinician.esas_assessments
     else
       @esas_assessments = Patient.find_by(user_id: User.find_by(id: current_user)).esas_assessments.order("created_at desc")
     end

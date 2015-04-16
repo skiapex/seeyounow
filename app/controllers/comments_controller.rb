@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def index
     if current_clinician
-      @comments = current_clinician.comments.order("created_at desc")
+      @comments = current_clinician.comments
     else
       @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments.order("created_at desc")
     end

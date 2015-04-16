@@ -28,7 +28,8 @@ group :development do
   gem 'spring'
   gem 'quiet_assets'
   gem 'tzinfo-data', platforms: [:mingw, :mswin]
-  gem 'sqlite3'
+  gem 'pg'
+  #gem 'sqlite3'
 end
 
 group :production do

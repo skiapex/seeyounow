@@ -40,7 +40,7 @@
                           </div>
                           <div id="scrollbar" class="panel-body contentHolder">
                           <% if current_clinician %>
-                            <% @esas_assessments.group(:patient_id, :"esas_assessments.id").each_with_index do |esas_assessment, index| %>
+                            <% @esas_assessments.order("patient_id, created_at DESC").select('ON (patient_id) *').uniq.each_with_index do |esas_assessment, index| %>
                                 <div class="profile-post color-one">
                                     <span class="profile-post-numb"><%= index+1 %></span>
                                     <div class="profile-post-in">
@@ -73,7 +73,7 @@
                           </div>
                           <div id="scrollbar4" class="panel-body contentHolder">
                           <% if current_clinician %>
-                            <% @esas_assessments.each_with_index do |esas_assessment, index| %>
+                            <% @esas_assessments.order("created_at desc").limit(99).each_with_index do |esas_assessment, index| %>
                                 <div class="comment">
                                     <div class="overflow-h">
                                         <strong><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 
@@ -90,7 +90,7 @@
                                 </div>
                             <% end %>
                           <% else %>
-                            <% @esas_assessments.each_with_index do |esas_assessment, index| %>
+                            <% @esas_assessments.order("created_at desc").limit(99).each_with_index do |esas_assessment, index| %>
                                 <div class="comment">
                                     <div class="overflow-h">
                                         <strong><%= link_to "#{esas_assessment.clinician.first_name} #{esas_assessment.clinician.last_name}", comment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 

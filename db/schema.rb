@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150301165440) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "care_groups", force: true do |t|
     t.string "name"
   end
@@ -29,10 +32,10 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer "user_id"
   end
 
-  add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id"
-  add_index "clinicians", ["gender_id"], name: "index_clinicians_on_gender_id"
-  add_index "clinicians", ["occupation_id"], name: "index_clinicians_on_occupation_id"
-  add_index "clinicians", ["user_id"], name: "index_clinicians_on_user_id"
+  add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id", using: :btree
+  add_index "clinicians", ["gender_id"], name: "index_clinicians_on_gender_id", using: :btree
+  add_index "clinicians", ["occupation_id"], name: "index_clinicians_on_occupation_id", using: :btree
+  add_index "clinicians", ["user_id"], name: "index_clinicians_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "patient_id"
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string   "general_comment"
   end
 
-  add_index "comments", ["clinician_id"], name: "index_comments_on_clinician_id"
-  add_index "comments", ["patient_id"], name: "index_comments_on_patient_id"
+  add_index "comments", ["clinician_id"], name: "index_comments_on_clinician_id", using: :btree
+  add_index "comments", ["patient_id"], name: "index_comments_on_patient_id", using: :btree
 
   create_table "esas_assessments", force: true do |t|
     t.integer  "patient_id"
@@ -75,10 +78,10 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string   "esas_comment"
   end
 
-  add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id"
-  add_index "esas_assessments", ["inputter_id"], name: "index_esas_assessments_on_inputter_id"
-  add_index "esas_assessments", ["other_symptom_id"], name: "index_esas_assessments_on_other_symptom_id"
-  add_index "esas_assessments", ["patient_id"], name: "index_esas_assessments_on_patient_id"
+  add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id", using: :btree
+  add_index "esas_assessments", ["inputter_id"], name: "index_esas_assessments_on_inputter_id", using: :btree
+  add_index "esas_assessments", ["other_symptom_id"], name: "index_esas_assessments_on_other_symptom_id", using: :btree
+  add_index "esas_assessments", ["patient_id"], name: "index_esas_assessments_on_patient_id", using: :btree
 
   create_table "genders", force: true do |t|
     t.string "gender_type"
@@ -113,7 +116,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer "prfs_red_text"
   end
 
-  add_index "notification_settings", ["clinician_id"], name: "index_notification_settings_on_clinician_id"
+  add_index "notification_settings", ["clinician_id"], name: "index_notification_settings_on_clinician_id", using: :btree
 
   create_table "occupations", force: true do |t|
     t.string "name"
@@ -141,9 +144,9 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.boolean "patient_archived", default: false
   end
 
-  add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id"
-  add_index "patients", ["gender_id"], name: "index_patients_on_gender_id"
-  add_index "patients", ["user_id"], name: "index_patients_on_user_id"
+  add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id", using: :btree
+  add_index "patients", ["gender_id"], name: "index_patients_on_gender_id", using: :btree
+  add_index "patients", ["user_id"], name: "index_patients_on_user_id", using: :btree
 
   create_table "prfs_assessments", force: true do |t|
     t.integer  "patient_id"
@@ -159,9 +162,9 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string   "prfs_comment"
   end
 
-  add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id"
-  add_index "prfs_assessments", ["inputter_id"], name: "index_prfs_assessments_on_inputter_id"
-  add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id"
+  add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id", using: :btree
+  add_index "prfs_assessments", ["inputter_id"], name: "index_prfs_assessments_on_inputter_id", using: :btree
+  add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string "name"
