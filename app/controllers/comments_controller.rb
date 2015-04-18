@@ -3,7 +3,9 @@ class CommentsController < ApplicationController
 
   def index
     if current_clinician
-      @comments = current_clinician.comments
+      @comments = current_clinician.comments.select('ON (patient_id) *').uniq
+      @comments = @comments.order("patient_id, created_at DESC")
+      @comment_list = Comment.select('*').from("(#{@comments.to_sql}) sub")
     else
       @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments.order("created_at desc")
     end
