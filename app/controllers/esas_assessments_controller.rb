@@ -11,10 +11,6 @@ class EsasAssessmentsController < ApplicationController
 
   def show
     @esas_assessment = EsasAssessment.find_by(id: params["id"])
-    @clinician = @esas_assessment.clinician
-    @occupation = @clinician.occupation
-    @other_symptom = @esas_assessment.other_symptom
-    @patient = @esas_assessment.patient
   end
 
   def new

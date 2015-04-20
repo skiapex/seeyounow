@@ -71,9 +71,6 @@ PrfsAssessment:
   clinician_id: integer
   created_at: datetime
   updated_at: datetime
-  year: integer
-  month: integer
-  day: integer
   inputter_name: string
   inputter_id: integer
   activity_and_function: integer

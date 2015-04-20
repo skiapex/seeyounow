@@ -1,0 +1,151 @@
+<!-- Use view helpers (e.g. link_to and image_tag) -->
+<!-- and implement real data -->
+
+<head>
+    <title>SeeYouNow | PRFS Assessment</title>
+</head>
+
+<h4 class="page-header">
+  <p><strong>Completed by:</strong> <%= link_to "#{@prfs_assessment.patient.first_name} #{@prfs_assessment.patient.last_name}", patient_path(@prfs_assessment.patient) %></p>
+  <% if current_clinician %>
+    <span class="pull-right">
+    <%= link_to "Edit", edit_prfs_assessment_path, class: 'btn btn-u btn-success' %>
+    </span>
+  <% end %>
+  <p><strong>For:</strong> <%= @prfs_assessment.clinician.occupation.name %> <%= @prfs_assessment.clinician.first_name %> <%= @prfs_assessment.clinician.last_name %></p>
+</h4>
+<h4 span class="time"><strong>Completed:</strong> <%= @prfs_assessment.updated_at.strftime("%B %d, %Y") %> at <%= @prfs_assessment.updated_at.strftime("%H:%M") %>
+
+  <% if current_clinician %>
+    <span class="pull-right">
+    <%= link_to "Delete", prfs_assessment_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-u btn-success' %>
+    </span>
+  <% end %>
+</h4>
+
+<head>
+   <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+    
+          <div id="ex0"></div>
+    <script type="text/javascript">
+    google.load('visualization', '1', {packages: ['corechart']});
+    google.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+         ['Symptom', 'Intensity', { role: 'style' }],
+         ['Activity and Function', <%= @prfs_assessment.activity_and_function %>, '#3498db' ],
+      ]);
+
+      var options = {
+        // chartArea:{left:20,top:0,width:'50%',height:'75%'}
+        width: 1000,
+        height: 563,
+        hAxis: {
+          title: 'Symptom',
+          gridlines: {count: 10}
+        },
+        vAxis: {
+          title: 'Intensity (scale of 1-10)'
+          // {minValue: 0}
+          // viewWindowMode:'explicit',
+          // viewWindow:{
+          //   max:10,
+          //   min:1
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('ex0'));
+
+      chart.draw(data, options);
+    }
+    </script>
+
+<div class="row">
+  <div class="col-md-6 comment">
+    <h2>Overall Comment</h2>
+    <p>
+      <%= @prfs_assessment.prfs_comment %>
+    </p>
+  </div>
+</div>
+
+<!--=== Content Part ===-->
+<div class="container content">
+    <div class="row">
+        
+
+        <!-- Begin Content -->
+        <div class="col-md-9">
+            <!--Basic Table-->
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-tasks"></i> Scores</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity</p>
+                </div>                                      
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Symptom</th>
+                            <th class="hidden-sm">Intensity</th>
+                            <th>Comment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pain</td>
+                            <td class="hidden-sm"><%= @prfs_assessment.activity_and_function %></td>
+                            <td><%= @prfs_assessment.prfs_comment %></td>
+                            <% if (@prfs_assessment.activity_and_function.between?(1, 2)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@prfs_assessment.activity_and_function.between?(3, 4)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@prfs_assessment.activity_and_function.between?(5, 5)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <!--End Basic Table-->
+        </div>
+        <!-- End Content -->
+    </div>          
+</div><!--/container-->     
+<!--=== End Content Part ===-->
+
+
+<div class="container content">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i> Information</h3>
+        </div>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <td><strong>Inputter name</strong></td>
+            <td><%= @prfs_assessment.inputter_name %></td>
+          </tr>
+          <tr>
+            <td><strong>Inputter type</strong></td>
+            <td><%= Inputter.find_by(id: @prfs_assessment.inputter_id).inputter_type %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

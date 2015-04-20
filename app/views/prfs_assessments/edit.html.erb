@@ -1,0 +1,53 @@
+<head>
+    <title>SeeYouNow | Edit PRFS</title>
+</head>
+
+<% if @prfs_assessment.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @prfs_assessment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+  Edit PRFS assessment done at <%= @prfs_assessment.updated_at.to_s(:long) %> for <%= @prfs_assessment.patient.first_name %> <%= @prfs_assessment.patient.last_name %>
+</h3>
+
+<div class="profile container content">
+  <div class="centre">
+    <div class="col-md-8">
+      <!--Profile Body-->
+      <div class="profile-body">
+
+        <%= form_for @prfs_assessment do |form| %>
+          
+          <div class="form-group">
+            <%= form.label :inputter_name %>
+            <%= form.text_field :inputter_name, class: "form-control", placeholder: "Imputter name" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :inputter_id %>
+            <%= form.collection_select :inputter_id, Inputter.all, :id, :inputter_type, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :activity_and_function %>
+            <%= form.text_field :activity_and_function, class: "form-control", placeholder: "Value from 1 - 10" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :prfs_comment %>
+            <%= form.text_field :prfs_comment, class: "form-control", placeholder: "Leave a comment" %>
+          </div>
+          
+          <%= form.button 'Update PRFS assessment', class: "btn btn-u btn-success" %>
+        <% end %>
+      </div><!--End Profile Body-->
+    </div>
+  </div><!--/end centre-->
+</div><!--/container-->

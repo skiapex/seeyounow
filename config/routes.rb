@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :clinicians
   resources :patients
   resources :esas_assessments
+  resources :prfs_assessments
   resources :users
   resources :sessions
   resources :comments

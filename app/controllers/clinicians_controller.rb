@@ -7,9 +7,6 @@ class CliniciansController < ApplicationController
 
   def show
     @clinician = Clinician.find_by(id: params["id"])
-    @care_group = @clinician.care_group
-    @gender = @clinician.gender
-    @esas_assessments = @clinician.esas_assessments
   end
 
   def new
