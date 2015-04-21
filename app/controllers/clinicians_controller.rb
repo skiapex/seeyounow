@@ -1,8 +1,10 @@
 class CliniciansController < ApplicationController
   skip_before_action :require_clinician, only: [:show]
+  skip_before_action :require_admin, only: [:show, :edit]
 
   def index
     @clinicians = Clinician.all
+    @care_groups = CareGroup.all
   end
 
   def show
@@ -16,7 +18,7 @@ class CliniciansController < ApplicationController
   def create
     clinician_params = params.require(:clinician).permit!
     @clinician = Clinician.create(clinician_params)
-    if @clinician.valid?
+    if @clinician.save
       redirect_to clinician_path(@clinician), notice: "Clinician created!"
     else
       render "new"
@@ -41,7 +43,7 @@ class CliniciansController < ApplicationController
   def destroy
     @clinician = Clinician.find_by(id: params["id"])
     @clinician.destroy
-    redirect_to clinicians_path
+    redirect_to clinicians_path, notice: "Clinician deleted!"
   end
 
 end

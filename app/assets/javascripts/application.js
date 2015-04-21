@@ -38,4 +38,3 @@
 //= require app
 //= require login
 //= require chartkick
-//= require_tree .

@@ -33,6 +33,16 @@ puts "Creating additional symptom types..."
 constipation = OtherSymptom.create(symptom_type: "constipation")
 sweating = OtherSymptom.create(symptom_type: "sweating")
 urine = OtherSymptom.create(symptom_type: "discoloured urine")
+respiratorycongestion = OtherSymptom.create(symptom_type: "respiratory congestion")
+drymouth = OtherSymptom.create(symptom_type: "dry mouth")
+hiccups = OtherSymptom.create(symptom_type: "hiccups")
+anorexiacachexia = OtherSymptom.create(symptom_type: "anorexia–cachexia")
+diarrhea = OtherSymptom.create(symptom_type: "diarrhea")
+delirium = OtherSymptom.create(symptom_type: "delirium")
+insomnia = OtherSymptom.create(symptom_type: "insomnia")
+anxiety = OtherSymptom.create(symptom_type: "anxiety")
+terminalrestlessness = OtherSymptom.create(symptom_type: "terminal restlessness")
+vomiting = OtherSymptom.create(symptom_type: "vomiting")
 
 puts "Creating inputter types..."
 # Create different possible inputter types
@@ -91,11 +101,11 @@ Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212.
 If this is after office hours have closed: from 8 pm to 8 am or on the weekend
 please call the oncall Brameast physician at (416) 232-5094. Leave a message
 and your phone number twice so that the oncall physician can call you back.
-Please speak clearly.", care_group_id: brameast.id, user_id: userdrmarshallsmith.id)
-joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation_id: rn.id, gender_id: female.id, office_number: Faker::Base.numerify('(905) ###-####'), mobile_number: Faker::Base.numerify('(647) ###-####'), emergency_message: Faker::Lorem.paragraph(1, false, 3) + " " + Faker::Base.numerify('(905) ###-####') + " or Dr. " + Faker::Name.name + "'s office at" + Faker::Base.numerify('(416) ###-####') + ". " + Faker::Lorem.sentence(3, false, 4), care_group_id: brameast.id, user_id: userjoandixon.id)
-rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation_id: nursepractitioner.id, gender_id: female.id, office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, user_id: userrachellmiddleton.id)
-macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: nursemanager.id, gender_id: male.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, user_id: usermacariogarcia.id)
-debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: oncologist.id, gender_id: female.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id, user_id: userdebralin.id)
+Please speak clearly.", care_group_id: brameast.id, administrator: true, user_id: userdrmarshallsmith.id)
+joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation_id: rn.id, gender_id: female.id, office_number: Faker::Base.numerify('(905) ###-####'), mobile_number: Faker::Base.numerify('(647) ###-####'), emergency_message: Faker::Lorem.paragraph(1, false, 3) + " " + Faker::Base.numerify('(905) ###-####') + " or Dr. " + Faker::Name.name + "'s office at" + Faker::Base.numerify('(416) ###-####') + ". " + Faker::Lorem.sentence(3, false, 4), care_group_id: brameast.id, administrator: false, user_id: userjoandixon.id)
+rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation_id: nursepractitioner.id, gender_id: female.id, office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, administrator: false, user_id: userrachellmiddleton.id)
+macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: nursemanager.id, gender_id: male.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, administrator: false, user_id: usermacariogarcia.id)
+debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: oncologist.id, gender_id: female.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id, administrator: false, user_id: userdebralin.id)
 
 
 # Create the patients

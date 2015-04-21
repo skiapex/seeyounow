@@ -63,5 +63,11 @@
             <%= form.label :care_group_id %>
             <%= form.collection_select :care_group_id, CareGroup.all, :id, :name, class: "form-control" %>
           </div>
+
+          <div class="form-group">
+            <%= form.label :administrator %>
+            <%= form.check_box :administrator %>
+          </div>
+          
           <%= form.button 'Create Clinician', class: "btn btn-success" %>
         <% end %>

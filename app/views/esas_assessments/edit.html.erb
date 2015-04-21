@@ -32,7 +32,7 @@
 
           <div class="form-group">
             <%= form.label :inputter_id %>
-            <%= form.collection_select :inputter_id, Inputter.all, :id, :inputter_type, class: "form-control" %>
+            <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control" %>
           </div>
 
           <div class="form-group">
@@ -117,7 +117,7 @@
 
           <div class="form-group">
             <%= form.label :other_symptom_id %>
-            <%= form.collection_select :other_symptom_id, OtherSymptom.all, :id, :symptom_type, class: "form-control" %>
+            <%= form.collection_select :other_symptom_id, OtherSymptom.all.order("symptom_type asc"), :id, :symptom_type, class: "form-control" %>
           </div>
 
           <div class="form-group">

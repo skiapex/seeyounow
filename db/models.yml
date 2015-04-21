@@ -7,6 +7,7 @@ Clinician:
   mobile_number: string
   emergency_message: text
   care_group_id: integer
+  administrator: boolean
   user_id: integer
 
 Patient:

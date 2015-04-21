@@ -9,6 +9,7 @@ class PatientsController < ApplicationController
 
   def new
     @patient = Patient.new
+    @user = User.new
   end
 
   def show
@@ -22,8 +23,13 @@ class PatientsController < ApplicationController
 
   def create
   	patient_params = params.require(:patient).permit!
+    user_params = params.require(:user).permit!
+
     @patient = Patient.create(patient_params)
-    if @patient.valid?
+    @patient.clinician = current_user.clinician
+    @user = User.create(user_params)
+
+    if @patient.save and @user.valid?
       redirect_to patient_path(@patient), notice: "New patient created!"
     else
       render "new"

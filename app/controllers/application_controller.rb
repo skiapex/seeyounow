@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   before_action :require_user
   helper_method :current_clinician
   before_action :require_clinician
+  helper_method :admin
+  before_action :require_admin
 
   def current_user
     User.find_by(id: session["user_id"])
@@ -25,6 +27,18 @@ class ApplicationController < ActionController::Base
 
   def require_clinician
     if current_clinician.nil?
+      redirect_to new_session_path
+    end
+  end
+
+  def admin
+    if Clinician.find_by(user_id: User.find_by(id: session["user_id"])).administrator = true
+      Clinician.find_by(user_id: User.find_by(id: session["user_id"]))
+    end
+  end
+
+  def require_admin
+    if admin.nil?
       redirect_to new_session_path
     end
   end

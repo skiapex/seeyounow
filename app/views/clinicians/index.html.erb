@@ -3,14 +3,77 @@
 </head>	
 
 <h3 class="page-header">
-  All Clinicians
+  Manage Clinicians
   <span class="pull-right">
     <%= link_to "New Clinician", new_clinician_path, class: 'btn btn-u btn-success' %>
   </span>
 </h3>
+<h4 span class="time">
+    <span class="pull-right">
+    <%= link_to "New Care Group", new_care_group_path, class: 'btn btn-u btn-success' %>
+    </span>
+</h4>
 
-<ul>
-  <% @clinicians.each do |clinician| %>
-    <li><h3><%= link_to "#{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %></h3><h4><%= clinician.occupation.name %></h4> <%= link_to "Edit", edit_clinician_path(clinician) %> <%= link_to "Delete", clinician_path(clinician), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></li>
-  <% end %>
-</ul>
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+            	<!--Profile Body-->
+            	<div class="profile-body">
+
+            		<div class="row margin-bottom-20"><!--start row-->
+            		  <!--Clinicians list-->
+            		  <div class="col-sm-6">
+            		      <div class="panel panel-profile no-bg">
+            		          <div class="panel-heading overflow-h">
+            		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Clincians You Are Managing</h2>
+            		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+            		          </div>
+            		          <div id="scrollbar" class="panel-body contentHolder">
+            		          
+            		          <% @clinicians.each_with_index do |clinician, index| %>
+            		              <div class="profile-post color-one">
+            		                  <span class="profile-post-numb"><%= index+1 %></span>
+            		                  <div class="profile-post-in">
+            		                      <h3 class="heading-xs"><a><%= link_to "#{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %></a></h3>
+            		                      <p><%= clinician.occupation.name %><i class="pull-right"><%= link_to "Edit", edit_clinician_path(clinician) %> <%= link_to "Delete", clinician_path(clinician), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+            		                  </div>
+            		              </div>
+            		          <% end %>
+            		          </div>
+            		      </div>        
+            		  </div>
+            		  <!--End Clinicians list-->
+
+            		  <!--Care Groups-->
+            		  <div class="col-sm-6">
+            		      <div class="panel panel-profile no-bg">
+            		          <div class="panel-heading overflow-h">
+            		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Care Groups</h2>
+            		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+            		          </div>
+            		          <div id="scrollbar" class="panel-body contentHolder">
+            		          
+            		          <% @care_groups.each_with_index do |care_group, index| %>
+            		              <div class="profile-post color-one">
+            		                  <span class="profile-post-numb"><%= index+1 %></span>
+            		                  <div class="profile-post-in">
+            		                      <h3 class="heading-xs"><a><%= link_to "#{care_group.name}", care_group_path(care_group) %></a></h3>
+            		                      <p><i class="pull-right"><%= link_to "Edit", edit_care_group_path(care_group) %> <%= link_to "Delete", care_group_path(care_group), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+            		                  </div>
+            		              </div>
+            		          <% end %>
+            		          </div>
+            		      </div>        
+            		  </div>
+            		  <!--End Care Groups-->
+
+            		</div><!--/end row-->
+            	</div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>

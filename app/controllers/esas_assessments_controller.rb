@@ -49,7 +49,7 @@ class EsasAssessmentsController < ApplicationController
   end
 
   def destroy
-    find_esas_assessment
+    @esas_assessment = EsasAssessment.find_by(id: params["id"])
     @esas_assessment.destroy
     redirect_to esas_assessments_path, notice: "ESAS assessment deleted!"
   end

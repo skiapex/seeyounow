@@ -1,0 +1,302 @@
+<!-- Use view helpers (e.g. link_to and image_tag) -->
+<!-- and implement real data -->
+
+<head>
+    <title>SeeYouNow | Other Symptom</title>
+</head>
+
+<h4 class="page-header">
+  <p><strong>Completed by:</strong> <%= link_to "#{@other_symptom.patient.first_name} #{@other_symptom.patient.last_name}", patient_path(@other_symptom.patient) %></p>
+  <% if current_clinician %>
+    <span class="pull-right">
+    <%= link_to "Edit", edit_other_symptom_path, class: 'btn btn-u btn-success' %>
+    </span>
+  <% end %>
+  <p><strong>For:</strong> <%= @other_symptom.clinician.occupation.name %> <%= @other_symptom.clinician.first_name %> <%= @other_symptom.clinician.last_name %></p>
+</h4>
+<h4 span class="time"><strong>Completed:</strong> <%= @other_symptom.updated_at.strftime("%B %d, %Y") %> at <%= @other_symptom.updated_at.strftime("%H:%M") %>
+
+  <% if current_clinician %>
+    <span class="pull-right">
+    <%= link_to "Delete", other_symptom_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-u btn-success' %>
+    </span>
+  <% end %>
+</h4>
+
+<head>
+   <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+    
+          <div id="ex0"></div>
+    <script type="text/javascript">
+    google.load('visualization', '1', {packages: ['corechart']});
+    google.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+         ['Symptom', 'Intensity', { role: 'style' }],
+         ['Pain', <%= @other_symptom.pain %>, '#3498db' ],
+         ['Tiredness', <%= @other_symptom.tiredness %>, '#3498db' ],
+         ['Drowsiness', <%= @other_symptom.drowsiness %>, '#3498db' ],
+         ['Nausea', <%= @other_symptom.nausea %>, '#3498db' ],
+         ['Lack of Appetite', <%= @other_symptom.lack_of_appetite %>, '#3498db' ],
+         ['Shortness of Breath', <%= @other_symptom.shortness_of_breath %>, '#3498db' ],
+         ['Depression', <%= @other_symptom.depression %>, '#3498db' ],
+         ['Wellbeing', <%= @other_symptom.wellbeing %>, '#3498db' ],
+         ['<%= @other_symptom.other_symptom.symptom_type.capitalize %>', <%= @other_symptom.other_symptom_score %>, '#3498db' ],
+      ]);
+
+      var options = {
+        // chartArea:{left:20,top:0,width:'50%',height:'75%'}
+        width: 1000,
+        height: 563,
+        hAxis: {
+          title: 'Symptom',
+          gridlines: {count: 10}
+        },
+        vAxis: {
+          title: 'Intensity (scale of 1-10)'
+          // {minValue: 0}
+          // viewWindowMode:'explicit',
+          // viewWindow:{
+          //   max:10,
+          //   min:1
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('ex0'));
+
+      chart.draw(data, options);
+    }
+    </script>
+
+<div class="row">
+  <div class="col-md-6 comment">
+    <h2>Overall Comment</h2>
+    <p>
+      <%= @other_symptom.esas_comment %>
+    </p>
+  </div>
+</div>
+
+<!--=== Content Part ===-->
+<div class="container content">
+    <div class="row">
+        
+
+        <!-- Begin Content -->
+        <div class="col-md-9">
+            <!--Basic Table-->
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-tasks"></i> Scores</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity</p>
+                </div>                                      
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Symptom</th>
+                            <th class="hidden-sm">Intensity</th>
+                            <th>Comment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pain</td>
+                            <td class="hidden-sm"><%= @other_symptom.pain %></td>
+                            <td><%= @other_symptom.pain_comment %></td>
+                            <% if (@other_symptom.pain.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.pain.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.pain.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td>Tiredness</td>
+                            <td class="hidden-sm"><%= @other_symptom.tiredness %></td>
+                            <td><%= @other_symptom.tiredness_comment %></td>
+                            <% if (@other_symptom.tiredness.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.tiredness.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.tiredness.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>                           
+                        </tr>
+                        <tr>
+                            <td>Drowsiness</td>
+                            <td class="hidden-sm"><%= @other_symptom.drowsiness %></td>
+                            <td><%= @other_symptom.drowsiness_comment %></td>
+                            <% if (@other_symptom.drowsiness.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.drowsiness.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.drowsiness.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td>Nausea</td>
+                            <td class="hidden-sm"><%= @other_symptom.nausea %></td>
+                            <td><%= @other_symptom.nausea_comment %></td>
+                            <% if (@other_symptom.nausea.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.nausea.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.nausea.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td>Lack of Appetite</td>
+                            <td class="hidden-sm"><%= @other_symptom.lack_of_appetite %></td>
+                            <td><%= @other_symptom.lack_of_appetite_comment %></td>
+                            <% if (@other_symptom.lack_of_appetite.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.lack_of_appetite.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.lack_of_appetite.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td>Shortness of Breath</td>
+                            <td class="hidden-sm"><%= @other_symptom.shortness_of_breath %></td>
+                            <td><%= @other_symptom.shortness_of_breath_comment %></td>
+                            <% if (@other_symptom.shortness_of_breath.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.shortness_of_breath.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.shortness_of_breath.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>                           
+                        </tr>
+                        <tr>
+                            <td>Depression</td>
+                            <td class="hidden-sm"><%= @other_symptom.depression %></td>
+                            <td><%= @other_symptom.depression_comment %></td>
+                            <% if (@other_symptom.depression.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.depression.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.depression.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td>Wellbeing</td>
+                            <td class="hidden-sm"><%= @other_symptom.wellbeing %></td>
+                            <td><%= @other_symptom.wellbeing_comment %></td>
+                            <% if (@other_symptom.wellbeing.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.wellbeing.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.wellbeing.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td><%= @other_symptom.other_symptom.symptom_type.capitalize %></td>
+                            <td class="hidden-sm"><%= @other_symptom.other_symptom_score %></td>
+                            <td><%= @other_symptom.other_symptom_comment %></td>
+                            <% if (@other_symptom.other_symptom_score.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.other_symptom_score.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.other_symptom_score.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--End Basic Table-->
+        </div>
+        <!-- End Content -->
+    </div>          
+</div><!--/container-->     
+<!--=== End Content Part ===-->
+
+
+<div class="container content">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i> Information</h3>
+        </div>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <td><strong>Inputter name</strong></td>
+            <td><%= @other_symptom.inputter_name %></td>
+          </tr>
+          <tr>
+            <td><strong>Inputter type</strong></td>
+            <td><%= Inputter.find_by(id: @other_symptom.inputter_id).inputter_type %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

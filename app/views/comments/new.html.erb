@@ -36,7 +36,7 @@
                           </div>
                           <div id="scrollbar4" class="panel-body contentHolder">
                           <% if current_clinician %>
-                            <% @comments.group(:patient_id).each_with_index do |comment, index| %>
+                            <% @comments.each_with_index do |comment, index| %>
                               <div class="comment">
                                   <div class="overflow-h">
                                       <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong> 
@@ -77,7 +77,7 @@
   <%= form_for [@patient, @comment] do |form| %>
     <div class="form-group">
       <%= form.label :patient_id %>
-      <%= form.collection_select :patient_id, Patient.all, :id, :first_name, class: "form-control" %>
+      <%= form.collection_select :patient_id, Patient.all.order("first_name asc"), :id, :full_name, class: "form-control" %>
     </div>
 
     <div class="form-group">
@@ -92,7 +92,7 @@
 
     <div class="form-group">
       <%= form.label :clinician_id %>
-      <%= form.collection_select :clinician_id, Clinician.all, :id, :first_name, class: "form-control" %>
+      <%= form.collection_select :clinician_id, Clinician.all.order("last_name asc"), :id, :full_name, class: "form-control" %>
     </div>
 
     <div class="form-group">

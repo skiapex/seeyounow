@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<head>
+    <title>SeeYouNow | Care Group</title>
+</head>
+
+<h3 class="page-header">
+  Care Group
+  <span class="pull-right">
+    <%= link_to "Add Symptom", new_care_group_path, class: 'btn btn-u btn-success' %>
+  </span>
+</h3>
+
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
+
+                <div class="row margin-bottom-20"><!--start row-->
+                  <!--Care Group list-->
+                  <div class="col-sm-6">
+                      <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-stethoscope"></i>List of Care Group</h2>
+                              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                          </div>
+                          <div id="scrollbar" class="panel-body contentHolder">
+                            <% @care_groups.each_with_index do |care_group, index| %>
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"><%= index+1 %></span>
+                                    <div class="profile-post-in">
+                                        <h3 class="heading-xs"><a><%= care_group.symptom_type %></a></h3>
+                                        <p><i class="pull-right"><%= link_to "Edit", edit_care_group_path(care_group) %> <%= link_to "Delete", care_group_path(care_group), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                          </div>
+                      </div>        
+                  </div>
+                  <!--End Care Group list-->
+
+                  <!--Information-->
+                  <div class="col-sm-6">
+                      <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-info"></i>Information</h2>
+                          </div>
+                          <div id="scrollbar" class="panel-body contentHolder">
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"></span>
+                                    <div class="profile-post-in">
+                                        <p>This is a list of Care Groups</p>
+                                    </div>
+                                </div>
+                          </div>
+                      </div>        
+                  </div>
+                  <!--End Information-->
+
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html>

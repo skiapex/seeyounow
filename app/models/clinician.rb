@@ -9,6 +9,10 @@ class Clinician < ActiveRecord::Base
 	belongs_to :occupation
 	belongs_to :user
 
+  def full_name
+    occupation.name + " " + first_name + " " + last_name
+  end
+
   	validates :first_name, presence: true
   	validates :last_name, presence: true
   	validates :occupation_id, presence: true

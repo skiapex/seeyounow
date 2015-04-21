@@ -1,0 +1,36 @@
+<head>
+    <title>SeeYouNow | New Other Symptom</title>
+</head>
+
+<% if @other_symptom.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @other_symptom.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+  Specify new symptom
+</h3>
+
+<div class="profile container content">
+  <div class="centre">
+    <div class="col-md-8">
+      <!--Profile Body-->
+      <div class="profile-body">
+
+        <%= form_for @other_symptom do |form| %>
+          <div class="form-group">
+            <%= form.label :symptom_type %>
+            <%= form.text_field :symptom_type, class: "form-control", placeholder: "Symptom" %>
+          </div>
+          <%= form.button 'Add Symptom', class: "btn btn-u btn-success" %>
+        <% end %>
+      </div><!--End Profile Body-->
+    </div>
+  </div><!--/end centre-->
+</div><!--/container--> 

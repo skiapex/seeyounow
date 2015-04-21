@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :sessions
   resources :comments
   resources :notification_settings
+  resources :other_symptoms
+  resources :care_groups
 
   get '/home', to: 'pages#home'
 

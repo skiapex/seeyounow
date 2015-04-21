@@ -1,0 +1,36 @@
+<head>
+    <title>SeeYouNow | New Other Symptom</title>
+</head>
+
+<% if @care_group.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @care_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+  Add new Care Group
+</h3>
+
+<div class="profile container content">
+  <div class="centre">
+    <div class="col-md-8">
+      <!--Profile Body-->
+      <div class="profile-body">
+
+        <%= form_for @care_group do |form| %>
+          <div class="form-group">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+          </div>
+          <%= form.button 'Add Care Group', class: "btn btn-u btn-success" %>
+        <% end %>
+      </div><!--End Profile Body-->
+    </div>
+  </div><!--/end centre-->
+</div><!--/container--> 

@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.text    "emergency_message"
     t.integer "care_group_id"
     t.integer "user_id"
+    t.boolean "administrator",     default: false
   end
 
   add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id", using: :btree
@@ -153,9 +154,6 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer  "clinician_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "year"
-    t.integer  "month"
-    t.integer  "day"
     t.string   "inputter_name"
     t.integer  "inputter_id"
     t.integer  "activity_and_function"
