@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :require_clinician, only: [:edit]
+  skip_before_action :require_clinician, only: [:edit, :update]
+  skip_before_action :require_admin, only: [:edit, :update]
 
   def index
     @users = User.all

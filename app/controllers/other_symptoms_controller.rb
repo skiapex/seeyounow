@@ -1,5 +1,6 @@
 class OtherSymptomsController < ApplicationController
   skip_before_action :require_clinician, only: [:new, :show]
+  skip_before_action :require_admin
 
   def index
       @other_symptoms = OtherSymptom.all.order("symptom_type asc")

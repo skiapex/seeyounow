@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   skip_before_action :require_clinician, only: [:new, :show, :index]
+  skip_before_action :require_admin
 
   def index
     if current_clinician

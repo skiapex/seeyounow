@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :require_clinician
+  skip_before_action :require_admin
 
   def index
     @clinicians = Clinician.all

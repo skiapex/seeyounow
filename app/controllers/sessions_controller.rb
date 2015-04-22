@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   layout false
   skip_before_action :require_user
   skip_before_action :require_clinician
+  skip_before_action :require_admin
 
   def create
     user = User.find_by(email: params["email"])
