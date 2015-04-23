@@ -8,11 +8,6 @@ class PatientsController < ApplicationController
     @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
   end
 
-  def new
-    @patient = Patient.new
-    @user = User.new
-  end
-
   def show
     @patient = Patient.find_by(id: params["id"])
     @esas_assessments = EsasAssessment.where(patient_id: @patient.id).order("created_at desc")
@@ -20,6 +15,11 @@ class PatientsController < ApplicationController
     @gender = @patient.gender
     @clinician = @patient.clinician
     @occupation = @clinician.occupation
+  end
+
+  def new
+    @patient = Patient.new
+    @user = User.new
   end
 
   def create
