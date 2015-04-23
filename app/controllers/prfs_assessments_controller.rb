@@ -19,7 +19,7 @@ class PrfsAssessmentsController < ApplicationController
   end
 
   def create
-    prfs_assessment_params = params.require(:prfs_assessment).permit(:patient_id, :clinician_id, :time, :year, :month, :day, :inputter_name, :inputter_id, :pain, :pain_comment, :tiredness, :tiredness_comment, :drowsiness, :drowsiness_comment, :nausea, :nausea_comment, :lack_of_appetite, :lack_of_appetite_comment, :shortness_of_breath, :shortness_of_breath_comment, :depression, :depression_comment, :wellbeing, :wellbeing_comment, :other_symptom_id, :other_symptom_score, :other_symptom_comment, :prfs_comment)
+    prfs_assessment_params = params.require(:prfs_assessment).permit!
     @prfs_assessment = PrfsAssessment.new(prfs_assessment_params)
     if current_clinician
       @prfs_assessment.clinician = current_user.clinician
