@@ -13,7 +13,7 @@ class CareGroupsController < ApplicationController
   end
 
   def create
-    care_group_params = params.require(:care_group).permit(:patient_id, :clinician_id, :time, :year, :month, :day, :inputter_name, :inputter_id, :pain, :pain_comment, :tiredness, :tiredness_comment, :drowsiness, :drowsiness_comment, :nausea, :nausea_comment, :lack_of_appetite, :lack_of_appetite_comment, :shortness_of_breath, :shortness_of_breath_comment, :depression, :depression_comment, :wellbeing, :wellbeing_comment, :care_group_id, :care_group_score, :care_group_comment, :esas_comment)
+    care_group_params = params.require(:care_group).permit!
     @care_group = CareGroup.create(care_group_params)
     if @care_group.save
       redirect_to clinicians_path, notice: "Care Group added!"
@@ -33,7 +33,7 @@ class CareGroupsController < ApplicationController
     if @care_group.valid?
       redirect_to clinicians_path, notice: "Care Group edited!"
     else
-      render "edit", alert: "Care Group edited!"
+      render "edit", alert: "Care Group not updated!"
     end
   end
 
