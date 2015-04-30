@@ -1,0 +1,117 @@
+<head>
+    <title>SeeYouNow | New Patient</title>
+</head> 
+
+<% if @patient.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this patient from being saved:</h2>
+    <ul>
+      <% @patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @user.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this user from being saved:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+  Create New Patient
+</h3>
+
+<div class="profile container content">
+  <div class="centre">
+    <div class="col-md-8">
+      <!--Profile Body-->
+      <div class="profile-body">
+
+        <%= form_for @user do |form| %>
+          <p>
+            <div class="form-group">
+              <%= form.label :email %>
+              <%= form.text_field :email, class: "form-control", placeholder: "email address"  %>
+            </div>
+            <div class="form-group">
+              <%= form.label :password %>
+              <%= form.password_field :password, class: "form-control", placeholder: "enter password"  %>
+            </div>
+          </p>
+          <%= form.fields_for :patient do |builder| %>
+            <p>
+              <div class="form-group">
+                <%= builder.label :first_name %>
+                <%= builder.text_field :first_name, class: "form-control", placeholder: "First name" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :last_name %>
+                <%= builder.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :diagnosis %>
+                <%= builder.text_field :diagnosis, class: "form-control", placeholder: "Diagnosis" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :gender_id %>
+                <%= builder.collection_select :gender_id, Gender.all, :id, :gender_type, :prompt => true, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :age %>
+                <%= builder.text_field :age, class: "form-control", placeholder: "Age" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :address %>
+                <%= builder.text_field :address, class: "form-control", placeholder: "Steet address" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :phone_number %>
+                <%= builder.text_field :phone_number, class: "form-control", placeholder: "Phone number" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :caregiver_name %>
+                <%= builder.text_field :caregiver_name, class: "form-control", placeholder: "Caregiver name" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :other_symptom %>
+                <%= builder.collection_select :other_symptom, OtherSymptom.all, :id, :symptom_type, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :goals_of_care %>
+                <%= builder.text_field :goals_of_care, class: "form-control", placeholder: "Goals of care" %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :patient_deceased %>
+                <%= builder.check_box :patient_deceased %>
+              </div>
+
+              <div class="form-group">
+                <%= builder.label :patient_archived %>
+                <%= builder.check_box :patient_archived %>
+              </div>
+            </p>
+          <% end %>
+          <%= form.button 'Create Patient', class: "btn btn-u btn-success" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

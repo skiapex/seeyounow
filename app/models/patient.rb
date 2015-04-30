@@ -10,11 +10,11 @@ class Patient < ActiveRecord::Base
     first_name + " " + last_name
   end
 
-  def set_user_id_from_user
-    patient.user_id = user.id
-  end
+  # def set_user_id_from_user
+  #   patient.user_id = user.id
+  # end
 
-  before_validation :set_user_id_from_user
+  # before_validation :set_user_id_from_user
 
   	validates :first_name, presence: true
   	validates :last_name, presence: true

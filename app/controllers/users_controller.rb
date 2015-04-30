@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @patient = Patient.new
+    @user.build_patient
   end
 
   def create
