@@ -5,3 +5,8 @@
   </span>
 </h2>
 <%= @user.email %>
+    	<% if @user.patient == nil %>
+    		<%= link_to @user.clinician.first_name, clinician_path(@user.clinician) %>
+    	<% else %>
+    		<%= link_to @user.patient.first_name, patient_path(@user.patient) %>
+    	<% end %>

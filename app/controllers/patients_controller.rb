@@ -29,6 +29,7 @@ class PatientsController < ApplicationController
     @patient = Patient.create(patient_params)
     @patient.clinician = current_user.clinician
     @user = User.create(user_params)
+    @patient.user_id = @user
 
     if @patient.save and @user.valid?
       redirect_to patient_path(@patient), notice: "New patient created!"

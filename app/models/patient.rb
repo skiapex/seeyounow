@@ -1,5 +1,4 @@
 class Patient < ActiveRecord::Base
-  #acts_as_messageable
 	has_many :esas_assessments, dependent: :destroy
   has_many :prfs_assessments, dependent: :destroy
 	belongs_to :gender
@@ -10,6 +9,12 @@ class Patient < ActiveRecord::Base
   def full_name
     first_name + " " + last_name
   end
+
+  def set_user_id_from_user
+    patient.user_id = user.id
+  end
+
+  before_validation :set_user_id_from_user
 
   	validates :first_name, presence: true
   	validates :last_name, presence: true

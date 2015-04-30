@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
-  #acts_as_messageable
-  has_one :patient
-  has_one :clinician
+  has_one :patient, :dependent => :destroy
+  has_one :clinician, :dependent => :destroy
+  accepts_nested_attributes_for :patient,  :allow_destroy => true 
+  accepts_nested_attributes_for :clinician,  :allow_destroy => true 
   
   validates :email, presence: true
+  validates_uniqueness_of :email
 end

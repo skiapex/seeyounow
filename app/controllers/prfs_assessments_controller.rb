@@ -28,9 +28,9 @@ class PrfsAssessmentsController < ApplicationController
       @prfs_assessment.clinician = current_user.patient.clinician
     end
     if @prfs_assessment.save
-      redirect_to prfs_assessments_path, notice: "ESAS assessment submitted!"
+      redirect_to prfs_assessments_path, notice: "PRFS assessment submitted!"
     else
-      render "new", alert: "ESAS assessment not submitted!"
+      render "new", alert: "PRFS assessment not submitted!"
     end
   end
 
@@ -43,16 +43,16 @@ class PrfsAssessmentsController < ApplicationController
     find_prfs_assessment
     @prfs_assessment.update_attributes(prfs_assessment_params)
     if @prfs_assessment.valid?
-      redirect_to prfs_assessment_path(@prfs_assessment), notice: "ESAS assessment edited!"
+      redirect_to prfs_assessment_path(@prfs_assessment), notice: "PRFS assessment edited!"
     else
-      render "edit", alert: "ESAS assessment not edited!"
+      render "edit", alert: "PRFS assessment not edited!"
     end
   end
 
   def destroy
     find_prfs_assessment
     @prfs_assessment.destroy
-    redirect_to prfs_assessments_path, notice: "ESAS assessment deleted!"
+    redirect_to prfs_assessments_path, notice: "PRFS assessment deleted!"
   end
 
 end
