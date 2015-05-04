@@ -5,6 +5,7 @@ class Patient < ActiveRecord::Base
 	belongs_to :clinician
 	belongs_to :user
   has_many :comments, dependent: :destroy
+  accepts_nested_attributes_for :user,  :allow_destroy => true
 
   def full_name
     first_name + " " + last_name

@@ -165,10 +165,14 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.string "timezone"
+    t.string  "email"
+    t.string  "password_digest"
+    t.string  "timezone"
+    t.integer "patient_id"
+    t.integer "clinician_id"
   end
+
+  add_index "users", ["clinician_id"], name: "index_users_on_clinician_id", using: :btree
+  add_index "users", ["patient_id"], name: "index_users_on_patient_id", using: :btree
 
 end

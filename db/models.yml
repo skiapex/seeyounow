@@ -113,7 +113,8 @@ CareGroup:
   name: string
 
 User:
-  name: string
   email: string
   password_digest: string
   timezone: string
+  patient_id: integer
+  clinician_id: integer

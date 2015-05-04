@@ -20,18 +20,14 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new
     @user = User.new
+    @patient.build_user
   end
 
   def create
-  	patient_params = params.require(:patient).permit!
-    user_params = params.require(:user).permit!
-
     @patient = Patient.create(patient_params)
     @patient.clinician = current_user.clinician
-    @user = User.create(user_params)
-    @patient.user_id = @user
 
-    if @patient.save and @user.valid?
+    if @patient.save
       redirect_to patient_path(@patient), notice: "New patient created!"
     else
       render "new"
@@ -62,5 +58,14 @@ class PatientsController < ApplicationController
   def _patientfooter
     
   end
+
+  private
+
+    def patient_params
+      # It's mandatory to specify the nested attributes that should be whitelisted.
+      # If you use `permit` with just the key that points to the nested attributes hash,
+      # it will return an empty hash.
+      params.require(:patient).permit( :first_name,:last_name,:user_id,:diagnosis,:gender_id,:age,:address, :email, :password, :phone_number, :caregiver_name, :other_symptom, :goals_of_care, :patient_deceased, :patient_archived, user_attributes: [ :email, :password, :patient_id, :clinician_id ])
+    end
 
 end
