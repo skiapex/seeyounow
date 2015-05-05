@@ -2,6 +2,7 @@ Clinician:
   first_name: string
   last_name: string
   occupation_id: integer
+  speciality_id: integer
   gender_id: integer
   office_number: string
   mobile_number: string
@@ -108,6 +109,9 @@ NotificationSetting:
   prfs_red: integer
   prfs_red_email: integer
   prfs_red_text: integer
+
+Speciality:
+  name: string
 
 CareGroup:
   name: string

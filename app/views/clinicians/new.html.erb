@@ -24,6 +24,18 @@
       <div class="profile-body">
 
         <%= form_for @clinician do |form| %>
+
+          <%= form.fields_for :user do |builder| %>
+            <div class="form-group">
+              <%= builder.label :email %>
+              <%= builder.text_field :email, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= builder.label :password %>
+              <%= builder.password_field :password, class: "form-control" %>
+            </div>
+          <% end %>
+
           <div class="form-group">
             <%= form.label :first_name %>
             <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
@@ -38,6 +50,41 @@
             <%= form.label :occupation_id %>
             <%= form.collection_select :occupation_id, Occupation.all, :id, :name, { include_blank: true }, class: "form-control" %>
           </div>
+
+          Type of new clinician: <select id="user_type">
+              <option value="physician">Physician</option>
+              <option value="nurse">Nurse</option>
+              <option value="other">Other</option>
+          </select><br />
+          <span id="webname">
+
+            <div class="form-group">
+              <%= form.label :speciality_id %>
+              <%= form.collection_select :speciality_id, Speciality.all, :id, :name, { include_blank: true }, class: "form-control" %>
+            </div>
+
+          </span>
+
+          <span id="webname2">
+
+            <div class="form-group">
+              <%= form.label :speciality_id %>
+              <%= form.collection_select :speciality_id, Speciality.all, :id, :name, { include_blank: true }, class: "form-control" %>
+            </div>
+
+          </span>
+
+          <script>
+            document.getElementById("user_type").onchange = function () {
+                if (document.getElementById("user_type").options[document.getElementById("user_type").selectedIndex].value == "nurse")
+                    document.getElementById("webname").style.display = "none";
+                else
+                  if (document.getElementById("user_type").options[document.getElementById("user_type").selectedIndex].value == "physician")
+                    document.getElementById("webname2").style.display = "none";
+                  else
+                    document.getElementById("webname2").style.display = "block";
+            }
+          </script>
 
           <div class="form-group">
             <%= form.label :gender_id %>

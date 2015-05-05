@@ -21,6 +21,7 @@ NotificationSetting.delete_all
 OtherSymptom.delete_all
 CareGroup.delete_all
 Occupation.delete_all
+Speciality.delete_all
 
 puts "Creating gender types..."
 # Create different possible genders
@@ -57,15 +58,56 @@ patient = Inputter.create(inputter_type: "Patient")
 clinician = Inputter.create(inputter_type: "Medical team")
 care_aid = Inputter.create(inputter_type: "Care aid")
 
-puts "Creating care groups..."
+puts "Creating occupations..."
 # Create different occupations
-doctor = Occupation.create(name: "Doctor")
+physician = Occupation.create(name: "Physician")
 rn = Occupation.create(name: "Registered Nurse")
 nursepractitioner = Occupation.create(name: "Nurse Practitioner")
 nursemanager = Occupation.create(name: "Nurse Manager")
-oncologist = Occupation.create(name: "Oncologist")
 
-puts "Creating occupations..."
+puts "Creating specialities..."
+# Create different specialist physicians
+gp = Speciality.create(name: "General Practitioner")
+anesthetist = Speciality.create(name: "Anesthetist")
+cardiologist = Speciality.create(name: "Cardiologist")
+immunologist = Speciality.create(name: "Clinical Immunologist-allergist")
+dermatologist = Speciality.create(name: "Dermatologist")
+radiologist = Speciality.create(name: "Diagnostic Radiologist")
+emergency = Speciality.create(name: "Emergency Physician")
+endocrinologist = Speciality.create(name: "Endocrinologist")
+gastroenterologist = Speciality.create(name: "Gastroenterologist")
+geriatrician = Speciality.create(name: "Geriatrician")
+hematologist = Speciality.create(name: "Hematologist")
+nephrologist = Speciality.create(name: "Nephrologist")
+neurologist = Speciality.create(name: "Neurologist")
+oncologist = Speciality.create(name: "Oncologist")
+orthopedist = Speciality.create(name: "Orthopedist")
+pediatrician = Speciality.create(name: "Pediatrician")
+physiatrist = Speciality.create(name: "Physiatrist")
+pneumologist = Speciality.create(name: "Pneumologist")
+psychiatrist = Speciality.create(name: "Psychiatrist")
+radiation_oncologist = Speciality.create(name: "Radiation Oncologist")
+respirologist = Speciality.create(name: "Respirologist")
+rheumatologist = Speciality.create(name: "Rheumatologist")
+anatomical = Speciality.create(name: "Anatomical Pathologist")
+general = Speciality.create(name: "General Pathologist")
+hematopathologist = Speciality.create(name: "Hematopathologist")
+biochemist = Speciality.create(name: "Medical Biochemist")
+microbiologist = Speciality.create(name: "Medical Microbiologist")
+neuropathologist = Speciality.create(name: "Neuropathologist")
+cardiac_surgeon = Speciality.create(name: "Cardiac Surgeon")
+general_surgeon = Speciality.create(name: "General Surgeon")
+neurosurgeon = Speciality.create(name: "Neurosurgeon")
+ophthalmologist = Speciality.create(name: "Ophthalmologist")
+orthopedic_surgeon = Speciality.create(name: "Orthopedic Surgeon")
+otorhinolaryngologist = Speciality.create(name: "Otorhinolaryngologist")
+pediatric_surgeon = Speciality.create(name: "Pediatric Surgeon")
+plastic_surgeon = Speciality.create(name: "Plastic Surgeon")
+thoracic_surgeon = Speciality.create(name: "Thoracic Surgeon")
+urologist = Speciality.create(name: "Urologist")
+vascular_surgeon = Speciality.create(name: "Vascular Surgeon")
+
+puts "Creating care groups..."
 # Create different care groups
 brameast = CareGroup.create(name: "Brameast")
 torcentral = CareGroup.create(name: "Toronto Central")
@@ -94,7 +136,7 @@ userdebralin = User.create(email: "debralin@medportal.ca", password: "*0hk#$jbk"
 
 # Create the clinicians
 puts "Creating clinicians..."
-drmarshallsmith = Clinician.create(first_name: "Marshall", last_name: "Smith", occupation_id: doctor.id, gender_id: male.id, office_number: "(905) 792-2212", mobile_number: "(416) 232-5094", emergency_message: "INSTEAD OF CALLING 911
+drmarshallsmith = Clinician.create(first_name: "Marshall", last_name: "Smith", occupation_id: physician.id, speciality_id: gp.id, gender_id: male.id, office_number: "(905) 792-2212", mobile_number: "(416) 232-5094", emergency_message: "INSTEAD OF CALLING 911
 Your doctor and nurses would like you to call the Health Care team instead.
 From 8am-8pm call your CCAC nurse at (866) 570-8505,
 Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212.
@@ -105,7 +147,7 @@ Please speak clearly.", care_group_id: brameast.id, administrator: true, user_id
 joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation_id: rn.id, gender_id: female.id, office_number: Faker::Base.numerify('(905) ###-####'), mobile_number: Faker::Base.numerify('(647) ###-####'), emergency_message: Faker::Lorem.paragraph(1, false, 3) + " " + Faker::Base.numerify('(905) ###-####') + " or Dr. " + Faker::Name.name + "'s office at" + Faker::Base.numerify('(416) ###-####') + ". " + Faker::Lorem.sentence(3, false, 4), care_group_id: brameast.id, administrator: false, user_id: userjoandixon.id)
 rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation_id: nursepractitioner.id, gender_id: female.id, office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, administrator: false, user_id: userrachellmiddleton.id)
 macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: nursemanager.id, gender_id: male.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, administrator: false, user_id: usermacariogarcia.id)
-debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: oncologist.id, gender_id: female.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id, administrator: false, user_id: userdebralin.id)
+debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: physician.id, speciality_id: gp.id, gender_id: female.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id, administrator: false, user_id: userdebralin.id)
 
 
 # Create the patients
@@ -417,4 +459,4 @@ Comment.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, from
 default = NotificationSetting.create(clinician_id: drmarshallsmith.id, esas_yellow_highest_symptom: 6, esas_yellow_increase_of: 3, esas_yellow_email: 0, esas_yellow_text: 0, esas_orange_highest_symptom: 8, esas_orange_increase_of: 4, esas_orange_email: 1, esas_orange_text: 0, esas_red_highest_symptom: 10, esas_red_increase_of: 5, esas_red_email: 1, esas_red_text: 1, prfs_yellow: 3, prfs_yellow_email: 0, prfs_yellow_text: 0, prfs_orange: 4, prfs_orange_email: 1, prfs_orange_text: 0, prfs_red: 5, prfs_red_email: 1, prfs_red_text: 1)
 
 
-puts "There are now #{User.count} users, #{Clinician.count} clinicians, #{Patient.count} patients, #{Occupation.count} occupations, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssessment.count} scores for an ESAS assessment, #{PrfsAssessment.count} scores for a PFRS assessment, #{Comment.count} comments between patients and clinicians, and #{OtherSymptom.count} other symptoms in the database."
+puts "There are now #{User.count} users, #{Clinician.count} clinicians, #{Patient.count} patients, #{Occupation.count} occupations, #{Speciality.count} specialities, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssessment.count} scores for an ESAS assessment, #{PrfsAssessment.count} scores for a PFRS assessment, #{Comment.count} comments between patients and clinicians, and #{OtherSymptom.count} other symptoms in the database."

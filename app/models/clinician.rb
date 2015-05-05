@@ -8,6 +8,7 @@ class Clinician < ActiveRecord::Base
 	has_many :patients #, through: :esas_assessments
 	belongs_to :occupation
 	belongs_to :user
+  accepts_nested_attributes_for :user,  :allow_destroy => true
 
   def full_name
     occupation.name + " " + first_name + " " + last_name

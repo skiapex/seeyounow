@@ -13,11 +13,13 @@ class CliniciansController < ApplicationController
 
   def new
     @clinician = Clinician.new
+    @user = User.new
+    @clinician.build_user
   end
 
   def create
-    clinician_params = params.require(:clinician).permit!
     @clinician = Clinician.create(clinician_params)
+    
     if @clinician.save
       redirect_to clinician_path(@clinician), notice: "Clinician created!"
     else
@@ -30,7 +32,7 @@ class CliniciansController < ApplicationController
   end
 
   def update
-    clinician_params = params.require(:clinician).permit(:first_name,:last_name,:occupation_id,:gender_id, :email, :password, :office_number, :mobile_number, :emergency_message, :care_group_id, :administrator, :user_id)
+    clinician_params = params.require(:clinician).permit(:first_name,:last_name,:occupation_id,:gender_id, :office_number, :mobile_number, :emergency_message, :care_group_id, :administrator, :user_id)
     @clinician = Clinician.find_by(id: params["id"])
     @clinician.update_attributes(clinician_params)
     if @clinician.valid?
@@ -45,5 +47,14 @@ class CliniciansController < ApplicationController
     @clinician.destroy
     redirect_to clinicians_path, notice: "Clinician deleted!"
   end
+
+  private
+
+    def clinician_params
+      # It's mandatory to specify the nested attributes that should be whitelisted.
+      # If you use `permit` with just the key that points to the nested attributes hash,
+      # it will return an empty hash.
+      params.require(:clinician).permit( :first_name,:last_name,:occupation_id,:gender_id, :office_number, :mobile_number, :emergency_message, :care_group_id, :administrator, :user_id, user_attributes: [ :email, :password, :patient_id, :clinician_id ])
+    end
 
 end

@@ -31,11 +31,13 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer "care_group_id"
     t.integer "user_id"
     t.boolean "administrator",     default: false
+    t.integer "speciality_id"
   end
 
   add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id", using: :btree
   add_index "clinicians", ["gender_id"], name: "index_clinicians_on_gender_id", using: :btree
   add_index "clinicians", ["occupation_id"], name: "index_clinicians_on_occupation_id", using: :btree
+  add_index "clinicians", ["speciality_id"], name: "index_clinicians_on_speciality_id", using: :btree
   add_index "clinicians", ["user_id"], name: "index_clinicians_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
@@ -163,6 +165,10 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id", using: :btree
   add_index "prfs_assessments", ["inputter_id"], name: "index_prfs_assessments_on_inputter_id", using: :btree
   add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id", using: :btree
+
+  create_table "specialities", force: true do |t|
+    t.string "name"
+  end
 
   create_table "users", force: true do |t|
     t.string  "email"
