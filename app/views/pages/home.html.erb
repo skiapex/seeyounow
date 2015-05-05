@@ -42,7 +42,7 @@
                                           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
                                           <i class="icon-custom rounded-x icon-bg-blue fa fa-envelope"></i>
                                           <div class="overflow-h">
-                                              <strong class="color-blue"><%= link_to "New PRFS Assessment", esas_assessment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
+                                              <strong class="color-blue"><%= link_to "New PRFS Assessment", prfs_assessment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
                                               <p>Submitted by <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
                                           </div>    
                                         </div>
