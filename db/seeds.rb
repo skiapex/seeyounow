@@ -63,6 +63,7 @@ puts "Creating occupations..."
 physician = Occupation.create(name: "Physician")
 rn = Occupation.create(name: "Registered Nurse")
 nursepractitioner = Occupation.create(name: "Nurse Practitioner")
+rpn = Occupation.create(name: "Registered Practical Nurse")
 nursemanager = Occupation.create(name: "Nurse Manager")
 
 puts "Creating specialities..."

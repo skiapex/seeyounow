@@ -7,6 +7,7 @@ class Clinician < ActiveRecord::Base
 	belongs_to :gender
 	has_many :patients #, through: :esas_assessments
 	belongs_to :occupation
+  belongs_to :speciality
 	belongs_to :user
   accepts_nested_attributes_for :user,  :allow_destroy => true
 

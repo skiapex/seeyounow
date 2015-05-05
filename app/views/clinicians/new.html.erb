@@ -65,11 +65,20 @@
 
           </span>
 
+          <script>
+            document.getElementById("user_type").onchange = function () {
+                if (document.getElementById("user_type").options[document.getElementById("user_type").selectedIndex].value == "physician")
+                    document.getElementById("webname").style.display = "block";
+                else
+                    document.getElementById("webname").style.display = "none";
+            }
+          </script>
+
           <span id="webname2">
 
             <div class="form-group">
-              <%= form.label :speciality_id %>
-              <%= form.collection_select :speciality_id, Speciality.all, :id, :name, { include_blank: true }, class: "form-control" %>
+              <%= form.label :occupation_id %>
+              <%= form.collection_select :occupation_id, Occupation.all, :id, :name, { include_blank: true }, class: "form-control" %>
             </div>
 
           </span>
@@ -77,12 +86,9 @@
           <script>
             document.getElementById("user_type").onchange = function () {
                 if (document.getElementById("user_type").options[document.getElementById("user_type").selectedIndex].value == "nurse")
-                    document.getElementById("webname").style.display = "none";
-                else
-                  if (document.getElementById("user_type").options[document.getElementById("user_type").selectedIndex].value == "physician")
-                    document.getElementById("webname2").style.display = "none";
-                  else
                     document.getElementById("webname2").style.display = "block";
+                else
+                    document.getElementById("webname2").style.display = "none";
             }
           </script>
 
