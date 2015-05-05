@@ -47,7 +47,6 @@ Rails.application.config.assets.precompile += %w( jquery.mousewheel.js )
 Rails.application.config.assets.precompile += %w( perfect-scrollbar.js )
 Rails.application.config.assets.precompile += %w( datepicker.js )
 Rails.application.config.assets.precompile += %w( jquery-ui.min.js )
-Rails.application.config.assets.precompile += %w( knockout-3.3.0.js )
 
 #Import Headers
 Rails.application.config.assets.precompile += %w( header-default.css )
