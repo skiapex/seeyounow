@@ -65,6 +65,10 @@ rn = Occupation.create(name: "Registered Nurse")
 nursepractitioner = Occupation.create(name: "Nurse Practitioner")
 rpn = Occupation.create(name: "Registered Practical Nurse")
 nursemanager = Occupation.create(name: "Nurse Manager")
+physiotherapist = Occupation.create(name: "Physician")
+dietician = Occupation.create(name: "Dietician")
+social = Occupation.create(name: "Social Worker")
+ot = Occupation.create(name: "Occupational Therapist")
 
 puts "Creating specialities..."
 # Create different specialist physicians
