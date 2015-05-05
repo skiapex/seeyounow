@@ -11,7 +11,11 @@
     <%= link_to "Edit", edit_clinician_path, class: 'btn btn-u btn-success' %>
   </span>
 </h1>
- <h3 span class="diagnosis"><%= @clinician.occupation.name %></span>
+ <h3 span class="diagnosis"><%= @clinician.occupation.name %>
+  <% if @clinician.speciality == nil %>
+  <% else %>
+    , <%= @clinician.speciality.name %></span>
+  <% end%>
 </h3>
 
 
@@ -50,6 +54,10 @@
                                     <div class="profile-post-in">
                                         <p><strong>Name:</strong> <%= @clinician.first_name %> <%= @clinician.last_name %></p>
                                         <p><strong>Occupation:</strong> <%= @clinician.occupation.name %></p>
+                                        <% if @clinician.speciality == nil %>
+                                        <% else %>
+                                          <p><strong>Speciality:</strong> <%= @clinician.speciality.name %></p>
+                                        <% end%>
                                         <p><strong>Gender:</strong> <%= @clinician.gender.gender_type %></p>
                                         <p><strong>Email:</strong> <%= User.find_by(id: @clinician.user_id).email %></p>
                                         <p><strong>Office number:</strong> <%= @clinician.office_number %></p>

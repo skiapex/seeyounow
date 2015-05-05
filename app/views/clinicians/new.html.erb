@@ -2,6 +2,9 @@
     <title>SeeYouNow | New Clinician</title>
 </head> 
 
+<script type='text/javascript' src='knockout-3.3.0.js'></script>
+
+
 <% if @clinician.errors.any? %>
   <div class="alert alert-warning">
     <h2>Some errors kept this clinician from being saved:</h2>
@@ -51,44 +54,36 @@
             <%= form.collection_select :occupation_id, Occupation.all, :id, :name, { include_blank: true }, class: "form-control" %>
           </div>
 
-          Type of new clinician: <select id="user_type">
+          <label><input type="checkbox" data-bind="checked: displayMessage" /> Display message</label>
+ 
+          <div data-bind="if: displayMessage">Here is a message. Astonishing.</div>
+
+          <script type='text/javascript' src='knockout-3.3.0.js'>
+
+          ko.applyBindings({
+              displayMessage: ko.observable(false)
+          });
+
+          </script>
+
+          Type of new clinician: <select id="clinician_type">
               <option value="physician">Physician</option>
               <option value="nurse">Nurse</option>
-              <option value="other">Other</option>
           </select><br />
-          <span id="webname">
 
+          <span id="webname">
             <div class="form-group">
               <%= form.label :speciality_id %>
               <%= form.collection_select :speciality_id, Speciality.all, :id, :name, { include_blank: true }, class: "form-control" %>
             </div>
-
           </span>
 
           <script>
-            document.getElementById("user_type").onchange = function () {
-                if (document.getElementById("user_type").options[document.getElementById("user_type").selectedIndex].value == "physician")
+            document.getElementById("clinician_type").onchange = function () {
+                if (document.getElementById("clinician_type").options[document.getElementById("clinician_type").selectedIndex].value == "physician")
                     document.getElementById("webname").style.display = "block";
                 else
                     document.getElementById("webname").style.display = "none";
-            }
-          </script>
-
-          <span id="webname2">
-
-            <div class="form-group">
-              <%= form.label :occupation_id %>
-              <%= form.collection_select :occupation_id, Occupation.all, :id, :name, { include_blank: true }, class: "form-control" %>
-            </div>
-
-          </span>
-
-          <script>
-            document.getElementById("user_type").onchange = function () {
-                if (document.getElementById("user_type").options[document.getElementById("user_type").selectedIndex].value == "nurse")
-                    document.getElementById("webname2").style.display = "block";
-                else
-                    document.getElementById("webname2").style.display = "none";
             }
           </script>
 
