@@ -56,7 +56,7 @@ var OwlCarousel = function () {
 			 
 
             //Owl Slider v5
-            jQuery(document).ready(function() {
+            jQuery(document).on('page:change',(function() {
             var owl = jQuery(".owl-slider-v5");
                 owl.owlCarousel({
                     items:1,
@@ -69,7 +69,7 @@ var OwlCarousel = function () {
 
 
             //Owl Slider v6
-            jQuery(document).ready(function() {
+            jQuery(document).on('page:change',(function() {
             var owl = jQuery(".owl-slider-v6");
                 owl.owlCarousel({
                     items:5,
