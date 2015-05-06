@@ -4,7 +4,7 @@ class CliniciansController < ApplicationController
 
   def index
     @clinicians = Clinician.all
-    @care_groups = CareGroup.all
+    @care_groups = CareGroup.all.order("name asc")
   end
 
   def show
