@@ -108,7 +108,11 @@
                                         <p><strong>Address:</strong> <%= @patient.address %></p>
                                         <p><strong>Email:</strong> <%= User.find_by(id: @patient.user_id).email %></p>
                                         <p><strong>Phone number:</strong> <%= @patient.phone_number %></p>
-                                        <p><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></p>
+                                        <% if @esas_assessments.last == nil %>
+                                          <p><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></p>
+                                        <% else %>
+                                          <p><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></p>
+                                        <% end %>
                                         <p><strong>Caregiver name:</strong> <%= @patient.caregiver_name %></p>
                                     </div>
                                 </div>
@@ -201,7 +205,11 @@
                                         <p><strong>Address:</strong> <%= @patient.address %></p>
                                         <p><strong>Email:</strong> <%= User.find_by(id: @patient.user_id).email %></p>
                                         <p><strong>Phone number:</strong> <%= @patient.phone_number %></p>
-                                        <p><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></p>
+                                        <% if @esas_assessments.last == nil %>
+                                          <p><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></p>
+                                        <% else %>
+                                          <p><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></p>
+                                        <% end %>
                                         <p><strong>Caregiver name:</strong> <%= @patient.caregiver_name %></p>
                                     </div>
                                 </div>

@@ -23,6 +23,8 @@ class PrfsAssessmentsController < ApplicationController
     @prfs_assessment = PrfsAssessment.new(prfs_assessment_params)
     if current_clinician
       @prfs_assessment.clinician = current_user.clinician
+      @prfs_assessment.inputter_name = current_user.clinician.full_name
+      @prfs_assessment.inputter = Inputter.find_by(inputter_type: 'Medical team')
     else
       @prfs_assessment.patient = current_user.patient
       @prfs_assessment.clinician = current_user.patient.clinician

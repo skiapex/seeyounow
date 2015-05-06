@@ -23,6 +23,8 @@ class EsasAssessmentsController < ApplicationController
     @esas_assessment = EsasAssessment.new(esas_assessment_params)
     if current_clinician
       @esas_assessment.clinician = current_user.clinician
+      @esas_assessment.inputter_name = current_user.clinician.full_name
+      @esas_assessment.inputter = Inputter.find_by(inputter_type: 'Medical team')
     else
       @esas_assessment.patient = current_user.patient
       @esas_assessment.clinician = current_user.patient.clinician
