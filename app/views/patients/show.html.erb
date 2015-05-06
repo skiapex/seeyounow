@@ -235,7 +235,7 @@
                                         <% else %>
                                             Comment: <%= esas_assessment.esas_comment %>,
                                         <% end %>
-                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %>, Submitted to: <%= esas_assessment.clinician.occupation.name %> <%= esas_assessment.clinician.last_name %></p>
+                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %>, Submitted to: <%= esas_assessment.clinician.full_name %></p>
                                         <ul class="list-inline comment-list">
                                             <li><i class="fa fa-heartbeat"> </i> <%= esas_assessment.patient.diagnosis %></li>
                                         </ul>
@@ -246,7 +246,7 @@
                             <% @esas_assessments.limit(99).each do |esas_assessment| %>
                                 <div class="comment">
                                     <div class="overflow-h">
-                                        <strong><%= link_to "#{esas_assessment.clinician.first_name} #{esas_assessment.clinician.last_name}", comment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 
+                                        <strong>Share with: <%= link_to "#{esas_assessment.clinician.first_name} #{esas_assessment.clinician.last_name}", esas_assessment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 
                                         <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>, 
                                         <% if esas_assessment.esas_comment == nil %>
                                         <% else %>

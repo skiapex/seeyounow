@@ -12,7 +12,11 @@ class Clinician < ActiveRecord::Base
   accepts_nested_attributes_for :user,  :allow_destroy => true
 
   def full_name
-    occupation.name + " " + first_name + " " + last_name
+    if occupation.pronym.nil?
+      first_name + " " + last_name + " " + occupation.acronym
+    else
+      occupation.pronym + " " + first_name + " " + last_name
+    end
   end
 
   	validates :first_name, presence: true

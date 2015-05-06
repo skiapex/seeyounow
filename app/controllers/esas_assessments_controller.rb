@@ -1,5 +1,5 @@
 class EsasAssessmentsController < ApplicationController
-  skip_before_action :require_clinician, only: [:new, :show]
+  skip_before_action :require_clinician
   skip_before_action :require_admin
 
   def index
@@ -30,7 +30,11 @@ class EsasAssessmentsController < ApplicationController
       @esas_assessment.clinician = current_user.patient.clinician
     end
     if @esas_assessment.save
-      redirect_to esas_assessments_path, notice: "ESAS assessment submitted!"
+      if current_clinician
+        redirect_to esas_assessments_path, notice: "ESAS assessment submitted!"
+      else
+        redirect_to esas_assessment_path(@esas_assessment), notice: "ESAS assessment submitted!"
+      end
     else
       render "new", alert: "ESAS assessment not submitted!"
     end

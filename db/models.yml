@@ -33,6 +33,8 @@ Gender:
 
 Occupation:
   name: string
+  acronym: string
+  pronym: string
 
 Inputter:
   inputter_type: string
@@ -116,6 +118,7 @@ Speciality:
 
 CareGroup:
   name: string
+  city: string
   province: string
 
 User:

@@ -3,8 +3,8 @@ class CliniciansController < ApplicationController
   skip_before_action :require_admin, only: [:show, :edit]
 
   def index
-    @clinicians = Clinician.all
-    @care_groups = CareGroup.all.order("name asc")
+    @clinicians = Clinician.all.order("care_group_id asc")
+    @care_groups = CareGroup.all.order("province asc")
   end
 
   def show

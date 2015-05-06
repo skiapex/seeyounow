@@ -37,7 +37,7 @@
             		                  <span class="profile-post-numb"><%= index+1 %></span>
             		                  <div class="profile-post-in">
             		                      <h3 class="heading-xs"><a><%= link_to "#{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %></a></h3>
-            		                      <p><%= clinician.occupation.name %><i class="pull-right"><%= link_to "Edit", edit_clinician_path(clinician) %> <%= link_to "Delete", clinician_path(clinician), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+            		                      <p><%= clinician.occupation.name %>, <%= clinician.care_group.name %><i class="pull-right"><%= link_to "Edit", edit_clinician_path(clinician) %> <%= link_to "Delete", clinician_path(clinician), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
             		                  </div>
             		              </div>
             		          <% end %>
@@ -60,7 +60,7 @@
             		                  <span class="profile-post-numb"><%= index+1 %></span>
             		                  <div class="profile-post-in">
             		                      <h3 class="heading-xs"><a><%= link_to "#{care_group.name}", care_group_path(care_group) %></a></h3>
-            		                      <p><i class="pull-right"><%= link_to "Edit", edit_care_group_path(care_group) %> <%= link_to "Delete", care_group_path(care_group), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+            		                      <p><%= care_group.city %>, <%= care_group.province %> <i class="pull-right"><%= link_to "Edit", edit_care_group_path(care_group) %> <%= link_to "Delete", care_group_path(care_group), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
             		                  </div>
             		              </div>
             		          <% end %>

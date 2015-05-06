@@ -60,17 +60,16 @@ care_aid = Inputter.create(inputter_type: "Care aid")
 
 puts "Creating occupations..."
 # Create different occupations
-physician = Occupation.create(name: "Physician")
-rn = Occupation.create(name: "Registered Nurse")
-nursepractitioner = Occupation.create(name: "Nurse Practitioner")
-rpn = Occupation.create(name: "Registered Practical Nurse")
-nursemanager = Occupation.create(name: "Nurse Manager")
-physiotherapist = Occupation.create(name: "Physiotherapist")
-dietician = Occupation.create(name: "Dietician")
-social = Occupation.create(name: "Social Worker")
-ot = Occupation.create(name: "Occupational Therapist")
-lpn = Occupation.create(name: "Licensed Practical Nurse")
-rpsyn = Occupation.create(name: "Registered Psychiatric Nurse")
+physician = Occupation.create(name: "Physician", pronym: "Dr.", acronym: nil)
+rn = Occupation.create(name: "Registered Nurse", pronym: nil, acronym: "RN")
+nursepractitioner = Occupation.create(name: "Nurse Practitioner", pronym: nil, acronym: "RN")
+rpn = Occupation.create(name: "Registered Practical Nurse", pronym: nil, acronym: "RN")
+physiotherapist = Occupation.create(name: "Physiotherapist", pronym: nil, acronym: "PT")
+dietician = Occupation.create(name: "Dietician", pronym: nil, acronym: nil)
+social = Occupation.create(name: "Social Worker", pronym: nil, acronym: nil)
+ot = Occupation.create(name: "Occupational Therapist", pronym: nil, acronym: "PT")
+lpn = Occupation.create(name: "Licensed Practical Nurse", pronym: nil, acronym: "LPN")
+rpsyn = Occupation.create(name: "Registered Psychiatric Nurse", pronym: nil, acronym: "RPN")
 
 puts "Creating specialities..."
 # Create different specialist physicians
@@ -143,12 +142,12 @@ anaesthesia = Speciality.create(name: "Anaesthesia", occupation_id: nursepractit
 
 puts "Creating care groups..."
 # Create different care groups
-brameast = CareGroup.create(name: "Brameast", province: "ON")
-torcentral = CareGroup.create(name: "University Health Network", province: "ON")
-headwaters = CareGroup.create(name: "Headwaters Health", province: "ON")
-fraserhealth = CareGroup.create(name: "Fraser Health", province: "BC")
-coastalhealth = CareGroup.create(name: "Coastal Health", province: "BC")
-revera = CareGroup.create(name: "Revera", province: "BC")
+brameast = CareGroup.create(name: "Brameast", city: "Brampton", province: "ON")
+torcentral = CareGroup.create(name: "University Health Network", city: "Toronto", province: "ON")
+headwaters = CareGroup.create(name: "Headwaters Health", city: "Orangeville", province: "ON")
+fraserhealth = CareGroup.create(name: "Fraser Health", city: "New Westminister", province: "BC")
+coastalhealth = CareGroup.create(name: "Coastal Health", city: "Squamish", province: "BC")
+revera = CareGroup.create(name: "Revera", city: "Richmond", province: "BC")
 
 # Create the users
 # Patient users
@@ -274,8 +273,8 @@ and your phone number twice so that the oncall physician can call you back.
 Please speak clearly.", care_group_id: brameast.id, administrator: true, user_id: userdrmarshallsmith.id)
 joandixon = Clinician.create(first_name: "Joan", last_name: "Dixon", occupation_id: rn.id, gender_id: female.id, office_number: Faker::Base.numerify('(905) ###-####'), mobile_number: Faker::Base.numerify('(647) ###-####'), emergency_message: Faker::Lorem.paragraph(1, false, 3) + " " + Faker::Base.numerify('(905) ###-####') + " or Dr. " + Faker::Name.name + "'s office at" + Faker::Base.numerify('(416) ###-####') + ". " + Faker::Lorem.sentence(3, false, 4), care_group_id: brameast.id, administrator: false, user_id: userjoandixon.id)
 rachellmiddleton = Clinician.create(first_name: "Rachell", last_name: "Middleton", occupation_id: nursepractitioner.id, gender_id: female.id, office_number: "(905) 563-2561", mobile_number: "(416) 563-7258", emergency_message: "In an emergency, call Rachell at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, administrator: false, user_id: userrachellmiddleton.id)
-macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: nursemanager.id, gender_id: male.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, administrator: false, user_id: usermacariogarcia.id)
-debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: oncologist.id, speciality_id: gp.id, gender_id: female.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id, administrator: false, user_id: userdebralin.id)
+macariogarcia = Clinician.create(first_name: "Macario", last_name: "Garcia", occupation_id: ot.id, gender_id: male.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Smith' office at (905) 792-2212", care_group_id: brameast.id, administrator: false, user_id: usermacariogarcia.id)
+debralin = Clinician.create(first_name: "Debra", last_name: "Lin", occupation_id: physician.id, speciality_id: oncologist.id, gender_id: female.id, office_number: "(905) 654-3647", mobile_number: "(416) 978-8777", emergency_message: "In an emergency, call Joan at 416-371-0733 or Dr. Lin' office at (905) 792-2212", care_group_id: torcentral.id, administrator: false, user_id: userdebralin.id)
 ericacarter = Clinician.create(first_name: "Erica", last_name: "Carter", occupation_id: rn.id, speciality_id: critical_nursing.id, gender_id: female.id, office_number: "(604) 792-2212", mobile_number: "(778) 232-5094", emergency_message: "INSTEAD OF CALLING 911
 Your doctor and nurses would like you to call the Health Care team instead. From 8am-8pm call your CCAC nurse at (604) 570-8505, Erica at (778) 371-0733 or Dr. Lin's office at (905) 792-2212. If this is after office hours have closed: from 8pm to 8am or on the weekend please call the on call Fraser Health physician at (604) 232-5094. Leave a message and your phone number twice so that the on call physician can call you back. Please speak clearly.", care_group_id: fraserhealth.id, administrator: true, user_id: userericacarter.id)
 
