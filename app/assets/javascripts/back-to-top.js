@@ -49,7 +49,7 @@ var scrolltotop={
 	},
 	
 	init:function(){
-		jQuery(document).on('page:change',(function($){
+		jQuery(document).ready(function($){
 			var mainobj=scrolltotop
 			var iebrws=document.all
 			mainobj.cssfixedsupport=!iebrws || iebrws && document.compatMode=="CSS1Compat" && window.XMLHttpRequest //not IE or IE7+ browsers in standards mode
