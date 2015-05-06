@@ -10,10 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery.min
+//= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui.min
-//= require turbolinks
 //= require jquery-migrate.min
 //= require back-to-top
 //= require jquery.countdown
@@ -39,3 +39,4 @@
 //= require login
 //= require chartkick
 //= require clinicians
+//= require turbolinks
