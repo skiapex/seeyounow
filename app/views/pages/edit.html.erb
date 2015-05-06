@@ -327,7 +327,7 @@
 <%= javascript_include_tag "circles-master", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "page_portfolio", "data-turbolinks-track" => true %>
 <script type="text/javascript">
-    jQuery(document).on('page:change',(function() {
+    jQuery(document).ready(function() {
         App.init();
         PortfolioPage.init(); 
         CirclesMaster.initCirclesMaster1();      
