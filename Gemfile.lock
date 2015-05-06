@@ -91,8 +91,6 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
-    knockoutjs-rails (3.3.0)
-      railties (>= 3.1, < 5)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
@@ -193,7 +191,6 @@ DEPENDENCIES
   hightop
   jbuilder
   jquery-rails
-  knockoutjs-rails
   pg
   quiet_assets
   rails (= 4.1.8)

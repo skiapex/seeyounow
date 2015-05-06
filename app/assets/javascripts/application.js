@@ -38,4 +38,4 @@
 //= require app
 //= require login
 //= require chartkick
-//= require knockout
+//= require clinicians

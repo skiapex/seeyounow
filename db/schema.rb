@@ -167,8 +167,11 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id", using: :btree
 
   create_table "specialities", force: true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "occupation_id"
   end
+
+  add_index "specialities", ["occupation_id"], name: "index_specialities_on_occupation_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string  "email"

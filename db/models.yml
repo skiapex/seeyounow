@@ -112,6 +112,7 @@ NotificationSetting:
 
 Speciality:
   name: string
+  occupation_id: integer
 
 CareGroup:
   name: string

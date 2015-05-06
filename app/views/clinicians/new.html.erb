@@ -2,9 +2,6 @@
     <title>SeeYouNow | New Clinician</title>
 </head> 
 
-<script type='text/javascript' src='knockout-3.3.0.js'></script>
-
-
 <% if @clinician.errors.any? %>
   <div class="alert alert-warning">
     <h2>Some errors kept this clinician from being saved:</h2>
@@ -54,38 +51,10 @@
             <%= form.collection_select :occupation_id, Occupation.all, :id, :name, { include_blank: true }, class: "form-control" %>
           </div>
 
-          <label><input type="checkbox" data-bind="checked: displayMessage" /> Display message</label>
- 
-          <div data-bind="if: displayMessage">Here is a message. Astonishing.</div>
-
-          <script type='text/javascript' src='knockout-3.3.0.js'>
-
-          ko.applyBindings({
-              displayMessage: ko.observable(false)
-          });
-
-          </script>
-
-          Type of new clinician: <select id="clinician_type">
-              <option value="physician">Physician</option>
-              <option value="nurse">Nurse</option>
-          </select><br />
-
-          <span id="webname">
-            <div class="form-group">
-              <%= form.label :speciality_id %>
-              <%= form.collection_select :speciality_id, Speciality.all, :id, :name, { include_blank: true }, class: "form-control" %>
-            </div>
-          </span>
-
-          <script>
-            document.getElementById("clinician_type").onchange = function () {
-                if (document.getElementById("clinician_type").options[document.getElementById("clinician_type").selectedIndex].value == "physician")
-                    document.getElementById("webname").style.display = "block";
-                else
-                    document.getElementById("webname").style.display = "none";
-            }
-          </script>
+          <div class="form-group">
+            <%= form.label :speciality_id %>
+            <%= form.grouped_collection_select :speciality_id, Occupation.order(:name), :specialities, :name,  :id, :name, { include_blank: true }, class: "form-control" %>
+          </div>
 
           <div class="form-group">
             <%= form.label :gender_id %>
