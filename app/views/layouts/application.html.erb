@@ -253,14 +253,14 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    jQuery(document).on('page:change',(function() {
         App.init();
         App.initCounter();
         Datepicker.initDatepicker();      
     });
 </script>
 <script>
-    jQuery(document).ready(function ($) {
+    jQuery(document).on('page:change',(function ($) {
         "use strict";
         $('.contentHolder').perfectScrollbar();
     });

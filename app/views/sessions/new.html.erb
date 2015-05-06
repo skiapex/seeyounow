@@ -124,7 +124,7 @@
 <!-- JS Page Level -->           
 <%= javascript_include_tag 'app.js', 'data-turbolinks-track' => true %>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    jQuery(document).on('page:change',(function() {
         App.init();      
     });
 </script>

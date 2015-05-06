@@ -1591,14 +1591,14 @@
 <script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/plugins/datepicker.js"></script>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    jQuery(document).on('page:change',(function() {
         App.init();
         App.initCounter();
         Datepicker.initDatepicker();      
     });
 </script>
 <script>
-    jQuery(document).ready(function ($) {
+    jQuery(document).on('page:change',(function ($) {
         "use strict";
         $('.contentHolder').perfectScrollbar();
     });
