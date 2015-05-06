@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20150301165440) do
 
   create_table "care_groups", force: true do |t|
     t.string "name"
-    t.string "province"
   end
 
   create_table "clinicians", force: true do |t|

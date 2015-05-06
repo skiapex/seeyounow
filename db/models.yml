@@ -116,7 +116,6 @@ Speciality:
 
 CareGroup:
   name: string
-  province: string
 
 User:
   email: string
