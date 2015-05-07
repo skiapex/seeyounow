@@ -152,8 +152,8 @@ revera = CareGroup.create(name: "Revera", city: "Richmond", province: "BC")
 # Create the users
 # Patient users
 puts "Creating users..."
-userjohndoe = User.create(email: "johndoe@abc.com", password: "a3sh4")
-usercindypeters = User.create(email: "c.t.peters12@yahoo.com", password: "mrfluffy")
+userjohndoe = User.create(email: "johndoe@abc.com", password: "password")
+usercindypeters = User.create(email: "c.t.peters12@yahoo.com", password: "password")
 useryiwang = User.create(email: "yi_wang@deloitte.com", password: "39yiwang22")
 userapwinderbrar = User.create(email: "apwinderb@gmail.com", password: "AB76cats")
 userdilmarousseff = User.create(email: "dilma_rousseff@brazil.com", password: "39dilmarousseff22")

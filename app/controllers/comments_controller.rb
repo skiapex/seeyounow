@@ -44,6 +44,14 @@ class CommentsController < ApplicationController
       @comment.clinician = current_user.clinician
       @comment.from = current_user.clinician.user_id
       if @comment.save
+
+        require 'statsmix'
+        StatsMix.api_key = "9e744f92096e0902b113"
+        StatsMix.track("Clinician Comment submitted", 1)
+        if StatsMix.error
+          puts "Error: #{StatsMix.error}"
+        end
+
         redirect_to comments_path, notice: "Comment submitted!"
       else
         render "new", alert: "Comment not submitted!"
@@ -52,6 +60,14 @@ class CommentsController < ApplicationController
       @comment.patient = current_user.patient
       @comment.from = current_user.patient.user_id
       if @comment.save
+
+        require 'statsmix'
+        StatsMix.api_key = "9e744f92096e0902b113"
+        StatsMix.track("Patient Comment submitted", 1)
+        if StatsMix.error
+          puts "Error: #{StatsMix.error}"
+        end
+
         redirect_to comments_path, notice: "Comment submitted!"
       else
         render "new", alert: "Comment not submitted!"
@@ -81,6 +97,14 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find_by(id: params["id"])
     @comment.destroy
+
+    require 'statsmix'
+    StatsMix.api_key = "9e744f92096e0902b113"
+    StatsMix.track("Comment deleted", 1)
+    if StatsMix.error
+      puts "Error: #{StatsMix.error}"
+    end
+
     redirect_to comments_path, notice: "Comment deleted!"
   end
 

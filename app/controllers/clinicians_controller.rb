@@ -9,6 +9,8 @@ class CliniciansController < ApplicationController
 
   def show
     @clinician = Clinician.find_by(id: params["id"])
+    @patients = Clinician.find_by(id: params["id"]).patients.group(:patient_deceased).count
+    @current_patients = @patients.values[0]
   end
 
   def new
