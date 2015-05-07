@@ -30,6 +30,14 @@ class EsasAssessmentsController < ApplicationController
       @esas_assessment.clinician = current_user.patient.clinician
     end
     if @esas_assessment.save
+
+      require 'statsmix'
+      StatsMix.api_key = "9e744f92096e0902b113"
+      StatsMix.track("ESAS submitted", 1)
+      if StatsMix.error
+        puts "Error: #{StatsMix.error}"
+      end
+
       if current_clinician
         redirect_to esas_assessments_path, notice: "ESAS assessment submitted!"
       else
@@ -49,6 +57,14 @@ class EsasAssessmentsController < ApplicationController
     find_esas_assessment
     @esas_assessment.update_attributes(esas_assessment_params)
     if @esas_assessment.valid?
+
+      require 'statsmix'
+      StatsMix.api_key = "9e744f92096e0902b113"
+      StatsMix.track("ESAS edited", 1)
+      if StatsMix.error
+        puts "Error: #{StatsMix.error}"
+      end
+      
       redirect_to esas_assessment_path(@esas_assessment), notice: "ESAS assessment edited!"
     else
       render "edit", alert: "ESAS assessment not edited!"
@@ -58,6 +74,14 @@ class EsasAssessmentsController < ApplicationController
   def destroy
     @esas_assessment = EsasAssessment.find_by(id: params["id"])
     @esas_assessment.destroy
+
+    require 'statsmix'
+    StatsMix.api_key = "9e744f92096e0902b113"
+    StatsMix.track("ESAS deleted", 1)
+    if StatsMix.error
+      puts "Error: #{StatsMix.error}"
+    end
+
     redirect_to esas_assessments_path, notice: "ESAS assessment deleted!"
   end
 
