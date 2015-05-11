@@ -2,7 +2,7 @@
 <!-- and implement real data -->
 
 <head>
-    <title>SeeYouNow | Other Symptom</title>
+    <title>SeeYouNow | Care Group</title>
 </head>
 
 <h4 class="page-header">
@@ -10,75 +10,9 @@
     <span class="pull-right">
     <%= link_to "Edit", edit_care_group_path, class: 'btn btn-u btn-success' %>
     </span>
-  <% end %>
-  <p><strong>For:</strong> <%= @care_group.clinician.occupation.name %> <%= @care_group.clinician.first_name %> <%= @care_group.clinician.last_name %></p>
-</h4>
-<h4 span class="time"><strong>Completed:</strong> <%= @care_group.updated_at.strftime("%B %d, %Y") %> at <%= @care_group.updated_at.strftime("%H:%M") %>
-
-  <% if current_clinician %>
-    <span class="pull-right">
-    <%= link_to "Delete", care_group_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-u btn-success' %>
-    </span>
-  <% end %>
 </h4>
 
 <head>
-   <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
-    
-          <div id="ex0"></div>
-    <script type="text/javascript">
-    google.load('visualization', '1', {packages: ['corechart']});
-    google.setOnLoadCallback(drawChart);
-
-
-    function drawChart() {
-
-      var data = google.visualization.arrayToDataTable([
-         ['Symptom', 'Intensity', { role: 'style' }],
-         ['Pain', <%= @care_group.pain %>, '#3498db' ],
-         ['Tiredness', <%= @care_group.tiredness %>, '#3498db' ],
-         ['Drowsiness', <%= @care_group.drowsiness %>, '#3498db' ],
-         ['Nausea', <%= @care_group.nausea %>, '#3498db' ],
-         ['Lack of Appetite', <%= @care_group.lack_of_appetite %>, '#3498db' ],
-         ['Shortness of Breath', <%= @care_group.shortness_of_breath %>, '#3498db' ],
-         ['Depression', <%= @care_group.depression %>, '#3498db' ],
-         ['Wellbeing', <%= @care_group.wellbeing %>, '#3498db' ],
-         ['<%= @care_group.care_group.symptom_type.capitalize %>', <%= @care_group.care_group_score %>, '#3498db' ],
-      ]);
-
-      var options = {
-        // chartArea:{left:20,top:0,width:'50%',height:'75%'}
-        width: 1000,
-        height: 563,
-        hAxis: {
-          title: 'Symptom',
-          gridlines: {count: 10}
-        },
-        vAxis: {
-          title: 'Intensity (scale of 1-10)'
-          // {minValue: 0}
-          // viewWindowMode:'explicit',
-          // viewWindow:{
-          //   max:10,
-          //   min:1
-        }
-      };
-
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('ex0'));
-
-      chart.draw(data, options);
-    }
-    </script>
-
-<div class="row">
-  <div class="col-md-6 comment">
-    <h2>Overall Comment</h2>
-    <p>
-      <%= @care_group.esas_comment %>
-    </p>
-  </div>
-</div>
 
 <!--=== Content Part ===-->
 <div class="container content">
@@ -94,181 +28,7 @@
                 </div>
                 <div class="panel-body">
                     <p>Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity</p>
-                </div>                                      
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Symptom</th>
-                            <th class="hidden-sm">Intensity</th>
-                            <th>Comment</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Pain</td>
-                            <td class="hidden-sm"><%= @care_group.pain %></td>
-                            <td><%= @care_group.pain_comment %></td>
-                            <% if (@care_group.pain.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.pain.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.pain.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>
-                        </tr>
-                        <tr>
-                            <td>Tiredness</td>
-                            <td class="hidden-sm"><%= @care_group.tiredness %></td>
-                            <td><%= @care_group.tiredness_comment %></td>
-                            <% if (@care_group.tiredness.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.tiredness.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.tiredness.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>                           
-                        </tr>
-                        <tr>
-                            <td>Drowsiness</td>
-                            <td class="hidden-sm"><%= @care_group.drowsiness %></td>
-                            <td><%= @care_group.drowsiness_comment %></td>
-                            <% if (@care_group.drowsiness.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.drowsiness.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.drowsiness.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>
-                        </tr>
-                        <tr>
-                            <td>Nausea</td>
-                            <td class="hidden-sm"><%= @care_group.nausea %></td>
-                            <td><%= @care_group.nausea_comment %></td>
-                            <% if (@care_group.nausea.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.nausea.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.nausea.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>
-                        </tr>
-                        <tr>
-                            <td>Lack of Appetite</td>
-                            <td class="hidden-sm"><%= @care_group.lack_of_appetite %></td>
-                            <td><%= @care_group.lack_of_appetite_comment %></td>
-                            <% if (@care_group.lack_of_appetite.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.lack_of_appetite.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.lack_of_appetite.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>
-                        </tr>
-                        <tr>
-                            <td>Shortness of Breath</td>
-                            <td class="hidden-sm"><%= @care_group.shortness_of_breath %></td>
-                            <td><%= @care_group.shortness_of_breath_comment %></td>
-                            <% if (@care_group.shortness_of_breath.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.shortness_of_breath.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.shortness_of_breath.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>                           
-                        </tr>
-                        <tr>
-                            <td>Depression</td>
-                            <td class="hidden-sm"><%= @care_group.depression %></td>
-                            <td><%= @care_group.depression_comment %></td>
-                            <% if (@care_group.depression.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.depression.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.depression.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>
-                        </tr>
-                        <tr>
-                            <td>Wellbeing</td>
-                            <td class="hidden-sm"><%= @care_group.wellbeing %></td>
-                            <td><%= @care_group.wellbeing_comment %></td>
-                            <% if (@care_group.wellbeing.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.wellbeing.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.wellbeing.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>
-                        </tr>
-                        <tr>
-                            <td><%= @care_group.care_group.symptom_type.capitalize %></td>
-                            <td class="hidden-sm"><%= @care_group.care_group_score %></td>
-                            <td><%= @care_group.care_group_comment %></td>
-                            <% if (@care_group.care_group_score.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@care_group.care_group_score.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
-                              <% else %>
-                                <% if (@care_group.care_group_score.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
-                                <% else %>
-                                  <td><span class="label label-info">None</span></td>
-                                <% end %>
-                              <% end %>
-                            <% end %>
-                        </tr>
-                    </tbody>
-                </table>
+                </div>
             </div>
             <!--End Basic Table-->
         </div>
@@ -287,12 +47,12 @@
         </div>
         <table class="table table-striped table-bordered">
           <tr>
-            <td><strong>Inputter name</strong></td>
-            <td><%= @care_group.inputter_name %></td>
+            <td><strong>Current SeeYouNow Patients</strong></td>
+            <td><%= @current_patients %></td>
           </tr>
           <tr>
-            <td><strong>Inputter type</strong></td>
-            <td><%= Inputter.find_by(id: @care_group.inputter_id).inputter_type %></td>
+            <td><strong>Archived Patients</strong></td>
+            <td><%= @past_patients %></td>
           </tr>
         </table>
       </div>

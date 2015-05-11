@@ -32,7 +32,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    user_params = params.require(:user).permit!
     @user = User.find_by(id: params["id"])
     @user.update(user_params)
     redirect_to user_path(@user), notice: "User updated!"

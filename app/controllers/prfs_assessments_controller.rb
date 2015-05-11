@@ -49,7 +49,6 @@ class PrfsAssessmentsController < ApplicationController
   end
 
   def update
-    prfs_assessment_params = params.require(:prfs_assessment).permit!
     find_prfs_assessment
     @prfs_assessment.update_attributes(prfs_assessment_params)
     if @prfs_assessment.valid?
@@ -80,5 +79,10 @@ class PrfsAssessmentsController < ApplicationController
 
     redirect_to prfs_assessments_path, notice: "PRFS assessment deleted!"
   end
+
+  private
+    def prfs_assessment_params
+      params.require(:prfs_assessment).permit!
+    end
 
 end
