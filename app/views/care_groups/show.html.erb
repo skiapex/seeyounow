@@ -5,57 +5,86 @@
     <title>SeeYouNow | Care Group</title>
 </head>
 
-<h4 class="page-header">
-  <p><strong><%= @care_group.name %></strong></p>
+<h3 class="page-header">
+  <strong><%= @care_group.name %> Care Group</strong>
     <span class="pull-right">
     <%= link_to "Edit", edit_care_group_path, class: 'btn btn-u btn-success' %>
     </span>
-</h4>
+</h3>
 
 <head>
 
 <!--=== Content Part ===-->
-<div class="container content">
-    <div class="row">
-        
-
-        <!-- Begin Content -->
-        <div class="col-md-9">
-            <!--Basic Table-->
-            <div class="panel panel-blue">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-tasks"></i> Scores</h3>
-                </div>
-                <div class="panel-body">
-                    <p>Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity</p>
-                </div>
-            </div>
-            <!--End Basic Table-->
-        </div>
-        <!-- End Content -->
-    </div>          
-</div><!--/container-->     
-<!--=== End Content Part ===-->
-
-
-<div class="container content">
+<div class="profile container content">
   <div class="row">
-    <div class="col-md-9">
-      <div class="panel panel-blue margin-bottom-40">
-        <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-tasks"></i> Information</h3>
-        </div>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <td><strong>Current SeeYouNow Patients</strong></td>
-            <td><%= @current_patients %></td>
-          </tr>
-          <tr>
-            <td><strong>Archived Patients</strong></td>
-            <td><%= @past_patients %></td>
-          </tr>
-        </table>
-      </div>
+    <div class="col-md-12">
+      <!--Profile Body-->
+      <div class="profile-body">
+
+        <div class="row margin-bottom-20"><!--start row-->
+
+
+<!--Patient Information-->
+          <div class="col-sm-4">
+              <div class="panel panel-profile no-bg">
+                  <div class="panel-heading overflow-h">
+                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Care Group Information</h2>
+                  </div>
+                  <div id="scrollbar" class="panel-body contentHolder">
+                        <div class="profile-post color-one">
+                            <span class="profile-post-numb"></span>
+                            <div class="profile-post-in">
+                                <p><strong>Number of Clinicians:</strong> <%= @clinicians.count %></p>
+                                <p><strong>Location:</strong> <%= @care_group.city %>, <%= @care_group.province %></p>
+                            </div>
+                        </div>
+                  </div>
+              </div>        
+          </div>
+          <!--End Patient Information-->
+
+          <!--End ESAS Assessments Post-->
+          <div class="col-sm-8">
+              <div class="panel panel-profile">
+                  <div class="panel-heading overflow-h">
+                      <h2 class="panel-title heading-sm pull-left"><i class="fa fa-line-chart"></i>Clinicians</h2>
+                  </div>
+                  <div id="scrollbar4" class="panel-body contentHolder">
+                    <% @clinicians.each do |clinician| %>
+                        <div class="comment">
+                            <div class="overflow-h">
+                                <strong>
+                                  <% if clinician.occupation.pronym == nil %>
+                                    <%= link_to "#{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %>
+                                  <% else %>
+                                    <%= link_to "#{clinician.occupation.pronym} #{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %>
+                                  <% end %>
+                                  <small class="pull-right"> <%= clinician.occupation.name %></small></strong> 
+                                <p>Current SeeYouNow Patients: 
+                                  <% if clinician.patients.group(:patient_deceased).count.values[0] == nil %>
+                                    0
+                                  <% else %>
+                                    <%= clinician.patients.group(:patient_deceased).count.values[0] %>
+                                  <% end %>
+                                  </p>
+                                <% if clinician.speciality == nil %>
+                                <% else %>
+                                  <ul class="list-inline comment-list">
+                                    <li><i class="fa fa-heartbeat"> </i>
+                                        <%= clinician.speciality.name %>
+                                    </li>
+                                </ul>
+                                <% end%>
+                            </div>    
+                        </div>
+                    <% end %>
+                  </div>
+              </div>    
+          </div><!--End ESAS Assessments Post-->
+
+        </div><!--/end row-->
+      </div><!--End Profile Body-->
     </div>
-  </div>
-</div>
+  </div><!--/end row-->
+</div><!--/container-->    
+<!--=== End Profile ===-->

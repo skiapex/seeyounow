@@ -51,6 +51,11 @@
           </div>
 
           <div class="form-group">
+              <%= form.label :pain %>
+              <%= form.collection_select :pain, {0,1,2,3,4,5,6,7,8,9,10}, :id, :full_name, class: "form-control" %>
+            </div>
+
+          <div class="form-group">
             <%= form.label :pain_comment %>
             <%= form.text_field :pain_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>

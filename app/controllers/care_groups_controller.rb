@@ -6,9 +6,7 @@ class CareGroupsController < ApplicationController
 
   def show
     @care_group = CareGroup.find_by(id: params["id"])
-    @patients = CareGroup.find_by(id: params["id"]).clinicians.patients.group(:patient_deceased).count
-    @current_patients = @patients.values[0]
-    @past_patients = @patients.values[1]
+    @clinicians = Clinician.where(care_group_id: @care_group.id).order("last_name asc")
   end
 
   def new
