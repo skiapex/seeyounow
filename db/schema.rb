@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer  "other_symptom_score"
     t.string   "other_symptom_comment"
     t.string   "esas_comment"
+    t.string   "resolution"
+    t.boolean  "priority_resolved",           default: false
   end
 
   add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id", using: :btree
@@ -162,8 +164,8 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.datetime "updated_at"
     t.string   "inputter_name"
     t.integer  "inputter_id"
-    t.integer  "activity_and_function"
     t.string   "prfs_comment"
+    t.integer  "activity_and_function"
   end
 
   add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id", using: :btree

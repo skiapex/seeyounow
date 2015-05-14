@@ -14,8 +14,11 @@
 <% end %>
 
 <h3 class="page-header">
-  Complete new PRFS assessment
+  Patient Reported Functional Status (PRFS) Tool
 </h3>
+<h4 span class="diagnosis">
+  Activities & Function: Over the past month generally rate patient's activity.  This should be preformed after completing an ESAS Assessment.
+</h4>
 
 <div class="profile container content">
   <div class="centre">
@@ -23,36 +26,31 @@
       <!--Profile Body-->
       <div class="profile-body">
 
-        <%= form_for @prfs_assessment do |form| %>
+        <%= bootstrap_form_for(@prfs_assessment, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-8") do |form| %>
 
           <% if current_clinician %>
             <div class="form-group">
-              <%= form.label :patient_id %>
-              <%= form.collection_select :patient_id, Clinician.find_by(id: current_clinician.id).patients.order("first_name asc"), :id, :full_name, class: "form-control" %>
+              <%= form.collection_select :patient_id, Clinician.find_by(id: current_clinician.id).patients.order("first_name asc"), :id, :full_name, class: "form-control", control_col: "col-sm-6", label: "Select Patient" %>
             </div>
           <% end %>
 
           <% if current_clinician %>
           <% else %>
             <div class="form-group">
-              <%= form.label :inputter_name %>
               <%= form.text_field :inputter_name, class: "form-control", placeholder: "Inputter name" %>
             </div>
 
             <div class="form-group">
-              <%= form.label :inputter_id %>
-              <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control" %>
+              <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control", control_col: "col-sm-6", label: "Inputter Type" %>
             </div>
           <% end %>
 
           <div class="form-group">
-            <%= form.label :activity_and_function %>
-            <%= form.text_field :activity_and_function, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :activity_and_function, @select_options, class: "form-control", control_col: "col-sm-8" %>
           </div>
 
           <div class="form-group">
-            <%= form.label :prfs_comment %>
-            <%= form.text_field :prfs_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :prfs_comment, class: "form-control", label: "PRFS Comment", placeholder: "Leave a comment" %>
           </div>
 
           <%= form.button 'Submit PRFS assessment', class: "btn btn-u btn-success" %>

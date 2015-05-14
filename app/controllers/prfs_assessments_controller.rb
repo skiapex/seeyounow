@@ -16,6 +16,7 @@ class PrfsAssessmentsController < ApplicationController
 
   def new
     @prfs_assessment = PrfsAssessment.new
+    @select_options = {'normal with no limitations' => ['0'], 'not my normal self, but able to be up and about with fairly normal activities' => ['1'], 'not feeling up to most things, but in bed or chair less than half the day' => ['2'], 'able to do little activity & spend most of the day in bed or chair' => ['3'], 'pretty much bedridden, rarely out of bed' => ['4']}
   end
 
   def create
