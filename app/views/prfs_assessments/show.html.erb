@@ -6,13 +6,13 @@
 </head>
 
 <h4 class="page-header">
-  <p><strong>Completed by:</strong> <%= link_to "#{@prfs_assessment.patient.first_name} #{@prfs_assessment.patient.last_name}", patient_path(@prfs_assessment.patient) %></p>
+  <p><strong>Patient:</strong> <%= link_to "#{@prfs_assessment.patient.first_name} #{@prfs_assessment.patient.last_name}", patient_path(@prfs_assessment.patient) %></p>
   <% if current_clinician %>
     <span class="pull-right">
     <%= link_to "Edit", edit_prfs_assessment_path, class: 'btn btn-u btn-success' %>
     </span>
   <% end %>
-  <p><strong>For:</strong> <%= @prfs_assessment.clinician.full_name %></p>
+  <p><strong>Primary Clinician:</strong> <%= @prfs_assessment.clinician.full_name %></p>
 </h4>
 <h4 span class="time"><strong>Completed:</strong> <%= @prfs_assessment.updated_at.strftime("%B %d, %Y") %> at <%= @prfs_assessment.updated_at.strftime("%H:%M") %>
 
@@ -35,7 +35,7 @@
     function drawChart() {
 
       var data = google.visualization.arrayToDataTable([
-         ['Symptom', 'Intensity', { role: 'style' }],
+         [' ', 'Score', { role: 'style' }],
          ['Activity and Function', <%= @prfs_assessment.activity_and_function %>, '#3498db' ],
       ]);
 
@@ -44,16 +44,16 @@
         width: 1000,
         height: 563,
         hAxis: {
-          title: 'Symptom',
-          gridlines: {count: 10}
+          title: "Patient's Activity Level",
+          gridlines: {count: 4}
         },
         vAxis: {
-          title: 'Intensity (scale of 1-10)'
+          title: 'Score (scale of 0-4)'
           // {minValue: 0}
           // viewWindowMode:'explicit',
           // viewWindow:{
-          //   max:10,
-          //   min:1
+          //   max:4,
+          //   min:0
         }
       };
 
@@ -83,10 +83,10 @@
             <!--Basic Table-->
             <div class="panel panel-blue">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-tasks"></i> Scores</h3>
+                    <h3 class="panel-title"><i class="fa fa-tasks"></i> Score</h3>
                 </div>
                 <div class="panel-body">
-                    <p>Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity</p>
+                    <p>The Patient Reported Functional Status (PRFS) tool is a tool completed by patients that assesses their functional status, or activity levels. They are prompted to complete this tool after they have completed their ESAS (Edmonton Symptom Assessment System). Patients are asked to rate their general activity level over the past month by selecting one answer out of five different response options.</p>
                 </div>                                      
                 <table class="table table-striped">
                     <thead>
