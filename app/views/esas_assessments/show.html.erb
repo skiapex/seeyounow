@@ -6,13 +6,13 @@
 </head>
 
 <h4 class="page-header">
-  <p><strong>Completed by:</strong> <%= link_to "#{@esas_assessment.patient.first_name} #{@esas_assessment.patient.last_name}", patient_path(@esas_assessment.patient) %></p>
+  <p><strong>Patient:</strong> <%= link_to "#{@esas_assessment.patient.first_name} #{@esas_assessment.patient.last_name}", patient_path(@esas_assessment.patient) %></p>
   <% if current_clinician %>
     <span class="pull-right">
     <%= link_to "Edit", edit_esas_assessment_path, class: 'btn btn-u btn-success' %>
     </span>
   <% end %>
-  <p><strong>For:</strong> <%= @esas_assessment.clinician.full_name %></p>
+  <p><strong>Primary Clinician:</strong> <%= @esas_assessment.clinician.full_name %></p>
 </h4>
 <h4 span class="time"><strong>Completed:</strong> <%= @esas_assessment.updated_at.strftime("%B %d, %Y") %> at <%= @esas_assessment.updated_at.strftime("%H:%M") %>
 

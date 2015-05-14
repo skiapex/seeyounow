@@ -69,6 +69,8 @@ EsasAssessment:
   other_symptom_score: integer
   other_symptom_comment: string
   esas_comment: string
+  resolution: string
+  priority_resolved: boolean
 
 PrfsAssessment:
   patient_id: integer

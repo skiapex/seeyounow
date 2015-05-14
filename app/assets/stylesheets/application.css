@@ -50,4 +50,5 @@
  *= require prettify
  *= require settings
  *= require skin
+ *= require rails_bootstrap_forms
  */

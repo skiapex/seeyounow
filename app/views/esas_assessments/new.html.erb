@@ -16,6 +16,9 @@
 <h3 class="page-header">
   Complete new ESAS assessment
 </h3>
+<h4 span class="diagnosis">
+  Please select a value for each symptom between 0 to 10, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity
+</h4>
 
 <div class="profile container content">
   <div class="centre">
@@ -23,130 +26,120 @@
       <!--Profile Body-->
       <div class="profile-body">
 
-        <%= form_for @esas_assessment do |form| %>
+        <%= bootstrap_form_for(@esas_assessment, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-8") do |form| %>
           
           <% if current_clinician %>
             <div class="form-group">
-              <%= form.label :patient_id %>
-              <%= form.collection_select :patient_id, Clinician.find_by(id: current_clinician.id).patients.order("first_name asc"), :id, :full_name, class: "form-control" %>
+              <%= form.collection_select :patient_id, Clinician.find_by(id: current_clinician.id).patients.order("first_name asc"), :id, :full_name, class: "form-control", control_col: "col-sm-6"  %>
             </div>
           <% end %>
 
           <% if current_clinician %>
           <% else %>
             <div class="form-group">
-              <%= form.label :inputter_name %>
               <%= form.text_field :inputter_name, class: "form-control", placeholder: "Inputter name" %>
             </div>
 
             <div class="form-group">
-              <%= form.label :inputter_id %>
-              <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control" %>
+              <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control", control_col: "col-sm-6" %>
             </div>
           <% end %>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
           <div class="form-group">
-            <%= form.label :pain %>
-            <%= form.text_field :pain, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :pain, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2" %>
           </div>
 
           <div class="form-group">
-              <%= form.label :pain %>
-              <%= form.collection_select :pain, {0,1,2,3,4,5,6,7,8,9,10}, :id, :full_name, class: "form-control" %>
-            </div>
-
-          <div class="form-group">
-            <%= form.label :pain_comment %>
             <%= form.text_field :pain_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
           <div class="form-group">
-            <%= form.label :tiredness %>
-            <%= form.text_field :tiredness, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :tiredness, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :tiredness_comment %>
             <%= form.text_field :tiredness_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
             <div class="form-group">
-            <%= form.label :drowsiness %>
-            <%= form.text_field :drowsiness, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :drowsiness, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :drowsiness_comment %>
             <%= form.text_field :drowsiness_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
             <div class="form-group">
-            <%= form.label :nausea %>
-            <%= form.text_field :nausea, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :nausea, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :nausea_comment %>
             <%= form.text_field :nausea_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
           <div class="form-group">
-            <%= form.label :lack_of_appetite %>
-            <%= form.text_field :lack_of_appetite, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :lack_of_appetite, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :lack_of_appetite_comment %>
             <%= form.text_field :lack_of_appetite_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
           <div class="form-group">
-            <%= form.label :shortness_of_breath %>
-            <%= form.text_field :shortness_of_breath, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :shortness_of_breath, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :shortness_of_breath_comment %>
             <%= form.text_field :shortness_of_breath_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
           <div class="form-group">
-            <%= form.label :depression %>
-            <%= form.text_field :depression, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :depression, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :depression_comment %>
             <%= form.text_field :depression_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
           <div class="form-group">
-            <%= form.label :wellbeing %>
-            <%= form.text_field :wellbeing, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :wellbeing, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :wellbeing_comment %>
             <%= form.text_field :wellbeing_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
           <div class="form-group">
-            <%= form.label :other_symptom_id %>
-            <%= form.collection_select :other_symptom_id, OtherSymptom.all.order("symptom_type asc"), :id, :symptom_type, class: "form-control" %>
+            <%= form.collection_select :other_symptom_id, OtherSymptom.all.order("symptom_type asc"), :id, :symptom_type, class: "form-control", control_col: "col-sm-4" %>
           </div>
 
           <div class="form-group">
-            <%= form.label :other_symptom_score %>
-            <%= form.text_field :other_symptom_score, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :other_symptom_score, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :other_symptom_comment %>
             <%= form.text_field :other_symptom_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
           <div class="form-group">
-            <%= form.label :esas_comment %>
             <%= form.text_field :esas_comment, class: "form-control", placeholder: "Leave a comment" %>
           </div>
 

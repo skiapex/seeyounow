@@ -19,6 +19,7 @@ gem 'active_median'
 gem 'country_select'
 #gem 'mailboxer' #, '~> 0.12.5'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap_form'
 gem 'high_voltage' #, '~> 2.2.1'
 gem 'rails_12factor', group: :production
 gem 'compass' #, '~> 1.0.3'
