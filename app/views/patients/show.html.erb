@@ -1,6 +1,10 @@
 <!-- Use view helpers (e.g. link_to and image_tag) -->
 <!-- and implement real data -->
 
+<% content_for(:body_attributes) do %>
+    data-no-turbolink="true"
+  <% end %>
+
 <head>
     <title>SeeYouNow | Patient Profile</title>
 </head> 

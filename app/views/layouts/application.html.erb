@@ -32,7 +32,11 @@
     ga('send', 'pageview');
   </script>
 </head>
-<body>
+<body 
+  <% if content_for?(:body_attributes) %>
+    <%= yield(:body_attributes) %> 
+  <% end %>>
+
 <div class="wrapper">
     <!--=== Header ===-->    
     <div class="header">
@@ -251,6 +255,7 @@
 <%= javascript_include_tag 'app', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'datepicker', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'highcharts', "chartkick" %>
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
