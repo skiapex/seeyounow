@@ -26,7 +26,7 @@
                                     <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bell-o"></i> Notifications</h2>
                                 </div>
                                 <div id="scrollbar3" class="panel-body contentHolder">
-                                  <% @notifications.sort_by{|e| e[:created_at]}.reverse.limit(99).each do |notification| %>
+                                  <% @notifications.sort_by{|e| e[:created_at]}.reverse.each do |notification| %>
                                     <% if notification.is_a?(EsasAssessment) %>
                                       <div class="alert-blocks alert-blocks-success alert-dismissable">
                                           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
