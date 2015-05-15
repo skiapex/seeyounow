@@ -63,6 +63,8 @@ EsasAssessment:
   shortness_of_breath_comment: string
   depression: integer
   depression_comment: string
+  anxiety: integer
+  anxiety_comment: string
   wellbeing: integer
   wellbeing_comment: string
   other_symptom_id: integer

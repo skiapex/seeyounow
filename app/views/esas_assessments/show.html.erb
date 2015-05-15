@@ -43,6 +43,7 @@
          ['Lack of Appetite', <%= @esas_assessment.lack_of_appetite %>, '#3498db' ],
          ['Shortness of Breath', <%= @esas_assessment.shortness_of_breath %>, '#3498db' ],
          ['Depression', <%= @esas_assessment.depression %>, '#3498db' ],
+         ['Anxiety', <%= @esas_assessment.anxiety %>, '#3498db' ],
          ['Wellbeing', <%= @esas_assessment.wellbeing %>, '#3498db' ],
          ['<%= @esas_assessment.other_symptom.symptom_type.capitalize %>', <%= @esas_assessment.other_symptom_score %>, '#3498db' ],
       ]);
@@ -225,6 +226,24 @@
                                 <td><span class="label label-warning">Moderate</span></td>
                               <% else %>
                                 <% if (@esas_assessment.depression.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td>Anxiety</td>
+                            <td class="hidden-sm"><%= @esas_assessment.anxiety %></td>
+                            <td><%= @esas_assessment.anxiety_comment %></td>
+                            <% if (@esas_assessment.anxiety.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@esas_assessment.anxiety.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@esas_assessment.anxiety.between?(8, 10)) %>
                                   <td><span class="label label-danger">High!</span></td>
                                 <% else %>
                                   <td><span class="label label-info">None</span></td>

@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string   "esas_comment"
     t.string   "resolution"
     t.boolean  "priority_resolved",           default: false
+    t.integer  "anxiety"
+    t.string   "anxiety_comment"
   end
 
   add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id", using: :btree

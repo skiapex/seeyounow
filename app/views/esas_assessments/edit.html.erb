@@ -23,119 +23,134 @@
       <!--Profile Body-->
       <div class="profile-body">
 
-        <%= form_for @esas_assessment do |form| %>
+        <%= bootstrap_form_for(@esas_assessment, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-8") do |form| %>
           
           <% if current_clinician %>
           <% else %>
             <div class="form-group">
-              <%= form.label :inputter_name %>
               <%= form.text_field :inputter_name, class: "form-control", placeholder: "Inputter name" %>
             </div>
 
             <div class="form-group">
-              <%= form.label :inputter_id %>
-              <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control" %>
+              <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, :selected => form.object.inputter_id, class: "form-control", control_col: "col-sm-6" %>
             </div>
           <% end %>
 
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
           <div class="form-group">
-            <%= form.label :pain %>
-            <%= form.text_field :pain, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :pain, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Pain Score" %>
           </div>
 
           <div class="form-group">
-            <%= form.label :pain_comment %>
-            <%= form.text_field :pain_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :pain_comment, class: "form-control", placeholder: "Leave a comment", label: "Pain Comment" %>
+          </div>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+          <p>Tiredness - decreased energy level (but not necessarily sleepy)</p>
+
+          <div class="form-group">
+            <%= form.select :tiredness, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Tiredness Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :tiredness %>
-            <%= form.text_field :tiredness, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.text_field :tiredness_comment, class: "form-control", placeholder: "Leave a comment", label: "Tiredness Comment" %>
           </div>
 
-          <div class="form-group">
-            <%= form.label :tiredness_comment %>
-            <%= form.text_field :tiredness_comment, class: "form-control", placeholder: "Leave a comment" %>
-          </div>
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+          <p>Drowsiness - sleepiness</p>
 
             <div class="form-group">
-            <%= form.label :drowsiness %>
-            <%= form.text_field :drowsiness, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :drowsiness, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Drowsiness Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :drowsiness_comment %>
-            <%= form.text_field :drowsiness_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :drowsiness_comment, class: "form-control", placeholder: "Leave a comment", label: "Drowsiness Comment" %>
           </div>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
 
             <div class="form-group">
-            <%= form.label :nausea %>
-            <%= form.text_field :nausea, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :nausea, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Nausea Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :nausea_comment %>
-            <%= form.text_field :nausea_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :nausea_comment, class: "form-control", placeholder: "Leave a comment", label: "Nausea Comment" %>
+          </div>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
+          <div class="form-group">
+            <%= form.select :lack_of_appetite, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Lack of Appetite Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :lack_of_appetite %>
-            <%= form.text_field :lack_of_appetite, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.text_field :lack_of_appetite_comment, class: "form-control", placeholder: "Leave a comment", label: "Lack of Appetite Comment" %>
+          </div>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
+          <div class="form-group">
+            <%= form.select :shortness_of_breath, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Shortness of Breath Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :lack_of_appetite_comment %>
-            <%= form.text_field :lack_of_appetite_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :shortness_of_breath_comment, class: "form-control", placeholder: "Leave a comment", label: "Shortness of Breath Comment" %>
           </div>
 
-            <div class="form-group">
-            <%= form.label :shortness_of_breath %>
-            <%= form.text_field :shortness_of_breath, class: "form-control", placeholder: "Value from 1 - 10" %>
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+          <p>Depression - sad or blue</p>
+
+          <div class="form-group">
+            <%= form.select :depression, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Depression Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :shortness_of_breath_comment %>
-            <%= form.text_field :shortness_of_breath_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :depression_comment, class: "form-control", placeholder: "Leave a comment", label: "Depression Comment" %>
+          </div>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+          <p>Anxiety - nervousness or restlessness</p>
+
+          <div class="form-group">
+            <%= form.select :anxiety, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Anxiety Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :depression %>
-            <%= form.text_field :depression, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.text_field :anxiety_comment, class: "form-control", placeholder: "Leave a comment", label: "Anxiety Comment" %>
+          </div>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+          <p>Wellbeing: overall comfort, both physical and otherwise; truthfully answering the question,
+“How are you?”</p>
+
+          <div class="form-group">
+            <%= form.select :wellbeing, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Wellbeing Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :depression_comment %>
-            <%= form.text_field :depression_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :wellbeing_comment, class: "form-control", placeholder: "Leave a comment", label: "Wellbeing Comment" %>
+          </div>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
+          <p>One blank scale is available for patients to use to assess an “other problem” as needed</p>
+
+          <div class="form-group">
+            <%= form.collection_select :other_symptom_id, OtherSymptom.all.order("symptom_type asc"), :id, :symptom_type, :selected => form.object.other_symptom_id, class: "form-control", control_col: "col-sm-4" %>
           </div>
 
           <div class="form-group">
-            <%= form.label :wellbeing %>
-            <%= form.text_field :wellbeing, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :other_symptom_score, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
           </div>
 
           <div class="form-group">
-            <%= form.label :wellbeing_comment %>
-            <%= form.text_field :wellbeing_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :other_symptom_comment, class: "form-control", placeholder: "Leave a comment", label: "Tiredness Comment" %>
           </div>
 
-          <div class="form-group">
-            <%= form.label :other_symptom_id %>
-            <%= form.collection_select :other_symptom_id, OtherSymptom.all.order("symptom_type asc"), :id, :symptom_type, class: "form-control" %>
-          </div>
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
 
           <div class="form-group">
-            <%= form.label :other_symptom_score %>
-            <%= form.text_field :other_symptom_score, class: "form-control", placeholder: "Value from 1 - 10" %>
-          </div>
-
-          <div class="form-group">
-            <%= form.label :other_symptom_comment %>
-            <%= form.text_field :other_symptom_comment, class: "form-control", placeholder: "Leave a comment" %>
-          </div>
-
-          <div class="form-group">
-            <%= form.label :esas_comment %>
-            <%= form.text_field :esas_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :esas_comment, class: "form-control", placeholder: "Leave a comment", label: "Overall ESAS Comment" %>
           </div>
           
           <%= form.button 'Update ESAS assessment', class: "btn btn-u btn-success" %>

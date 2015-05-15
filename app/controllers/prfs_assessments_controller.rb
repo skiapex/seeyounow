@@ -47,10 +47,11 @@ class PrfsAssessmentsController < ApplicationController
 
   def edit
     @prfs_assessment = PrfsAssessment.find_by(id: params["id"])
+    @select_options = {'normal with no limitations' => ['0'], 'not my normal self, but able to be up and about with fairly normal activities' => ['1'], 'not feeling up to most things, but in bed or chair less than half the day' => ['2'], 'able to do little activity & spend most of the day in bed or chair' => ['3'], 'pretty much bedridden, rarely out of bed' => ['4']}
   end
 
   def update
-    find_prfs_assessment
+    @prfs_assessment = PrfsAssessment.find_by(id: params["id"])
     @prfs_assessment.update_attributes(prfs_assessment_params)
     if @prfs_assessment.valid?
 

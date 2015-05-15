@@ -23,26 +23,23 @@
       <!--Profile Body-->
       <div class="profile-body">
 
-        <%= form_for @prfs_assessment do |form| %>
+        <%= bootstrap_form_for(@prfs_assessment, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-8") do |form| %>
           
           <div class="form-group">
             <%= form.label :inputter_name %>
-            <%= form.text_field :inputter_name, class: "form-control", placeholder: "Imputter name" %>
+            <%= form.text_field :inputter_name, class: "form-control", control_col: "col-sm-6", label: "Inputter Name" %>
           </div>
 
           <div class="form-group">
-            <%= form.label :inputter_id %>
-            <%= form.collection_select :inputter_id, Inputter.all, :id, :inputter_type, class: "form-control" %>
+            <%= form.collection_select :inputter_id, Inputter.all, :id, :inputter_type, :selected => form.object.inputter_id, class: "form-control", control_col: "col-sm-3", label: "Inputter Type" %>
           </div>
 
           <div class="form-group">
-            <%= form.label :activity_and_function %>
-            <%= form.text_field :activity_and_function, class: "form-control", placeholder: "Value from 1 - 10" %>
+            <%= form.select :activity_and_function, @select_options, class: "form-control", control_col: "col-sm-2" %>
           </div>
 
           <div class="form-group">
-            <%= form.label :prfs_comment %>
-            <%= form.text_field :prfs_comment, class: "form-control", placeholder: "Leave a comment" %>
+            <%= form.text_field :prfs_comment, class: "form-control", label: "PRFS Comment", placeholder: "Leave a comment" %>
           </div>
           
           <%= form.button 'Update PRFS assessment', class: "btn btn-u btn-success" %>
