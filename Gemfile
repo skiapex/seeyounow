@@ -12,7 +12,6 @@ gem 'jbuilder' #, '~> 2.0'
 gem 'sdoc' #, '~> 0.4.0', group: :doc
 gem 'bcrypt'
 gem 'ez'
-gem "chartkick"
 gem 'groupdate'
 gem 'hightop'
 gem 'active_median'

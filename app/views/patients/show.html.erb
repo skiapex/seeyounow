@@ -26,53 +26,47 @@
   </span>
 </h3>
 
-<% if current_clinician %>
-<head>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-    google.load('visualization', '1.1', {packages: ['line']});
-    google.setOnLoadCallback(drawChart);
+<!--=== ESAS Chart JS ===-->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1.1', {packages: ['line']});
+  google.setOnLoadCallback(drawChart);
 
-    function drawChart() {
+  function drawChart() {
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('datetime', 'Tate');
-      data.addColumn('number', 'Pain');
-      data.addColumn('number', 'Tiredness');
-      data.addColumn('number', 'Drowsiness');
-      data.addColumn('number', 'Nausea');
-      data.addColumn('number', 'Lack of Appetite');
-      data.addColumn('number', 'Shortness of Breath');
-      data.addColumn('number', 'Depression');
-      data.addColumn('number', 'Wellbeing');
-      data.addColumn('number', 'Other Problem');
+    var data = new google.visualization.DataTable();
+    data.addColumn('datetime', 'Date');
+    data.addColumn('number', 'Pain');
+    data.addColumn('number', 'Tiredness');
+    data.addColumn('number', 'Drowsiness');
+    data.addColumn('number', 'Nausea');
+    data.addColumn('number', 'Lack of Appetite');
+    data.addColumn('number', 'Shortness of Breath');
+    data.addColumn('number', 'Depression');
+    data.addColumn('number', 'Wellbeing');
+    data.addColumn('number', 'Other Problem');
 
-      data.addRows([
-        <% @esas_assessments.each do |esas_assessment| %>
-          [ new Date(<%= esas_assessment.created_at.year %>, <%= esas_assessment.created_at.month.to_i - 1 %>, <%= esas_assessment.created_at.day %>, <%= esas_assessment.created_at.hour %>, <%= esas_assessment.created_at.min %>, 0), <%= "#{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
-        <% end %>
-      ]);
+    data.addRows([
+      <% @esas_assessments.each do |esas_assessment| %>
+        [ new Date(<%= esas_assessment.created_at.year %>, <%= esas_assessment.created_at.month.to_i - 1 %>, <%= esas_assessment.created_at.day %>, <%= esas_assessment.created_at.hour %>, <%= esas_assessment.created_at.min %>, 0), <%= "#{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
+      <% end %>
+    ]);
 
-      var options = {
-        chart: {
-          title: 'Profile of Symptom Severity Over Time',
-          subtitle: 'severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity'
-        },
-        width: 900,
-        height: 500
-      };
+    var options = {
+      chart: {
+        title: 'Profile of Symptom Severity Over Time',
+        subtitle: 'severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity'
+      },
+      width: 900,
+      height: 500
+    };
 
-      var chart = new google.charts.Line(document.getElementById('linechart_material'));
+    var chart = new google.charts.Line(document.getElementById('linechart_material'));
 
-      chart.draw(data, options);
-    }
-  </script>
-</head>
-<body>
-  <div id="linechart_material"></div>
-</body>
-<% end %>
-
+    chart.draw(data, options);
+  }
+</script>
+<!--=== End ESAS Chart JS ===-->
 
 <body>
 <!--=== Profile ===-->
@@ -82,12 +76,12 @@
               <!--Profile Body-->
               <div class="profile-body">
 
-                <div class="row margin-bottom-20"><!--start row-->
+                <div class="row"><!--start row-->
 
                   <!--=== Goals of Care Block ===-->
                   <div class="bg-color-light">
                       <div class="container content-sm">
-                          <div class="headline-center margin-bottom-10">
+                          <div class="headline-center">
                               <h2>Goals of Care </h2>
                               <h3><p><%= @patient.goals_of_care %></p></h3>
                           </div>
@@ -96,6 +90,12 @@
                   <!--=== End Goals of Care Block ===-->
 
                   <% if current_clinician %>
+
+                  <!--=== ESAS Chart Block ===-->
+                  <div class="container content-sm">
+                      <div id="linechart_material"></div>
+                  </div>
+                  <!--=== ESAS Chart Block ===-->
 
                   <!--Patient Information-->
                   <div class="col-sm-4">

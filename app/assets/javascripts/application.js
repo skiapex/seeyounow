@@ -16,6 +16,7 @@
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require jquery-migrate.min
+//= require highcharts
 //= require back-to-top
 //= require jquery.countdown
 //= require jquery.backstretch.min
@@ -38,6 +39,6 @@
 //= require custom
 //= require app
 //= require login
-//= require chartkick
+//= require jsapi
 //= require clinicians
 //= require turbolinks
