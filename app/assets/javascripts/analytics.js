@@ -1,5 +1,3 @@
-app/assets/javascripts/analytics.js
-
 $(document).on('page:change', function() {
  if (window._gaq != null) {
   return _gaq.push(['_trackPageview']);
