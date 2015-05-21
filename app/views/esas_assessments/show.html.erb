@@ -88,14 +88,14 @@
     <% if @esas_assessment.priority_resolved == true %>
       <div class="row">
         <div class="col-md-6 comment">
-          <h2>Resolution</h2>
+          <span class="dropcap">&#x2713;</span><h2>Treatment</h2>
           <p>
           <%= @esas_assessment.resolution %>
         </p>
         <p>
           <% if @esas_assessment.resolved_by == 0 %>
           <% else %>
-            Resolved by: <%= Clinician.find_by(id: @esas_assessment.resolved_by).full_name %>
+            Treated by: <%= Clinician.find_by(id: @esas_assessment.resolved_by).full_name %>
           <% end %>
         </p>
         </div>
@@ -110,7 +110,7 @@
         <p>
           <% if @esas_assessment.resolved_by == 0 %>
           <% else %>
-            Resolved by: <%= Clinician.find_by(id: @esas_assessment.resolved_by).full_name %>
+            Treated by: <%= Clinician.find_by(id: @esas_assessment.resolved_by).full_name %>
           <% end %>
         </p>
         </div>
