@@ -25,19 +25,19 @@
 
         <%= bootstrap_form_for(@esas_assessment, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-8") do |form| %>
           
-          <% if @esas_assessment.priority_resolved == false %>
+          <% if [@esas_assessment.pain, @esas_assessment.tiredness, @esas_assessment.drowsiness, @esas_assessment.nausea, @esas_assessment.lack_of_appetite, @esas_assessment.shortness_of_breath, @esas_assessment.depression, @esas_assessment.wellbeing, @esas_assessment.other_symptom_score].max >= 8 %>
             <div class="form-group">
-              <%= form.text_field :resolution, class: "form-control", rows: 5, placeholder: "Write resolution here" %>
+              <%= form.text_field :resolution, class: "form-control", rows: 5, placeholder: "Write treatment here", label: "Treatment" %>
             </div>
 
+            <%= form.form_group :priority_resolved do %>
+              <%= form.check_box :priority_resolved, label: "High priority symptoms treated" %>
+            <% end %>
+
             <div class="form-group">
-              <%= form.check_box :priority_resolved, control_col: "col-sm-2" %>
+              <%= form.select :resolved_by, @resolved_by, class: "form-control", control_col: "col-sm-2", label: "Treated by" %>
             </div>
           <% end %>
-
-          <div class="form-group">
-            <%= form.select :resolved_by, @resolved_by, class: "form-control", control_col: "col-sm-2" %>
-          </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
 
