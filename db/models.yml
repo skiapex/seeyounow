@@ -73,6 +73,7 @@ EsasAssessment:
   esas_comment: string
   resolution: string
   priority_resolved: boolean
+  resolved_by: integer
 
 PrfsAssessment:
   patient_id: integer

@@ -71,7 +71,11 @@
                                         <% else %>
                                             Comment: <%= esas_assessment.esas_comment %>,
                                         <% end %>
-                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %></p>
+                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %><small class="pull-right">
+                                              <% if esas_assessment.priority_resolved == true %>
+                                                RESOLVED
+                                              <% end %>
+                                              </small></p>
                                         <ul class="list-inline comment-list">
                                             <li><i class="fa fa-heartbeat"> </i> <%= esas_assessment.patient.diagnosis %></li>
                                         </ul>

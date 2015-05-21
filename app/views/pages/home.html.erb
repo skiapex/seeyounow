@@ -3,6 +3,55 @@
     <title>SeeYouNow | Home</title>
 </head>	
 
+    <!--=== Priority Alerts ===-->
+    <div class="profile container content">
+      <div class="row">
+          <% if current_clinician %>            
+            <div class="col-md-7">
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                        
+                    <div class="row">
+                        <!--Priority-->
+                        <div class="col-sm-12 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bell-o"></i> Priority Alerts</h2>
+                                </div>
+                                <div id="scrollbar3" class="panel-body contentHolder">
+                                  <% @esas_assessments.order("created_at desc").each do |priority| %>
+                                    <% if [priority.pain, priority.tiredness, priority.drowsiness, priority.nausea, priority.lack_of_appetite, priority.shortness_of_breath, priority.depression, priority.wellbeing, priority.other_symptom_score].max >= 8 and priority.priority_resolved == false %>
+                                        <div class="alert-blocks alert-blocks-error alert-dismissable">
+                                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                            <i class="icon-custom rounded-x icon-bg-red fa fa-line-chart"></i>
+                                            <div class="overflow-h">
+                                                <strong class="color-red"><%= link_to "Priority ESAS Assessment", esas_assessment_path(priority) %><small class="pull-right"><em><%= time_ago_in_words(priority.created_at) %> ago</em></small></strong> 
+                                                <p>Submitted by <%= priority.patient.first_name %> <%= priority.patient.last_name %></p>
+                                            </div>    
+                                        </div>
+                                    <% end %>
+                                  <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Priority-->
+                    </div><!--/end row-->
+                </div>
+            </div>
+          <% end %>
+      </div>
+    </div><!--/container-->    
+    <!--=== End Priority Alerts ===-->
+
+
+
+
+
+
+
+
+
 
     <!--=== Profile ===-->
     <div class="profile container content">

@@ -3,13 +3,66 @@
 
 <head>
     <title>SeeYouNow | ESAS Assessment</title>
+
+ <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+  
+        
+  <script type="text/javascript">
+  google.load('visualization', '1', {packages: ['corechart']});
+  google.setOnLoadCallback(drawChart);
+
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+       ['Symptom', 'Intensity', { role: 'style' }],
+       ['Pain', <%= @esas_assessment.pain %>, <% if @esas_assessment.pain >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['Tiredness', <%= @esas_assessment.tiredness %>, <% if @esas_assessment.tiredness >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['Drowsiness', <%= @esas_assessment.drowsiness %>, <% if @esas_assessment.drowsiness >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['Nausea', <%= @esas_assessment.nausea %>, <% if @esas_assessment.nausea >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['Lack of Appetite', <%= @esas_assessment.lack_of_appetite %>, <% if @esas_assessment.lack_of_appetite >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['Shortness of Breath', <%= @esas_assessment.shortness_of_breath %>, <% if @esas_assessment.shortness_of_breath >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['Depression', <%= @esas_assessment.depression %>, <% if @esas_assessment.depression >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['Anxiety', <%= @esas_assessment.anxiety %>, <% if @esas_assessment.anxiety >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['Wellbeing', <%= @esas_assessment.wellbeing %>, <% if @esas_assessment.wellbeing >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+       ['<%= @esas_assessment.other_symptom.symptom_type.capitalize %>', <%= @esas_assessment.other_symptom_score %>, <% if @esas_assessment.other_symptom_score >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+    ]);
+
+    var options = {
+      // chartArea:{left:20,top:0,width:'50%',height:'75%'}
+      width: 1000,
+      height: 563,
+      hAxis: {
+        title: 'Symptom',
+        gridlines: {count: 10}
+      },
+      vAxis: {
+        title: 'Intensity (scale of 1-10)'
+        // {minValue: 0}
+        // viewWindowMode:'explicit',
+        // viewWindow:{
+        //   max:10,
+        //   min:1
+      }
+    };
+
+    var chart = new google.visualization.ColumnChart(
+      document.getElementById('esas_scores'));
+
+    chart.draw(data, options);
+  }
+  </script>
 </head>
 
 <h4 class="page-header">
   <p><strong>Patient:</strong> <%= link_to "#{@esas_assessment.patient.first_name} #{@esas_assessment.patient.last_name}", patient_path(@esas_assessment.patient) %></p>
   <% if current_clinician %>
     <span class="pull-right">
-    <%= link_to "Edit", edit_esas_assessment_path, class: 'btn btn-u btn-success' %>
+      <% if @esas_assessment.priority_resolved == true %>
+        Priority Resolved &nbsp &nbsp <%= link_to "Edit", edit_esas_assessment_path, class: 'btn btn-u btn-success' %>
+      <% else %>
+        High Priority! &nbsp &nbsp <%= link_to "Resolve", edit_esas_assessment_path, class: 'btn btn-u btn-u-red btn-success' %>
+      <% end %>
     </span>
   <% end %>
   <p><strong>Primary Clinician:</strong> <%= @esas_assessment.clinician.full_name %></p>
@@ -23,64 +76,46 @@
   <% end %>
 </h4>
 
-<head>
-   <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
-    
-          <div id="ex0"></div>
-    <script type="text/javascript">
-    google.load('visualization', '1', {packages: ['corechart']});
-    google.setOnLoadCallback(drawChart);
+<body>
 
+  <% if @esas_assessment.resolution != nil %>
+    <% if @esas_assessment.priority_resolved == true %>
+      <div class="row">
+        <div class="col-md-6 comment">
+          <h2>Resolution</h2>
+          <p>
+          <%= @esas_assessment.resolution %>
+        </p>
+        <p>
+          Resolved by: <%= Clinician.find_by(id: @esas_assessment.resolved_by).full_name %>
+        </p>
+        </div>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="col-md-6 comment">
+          <h2>Notes on priority symptom</h2>
+          <p>
+          <%= @esas_assessment.resolution %>
+        </p>
+        <p>
+          From: <%= Clinician.find_by(id: @esas_assessment.resolved_by).full_name %>
+        </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 
-    function drawChart() {
+  <div id="esas_scores"></div>
 
-      var data = google.visualization.arrayToDataTable([
-         ['Symptom', 'Intensity', { role: 'style' }],
-         ['Pain', <%= @esas_assessment.pain %>, '#3498db' ],
-         ['Tiredness', <%= @esas_assessment.tiredness %>, '#3498db' ],
-         ['Drowsiness', <%= @esas_assessment.drowsiness %>, '#3498db' ],
-         ['Nausea', <%= @esas_assessment.nausea %>, '#3498db' ],
-         ['Lack of Appetite', <%= @esas_assessment.lack_of_appetite %>, '#3498db' ],
-         ['Shortness of Breath', <%= @esas_assessment.shortness_of_breath %>, '#3498db' ],
-         ['Depression', <%= @esas_assessment.depression %>, '#3498db' ],
-         ['Anxiety', <%= @esas_assessment.anxiety %>, '#3498db' ],
-         ['Wellbeing', <%= @esas_assessment.wellbeing %>, '#3498db' ],
-         ['<%= @esas_assessment.other_symptom.symptom_type.capitalize %>', <%= @esas_assessment.other_symptom_score %>, '#3498db' ],
-      ]);
-
-      var options = {
-        // chartArea:{left:20,top:0,width:'50%',height:'75%'}
-        width: 1000,
-        height: 563,
-        hAxis: {
-          title: 'Symptom',
-          gridlines: {count: 10}
-        },
-        vAxis: {
-          title: 'Intensity (scale of 1-10)'
-          // {minValue: 0}
-          // viewWindowMode:'explicit',
-          // viewWindow:{
-          //   max:10,
-          //   min:1
-        }
-      };
-
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('ex0'));
-
-      chart.draw(data, options);
-    }
-    </script>
-
-<div class="row">
-  <div class="col-md-6 comment">
-    <h2>Overall Comment</h2>
-    <p>
-      <%= @esas_assessment.esas_comment %>
-    </p>
+  <div class="row">
+    <div class="col-md-6 comment">
+      <h2>Overall Comment</h2>
+        <p>
+          <%= @esas_assessment.esas_comment %>
+        </p>
+    </div>
   </div>
-</div>
 
 <!--=== Content Part ===-->
 <div class="container content">
@@ -319,3 +354,4 @@
     </div>
   </div>
 </div>
+</body>
