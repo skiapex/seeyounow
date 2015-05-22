@@ -1,0 +1,37 @@
+<% if @note.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+  <% if @clinician.nil? %>
+    Edit note written by <%= @patient.first_name %> <%= @patient.last_name %> at <%= @note.created_at.to_s(:long) %> 
+  <% else %>
+    Edit note written by <%= @clinician.first_name %> <%= @clinician.last_name %> at <%= @note.created_at.to_s(:long) %> 
+  <% end %>
+</h3>
+
+<%= form_for @note do |form| %>
+  <div class="form-group">
+    <%= form.label "Between patient:" %>
+    <%= form.collection_select :patient_id, Patient.all, :id, :first_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "And clinician:" %>
+    <%= form.collection_select :clinician_id, Clinician.all, :id, :first_name, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :general_note %>
+    <%= form.text_area :general_note, class: "form-control", rows: 5, placeholder: "Leave a note" %>
+  </div>
+ 
+  <%= form.button 'Update Note', class: "btn btn-u btn-success" %>
+<% end %>

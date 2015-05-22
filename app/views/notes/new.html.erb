@@ -1,0 +1,107 @@
+<head>
+    <title>SeeYouNow | New Note</title>
+</head>
+
+<% if @note.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+  Write new note
+</h3>
+
+<body>
+
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
+
+                <div class="row margin-bottom-20"><!--start row-->
+
+                  <!--End Notes Post-->
+                  <div class="col-sm-7">
+                      <div class="panel panel-profile">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-notes-o"></i> Notes</h2>
+                          </div>
+                          <div id="scrollbar4" class="panel-body contentHolder">
+                          <% if current_clinician %>
+                            <% @notes.each_with_index do |note, index| %>
+                              <div class="note">
+                                  <div class="overflow-h">
+                                      <strong><%= note.patient.first_name %> <%= note.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(note.created_at) %></small></strong> 
+                                      <p><%= note.general_note %></p>
+                                      <ul class="list-inline note-list">
+                                          <li><i class="fa fa-heartbeat"></i> <%= note.patient.diagnosis %></li>
+                                      </ul>
+                                  </div>    
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <% @notes.each_with_index do |note, index| %>
+                              <div class="note">
+                                  <div class="overflow-h">
+                                      <strong><%= note.clinician.full_name %><small class="pull-right"> <%= time_ago_in_words(note.created_at) %></small></strong> 
+                                      <p><%= note.general_note %></p>
+                                      <ul class="list-inline note-list">
+                                          <li><i class="fa fa-user-md"></i> <a href="#"><%= note.clinician.occupation.name %></a></li>
+                                      </ul>
+                                  </div>    
+                              </div>
+                            <% end %>
+                          <% end %>
+                          </div>
+                      </div>    
+                  </div><!--End Notes Post-->
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+
+
+
+<% if current_clinician %>
+  <%= form_for [@patient, @note] do |form| %>
+    <div class="form-group">
+      <%= form.label :patient_id %>
+      <%= form.collection_select :patient_id, Patient.all.order("first_name asc"), :id, :full_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :general_note %>
+      <%= form.text_area :general_note, class: "form-control", rows: 5, placeholder: "Leave a note" %>
+    </div>
+
+    <%= form.button 'Submit Note', class: "btn btn-success" %>
+  <% end %>
+<% else %>
+  <%= form_for [@patient, @note] do |form| %>
+
+    <div class="form-group">
+      <%= form.label :clinician_id %>
+      <%= form.collection_select :clinician_id, Clinician.all.order("last_name asc"), :id, :full_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :general_note %>
+      <%= form.text_area :general_note, class: "form-control", rows: 5, placeholder: "Leave a note" %>
+    </div>
+
+    <%= form.button 'Submit Note', class: "btn btn-u btn-success" %>
+  <% end %>
+<% end %>
+
+</body>

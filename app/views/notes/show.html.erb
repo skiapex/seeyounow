@@ -1,0 +1,58 @@
+<head>
+    <title>SeeYouNow | Notes</title>
+</head>
+
+<h3 class="page-header">
+  <% if current_clinician %>
+    Conversation wth <%= link_to "#{@patient.first_name} #{@patient.last_name}", patient_path(@patient.id) %>
+  <% else %>
+    Conversation wth <%= link_to "#{@clinician.full_name}", patient_path(@patient.id) %>
+  <% end %>
+  <span class="pull-right">
+    <%= link_to "New note", new_note_path, class: 'btn btn-u btn-success' %>
+  </span>
+</h3>
+
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
+
+                <div class="row margin-bottom-20"><!--start row-->
+                  
+                  <!--End Notes Post-->
+                  <div class="col-sm-7">
+                      <div class="panel panel-profile">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-notes-o"></i> Notes</h2>
+                          </div>
+                          <div id="scrollbar4" class="panel-body contentHolder">
+                            <% @notes.each_with_index do |note, index| %>
+                              <div class="note">
+                                  <div class="overflow-h">
+                                    <% if note.from == note.patient.user_id %>
+                                      <strong><%= link_to "#{note.patient.first_name} #{note.patient.last_name}", note_path(note) %><small class="pull-right"> <%= time_ago_in_words(note.created_at) %></small></strong>
+                                    <% else %>
+                                      <strong><%= link_to "#{note.clinician.full_name }", note_path(note) %><small class="pull-right"> <%= time_ago_in_words(note.created_at) %></small></strong>
+                                    <% end %>
+                                        <p><%= note.general_note %></p>
+                                  </div>    
+                              </div>
+                            <% end %>
+                          </div>
+                      </div>    
+                  </div><!--End Notes Post-->
+
+
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html> 

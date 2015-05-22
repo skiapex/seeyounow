@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<head>
+    <title>SeeYouNow | Notes</title>
+</head>
+
+<h3 class="page-header">
+  All Conversations
+  <span class="pull-right">
+    <%= link_to "New note", new_note_path, class: 'btn btn-u btn-success' %>
+  </span>
+</h3>
+
+<!-- <ul>
+
+
+  <% @notes.each do |note| %>
+  		<% if current_clinician %>
+	    	<li><h4><%= link_to "With #{ note.patient.first_name } #{ note.patient.last_name} from #{note.created_at.to_s(:long)}", note_path(note) %><%= time_ago_in_words(note.created_at) %></h4> 
+	    
+	    	<%= link_to "Edit", edit_note_path(note) %>
+	    <% else %>
+	    	<li><h4><%= link_to "With #{ note.clinician.first_name } #{ note.clinician.last_name} from #{note.created_at.to_s(:long)}", note_path(note) %></h4>
+	    <% end %>
+
+	    <%= link_to "Delete", note_path(note), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></li>
+  <% end %>
+</ul> -->
+
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+            	<!--Profile Body-->
+            	<div class="profile-body">
+
+            		<div class="row margin-bottom-20"><!--start row-->
+            		  <!--Conversations-->
+            		  <div class="col-sm-5">
+            		      <div class="panel panel-profile no-bg">
+            		          <div class="panel-heading overflow-h">
+            		              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Conversations</h2>
+            		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+            		          </div>
+            		          <div id="scrollbar" class="panel-body contentHolder">
+            		          <% if current_clinician %>
+                            <% @notes.order("patient_id, created_at DESC").select('ON (patient_id) *').uniq.each_with_index do |note, index| %>
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"><%= index+1 %></span>
+                                    <div class="profile-post-in">
+                                        <h3 class="heading-xs"><a><%= link_to "#{note.patient.first_name} #{note.patient.last_name}", note_path(note) %></a></h3>
+                                        <p>Lastest note from <%= time_ago_in_words(note.created_at) %> ago<i class="pull-right"><%= link_to "Edit", edit_note_path(note) %> <%= link_to "Delete", note_path(note), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                          <% else %>
+                            <% @notes.order("clinician_id, created_at DESC").select('ON (clinician_id) *').uniq.each_with_index do |note, index| %>
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"><%= index+1 %></span>
+                                    <div class="profile-post-in">
+                                        <h3 class="heading-xs"><a><%= link_to "#{note.clinician.first_name} #{note.clinician.last_name}", note_path(note) %></a></h3>
+                                        <p><%= note.clinician.occupation.name %></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                          <% end %>
+            		          </div>
+            		      </div>        
+            		  </div>
+            		  <!--End Conversations-->
+
+                  <!--End Notes Post-->
+            		  <div class="col-sm-7">
+                      <div class="panel panel-profile">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-notes-o"></i> Notes</h2>
+                          </div>
+                          <div id="scrollbar4" class="panel-body contentHolder">
+                          <% if current_clinician %>
+                            <% @notes.order("created_at desc").limit(99).each_with_index do |note, index| %>
+                              <% if note.from == current_user.id %>
+                              <% else %>
+                                <div class="note">
+                                    <div class="overflow-h">
+                                        <strong><%= link_to "#{note.patient.first_name} #{note.patient.last_name}", note_path(note) %><small class="pull-right"> <%= time_ago_in_words(note.created_at) %></small></strong> 
+                                        <p><%= note.general_note %></p>
+                                        <ul class="list-inline note-list">
+                                            <li><i class="fa fa-heartbeat"> </i> <%= note.patient.diagnosis %></li>
+                                        </ul>
+                                    </div>    
+                                </div>
+                              <% end %>
+                            <% end %>
+                          <% else %>
+                            <% @notes.order("created_at desc").limit(99).each_with_index do |note, index| %>
+                              <% if note.from == current_user.id %>
+                              <% else %>
+                                <div class="note">
+                                    <div class="overflow-h">
+                                        <strong><%= link_to "#{note.clinician.first_name} #{note.clinician.last_name}", note_path(note) %><small class="pull-right"> <%= time_ago_in_words(note.created_at) %></small></strong> 
+                                        <p><%= note.general_note %></p>
+                                        <ul class="list-inline note-list">
+                                            <li><i class="fa fa-user-md"> </i> <%= note.clinician.occupation.name %></li>
+                                        </ul>
+                                    </div>    
+                                </div>
+                              <% end %>
+                            <% end %>
+                          <% end %>
+                          </div>
+                      </div>    
+                  </div><!--End Notes Post-->
+
+
+            		</div><!--/end row-->
+            	</div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html>	

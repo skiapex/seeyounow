@@ -93,6 +93,13 @@ Comment:
   updated_at: datetime
   general_comment: string
 
+Note:
+  patient_id: integer
+  clinician_id: integer
+  created_at: datetime
+  updated_at: datetime
+  care_note: string
+
 NotificationSetting:
   clinician_id: integer
   esas_yellow_highest_symptom: integer

@@ -101,6 +101,17 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string "inputter_type"
   end
 
+  create_table "notes", force: true do |t|
+    t.integer  "patient_id"
+    t.integer  "clinician_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "care_note"
+  end
+
+  add_index "notes", ["clinician_id"], name: "index_notes_on_clinician_id", using: :btree
+  add_index "notes", ["patient_id"], name: "index_notes_on_patient_id", using: :btree
+
   create_table "notification_settings", force: true do |t|
     t.integer "clinician_id"
     t.integer "esas_yellow_highest_symptom"
