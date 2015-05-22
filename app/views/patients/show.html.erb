@@ -202,9 +202,16 @@
                                         <p><strong>Shared with:</strong>
                                         <% @patient.shared_with.each do |p| %>
                                           <p><%= Clinician.find_by(id: p).full_name %></p>
-                                        <% end %>
-                                        <p><strong>Patient deceased:</strong>  <%= @patient.patient_deceased %></p>
-                                        <p><strong>Patient archived:</strong>    <%= @patient.patient_archived %></p>
+                                        <% end %></p>
+                                        <p><strong>Patient deceased:</strong> &nbsp; <%= @patient.patient_deceased %></p>
+                                        <p><strong>Patient archived:</strong> &nbsp; &nbsp; <%= @patient.patient_archived %></p>
+                                        <p><strong>Care Notes:</strong>
+                                          <% @notes.each do |note| %>
+                                          <p>"<%= note.care_note %>" <%= note.clinician.full_name %></p>
+                                        <% end %></p>
+                                        <span class="pull-right">
+                                          <%= link_to "Add Note", new_note_path, class: 'btn btn-u btn-success' %>
+                                        </span>
                                     </div>
                                 </div>
                           </div>

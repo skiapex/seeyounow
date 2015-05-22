@@ -13,6 +13,7 @@ class PatientsController < ApplicationController
     @esas_assessments = EsasAssessment.where(patient_id: @patient.id).order("created_at desc")
     @prfs_assessments = PrfsAssessment.where(patient_id: @patient.id).order("created_at desc")
     @comments = Comment.where(patient_id: @patient.id).order("created_at desc")
+    @notes = Note.where(patient_id: @patient.id).order("created_at desc")
 
     @notifications = @esas_assessments + @prfs_assessments + @comments
     

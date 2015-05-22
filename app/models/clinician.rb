@@ -4,6 +4,7 @@ class Clinician < ActiveRecord::Base
 	has_many :esas_assessments
   has_many :prfs_assessments
   has_many :comments
+  has_many :notes
 	belongs_to :gender
 	has_many :patients #, through: :esas_assessments
 	belongs_to :occupation

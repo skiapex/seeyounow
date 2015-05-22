@@ -5,6 +5,7 @@ class Patient < ActiveRecord::Base
 	belongs_to :clinician
 	belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :notes, dependent: :destroy
   accepts_nested_attributes_for :user,  :allow_destroy => true
 
   serialize :shared_with, Array
