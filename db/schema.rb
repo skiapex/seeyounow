@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.string  "phone_number"
     t.string  "caregiver_name"
     t.text    "goals_of_care"
-    t.integer "shared_with"
+    t.string  "shared_with"
     t.boolean "patient_deceased", default: false
     t.boolean "patient_archived", default: false
     t.integer "other_symptom"

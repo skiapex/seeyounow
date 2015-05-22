@@ -129,23 +129,41 @@
                   <div class="col-sm-4">
                       <div class="panel panel-profile">
                           <div class="panel-heading overflow-h">
-                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-line-chart"></i>ESAS Assessments</h2>
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-line-chart"></i>Notifications</h2>
                           </div>
                           <div id="scrollbar4" class="panel-body contentHolder">
                           <% if current_clinician %>
-                            <% @esas_assessments.limit(99).each do |esas_assessment| %>
+                            <% @notifications.sort_by{|e| e[:created_at]}.reverse.each do |notification| %>
                                 <div class="comment">
                                     <div class="overflow-h">
-                                        <strong><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 
-                                        <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>, 
-                                        <% if esas_assessment.esas_comment == nil %>
-                                        <% else %>
-                                            Comment: <%= esas_assessment.esas_comment %>,
-                                        <% end %>
-                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %>, Submitted to: <%= esas_assessment.clinician.occupation.name %> <%= esas_assessment.clinician.last_name %></p>
+                                      <% if notification.is_a?(EsasAssessment) %>
+                                        <strong><%= link_to "ESAS Assessment", esas_assessment_path(notification) %><small class="pull-right"> <%= time_ago_in_words(notification.created_at) %></small></strong> 
+                                        <p>Highest score: <%= [notification.pain, notification.tiredness, notification.drowsiness, notification.nausea, notification.lack_of_appetite, notification.shortness_of_breath, notification.depression, notification.wellbeing, notification.other_symptom_score].max %>,
+                                          Other symptom: <%= notification.other_symptom.symptom_type %></p>
                                         <ul class="list-inline comment-list">
-                                            <li><i class="fa fa-heartbeat"> </i> <%= esas_assessment.patient.diagnosis %></li>
+                                            <li><i class="fa fa-heartbeat"> </i>Submitted to: <%= notification.clinician.full_name %></li>
                                         </ul>
+                                      <% else %>
+                                        <% if notification.is_a?(PrfsAssessment) %>
+                                          <strong><%= link_to "PRFS Assessment", prfs_assessment_path(notification) %><small class="pull-right"> <%= time_ago_in_words(notification.created_at) %></small></strong> 
+                                          <p>Activity and Function score: <%= notification.activity_and_function %></p>
+                                          <ul class="list-inline comment-list">
+                                              <li><i class="fa fa-heartbeat"> </i>Submitted to: <%= notification.clinician.full_name %></li>
+                                          </ul>
+                                        <% else %>
+                                          <strong><%= link_to "Comment", comment_path(notification) %><small class="pull-right"> <%= time_ago_in_words(notification.created_at) %></small></strong>
+                                          <p><%= notification.general_comment %></p>
+                                          <ul class="list-inline comment-list">
+                                            <li><i class="fa fa-heartbeat"> </i>Sent by: 
+                                              <% if notification.from == notification.patient.user_id %>
+                                              <%= notification.patient.full_name %>
+                                            <% else %>
+                                              <%= notification.clinician.full_name %>
+                                            <% end %>
+                                            </li>
+                                          </ul>
+                                        <% end %>
+                                      <% end %>
                                     </div>    
                                 </div>
                             <% end %>
@@ -182,7 +200,9 @@
                                     <span class="profile-post-numb"></span>
                                     <div class="profile-post-in">
                                         <p><strong>Shared with:</strong>
-                                        <p><%= @patient.shared_with %></p>
+                                        <% @patient.shared_with.each do |p| %>
+                                          <p><%= Clinician.find_by(id: p).full_name %></p>
+                                        <% end %>
                                         <p><strong>Patient deceased:</strong>  <%= @patient.patient_deceased %></p>
                                         <p><strong>Patient archived:</strong>    <%= @patient.patient_archived %></p>
                                     </div>

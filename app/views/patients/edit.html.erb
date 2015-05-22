@@ -71,6 +71,13 @@
           </div>
 
           <div class="form-group">
+            <%= form.label :shared_with %>
+            <% @patient.shared_with.each do |age| %>
+              <%= text_field_tag 'patient[]', Clinician.find_by(id: age).full_name %>
+            <% end %>
+          </div>
+
+          <div class="form-group">
             <%= form.label :patient_deceased %>
             <%= form.check_box :patient_deceased %>
           </div>

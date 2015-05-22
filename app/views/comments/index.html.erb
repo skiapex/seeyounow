@@ -80,7 +80,6 @@
                           <% if current_clinician %>
                             <% @comments.order("created_at desc").limit(99).each_with_index do |comment, index| %>
                               <% if comment.from == current_user.id %>
-                                <% "Something" %>
                               <% else %>
                                 <div class="comment">
                                     <div class="overflow-h">
@@ -96,7 +95,6 @@
                           <% else %>
                             <% @comments.order("created_at desc").limit(99).each_with_index do |comment, index| %>
                               <% if comment.from == current_user.id %>
-                                  <% "Something" %>
                               <% else %>
                                 <div class="comment">
                                     <div class="overflow-h">

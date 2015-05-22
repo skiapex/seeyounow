@@ -24,7 +24,7 @@ Patient:
   caregiver_name: string
   other_symptom: integer
   goals_of_care: text
-  shared_with: integer
+  shared_with: string
   patient_deceased: boolean
   patient_archived: boolean
 
