@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @patient = Patient.find_by(user_id: current_user.patient.id).shared_with
+    @clinicians = Clinician.where(id: @patient)
 
     if current_clinician
       @comments = current_clinician.comments.order("created_at desc")

@@ -12,11 +12,13 @@ puts "Deleting all records from the database..."
 User.delete_all
 Clinician.delete_all
 Patient.delete_all
+SharedPatient.delete_all
 Gender.delete_all
 Inputter.delete_all
 EsasAssessment.delete_all
 PrfsAssessment.delete_all
 Comment.delete_all
+Note.delete_all
 NotificationSetting.delete_all
 OtherSymptom.delete_all
 CareGroup.delete_all
@@ -1045,8 +1047,78 @@ Comment.create(patient_id: n.id, clinician_id: judymaynard.id, from: usern.id, c
 Comment.create(patient_id: n.id, clinician_id: judymaynard.id, from: userjudymaynard.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), general_comment: Faker::Lorem.sentence(3, false, 4))
 Comment.create(patient_id: n.id, clinician_id: judymaynard.id, from: usern.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), general_comment: Faker::Lorem.sentence(3, false, 4))
 
+
+puts "Creating notes..."
+
+# Create the comments
+Note.create(patient_id: johndoe.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: johndoe.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: benjaminlosseau.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: benjaminlosseau.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: gcobisamaqanda.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: gcobisamaqanda.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: coreynichols.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: coreynichols.id, clinician_id: macariogarcia.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: trentterris.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: trentterris.id, clinician_id: macariogarcia.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: hannajansson.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: hannajansson.id, clinician_id: macariogarcia.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: hannajansson.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: a.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: a.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: apwinderbrar.id, clinician_id: macariogarcia.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: apwinderbrar.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+
+
+Note.create(patient_id: b.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: b.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: c.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: c.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: d.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: d.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: e.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: e.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(10.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: f.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: f.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: g.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: g.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: h.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: h.id, clinician_id: macariogarcia.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: i.id, clinician_id: macariogarcia.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: i.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: j.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: j.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: k.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: k.id, clinician_id: macariogarcia.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: l.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: l.id, clinician_id: ericacarter.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: m.id, clinician_id: macariogarcia.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: m.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(40.days.ago, Time.now, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
+Note.create(patient_id: n.id, clinician_id: judymaynard.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+Note.create(patient_id: n.id, clinician_id: rachellmiddleton.id, created_at: Faker::Time.between(25.days.ago, 50.days.ago, :day), care_note: Faker::Lorem.sentence(3, false, 4))
+
 # Create the notification settings
 default = NotificationSetting.create(clinician_id: ericacarter.id, esas_yellow_highest_symptom: 6, esas_yellow_increase_of: 3, esas_yellow_email: 0, esas_yellow_text: 0, esas_orange_highest_symptom: 8, esas_orange_increase_of: 4, esas_orange_email: 1, esas_orange_text: 0, esas_red_highest_symptom: 10, esas_red_increase_of: 5, esas_red_email: 1, esas_red_text: 1, prfs_yellow: 3, prfs_yellow_email: 0, prfs_yellow_text: 0, prfs_orange: 4, prfs_orange_email: 1, prfs_orange_text: 0, prfs_red: 5, prfs_red_email: 1, prfs_red_text: 1)
 default = NotificationSetting.create(clinician_id: judymaynard.id, esas_yellow_highest_symptom: 6, esas_yellow_increase_of: 3, esas_yellow_email: 0, esas_yellow_text: 0, esas_orange_highest_symptom: 8, esas_orange_increase_of: 4, esas_orange_email: 1, esas_orange_text: 0, esas_red_highest_symptom: 10, esas_red_increase_of: 5, esas_red_email: 1, esas_red_text: 1, prfs_yellow: 3, prfs_yellow_email: 0, prfs_yellow_text: 0, prfs_orange: 4, prfs_orange_email: 1, prfs_orange_text: 0, prfs_red: 5, prfs_red_email: 1, prfs_red_text: 1)
 
-puts "There are now #{User.count} users, #{Clinician.count} clinicians, #{Patient.count} patients, #{Occupation.count} occupations, #{Speciality.count} specialities, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssessment.count} scores for an ESAS assessment, #{PrfsAssessment.count} scores for a PFRS assessment, #{Comment.count} comments between patients and clinicians, and #{OtherSymptom.count} other symptoms in the database."
+puts "There are now #{User.count} users, #{Clinician.count} clinicians, #{Patient.count} patients, #{Occupation.count} occupations, #{Speciality.count} specialities, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssessment.count} scores for an ESAS assessment, #{PrfsAssessment.count} scores for a PFRS assessment, #{Comment.count} comments between patients and clinicians, #{Note.count} care notes added to patients, and #{OtherSymptom.count} other symptoms in the database."

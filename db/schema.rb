@@ -186,6 +186,14 @@ ActiveRecord::Schema.define(version: 20150301165440) do
   add_index "prfs_assessments", ["inputter_id"], name: "index_prfs_assessments_on_inputter_id", using: :btree
   add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id", using: :btree
 
+  create_table "shared_patients", force: true do |t|
+    t.integer "clinician_id"
+    t.integer "patient_id"
+  end
+
+  add_index "shared_patients", ["clinician_id"], name: "index_shared_patients_on_clinician_id", using: :btree
+  add_index "shared_patients", ["patient_id"], name: "index_shared_patients_on_patient_id", using: :btree
+
   create_table "specialities", force: true do |t|
     t.string  "name"
     t.integer "occupation_id"

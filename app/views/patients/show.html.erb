@@ -179,7 +179,7 @@
                             <p><strong>Patient archived:</strong> &nbsp; &nbsp; <%= @patient.patient_archived %></p>
                             <p><strong>Care Notes:</strong></p>
                               <% @notes.each do |note| %>
-                                <blockquote class="hero-unify margin-bottom-40">
+                                <blockquote class="hero-unify margin-bottom-10">
                                   <p><%= note.care_note %></p>
                                   <small><%= note.clinician.full_name %>, <%= note.created_at.strftime("%B %d, %Y") %></small>
                                 </blockquote>
