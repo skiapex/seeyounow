@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
-  skip_before_action :require_clinician, only: [:new, :show, :index]
+  skip_before_action :require_clinician
   skip_before_action :require_admin
 
   def index
     if current_clinician
       @comments = current_clinician.comments
     else
-      @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments
+      @comments = Patient.find_by(user_id: current_user.patient.id).comments
     end
   end
 
@@ -14,15 +14,12 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params["id"])
     @patient = @comment.patient
     @clinician = @comment.clinician
-    if current_clinician
-      @comments = @patient.comments.order("created_at desc")
-    else
-      @comments = @clinician.comments.order("created_at desc")
-    end
+    @comments = @patient.comments.order("created_at desc")
   end
 
   def new
     @comment = Comment.new
+    @patient = Patient.find_by(user_id: current_user.patient.id).shared_with
 
     if current_clinician
       @comments = current_clinician.comments.order("created_at desc")
@@ -52,7 +49,7 @@ class CommentsController < ApplicationController
           puts "Error: #{StatsMix.error}"
         end
 
-        redirect_to comments_path, notice: "Comment submitted!"
+        redirect_to comment_path(@comment), notice: "Comment submitted!"
       else
         render "new", alert: "Comment not submitted!"
       end
@@ -68,7 +65,7 @@ class CommentsController < ApplicationController
           puts "Error: #{StatsMix.error}"
         end
 
-        redirect_to comments_path, notice: "Comment submitted!"
+        redirect_to comment_path(@comment), notice: "Comment submitted!"
       else
         render "new", alert: "Comment not submitted!"
       end

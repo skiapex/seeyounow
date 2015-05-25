@@ -98,7 +98,7 @@ Note:
   clinician_id: integer
   created_at: datetime
   updated_at: datetime
-  care_note: string
+  care_note: text
 
 NotificationSetting:
   clinician_id: integer

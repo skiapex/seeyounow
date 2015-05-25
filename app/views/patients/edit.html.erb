@@ -72,8 +72,8 @@
 
           <div class="form-group">
             <%= form.label :shared_with %>
-            <% @patient.shared_with.each do |age| %>
-              <%= text_field_tag 'patient[]', Clinician.find_by(id: age).full_name %>
+            <% @patient.shared_with.each do |shared| %>
+              <%= text_field_tag 'patient[]', Clinician.find_by(id: shared).full_name %>
             <% end %>
           </div>
 

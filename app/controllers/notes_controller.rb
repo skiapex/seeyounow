@@ -13,11 +13,7 @@ class NotesController < ApplicationController
     @note = Note.find_by(id: params["id"])
     @patient = @note.patient
     @clinician = @note.clinician
-    if current_clinician
-      @notes = @patient.notes.order("created_at desc")
-    else
-      @notes = @clinician.notes.order("created_at desc")
-    end
+    @notes = @patient.notes.order("created_at desc")
   end
 
   def new
@@ -38,7 +34,7 @@ class NotesController < ApplicationController
         puts "Error: #{StatsMix.error}"
       end
 
-      redirect_to patients_path, notice: "Note submitted!"
+      redirect_to patient_path(@note.patient.id), notice: "Note submitted!"
     else
       render "new", alert: "Note not submitted!"
     end

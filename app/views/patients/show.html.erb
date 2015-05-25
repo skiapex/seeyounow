@@ -89,7 +89,7 @@
                   </div>
                   <!--=== End Goals of Care Block ===-->
 
-                  <% if current_clinician %>
+                <% if current_clinician %>
 
                   <!--=== ESAS Chart Block ===-->
                   <div class="container content-sm">
@@ -109,7 +109,7 @@
                                     <div class="profile-post-in">
                                         <p><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></p>
                                         <p><strong>Age:</strong> <%= @patient.age %></p>
-                                        <p><strong>Address:</strong> <%= @patient.address %></p>
+                                        <p><i class="fa fa-home"></i> <%= @patient.address %></p>
                                         <p><strong>Email:</strong> <%= User.find_by(id: @patient.user_id).email %></p>
                                         <p><strong>Phone number:</strong> <%= @patient.phone_number %></p>
                                         <% if @esas_assessments.last == nil %>
@@ -121,18 +121,33 @@
                                     </div>
                                 </div>
                           </div>
-                      </div>        
+                      </div>
+
+                      <div class="who margin-bottom-30">
+                          <div class="headline"><h3>Patient Information</h3></div>
+                          <ul class="list-unstyled">
+                              <li><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></li>
+                              <li><strong>Age:</strong> <%= @patient.age %></li>
+                              <li><a href="#"><i class="fa fa-globe"></i>Eget placerat felis consectetur</a></li>
+                              <li><a href="#"><i class="fa fa-group"></i>Condimentum diam eget placerat</a></li>
+                          </ul>
+                          <ul class="list-unstyled">
+                              <li><a href="http://maps.google.com/?q=<%= @patient.address %>"><i class="fa fa-home"></i><%= @patient.address %></a></li>
+                              <li><a href="mailto:<%= User.find_by(id: @patient.user_id).email %>"><i class="fa fa-envelope-o"></i><%= User.find_by(id: @patient.user_id).email %></a></li>
+                              <li><i class="fa fa-phone"></i><%= @patient.phone_number %></li>
+                          </ul>
+                      </div>
+
                   </div>
                   <!--End Patient Information-->
 
-                  <!--End ESAS Assessments Post-->
+                  <!--Notifications Post-->
                   <div class="col-sm-4">
                       <div class="panel panel-profile">
                           <div class="panel-heading overflow-h">
                               <h2 class="panel-title heading-sm pull-left"><i class="fa fa-line-chart"></i>Notifications</h2>
                           </div>
                           <div id="scrollbar4" class="panel-body contentHolder">
-                          <% if current_clinician %>
                             <% @notifications.sort_by{|e| e[:created_at]}.reverse.each do |notification| %>
                                 <div class="comment">
                                     <div class="overflow-h">
@@ -167,27 +182,9 @@
                                     </div>    
                                 </div>
                             <% end %>
-                          <% else %>
-                            <% @esas_assessments.limit(99).each do |esas_assessment| %>
-                                <div class="comment">
-                                    <div class="overflow-h">
-                                        <strong><%= link_to "#{esas_assessment.clinician.first_name} #{esas_assessment.clinician.last_name}", comment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 
-                                        <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>, 
-                                        <% if esas_assessment.esas_comment == nil %>
-                                        <% else %>
-                                            Comment: <%= esas_assessment.esas_comment %>,
-                                        <% end %>
-                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %></p>
-                                        <ul class="list-inline comment-list">
-                                            <li><i class="fa fa-user-md"> </i> <%= esas_assessment.clinician.occupation.name %></li>
-                                        </ul>
-                                    </div>    
-                                </div>
-                            <% end %>
-                          <% end %>
                           </div>
                       </div>    
-                  </div><!--End ESAS Assessments Post-->
+                  </div><!--End Notifications Post-->
 
                   <!--Administrative Information-->
                   <div class="col-sm-4">
@@ -219,9 +216,35 @@
                   </div>
                   <!--End Administrative Information-->
 
-                  <% else %>
+                  <div class="col-md-4">
 
-                  <!--Conversations-->
+                  <!-- About Us -->
+                  <div class="headline"><h2>About Us</h2></div>
+                    <div class="margin-bottom-30">
+                        <p>At vero eos et acc usamus et iusto odio dign issimos ducimus atque corrupti quos.</p> 
+                        <p>dolores etrerum facilis est etenim a feugiat cupiditate non quos. <a class="linked color-green" href="#">Read more</a></p>
+                        <blockquote class="hero-unify margin-bottom-40">
+                          <p>Award winning digital agency. We bring a personal and effective consectetur and effective approach adipiscing elit approach to every project we work on, which is why our clients love us and why they.</p>
+                          <small>CEO, Jack Baur</small>
+                        </blockquote>                 
+                    </div>
+
+                  <!-- Contact Us -->
+                    <div class="who margin-bottom-30">
+                        <div class="headline"><h2>Contact Us</h2></div>
+                        <p>Vero facilis est etenim a feugiat cupiditate non quos etrerum facilis.</p>
+                        <ul class="list-unstyled">
+                            <li><a href="#"><i class="fa fa-home"></i>5B amus ED554, New York, US</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>infp@example.com</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>1(222) 5x86 x97x</a></li>
+                        </ul>
+                    </div>
+                  </div><!--/col-md-3-->
+
+
+                <% else %><!--Patient View -->
+
+                  <!--Patient Infromation - Patient View -->
                   <div class="col-sm-6">
                       <div class="panel panel-profile no-bg">
                           <div class="panel-heading overflow-h">
@@ -247,55 +270,9 @@
                           </div>
                       </div>        
                   </div>
-                  <!--End Conversations-->
+                  <!--End Patient Information-->
 
-                  <!--End Comments Post-->
-                  <div class="col-sm-6">
-                      <div class="panel panel-profile">
-                          <div class="panel-heading overflow-h">
-                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-line-chart"></i>ESAS Assessments</h2>
-                          </div>
-                          <div id="scrollbar4" class="panel-body contentHolder">
-                          <% if current_clinician %>
-                            <% @esas_assessments.limit(99).each do |esas_assessment| %>
-                                <div class="comment">
-                                    <div class="overflow-h">
-                                        <strong><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 
-                                        <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>, 
-                                        <% if esas_assessment.esas_comment == nil %>
-                                        <% else %>
-                                            Comment: <%= esas_assessment.esas_comment %>,
-                                        <% end %>
-                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %>, Submitted to: <%= esas_assessment.clinician.full_name %></p>
-                                        <ul class="list-inline comment-list">
-                                            <li><i class="fa fa-heartbeat"> </i> <%= esas_assessment.patient.diagnosis %></li>
-                                        </ul>
-                                    </div>    
-                                </div>
-                            <% end %>
-                          <% else %>
-                            <% @esas_assessments.limit(99).each do |esas_assessment| %>
-                                <div class="comment">
-                                    <div class="overflow-h">
-                                        <strong>Share with: <%= link_to "#{esas_assessment.clinician.first_name} #{esas_assessment.clinician.last_name}", esas_assessment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 
-                                        <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>, 
-                                        <% if esas_assessment.esas_comment == nil %>
-                                        <% else %>
-                                            Comment: <%= esas_assessment.esas_comment %>,
-                                        <% end %>
-                                          Other symptom: <%= esas_assessment.other_symptom.symptom_type %></p>
-                                        <ul class="list-inline comment-list">
-                                            <li><i class="fa fa-user-md"> </i> <%= esas_assessment.clinician.occupation.name %></li>
-                                        </ul>
-                                    </div>    
-                                </div>
-                            <% end %>
-                          <% end %>
-                          </div>
-                      </div>    
-                  </div><!--End Comments Post-->
-
-                  <% end %>
+                <% end %><!--End Patient View -->
 
                 </div><!--/end row-->
               </div><!--End Profile Body-->

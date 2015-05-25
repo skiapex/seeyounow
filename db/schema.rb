@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20150301165440) do
     t.integer  "clinician_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "care_note"
+    t.text     "care_note"
   end
 
   add_index "notes", ["clinician_id"], name: "index_notes_on_clinician_id", using: :btree
