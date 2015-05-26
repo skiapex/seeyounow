@@ -172,8 +172,8 @@
                       <div class="headline"><h3>Administrative Information</h3></div>
                         <div class="margin-bottom-30">
                             <p><strong>Shared with:</strong></p>
-                            <% @patient.shared_with.each do |p| %>
-                              <p><%= link_to Clinician.find_by(id: p).full_name, clinician_path(p) %></p>
+                            <% @patient.shared_clinicians.each do |list| %>
+                              <p><%= link_to Clinician.find_by(id: list).full_name, clinician_path(list) %></p>
                             <% end %>
                             <p><strong>Patient deceased:</strong> &nbsp; <%= @patient.patient_deceased %></p>
                             <p><strong>Patient archived:</strong> &nbsp; &nbsp; <%= @patient.patient_archived %></p>

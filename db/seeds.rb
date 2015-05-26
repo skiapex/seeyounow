@@ -12,7 +12,6 @@ puts "Deleting all records from the database..."
 User.delete_all
 Clinician.delete_all
 Patient.delete_all
-SharedPatient.delete_all
 Gender.delete_all
 Inputter.delete_all
 EsasAssessment.delete_all

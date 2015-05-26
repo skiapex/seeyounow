@@ -28,9 +28,6 @@ Patient:
   patient_deceased: boolean
   patient_archived: boolean
 
-SharedPatient:
-  clinician_id: integer
-  patient_id: integer
 
 Gender:
   gender_type: string
