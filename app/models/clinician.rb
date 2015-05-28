@@ -7,7 +7,6 @@ class Clinician < ActiveRecord::Base
   has_many :notes
 	belongs_to :gender
 	has_many :patients #, through: :esas_assessments
-  has_and_belongs_to_many :shared_patients, join_table: 'shared_patients', class_name: 'Patient'
 	belongs_to :occupation
   belongs_to :speciality
 	belongs_to :user

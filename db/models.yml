@@ -28,7 +28,6 @@ Patient:
   patient_deceased: boolean
   patient_archived: boolean
 
-
 Gender:
   gender_type: string
 

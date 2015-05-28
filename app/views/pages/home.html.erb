@@ -19,7 +19,7 @@
                                 <div class="panel-heading overflow-h">
                                     <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bell-o"></i> Priority Alerts</h2>
                                 </div>
-                                <div id="scrollbar3" class="panel-body contentHolder">
+                                <div id="scrollbar1" class="panel-body contentHolder">
                                   <% @esas_assessments.order("created_at desc").each do |priority| %>
                                     <% if [priority.pain, priority.tiredness, priority.drowsiness, priority.nausea, priority.lack_of_appetite, priority.shortness_of_breath, priority.depression, priority.wellbeing, priority.other_symptom_score].max >= 8 and priority.priority_resolved == false %>
                                         <div class="alert-blocks alert-blocks-error alert-dismissable">
@@ -45,14 +45,6 @@
     <!--=== End Priority Alerts ===-->
 
 
-
-
-
-
-
-
-
-
     <!--=== Profile ===-->
     <div class="profile container content">
     	<div class="row">
@@ -69,7 +61,13 @@
                                 <div class="panel-heading overflow-h">
                                     <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bell-o"></i> Notifications</h2>
                                 </div>
-                                <div id="scrollbar3" class="panel-body contentHolder">
+                                <div id="scrollbar2" class="panel-body contentHolder">
+                                  <style>
+                                    #container {
+                                      position: relative;
+                                      height: 200px; /* Or whatever you want (eg. 400px) */
+                                    }
+                                  </style>
                                   <% @notifications.sort_by{|e| e[:created_at]}.reverse.each do |notification| %>
                                     <% if notification.is_a?(EsasAssessment) %>
                                       <div class="alert-blocks alert-blocks-success alert-dismissable">
@@ -117,7 +115,7 @@
                                 <div class="panel-heading overflow-h">
                                     <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
                                 </div>
-                                <div id="scrollbar4" class="panel-body contentHolder">
+                                <div id="scrollbar3" class="panel-body contentHolder">
                                   <% @comments.limit(99).each_with_index do |comment, index| %>
                                     <% if comment.from == current_user.id %>
                                         <% "Something" %>

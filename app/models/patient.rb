@@ -3,7 +3,6 @@ class Patient < ActiveRecord::Base
   has_many :prfs_assessments, dependent: :destroy
 	belongs_to :gender
 	belongs_to :clinician
-  has_and_belongs_to_many :shared_clinicians, join_table: 'shared_patients', class_name: 'Clinician'
 	belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :notes, dependent: :destroy
