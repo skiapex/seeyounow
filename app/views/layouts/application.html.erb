@@ -85,9 +85,9 @@
                         <span class="fa fa-bars"></span>
                     </button>
                     <% if current_clinician %>
-                      <%= link_to image_tag("synlogo.png", size: "267x39"), root_path, class: "navbar-brand" %>
+                      <%= link_to image_tag("synlogo.png", size: "259x39"), root_path, class: "navbar-brand" %>
                     <% else %>
-                      <%= link_to image_tag("synlogo.png", size: "267x39"), patient_path(current_user.patient), class: "navbar-brand" %>
+                      <%= link_to image_tag("synlogo.png", size: "259x39"), patient_path(current_user.patient), class: "navbar-brand" %>
                     <% end %>
                 </div>
 
