@@ -2,7 +2,8 @@ class Patient < ActiveRecord::Base
 	has_many :esas_assessments, dependent: :destroy
   has_many :prfs_assessments, dependent: :destroy
 	belongs_to :gender
-	belongs_to :clinician
+	has_many :circlizations
+  has_many :clinicians, :through => :circlizations
 	belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :notes, dependent: :destroy
