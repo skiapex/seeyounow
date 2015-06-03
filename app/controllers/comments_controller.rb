@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-    @patient = Patient.find_by(user_id: current_user.patient.id).shared_with
+    # @patient = Patient.find_by(user_id: current_user.patient.id).shared_with
     @clinicians = Clinician.where(id: @patient)
 
     if current_clinician
