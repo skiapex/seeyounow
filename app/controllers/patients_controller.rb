@@ -18,7 +18,7 @@ class PatientsController < ApplicationController
     @notifications = @esas_assessments + @prfs_assessments + @comments
     
     @gender = @patient.gender
-    @clinician = @patient.clinician
+    @clinician = Clinician.find_by(id: @patient.clinician_id)
     @occupation = @clinician.occupation
   end
 

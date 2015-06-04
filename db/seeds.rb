@@ -12,6 +12,7 @@ puts "Deleting all records from the database..."
 User.delete_all
 Clinician.delete_all
 Patient.delete_all
+Circlization.delete_all
 Gender.delete_all
 Inputter.delete_all
 EsasAssessment.delete_all
@@ -380,6 +381,14 @@ k = Patient.create(clinician_id: judymaynard.id, first_name: Faker::Name.first_n
 l = Patient.create(clinician_id: judymaynard.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, user_id: userl.id, diagnosis: "Chronic lower respiratory disease", gender_id: female.id, age: rand(25...90), address: Faker::Address.street_address + " " + Faker::Address.street_suffix + ", Brampton, ON", phone_number: Faker::Base.numerify('(905) ###-####'), caregiver_name: Faker::Name.name, other_symptom: sweating.id, goals_of_care: Faker::Lorem.sentence(6, false, 6), shared_with: [joandixon.id, macariogarcia.id], patient_deceased: false, patient_archived: false)
 m = Patient.create(clinician_id: judymaynard.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, user_id: userm.id, diagnosis: "Chronic lower respiratory disease", gender_id: female.id, age: rand(25...90), address: Faker::Address.street_address + " " + Faker::Address.street_suffix + ", Brampton, ON", phone_number: Faker::Base.numerify('(905) ###-####'), caregiver_name: Faker::Name.name, other_symptom: sweating.id, goals_of_care: Faker::Lorem.sentence(6, false, 6), shared_with: [macariogarcia.id, ericacarter.id], patient_deceased: false, patient_archived: false)
 n = Patient.create(clinician_id: judymaynard.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, user_id: usern.id, diagnosis: "Chronic lower respiratory disease", gender_id: female.id, age: rand(25...90), address: Faker::Address.street_address + " " + Faker::Address.street_suffix + ", Brampton, ON", phone_number: Faker::Base.numerify('(905) ###-####'), caregiver_name: Faker::Name.name, other_symptom: sweating.id, goals_of_care: Faker::Lorem.sentence(6, false, 6), shared_with: [ericacarter.id, rachellmiddleton.id], patient_deceased: false, patient_archived: true)
+
+puts "Creating circles of care..."
+# Create the circlization relationships
+Circlization.create(clinician_id: fraserhealthm.id, patient_id: dilmarousseff.id)
+Circlization.create(clinician_id: fraserhealthn.id, patient_id: dilmarousseff.id)
+
+Circlization.create(clinician_id: o.id, patient_id: cindypeters.id)
+Circlization.create(clinician_id: p.id, patient_id: cindypeters.id)
 
 puts "Creating assessment scores..."
 # Create the scores for an ESAS assessment
@@ -1120,4 +1129,4 @@ Note.create(patient_id: n.id, clinician_id: rachellmiddleton.id, created_at: Fak
 default = NotificationSetting.create(clinician_id: ericacarter.id, esas_yellow_highest_symptom: 6, esas_yellow_increase_of: 3, esas_yellow_email: 0, esas_yellow_text: 0, esas_orange_highest_symptom: 8, esas_orange_increase_of: 4, esas_orange_email: 1, esas_orange_text: 0, esas_red_highest_symptom: 10, esas_red_increase_of: 5, esas_red_email: 1, esas_red_text: 1, prfs_yellow: 3, prfs_yellow_email: 0, prfs_yellow_text: 0, prfs_orange: 4, prfs_orange_email: 1, prfs_orange_text: 0, prfs_red: 5, prfs_red_email: 1, prfs_red_text: 1)
 default = NotificationSetting.create(clinician_id: judymaynard.id, esas_yellow_highest_symptom: 6, esas_yellow_increase_of: 3, esas_yellow_email: 0, esas_yellow_text: 0, esas_orange_highest_symptom: 8, esas_orange_increase_of: 4, esas_orange_email: 1, esas_orange_text: 0, esas_red_highest_symptom: 10, esas_red_increase_of: 5, esas_red_email: 1, esas_red_text: 1, prfs_yellow: 3, prfs_yellow_email: 0, prfs_yellow_text: 0, prfs_orange: 4, prfs_orange_email: 1, prfs_orange_text: 0, prfs_red: 5, prfs_red_email: 1, prfs_red_text: 1)
 
-puts "There are now #{User.count} users, #{Clinician.count} clinicians, #{Patient.count} patients, #{Occupation.count} occupations, #{Speciality.count} specialities, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssessment.count} scores for an ESAS assessment, #{PrfsAssessment.count} scores for a PFRS assessment, #{Comment.count} comments between patients and clinicians, #{Note.count} care notes added to patients, and #{OtherSymptom.count} other symptoms in the database."
+puts "There are now #{User.count} users, #{Clinician.count} clinicians, #{Patient.count} patients, #{Circlization.count} circle of care relationships, #{Occupation.count} occupations, #{Speciality.count} specialities, #{Inputter.count} inputter types, #{Gender.count} genders, #{CareGroup.count} care groups, #{EsasAssessment.count} scores for an ESAS assessment, #{PrfsAssessment.count} scores for a PFRS assessment, #{Comment.count} comments between patients and clinicians, #{Note.count} care notes added to patients, and #{OtherSymptom.count} other symptoms in the database."

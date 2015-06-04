@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    @user.patient.clinician = current_user.clinician
+    @user.patient.clinician_id = current_user.clinician_id
 
     if @user.save
       redirect_to user_path(@user), notice: "User created!"

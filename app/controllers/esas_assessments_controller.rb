@@ -27,7 +27,7 @@ class EsasAssessmentsController < ApplicationController
       @esas_assessment.inputter = Inputter.find_by(inputter_type: 'Medical team')
     else
       @esas_assessment.patient = current_user.patient
-      @esas_assessment.clinician = current_user.patient.clinician
+      @esas_assessment.clinician = Clinician.find_by(id: current_user.patient.clinician_id)
     end
     if @esas_assessment.save
 

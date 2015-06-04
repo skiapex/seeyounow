@@ -1,4 +1,4 @@
 class Circlization < ActiveRecord::Base
 	belongs_to :clinician
-	belings_to :patient
+	belongs_to :patient
 end
