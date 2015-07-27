@@ -22,14 +22,6 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.string "city"
   end
 
-  create_table "circlizations", force: true do |t|
-    t.integer  "clinician_id"
-    t.integer  "patient_id"
-    t.integer  "care_group"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "clinicians", force: true do |t|
     t.string  "first_name"
     t.string  "last_name"
