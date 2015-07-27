@@ -28,8 +28,8 @@
                                         <a><%= current_clinician.emergency_message %></a>
                                         <small><%= current_clinician.care_group.name %> Care Group</small>
                                     <% else %>
-                                        <a><%= Clinician.find_by(id: current_user.patient.clinician_id).emergency_message %></a>
-                                        <small><%= Clinician.find_by(id: current_user.patient.clinician_id).care_group.name %> Care Group</small>
+                                        <a><%= current_user.patient.clinician.emergency_message %></a>
+                                        <small><%= current_user.patient.clinician.care_group.name %> Care Group</small>
                                     <% end %>
                                 </li>
                             </ul>
@@ -75,8 +75,8 @@
                                         <a><%= current_clinician.emergency_message %></a>
                                         <small><%= current_clinician.care_group.name %> Care Group</small>
                                     <% else %>
-                                        <a><%= Clinician.find_by(id: current_user.patient.clinician_id).emergency_message %></a>
-                                        <small><%= Clinician.find_by(id: current_user.patient.clinician_id).care_group.name %> Care Group</small>
+                                        <a><%= current_user.patient.clinician.emergency_message %></a>
+                                        <small><%= current_user.patient.clinician.care_group.name %> Care Group</small>
                                     <% end %>
                                 </li>
                             </ul>

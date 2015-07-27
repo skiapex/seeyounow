@@ -28,7 +28,7 @@ class PrfsAssessmentsController < ApplicationController
       @prfs_assessment.inputter = Inputter.find_by(inputter_type: 'Medical team')
     else
       @prfs_assessment.patient = current_user.patient
-      @prfs_assessment.clinician = Clinician.find_by(id: current_user.patient.clinician_id)
+      @prfs_assessment.clinician = current_user.patient.clinician
     end
     if @prfs_assessment.save
 
