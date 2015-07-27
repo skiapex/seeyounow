@@ -6,8 +6,7 @@ class Clinician < ActiveRecord::Base
   has_many :comments
   has_many :notes
 	belongs_to :gender
-  has_many :circlizations
-	has_many :patients, :through => :circlizations
+	has_many :patients #, through: :esas_assessments
 	belongs_to :occupation
   belongs_to :speciality
 	belongs_to :user
