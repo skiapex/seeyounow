@@ -6198,4 +6198,8 @@ button.close {
     display: none !important;
   }
 }
+
+.dropdown-backdrop{
+    position: static;
+}
 /*# sourceMappingURL=bootstrap.css.map */
