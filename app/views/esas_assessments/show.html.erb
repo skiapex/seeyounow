@@ -58,8 +58,8 @@
   <p><strong>Patient:</strong> <%= link_to "#{@esas_assessment.patient.first_name} #{@esas_assessment.patient.last_name}", patient_path(@esas_assessment.patient) %></p>
   <% if current_clinician %>
     <span class="pull-right">
-      <% if [@esas_assessment.pain, @esas_assessment.tiredness, @esas_assessment.drowsiness, @esas_assessment.nausea, @esas_assessment.lack_of_appetite, @esas_assessment.shortness_of_breath, @esas_assessment.depression, @esas_assessment.wellbeing, @esas_assessment.other_symptom_score].max >= 8 %>
-        <% if @esas_assessment.priority_resolved == true or [@esas_assessment.pain, @esas_assessment.tiredness, @esas_assessment.drowsiness, @esas_assessment.nausea, @esas_assessment.lack_of_appetite, @esas_assessment.shortness_of_breath, @esas_assessment.depression, @esas_assessment.wellbeing, @esas_assessment.other_symptom_score].max < 7 %>
+      <% if [@esas_assessment.pain, @esas_assessment.tiredness, @esas_assessment.drowsiness, @esas_assessment.nausea, @esas_assessment.lack_of_appetite, @esas_assessment.shortness_of_breath, @esas_assessment.depression, @esas_assessment.anxiety, @esas_assessment.wellbeing, @esas_assessment.other_symptom_score].max >= 8 %>
+        <% if @esas_assessment.priority_resolved == true or [@esas_assessment.pain, @esas_assessment.tiredness, @esas_assessment.drowsiness, @esas_assessment.nausea, @esas_assessment.lack_of_appetite, @esas_assessment.shortness_of_breath, @esas_assessment.depression, @esas_assessment.anxiety, @esas_assessment.wellbeing, @esas_assessment.other_symptom_score].max < 7 %>
           Priority Resolved &nbsp &nbsp <%= link_to "Edit", edit_esas_assessment_path, class: 'btn btn-u btn-success' %>
         <% else %>
           High Priority! &nbsp &nbsp <%= link_to "Resolve", edit_esas_assessment_path, class: 'btn btn-u btn-u-red btn-u-lg btn-success' %>

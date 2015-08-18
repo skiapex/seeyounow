@@ -21,7 +21,7 @@
                                 </div>
                                 <div id="scrollbar1" class="panel-body contentHolder">
                                   <% @esas_assessments.order("created_at desc").each do |priority| %>
-                                    <% if [priority.pain, priority.tiredness, priority.drowsiness, priority.nausea, priority.lack_of_appetite, priority.shortness_of_breath, priority.depression, priority.wellbeing, priority.other_symptom_score].max >= 8 and priority.priority_resolved == false %>
+                                    <% if [priority.pain, priority.tiredness, priority.drowsiness, priority.nausea, priority.lack_of_appetite, priority.shortness_of_breath, priority.depression, priority.anxiety, priority.wellbeing, priority.other_symptom_score].max >= 8 and priority.priority_resolved == false %>
                                         <div class="alert-blocks alert-blocks-error alert-dismissable">
                                             <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
                                             <i class="icon-custom rounded-x icon-bg-red fa fa-line-chart"></i>

@@ -43,6 +43,7 @@
          ['Lack of Appetite', <%= @other_symptom.lack_of_appetite %>, '#3498db' ],
          ['Shortness of Breath', <%= @other_symptom.shortness_of_breath %>, '#3498db' ],
          ['Depression', <%= @other_symptom.depression %>, '#3498db' ],
+         ['Anxiety', <%= @other_symptom.anxiety %>, '#3498db' ],
          ['Wellbeing', <%= @other_symptom.wellbeing %>, '#3498db' ],
          ['<%= @other_symptom.other_symptom.symptom_type.capitalize %>', <%= @other_symptom.other_symptom_score %>, '#3498db' ],
       ]);
@@ -225,6 +226,24 @@
                                 <td><span class="label label-warning">Moderate</span></td>
                               <% else %>
                                 <% if (@other_symptom.depression.between?(8, 10)) %>
+                                  <td><span class="label label-danger">High!</span></td>
+                                <% else %>
+                                  <td><span class="label label-info">None</span></td>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td>Anxiety</td>
+                            <td class="hidden-sm"><%= @other_symptom.anxiety %></td>
+                            <td><%= @other_symptom.anxiety_comment %></td>
+                            <% if (@other_symptom.anxiety.between?(1, 4)) %>
+                              <td><span class="label label-success">Low</span></td>
+                            <% else %>
+                              <% if (@other_symptom.anxiety.between?(5, 7)) %>
+                                <td><span class="label label-warning">Moderate</span></td>
+                              <% else %>
+                                <% if (@other_symptom.anxiety.between?(8, 10)) %>
                                   <td><span class="label label-danger">High!</span></td>
                                 <% else %>
                                   <td><span class="label label-info">None</span></td>

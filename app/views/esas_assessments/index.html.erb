@@ -56,10 +56,10 @@
                                 <div class="comment">
                                     <div class="overflow-h">
                                         <strong><%= link_to "#{esas_assessment.patient.first_name} #{esas_assessment.patient.last_name}", esas_assessment_path(esas_assessment) %><small class="pull-right"> <%= time_ago_in_words(esas_assessment.created_at) %></small></strong> 
-                                        <% if [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max >= 8 %>
-                                          <p>Highest score: <b><%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %></b>,
+                                        <% if [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.anxiety, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max >= 8 %>
+                                          <p>Highest score: <b><%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.anxiety, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %></b>,
                                         <% else %>
-                                          <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>,
+                                          <p>Highest score: <%= [esas_assessment.pain, esas_assessment.tiredness, esas_assessment.drowsiness, esas_assessment.nausea, esas_assessment.lack_of_appetite, esas_assessment.shortness_of_breath, esas_assessment.depression, esas_assessment.anxiety, esas_assessment.wellbeing, esas_assessment.other_symptom_score].max %>,
                                         <% end %>
                                         <% if esas_assessment.esas_comment == nil %>
                                         <% else %>

@@ -43,12 +43,13 @@
     data.addColumn('number', 'Lack of Appetite');
     data.addColumn('number', 'Shortness of Breath');
     data.addColumn('number', 'Depression');
+    data.addColumn('number', 'Anxiety');
     data.addColumn('number', 'Wellbeing');
     data.addColumn('number', 'Other Problem');
 
     data.addRows([
       <% @esas_assessments.each do |esas_assessment| %>
-        [ new Date(<%= esas_assessment.created_at.year %>, <%= esas_assessment.created_at.month.to_i - 1 %>, <%= esas_assessment.created_at.day %>, <%= esas_assessment.created_at.hour %>, <%= esas_assessment.created_at.min %>, 0), <%= "#{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
+        [ new Date(<%= esas_assessment.created_at.year %>, <%= esas_assessment.created_at.month.to_i - 1 %>, <%= esas_assessment.created_at.day %>, <%= esas_assessment.created_at.hour %>, <%= esas_assessment.created_at.min %>, 0), <%= "#{esas_assessment.pain}, #{esas_assessment.tiredness}, #{esas_assessment.drowsiness}, #{esas_assessment.nausea}, #{esas_assessment.lack_of_appetite}, #{esas_assessment.shortness_of_breath}, #{esas_assessment.depression}, #{esas_assessment.anxiety}, #{esas_assessment.wellbeing}, #{esas_assessment.other_symptom_score}" %>],
       <% end %>
     ]);
 
@@ -134,7 +135,7 @@
                                     <div class="overflow-h">
                                       <% if notification.is_a?(EsasAssessment) %>
                                         <strong><%= link_to "ESAS Assessment", esas_assessment_path(notification) %><small class="pull-right"> <%= time_ago_in_words(notification.created_at) %></small></strong> 
-                                        <p>Highest score: <%= [notification.pain, notification.tiredness, notification.drowsiness, notification.nausea, notification.lack_of_appetite, notification.shortness_of_breath, notification.depression, notification.wellbeing, notification.other_symptom_score].max %>,
+                                        <p>Highest score: <%= [notification.pain, notification.tiredness, notification.drowsiness, notification.nausea, notification.lack_of_appetite, notification.shortness_of_breath, notification.depression, notification.anxiety, notification.wellbeing, notification.other_symptom_score].max %>,
                                           Other symptom: <%= notification.other_symptom.symptom_type %></p>
                                         <ul class="list-inline comment-list">
                                             <li><i class="fa fa-heartbeat"> </i>Submitted to: <%= notification.clinician.full_name %></li>

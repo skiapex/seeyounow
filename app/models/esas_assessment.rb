@@ -11,6 +11,7 @@ class EsasAssessment < ActiveRecord::Base
   validates :lack_of_appetite, presence: true, numericality: true
   validates :shortness_of_breath, presence: true, numericality: true
   validates :depression, presence: true, numericality: true
+  validates :anxiety, presence: true, numericality: true
   validates :wellbeing, presence: true, numericality: true
   validates :other_symptom_id, presence: true
   validates :other_symptom_score, presence: true, numericality: true
