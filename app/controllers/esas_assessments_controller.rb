@@ -51,7 +51,9 @@ class EsasAssessmentsController < ApplicationController
   def edit
     @esas_assessment = EsasAssessment.find_by(id: params["id"])
     @other_symptom = OtherSymptom.find_by(symptom_type: '@esas_assessment.other_symptom_id')
-    @resolved_by = {current_clinician.full_name => [current_clinician.id], 'none' => ['nil']}
+    if current_clinician
+      @resolved_by = {current_clinician.full_name => [current_clinician.id], 'none' => ['nil']}
+    end
   end
 
   def update
