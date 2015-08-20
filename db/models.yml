@@ -17,6 +17,7 @@ Patient:
   last_name: string
   user_id: integer
   diagnosis: string
+  diagnosis_date: datetime
   gender_id: integer
   age: string
   address: string
@@ -24,6 +25,7 @@ Patient:
   caregiver_name: string
   other_symptom: integer
   goals_of_care: text
+  important_to_you: text
   shared_with: string
   patient_deceased: boolean
   patient_archived: boolean

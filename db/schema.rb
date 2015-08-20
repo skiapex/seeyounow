@@ -150,21 +150,23 @@ ActiveRecord::Schema.define(version: 20150603181116) do
   end
 
   create_table "patients", force: true do |t|
-    t.integer "clinician_id"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.integer "user_id"
-    t.string  "diagnosis"
-    t.integer "gender_id"
-    t.string  "age"
-    t.string  "address"
-    t.string  "phone_number"
-    t.string  "caregiver_name"
-    t.text    "goals_of_care"
-    t.string  "shared_with"
-    t.boolean "patient_deceased", default: false
-    t.boolean "patient_archived", default: false
-    t.integer "other_symptom"
+    t.integer  "clinician_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "user_id"
+    t.string   "diagnosis"
+    t.integer  "gender_id"
+    t.string   "age"
+    t.string   "address"
+    t.string   "phone_number"
+    t.string   "caregiver_name"
+    t.text     "goals_of_care"
+    t.string   "shared_with"
+    t.boolean  "patient_deceased", default: false
+    t.boolean  "patient_archived", default: false
+    t.integer  "other_symptom"
+    t.datetime "diagnosis_date"
+    t.text     "important_to_you"
   end
 
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id", using: :btree

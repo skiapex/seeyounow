@@ -103,6 +103,8 @@
                       <div class="who margin-bottom-30">
                           <div class="headline"><h3>Patient Information</h3></div>
                           <ul class="list-unstyled">
+                              <li><strong>Information Important to Patient:</strong></li>
+                              <li><%= @patient.important_to_you %></li>
                               <li><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></li>
                               <li><strong>Age:</strong> <%= @patient.age %></li>
                           </ul>
@@ -176,6 +178,7 @@
                             <% @patient.shared_with.each do |p| %>
                               <p><%= link_to Clinician.find_by(id: p).full_name, clinician_path(p) %></p>
                             <% end %>
+                            <p><strong>First Diagnosis Date:</strong> &nbsp; <%= @patient.diagnosis_date.strftime("%B %d, %Y") %></p>
                             <p><strong>Patient deceased:</strong> &nbsp; <%= @patient.patient_deceased %></p>
                             <p><strong>Patient archived:</strong> &nbsp; &nbsp; <%= @patient.patient_archived %></p>
                             <p><strong>Care Notes:</strong></p>
@@ -196,30 +199,29 @@
                 <% else %><!--Patient View -->
 
                   <!--Patient Infromation - Patient View -->
-                  <div class="col-sm-6">
-                      <div class="panel panel-profile no-bg">
-                          <div class="panel-heading overflow-h">
-                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Patient Information</h2>
-                          </div>
-                          <div id="scrollbar" class="panel-body contentHolder">
-                                <div class="profile-post color-one">
-                                    <span class="profile-post-numb"></span>
-                                    <div class="profile-post-in">
-                                        <p><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></p>
-                                        <p><strong>Age:</strong> <%= @patient.age %></p>
-                                        <p><strong>Address:</strong> <%= @patient.address %></p>
-                                        <p><strong>Email:</strong> <%= User.find_by(id: @patient.user_id).email %></p>
-                                        <p><strong>Phone number:</strong> <%= @patient.phone_number %></p>
-                                        <% if @esas_assessments.last == nil %>
-                                          <p><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></p>
-                                        <% else %>
-                                          <p><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></p>
-                                        <% end %>
-                                        <p><strong>Caregiver name:</strong> <%= @patient.caregiver_name %></p>
-                                    </div>
-                                </div>
-                          </div>
-                      </div>        
+                  <div class="col-sm-4">
+                      <div class="who margin-bottom-30">
+                          <div class="headline"><h3>Patient Information</h3></div>
+                          <ul class="list-unstyled">
+                              <li><strong>Information Important to You:</strong></li>
+                              <li><%= @patient.important_to_you %></li>
+                              <li><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></li>
+                              <li><strong>Age:</strong> <%= @patient.age %></li>
+                          </ul>
+                          <ul class="list-unstyled">
+                              <li><a href="http://maps.google.com/?q=<%= @patient.address %>"><i class="fa fa-home"></i><%= @patient.address %></a></li>
+                              <li><a href="mailto:<%= User.find_by(id: @patient.user_id).email %>"><i class="fa fa-envelope-o"></i><%= User.find_by(id: @patient.user_id).email %></a></li>
+                              <li><i class="fa fa-phone"></i><%= @patient.phone_number %></li>
+                              <% if @esas_assessments.last == nil %>
+                                <li><i class="fa fa-heartbeat"></i><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></li>
+                              <% else %>
+                                <li><i class="fa fa-heartbeat"></i><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></li>
+                              <% end %>
+                              <li><i class="fa fa-user-md"></i><strong>Primary Clinician: </strong><%= link_to @patient.clinician.full_name, clinician_path(@patient.clinician) %></li>
+                              <li><i class="fa fa-group"></i><strong>Caregiver name: </strong><%= @patient.caregiver_name %></li>
+                          </ul>
+                      </div>
+
                   </div>
                   <!--End Patient Information-->
 
