@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     if current_clinician
       @comments = current_clinician.comments
     else
-      @comments = Patient.find_by(user_id: current_user.patient.id).comments
+      @comments = Patient.find_by(user_id: current_user.id).comments
     end
   end
 
@@ -19,13 +19,16 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-    @patient = Patient.find_by(user_id: current_user.patient.id).shared_with
-    @clinicians = Clinician.where(id: @patient)
+    if current_clinician
+    else
+      @patient = Patient.find_by(user_id: current_user.id).shared_with
+      @clinicians = Clinician.where(id: @patient)
+    end
 
     if current_clinician
       @comments = current_clinician.comments.order("created_at desc")
     else
-      @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments.order("created_at desc")
+      @comments = Patient.find_by(user_id: current_user.id ).comments.order("created_at desc")
     end
   end
 
