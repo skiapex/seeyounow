@@ -141,3 +141,8 @@ User:
   timezone: string
   patient_id: integer
   clinician_id: integer
+
+Feedback:
+  user_id: integer
+  created_at: datetime
+  feedback_comment: text  

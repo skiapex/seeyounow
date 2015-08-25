@@ -61,7 +61,7 @@
                         </ul>
                     </li>
                     <li class="topbar-devider"></li>   
-                    <li><a href="page_faq.html">Help</a></li>  
+                    <li><%= link_to "Leave feedback", new_feedback_path, class: 'btn btn-u btn-success' %></li>  
                     <li class="topbar-devider"></li>
                       <% if current_user %>   
                         <li><a href="/logout.html">Logout</a></li>

@@ -3,6 +3,7 @@ class CliniciansController < ApplicationController
   skip_before_action :require_admin, only: [:show, :edit]
 
   def index
+    @current_group = current_clinician.care_group_id
     @clinicians = Clinician.all.order("care_group_id asc")
     @care_groups = CareGroup.all.order("province asc")
   end
@@ -24,14 +25,6 @@ class CliniciansController < ApplicationController
     @clinician = Clinician.create(clinician_params)
     
     if @clinician.save
-
-      require 'statsmix'
-      StatsMix.api_key = "9e744f92096e0902b113"
-      StatsMix.track("Clinician created", 1)
-      if StatsMix.error
-        puts "Error: #{StatsMix.error}"
-      end
-
       redirect_to clinician_path(@clinician), notice: "Clinician created!"
     else
       render "new"
@@ -56,14 +49,6 @@ class CliniciansController < ApplicationController
   def destroy
     @clinician = Clinician.find_by(id: params["id"])
     @clinician.destroy
-
-    require 'statsmix'
-    StatsMix.api_key = "9e744f92096e0902b113"
-    StatsMix.track("Clinician deleted", 1)
-    if StatsMix.error
-      puts "Error: #{StatsMix.error}"
-    end
-
     redirect_to clinicians_path, notice: "Clinician deleted!"
   end
 

@@ -21,19 +21,10 @@ class NotesController < ApplicationController
   end
 
   def create
-    note_params = params.require(:note).permit!
     @note = Note.new(note_params)
 
     @note.clinician = current_user.clinician
     if @note.save
-
-      require 'statsmix'
-      StatsMix.api_key = "9e744f92096e0902b113"
-      StatsMix.track("Note Created", 1)
-      if StatsMix.error
-        puts "Error: #{StatsMix.error}"
-      end
-
       redirect_to patient_path(@note.patient.id), notice: "Note submitted!"
     else
       render "new", alert: "Note not submitted!"
@@ -49,7 +40,6 @@ class NotesController < ApplicationController
   end
 
   def update
-    note_params = params.require(:note).permit!
     @note = Note.find_by(id: params["id"])
     @note.update_attributes(note_params)
     if @note.valid?
@@ -63,14 +53,16 @@ class NotesController < ApplicationController
     @note = Note.find_by(id: params["id"])
     @note.destroy
 
-    require 'statsmix'
-    StatsMix.api_key = "9e744f92096e0902b113"
-    StatsMix.track("Note deleted", 1)
-    if StatsMix.error
-      puts "Error: #{StatsMix.error}"
-    end
-
     redirect_to notes_path, notice: "Note deleted!"
   end
+
+  private
+
+    def note_params
+      # It's mandatory to specify the nested attributes that should be whitelisted.
+      # If you use `permit` with just the key that points to the nested attributes hash,
+      # it will return an empty hash.
+      params.require(:note).permit( :patient_id,:clinician_id,:created_at,:updated_at,:care_note)
+    end
 
 end

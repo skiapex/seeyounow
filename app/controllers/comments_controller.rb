@@ -36,19 +36,11 @@ class CommentsController < ApplicationController
       @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments
     end
 
-    comment_params = params.require(:comment).permit!
     @comment = Comment.new(comment_params)
     if current_clinician
       @comment.clinician = current_user.clinician
       @comment.from = current_user.clinician.user_id
       if @comment.save
-
-        require 'statsmix'
-        StatsMix.api_key = "9e744f92096e0902b113"
-        StatsMix.track("Clinician Comment submitted", 1)
-        if StatsMix.error
-          puts "Error: #{StatsMix.error}"
-        end
 
         redirect_to comment_path(@comment), notice: "Comment submitted!"
       else
@@ -58,13 +50,6 @@ class CommentsController < ApplicationController
       @comment.patient = current_user.patient
       @comment.from = current_user.patient.user_id
       if @comment.save
-
-        require 'statsmix'
-        StatsMix.api_key = "9e744f92096e0902b113"
-        StatsMix.track("Patient Comment submitted", 1)
-        if StatsMix.error
-          puts "Error: #{StatsMix.error}"
-        end
 
         redirect_to comment_path(@comment), notice: "Comment submitted!"
       else
@@ -82,7 +67,6 @@ class CommentsController < ApplicationController
   end
 
   def update
-    comment_params = params.require(:comment).permit!
     @comment = Comment.find_by(id: params["id"])
     @comment.update_attributes(comment_params)
     if @comment.valid?
@@ -96,14 +80,16 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params["id"])
     @comment.destroy
 
-    require 'statsmix'
-    StatsMix.api_key = "9e744f92096e0902b113"
-    StatsMix.track("Comment deleted", 1)
-    if StatsMix.error
-      puts "Error: #{StatsMix.error}"
-    end
-
     redirect_to comments_path, notice: "Comment deleted!"
   end
+
+  private
+
+    def comment_params
+      # It's mandatory to specify the nested attributes that should be whitelisted.
+      # If you use `permit` with just the key that points to the nested attributes hash,
+      # it will return an empty hash.
+      params.require(:comment).permit( :patient_id,:clinician_id,:from,:created_at,:updated_at,:general_comment)
+    end
 
 end

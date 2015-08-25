@@ -1,0 +1,29 @@
+<% if @feedback.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @feedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+    Edit feedback written by 
+
+    <% if @feedback.user.patient %>
+        <%= link_to "#{@feedback.user.patient.first_name} #{@feedback.user.patient.last_name}", feedback_path(@feedback) %><small class="pull-right"> <%= time_ago_in_words(@feedback.created_at) %></small>
+    <% else %>
+        <%= link_to "#{@feedback.user.clinician.first_name} #{@feedback.user.clinician.last_name}", feedback_path(@feedback) %><small class="pull-right"> <%= time_ago_in_words(@feedback.created_at) %></small>
+    <% end %>
+</h3>
+
+<%= form_for @feedback do |form| %>
+  <div class="form-group">
+    <%= form.label :feedback_comment %>
+    <%= form.text_field :feedback_comment, class: "form-control", rows: 5, placeholder: "Write feedback here" %>
+  </div>
+ 
+  <%= form.button 'Update Feedback', class: "btn btn-u btn-success" %>
+<% end %>

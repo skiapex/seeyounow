@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<head>
+    <title>SeeYouNow | Feedback</title>
+</head>
+
+<h3 class="page-header">
+  All Conversations
+  <span class="pull-right">
+    <%= link_to "New feedback", new_feedback_path, class: 'btn btn-u btn-success' %>
+  </span>
+</h3>
+
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+            	<!--Profile Body-->
+            	<div class="profile-body">
+
+            		<div class="row margin-bottom-20"><!--start row-->
+            		  
+                  <!--End Feedbacks Post-->
+            		  <div class="col-sm-7">
+                      <div class="panel panel-profile">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-feedbacks-o"></i> Feedback </h2>
+                          </div>
+                          <div id="scrollbar4" class="panel-body contentHolder">
+                            <% @feedbacks.order("created_at desc").each_with_index do |feedback, index| %>
+                                <div class="feedback">
+                                    <div class="overflow-h">
+                                      <% if feedback.user.patient %>
+                                          <strong><%= link_to "#{feedback.user.patient.first_name} #{feedback.user.patient.last_name}", feedback_path(feedback) %><small class="pull-right"> <%= time_ago_in_words(feedback.created_at) %></small></strong> 
+                                          <p><%= feedback.feedback_comment %></p>
+                                      <% else %>
+                                          <strong><%= link_to "#{feedback.user.clinician.first_name} #{feedback.user.clinician.last_name}", feedback_path(feedback) %><small class="pull-right"> <%= time_ago_in_words(feedback.created_at) %></small></strong> 
+                                          <p><%= feedback.feedback_comment %></p>
+                                      <% end %>
+                                    </div>    
+                                </div>
+                            <% end %>
+                          </div>
+                      </div>    
+                  </div><!--End Feedbacks Post-->
+
+
+            		</div><!--/end row-->
+            	</div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html>	

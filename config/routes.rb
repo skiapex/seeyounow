@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :other_symptoms
   resources :care_groups
   resources :notes
+  resources :feedbacks
 
   get '/home', to: 'pages#home'
 

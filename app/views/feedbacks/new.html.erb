@@ -1,0 +1,36 @@
+<head>
+    <title>SeeYouNow | Submit Feedback</title>
+</head>
+
+<% if @feedback.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @feedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+  Submit Feedback
+</h3>
+
+<div class="profile container content">
+  <div class="centre">
+    <div class="col-md-8">
+      <!--Profile Body-->
+      <div class="profile-body">
+
+        <%= form_for @feedback do |form| %>
+          <div class="form-group">
+            <%= form.label :feedback_comment %>
+            <%= form.text_field :feedback_comment, class: "form-control", rows: 5, placeholder: "Write feedback here" %>
+          </div>
+          <%= form.button 'Submit', class: "btn btn-u btn-success" %>
+        <% end %>
+      </div><!--End Profile Body-->
+    </div>
+  </div><!--/end centre-->
+</div><!--/container--> 
