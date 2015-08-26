@@ -45,7 +45,7 @@
     data.addColumn('number', 'Depression');
     data.addColumn('number', 'Anxiety');
     data.addColumn('number', 'Wellbeing');
-    data.addColumn('number', 'Other Problem');
+    data.addColumn('number', 'Other Symptom');
 
     data.addRows([
       <% @esas_assessments.each do |esas_assessment| %>
@@ -113,7 +113,6 @@
                               <li><a href="mailto:<%= User.find_by(id: @patient.user_id).email %>"><i class="fa fa-envelope-o"></i><%= User.find_by(id: @patient.user_id).email %></a></li>
                               <li><i class="fa fa-phone"></i><%= @patient.phone_number %></li>
                               <% if @esas_assessments.last == nil %>
-                                <li><i class="fa fa-heartbeat"></i><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></li>
                               <% else %>
                                 <li><i class="fa fa-heartbeat"></i><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></li>
                               <% end %>

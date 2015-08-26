@@ -32,7 +32,7 @@ class PatientsController < ApplicationController
     @patient = Patient.create(patient_params)
     @patient.clinician = current_user.clinician
     @patient.other_symptom = nil
-    @patient.care_group = current_user.care_group
+    @patient.care_group = current_user.clinician.care_group
 
     if @patient.save
       redirect_to patient_path(@patient), notice: "New patient created!"

@@ -82,11 +82,6 @@
           </div>
 
           <div class="form-group">
-            <%= form.label :other_symptom %>
-            <%= form.collection_select :other_symptom, OtherSymptom.all, :id, :symptom_type, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
             <%= form.label :goals_of_care %>
             <%= form.text_field :goals_of_care, class: "form-control", placeholder: "Goals of care" %>
           </div>

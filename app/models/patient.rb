@@ -1,4 +1,5 @@
 class Patient < ActiveRecord::Base
+  belongs_to :care_group
 	has_many :esas_assessments, dependent: :destroy
   has_many :prfs_assessments, dependent: :destroy
 	belongs_to :gender
@@ -28,6 +29,5 @@ class Patient < ActiveRecord::Base
   	validates :address, presence: true
   	validates :phone_number, presence: true
   	validates :caregiver_name, presence: true
-  	validates :other_symptom, presence: true
   	validates :goals_of_care, presence: true
 end
