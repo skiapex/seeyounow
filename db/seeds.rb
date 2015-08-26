@@ -19,10 +19,8 @@ PrfsAssessment.delete_all
 Comment.delete_all
 Note.delete_all
 NotificationSetting.delete_all
-OtherSymptom.delete_all
 CareGroup.delete_all
-Occupation.delete_all
-Speciality.delete_all
+Feedback.delete_all
 
 puts "Creating gender types..."
 # Create different possible genders

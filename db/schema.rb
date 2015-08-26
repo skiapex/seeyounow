@@ -94,12 +94,10 @@ ActiveRecord::Schema.define(version: 20150603181116) do
   add_index "esas_assessments", ["patient_id"], name: "index_esas_assessments_on_patient_id", using: :btree
 
   create_table "feedbacks", force: true do |t|
-    t.integer  "user_id"
     t.datetime "created_at"
     t.text     "feedback_comment"
+    t.string   "full_name"
   end
-
-  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "genders", force: true do |t|
     t.string "gender_type"

@@ -144,6 +144,6 @@ User:
   clinician_id: integer
 
 Feedback:
-  user_id: integer
+  full_name: string
   created_at: datetime
   feedback_comment: text  

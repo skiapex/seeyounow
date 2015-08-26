@@ -31,13 +31,8 @@
                             <% @feedbacks.order("created_at desc").each_with_index do |feedback, index| %>
                                 <div class="feedback">
                                     <div class="overflow-h">
-                                      <% if feedback.user.patient %>
-                                          <strong><%= link_to "#{feedback.user.patient.first_name} #{feedback.user.patient.last_name}", feedback_path(feedback) %><small class="pull-right"> <%= time_ago_in_words(feedback.created_at) %></small></strong> 
+                                          <strong><%= link_to feedback.full_name, feedback_path(feedback) %><small class="pull-right"> <%= time_ago_in_words(feedback.created_at) %></small></strong> 
                                           <p><%= feedback.feedback_comment %></p>
-                                      <% else %>
-                                          <strong><%= link_to "#{feedback.user.clinician.first_name} #{feedback.user.clinician.last_name}", feedback_path(feedback) %><small class="pull-right"> <%= time_ago_in_words(feedback.created_at) %></small></strong> 
-                                          <p><%= feedback.feedback_comment %></p>
-                                      <% end %>
                                     </div>    
                                 </div>
                             <% end %>

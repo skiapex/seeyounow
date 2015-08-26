@@ -1,26 +1,11 @@
 class FeedbacksController < ApplicationController
-  skip_before_action :require_clinician
-  skip_before_action :require_admin
 
   def index
       @feedbacks = Feedback.all
-
-    if @feedback.user.patient
-      @patient = Patient.find_by(user_id: @feedback.user.id)
-    else
-      @clinician = Clinician.find_by(user_id: @feedback.user.id)
-    end
   end
 
   def show
     @feedback = Feedback.find_by(id: params["id"])
-
-    if @feedback.user.patient
-      @patient = Patient.find_by(user_id: @feedback.user.id)
-    else
-      @clinician = Clinician.find_by(user_id: @feedback.user.id)
-    end
-
   end
 
   def new
@@ -29,13 +14,17 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = Feedback.new(feedback_params)
-      @feedback.user = current_user
-
-      if @feedback.save
-        redirect_to feedback_path(@feedback), notice: "Feedback submitted!"
+      if current_clinician
+        @feedback.full_name = current_user.clinician.full_name
       else
-        render "new", alert: "Feedback not submitted!"
-      end
+        @feedback.full_name = current_user.patient.full_name
+      end 
+
+        if @feedback.save
+          redirect_to feedback_path(@feedback), notice: "Feedback submitted!"
+        else
+          render "new", alert: "Feedback not submitted!"
+        end
   end
 
 
@@ -66,7 +55,7 @@ class FeedbacksController < ApplicationController
       # It's mandatory to specify the nested attributes that should be whitelisted.
       # If you use `permit` with just the key that points to the nested attributes hash,
       # it will return an empty hash.
-      params.require(:feedback).permit( :user_id,:created_at,:feedback_comment)
+      params.require(:feedback).permit( :full_name,:created_at,:feedback_comment)
     end
 
 end

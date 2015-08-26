@@ -3,11 +3,7 @@
 </head>
 
 <h3 class="page-header">
-  <% if @clinician.nil? %>
-    Feedback from <%= link_to "#{@patient.first_name} #{@patient.last_name}", patient_path(@patient.id) %>
-  <% else %>
-    Feedback from <%= link_to "#{@clinician.first_name} #{@clinician.last_name}", clinician_path(@clinician.id) %>
-  <% end %>
+    Feedback from <%= @feedback.full_name %>
 
   <span class="pull-right">
     <%= link_to "Edit feedback", edit_feedback_path, class: 'btn btn-u btn-success' %>
