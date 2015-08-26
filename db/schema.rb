@@ -175,8 +175,10 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.integer  "other_symptom"
     t.datetime "diagnosis_date"
     t.text     "important_to_you"
+    t.integer  "care_group_id"
   end
 
+  add_index "patients", ["care_group_id"], name: "index_patients_on_care_group_id", using: :btree
   add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id", using: :btree
   add_index "patients", ["gender_id"], name: "index_patients_on_gender_id", using: :btree
   add_index "patients", ["user_id"], name: "index_patients_on_user_id", using: :btree

@@ -35,6 +35,7 @@
                             <span class="profile-post-numb"></span>
                             <div class="profile-post-in">
                                 <p><strong>Number of Clinicians:</strong> <%= @clinicians.count %></p>
+                                <p><strong>Number of Patients:</strong> <%= @patients.count %></p>
                                 <p><strong>Location:</strong> <%= @care_group.city %>, <%= @care_group.province %></p>
                             </div>
                         </div>
@@ -55,9 +56,9 @@
                             <div class="overflow-h">
                                 <strong>
                                   <% if clinician.occupation.pronym == nil %>
-                                    <%= link_to "#{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %>
+                                    <%= link_to "#{clinician.full_name}", clinician_path(clinician) %>
                                   <% else %>
-                                    <%= link_to "#{clinician.occupation.pronym} #{clinician.first_name} #{clinician.last_name}", clinician_path(clinician) %>
+                                    <%= link_to "#{clinician.full_name}", clinician_path(clinician) %>
                                   <% end %>
                                   <small class="pull-right"> <%= clinician.occupation.name %></small></strong> 
                                 <p>Current SeeYouNow Patients: 

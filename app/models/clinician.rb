@@ -14,7 +14,11 @@ class Clinician < ActiveRecord::Base
 
   def full_name
     if occupation.pronym.nil?
-      first_name + " " + last_name + " " + occupation.acronym
+      if occupation.acronym.nil?
+        first_name + " " + last_name
+      else
+        first_name + " " + last_name + ", " + occupation.acronym
+      end
     else
       occupation.pronym + " " + first_name + " " + last_name
     end
