@@ -55,7 +55,7 @@
                         <div class="comment">
                             <div class="overflow-h">
                                 <strong>
-                                    <%= link_to "#{clinician.full_name}", clinician_path(clinician)
+                                    <%= link_to "#{clinician.full_name}", clinician_path(clinician) %>
                                   <small class="pull-right"> <%= clinician.occupation.name %></small></strong> 
                                 <p>Current SeeYouNow Patients: 
                                   <% if clinician.patients.group(:patient_deceased).count.values[0] == nil %>
