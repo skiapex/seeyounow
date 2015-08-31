@@ -29,6 +29,5 @@
           	validates :birth_date, presence: true
           	validates :address, presence: true
           	validates :phone_number, presence: true
-          	validates :caregiver_name, presence: true
           	validates :goals_of_care, presence: true
         end

@@ -36,7 +36,6 @@ class CliniciansController < ApplicationController
   end
 
   def update
-    clinician_params = params.require(:clinician).permit( :first_name, :last_name, :occupation_id, :speciality_id, :gender_id, :office_number, :mobile_number, :emergency_message, :care_group_id, :administrator, :user_id)
     @clinician = Clinician.find_by(id: params["id"])
     @clinician.update_attributes(clinician_params)
     if @clinician.valid?

@@ -37,7 +37,7 @@
 
           <div class="form-group">
             <%= form.label :diagnosis_date %>
-            <%= form.date_select(:diagnosis_date, :start_year => 2014)%>
+            <%= form.date_select(:diagnosis_date, :discard_day => true, :start_year => 1985, :end_year => Date.today.year)%>
           </div>
 
           <div class="form-group">
@@ -47,7 +47,7 @@
 
           <div class="form-group">
             <%= form.label :birth_date %>
-            <%= form.text_field :birth_date, class: "form-control", placeholder: "Age" %>
+            <%= form.date_select(:birth_date, :start_year => 1910, :end_year => Date.today.year) %>
           </div>
 
           <div class="form-group">
@@ -61,11 +61,6 @@
           </div>
 
           <div class="form-group">
-            <%= form.label :caregiver_name %>
-            <%= form.text_field :caregiver_name, class: "form-control", placeholder: "Caregiver name" %>
-          </div>
-
-          <div class="form-group">
             <%= form.label :goals_of_care %>
             <%= form.text_field :goals_of_care, class: "form-control", placeholder: "Goals of care" %>
           </div>
@@ -75,13 +70,13 @@
             <%= form.text_field :important_to_you, class: "form-control", placeholder: "Information important to patient  - Ex. Religion, bowling, bucket list" %>
           </div>
 
-          <div class="form-group">
+         <!--  <div class="form-group">
             <%= form.label :shared_with %>
             <% @patient.shared_with.each do |shared| %>
               <%= text_field_tag 'patient[]', Clinician.find_by(id: shared).full_name %>
             <% end %>
           </div>
-
+ -->
           <div class="form-group">
             <%= form.label :patient_deceased %>
             <%= form.check_box :patient_deceased %>

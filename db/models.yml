@@ -22,7 +22,6 @@ Patient:
   birth_date: datetime
   address: string
   phone_number: string
-  caregiver_name: string
   other_symptom: integer
   goals_of_care: text
   important_to_you: text
