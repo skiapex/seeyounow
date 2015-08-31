@@ -1,0 +1,45 @@
+<head>
+    <title>SeeYouNow | Care Giver</title>
+</head>
+
+<h3 class="page-header">
+    <%= @care_giver.full_name %>, care giver for <%= link_to "#{@patient.first_name} #{@patient.last_name}", patient_path(@patient.id) %>
+  <span class="pull-right">
+    <%= link_to "New care_giver", new_care_giver_path, class: 'btn btn-u btn-success' %>
+  </span>
+</h3>
+
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
+
+                <div class="row margin-bottom-20"><!--start row-->
+                  
+                  <!--Patient Infromation - Patient View -->
+                  <div class="col-sm-4">
+                      <div class="who margin-bottom-30">
+                          <div class="headline"><h3>Care Giver Information</h3></div>
+                          <ul class="list-unstyled">
+                              <li><i class="fa fa-phone"></i><%= @care_giver.phone_number %></li>
+                              <li><i class="fa fa-group"></i><strong>Relation to patient: </strong><%= @care_giver.inputter.inputter_type %></li>
+                              <li><i class="fa fa-group"></i><strong>Other information: </strong><%= @care_giver.other_information %></li>
+                          </ul>
+                      </div>
+
+                  </div>
+                  <!--End Patient Information-->
+
+
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html> 

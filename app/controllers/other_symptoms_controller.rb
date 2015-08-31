@@ -45,7 +45,7 @@ class OtherSymptomsController < ApplicationController
 
   private
     def other_symptom_params
-      params.require(:other_symptom).permit(:patient_id, :clinician_id, :time, :year, :month, :day, :inputter_name, :inputter_id, :pain, :pain_comment, :tiredness, :tiredness_comment, :drowsiness, :drowsiness_comment, :nausea, :nausea_comment, :lack_of_appetite, :lack_of_appetite_comment, :shortness_of_breath, :shortness_of_breath_comment, :depression, :depression_comment, :anxiety, :anxiety_comment, :wellbeing, :wellbeing_comment, :other_symptom_id, :other_symptom_score, :other_symptom_comment, :esas_comment)
+      params.require(:other_symptom).permit(:symptom_type)
     end
 
 end

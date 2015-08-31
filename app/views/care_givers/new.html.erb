@@ -1,0 +1,99 @@
+<head>
+    <title>SeeYouNow | New Patient Care Giver</title>
+</head>
+
+<% if @care_giver.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @care_giver.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+  Creat new care giver
+</h3>
+
+<body>
+
+
+
+<div class="profile container content">
+  <div class="row">
+    <div class="col-md-5">
+    <!--Profile Body-->
+      <div class="profile-body">
+
+        <!--Patient Current Care Givers-->
+        <% if current_clinician %>
+        <% else %>
+        <div class="row"><!--start row-->
+          <div class="col-sm-10">
+              <div class="who margin-bottom-30">
+                  <ul class="list-unstyled">
+                      <li><i class="fa fa-group"></i><strong>Current Care Givers:</strong></li>
+                        <% @care_givers.each do |care_giver| %>
+                          <blockquote class="hero-unify margin-bottom-10">
+                            <p><%= link_to care_giver.full_name, care_giver_path(care_giver) %></p>
+                            <p><small><%= care_giver.inputter.inputter_type %>, <%= care_giver.other_information %></small></p>
+                          </blockquote>
+                        <% end %>
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <% end %>
+        <!--End Patient Current Care Givers-->
+
+
+          <%= bootstrap_form_for @care_giver do |form| %>
+            <% if current_clinician %>
+              <div class="form-group">
+                <%= form.label "Patient:" %>
+                <%= form.collection_select :patient_id, Clinician.find_by(id: current_clinician.id).patients.order("first_name asc"), :id, :full_name, class: "form-control", control_col: "col-sm-6"  %>
+              </div>
+            <% end %>
+
+            <hr style="margin-top: 1px; margin-bottom: 6px;" />
+            <p>Relation to patient:</p>
+
+            <div class="form-group">
+              <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control" %>
+            </div>
+
+            <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
+            <div class="form-group">
+              <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
+            </div>
+
+            <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
+            <div class="form-group">
+              <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+            </div>
+
+            <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
+            <div class="form-group">
+              <%= form.text_field :phone_number, class: "form-control", placeholder: "Phone number" %>
+            </div>
+
+            <hr style="margin-top: 1px; margin-bottom: 6px;" />
+
+            <div class="form-group">
+              <%= form.text_area :other_information, class: "form-control", rows: 5, placeholder: "Other important information about this care giver" %>
+            </div>
+
+            <%= form.button 'Add Care Giver', class: "btn btn-success" %>
+          <% end %>
+
+        </div><!--End Profile Body-->
+    </div>
+  </div><!--/end row-->
+</div><!--/container--> 
+
+</body>

@@ -3,6 +3,145 @@
     <title>SeeYouNow | Home</title>
 </head>	
 
+<% if current_user.email == "info@seeyounow.ca" %>
+
+  <!--=== Feedback ===-->
+  <div class="profile container content">
+    <div class="row">           
+          <div class="col-md-7">
+              <!--Profile Body-->
+              <div class="profile-body">
+                  <!--Service Block v3-->
+                      
+                  <div class="row">
+                      <!--Priority-->
+                      <div class="col-sm-12 sm-margin-bottom-30">
+                          <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Feedback</h2>
+                              <i class="pull-right">Number: <%= @feedbacks.count %></i>
+                          </div>
+                          <div id="scrollbar" class="panel-body contentHolder">
+                            <% @feedbacks.order("created_at desc").each_with_index do |feedback, index| %>
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"><%= index+1 %></span>
+                                    <div class="profile-post-in">
+                                        <small class="pull-right"><em><%= time_ago_in_words(feedback.created_at) %> ago</em></small>
+                                        <h3 class="heading-xs"><a><%= link_to feedback.full_name, feedback_path(feedback) %></a></h3>
+                                        <p><%= feedback.feedback_comment %>
+                                        <i class="pull-right"><%= link_to "Edit", edit_feedback_path(feedback) %> <%= link_to "Delete", feedback_path(feedback), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                          </div>
+                      </div> 
+                      </div>
+                      <!--End Priority-->
+                  </div><!--/end row-->
+              </div>
+          </div>
+    </div>
+  </div><!--/container-->    
+  <!--=== Feedback ===-->
+
+  <div class="profile container content">
+      <div class="row">          
+            <div class="col-md-12">
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                        
+                    <div class="row">
+                        <!--Notifications-->
+                        <div class="col-sm-7 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bell-o"></i> Notifications</h2>
+                                    <i class="pull-right">ESAS: <%= @esas_assessments.count %> PRFS: <%= @prfs_assessments.count %></i>
+                                </div>
+                                <div id="scrollbar2" class="panel-body contentHolder">
+                                  <style>
+                                    #container {
+                                      position: relative;
+                                      height: 200px; /* Or whatever you want (eg. 400px) */
+                                    }
+                                  </style>
+                                  <% @notifications.sort_by{|e| e[:created_at]}.reverse.each do |notification| %>
+                                    <% if notification.is_a?(EsasAssessment) %>
+                                      <div class="alert-blocks alert-blocks-success alert-dismissable">
+                                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                          <i class="icon-custom rounded-x icon-bg-green fa fa-line-chart"></i>
+                                          <div class="overflow-h">
+                                              <strong class="color-green"><%= link_to "New ESAS Assessment", esas_assessment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
+                                              <p>For patient <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
+                                          </div>    
+                                      </div>
+                                    <% else %>
+                                      <% if notification.is_a?(PrfsAssessment) %>
+                                        <div class="alert-blocks alert-blocks-info alert-dismissable">
+                                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                          <i class="icon-custom rounded-x icon-bg-blue fa fa-envelope"></i>
+                                          <div class="overflow-h">
+                                              <strong class="color-blue"><%= link_to "New PRFS Assessment", prfs_assessment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
+                                              <p>For patient <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
+                                          </div>    
+                                        </div>
+                                      <% else %>
+                                        <% if notification.from == current_user.id %>
+                                          <% "Something" %>
+                                        <% else %>
+                                          <div class="alert-blocks alert-dismissable">
+                                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                            <i class="icon-custom rounded-x icon-bg-dark fa fa-comments"></i>
+                                            <div class="overflow-h">
+                                                <strong class="color-dark"><%= link_to "New Comment", comment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
+                                                <p>From <%= notification.patient.full_name %> <%= notification.patient.last_name %></p>
+                                            </div>    
+                                          </div>
+                                        <% end %>
+                                      <% end %>
+                                    <% end %>
+                                  <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Notifications-->
+                        
+                        <!--Comments Post-->
+                        <div class="col-sm-5">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments-o"></i> Comments</h2>
+                                    <i class="pull-right">Number: <%= @comments.count %></i>
+                                </div>
+                                <div id="scrollbar3" class="panel-body contentHolder">
+                                  <% @comments.limit(99).each_with_index do |comment, index| %>
+                                    <% if comment.from == current_user.id %>
+                                        <% "Something" %>
+                                    <% else %>
+                                      <div class="comment">
+                                          <div class="overflow-h">
+                                              <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong> 
+                                              <p><%= comment.general_comment %></p>
+                                              <ul class="list-inline comment-list">
+                                                  <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.patient.diagnosis %></a></li>
+                                              </ul>
+                                          </div>    
+                                      </div>
+                                    <% end %>
+                                  <% end %>
+                                </div>
+                            </div>    
+                        </div><!--End Comments Post-->
+                    </div><!--/end row-->       
+                </div>
+                <!--End Profile Body-->
+            </div> 
+      </div> 
+  </div><!--/container-->
+
+<% else %><!--Non-System Admin Section-->
+
     <!--=== Priority Alerts ===-->
     <div class="profile container content">
       <div class="row">
@@ -27,7 +166,7 @@
                                             <i class="icon-custom rounded-x icon-bg-red fa fa-line-chart"></i>
                                             <div class="overflow-h">
                                                 <strong class="color-red"><%= link_to "Priority ESAS Assessment", esas_assessment_path(priority) %><small class="pull-right"><em><%= time_ago_in_words(priority.created_at) %> ago</em></small></strong> 
-                                                <p>Submitted by <%= priority.patient.first_name %> <%= priority.patient.last_name %></p>
+                                                <p>For patient <%= priority.patient.full_name %></p>
                                             </div>    
                                         </div>
                                     <% end %>
@@ -75,7 +214,7 @@
                                           <i class="icon-custom rounded-x icon-bg-green fa fa-line-chart"></i>
                                           <div class="overflow-h">
                                               <strong class="color-green"><%= link_to "New ESAS Assessment", esas_assessment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
-                                              <p>Submitted by <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
+                                              <p>For patient <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
                                           </div>    
                                       </div>
                                     <% else %>
@@ -85,7 +224,7 @@
                                           <i class="icon-custom rounded-x icon-bg-blue fa fa-envelope"></i>
                                           <div class="overflow-h">
                                               <strong class="color-blue"><%= link_to "New PRFS Assessment", prfs_assessment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
-                                              <p>Submitted by <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
+                                              <p>For patient <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
                                           </div>    
                                         </div>
                                       <% else %>
@@ -177,6 +316,8 @@
                                 </div>
                             </div>    
                         </div><!--End Comments Post-->
+
+
                         <div class="col-md-4 col-sm-6">
                             <div class="service-block service-block-u">            
                                 <i class="icon-2x color-light fa fa-line-chart", href="#collapseOne"></i>
@@ -187,15 +328,18 @@
                         <div class="col-md-4 col-sm-6">
                             <div class="service-block service-block-blue">
                                 <i class="icon-2x color-light fa fa-envelope"></i>
-                                <h2 class="heading-md"><%= link_to "New PFRS Assessment", new_esas_assessment_path, class: 'btn-u btn-u-lg btn-u-blue' %></h2>
+                                <h2 class="heading-md"><%= link_to "New PFRS Assessment", new_prfs_assessment_path, class: 'btn-u btn-u-lg btn-u-blue' %></h2>
                                 <p>The Patient Reported Functional Status (PRFS) tool is a tool completed by patients that assesses their functional status, or activity levels.</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div><!--/end row-->
-      <% end %>
-    </div><!--/container-->    
-    <!--=== End Profile ===-->
-  </div>
-  </div>
+          <% end %>
+
+      </div><!--/container-->    
+      <!--=== End Profile ===-->
+    </div>
+    </div>
+<% end %>

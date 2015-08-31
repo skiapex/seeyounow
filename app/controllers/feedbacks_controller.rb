@@ -1,4 +1,6 @@
 class FeedbacksController < ApplicationController
+  skip_before_action :require_clinician, only: [:new, :create, :show, :edit, :update]
+  skip_before_action :require_admin, only: [:new, :create, :show, :edit, :update]
 
   def index
       @feedbacks = Feedback.all
@@ -17,7 +19,7 @@ class FeedbacksController < ApplicationController
       if current_clinician
         @feedback.full_name = current_user.clinician.full_name
       else
-        @feedback.full_name = current_user.patient.full_name
+        @feedback.full_name = current_user.id
       end 
 
         if @feedback.save
@@ -46,7 +48,7 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.find_by(id: params["id"])
     @feedback.destroy
 
-    redirect_to feedbacks_path, notice: "Feedback deleted!"
+    redirect_to root_path, notice: "Feedback deleted!"
   end
 
   private

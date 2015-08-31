@@ -51,7 +51,7 @@
             		              <a href="#"><i class="fa fa-cog pull-right"></i></a>
             		          </div>
             		          <div id="scrollbar" class="panel-body contentHolder">
-            		          <% @esas_assessments.map(&:patient).uniq.each_with_index do |patient, index| %>
+            		          <% @shared.each_with_index do |patient, index| %>
             		              <div class="profile-post color-two">
             		                  <span class="profile-post-numb"><%= index+1 %></span>
             		                  <div class="profile-post-in">

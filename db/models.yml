@@ -19,7 +19,7 @@ Patient:
   diagnosis: string
   diagnosis_date: datetime
   gender_id: integer
-  age: string
+  birth_date: datetime
   address: string
   phone_number: string
   caregiver_name: string
@@ -42,16 +42,24 @@ Occupation:
 Inputter:
   inputter_type: string
 
+CareGiver:
+  patient_id: integer
+  inputter_id: integer
+  first_name: string
+  last_name: string
+  phone_number: string
+  other_information: text
+
 OtherSymptom:
   symptom_type: string
 
 EsasAssessment:
   patient_id: integer
   clinician_id: integer
+  clinician_completed: boolean
   created_at: datetime
   updated_at: datetime
-  inputter_name: string
-  inputter_id: integer
+  care_giver_id: integer
   pain: integer
   pain_comment: string
   tiredness: integer
@@ -81,10 +89,10 @@ EsasAssessment:
 PrfsAssessment:
   patient_id: integer
   clinician_id: integer
+  clinician_completed: boolean
   created_at: datetime
   updated_at: datetime
-  inputter_name: string
-  inputter_id: integer
+  care_giver_id: integer
   activity_and_function: integer
   prfs_comment: string
 

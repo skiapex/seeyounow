@@ -1,4 +1,3 @@
 class Inputter < ActiveRecord::Base
-	has_many :esas_assessments
-	has_many :prfs_assessments
+	has_many :care_givers
 end

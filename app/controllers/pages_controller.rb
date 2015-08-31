@@ -8,16 +8,27 @@ class PagesController < ApplicationController
   end
 
   def home
-    if current_clinician
-      @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
-      @prfs_assessments = current_clinician.prfs_assessments.order("created_at desc")
-      @comments = current_clinician.comments.order("created_at desc")
+    if current_user.email == "info@seeyounow.ca"
+      @esas_assessments = EsasAssessment.all
+      @prfs_assessments = PrfsAssessment.all
+      @comments = Comment.all
+      @care_groups = CareGroup.all
+      @feedbacks = Feedback.all
+      @clinicians = Clinician.all
+      @patients = Patient.all
+      @other_symptoms = OtherSymptom.all
       @notifications = @esas_assessments + @prfs_assessments + @comments
-
     else
-      @esas_assessments = current_user.patient.esas_assessments.order("created_at desc")
-      @prfs_assessments = current_user.patient.prfs_assessments.order("created_at desc")
-      @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments.order("created_at desc")
+      if current_clinician
+        @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
+        @prfs_assessments = current_clinician.prfs_assessments.order("created_at desc")
+        @comments = current_clinician.comments.order("created_at desc")
+        @notifications = @esas_assessments + @prfs_assessments + @comments
+      else
+        @esas_assessments = current_user.patient.esas_assessments.order("created_at desc")
+        @prfs_assessments = current_user.patient.prfs_assessments.order("created_at desc")
+        @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments.order("created_at desc")
+      end
     end
   end
 

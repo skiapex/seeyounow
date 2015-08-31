@@ -25,14 +25,19 @@
 
         <%= bootstrap_form_for(@prfs_assessment, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-8") do |form| %>
           
-          <div class="form-group">
-            <%= form.label :inputter_name %>
-            <%= form.text_field :inputter_name, class: "form-control", control_col: "col-sm-6", label: "Inputter Name" %>
-          </div>
+          <% if current_clinician %>
+          <% else %>
+            <p>Select the care giver that is inputting this assesment</p>
 
-          <div class="form-group">
-            <%= form.collection_select :inputter_id, Inputter.all, :id, :inputter_type, :selected => form.object.inputter_id, class: "form-control", control_col: "col-sm-3", label: "Inputter Type" %>
-          </div>
+            <div class="form-group">
+              <%= form.collection_select :care_giver_id, CareGiver.where(patient_id: current_user.patient.id).order("first_name asc"), :id, :full_name, {:include_blank => "Self completed by patient"}, class: "form-control", control_col: "col-sm-6" %>
+            </div>
+            <span class="pull-right">
+              <%= link_to "Add Care Giver", new_care_giver_path, class: 'btn btn-u btn-success' %>
+            </span>
+          <% end %>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
 
           <div class="form-group">
             <%= form.select :activity_and_function, @select_options, class: "form-control", control_col: "col-sm-2" %>

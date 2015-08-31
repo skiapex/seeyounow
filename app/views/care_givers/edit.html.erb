@@ -1,0 +1,53 @@
+<head>
+    <title>SeeYouNow | New Patient Care Giver</title>
+</head>
+
+<% if @care_giver.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this assessment from being saved:</h2>
+    <ul>
+      <% @care_giver.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3 class="page-header">
+    Care Giver for <%= @care_giver.patient.full_name %>
+</h3>
+
+<%= form_for @care_giver do |form| %>
+  <% if current_clinician %>
+    <div class="form-group">
+      <%= form.collection_select :patient_id, Clinician.find_by(id: current_clinician.id).patients.order("first_name asc"), :id, :full_name, class: "form-control", control_col: "col-sm-6"  %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :inputter_id %>
+    <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, class: "form-control", placeholder: "Phone number" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :other_information %>
+    <%= form.text_area :other_information, class: "form-control", rows: 5, placeholder: "Other important information about this care giver" %>
+  </div>
+
+  <%= form.button 'Update Care Giver', class: "btn btn-u btn-success" %>
+<% end %>

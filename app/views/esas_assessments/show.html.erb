@@ -8,8 +8,7 @@
   
         
   <script type="text/javascript">
-  google.load('visualization', '1', {packages: ['corechart']});
-  google.setOnLoadCallback(drawChart);
+  setTimeout(function(){google.load('visualization', '1', {'callback':'drawChart()', 'packages':['corechart']})}, 1000);
 
 
   function drawChart() {
@@ -358,12 +357,28 @@
         </div>
         <table class="table table-striped table-bordered">
           <tr>
-            <td><strong>Inputter name</strong></td>
-            <td><%= @esas_assessment.inputter_name %></td>
+            <td><strong>Care giver name</strong></td>
+            <% if @care_giver == nil %>
+              <% if @esas_assessment.clinician_completed == true %>
+                <td><%= link_to @esas_assessment.clinician.full_name, clinician_path(@esas_assessment.clinician.id) %></td>
+              <% else %>
+               <td>Self completed</td>
+              <% end %>
+            <% else %>
+              <td><%= link_to  @care_giver.full_name, care_giver_path(@care_giver) %></td>
+            <% end %>
           </tr>
           <tr>
-            <td><strong>Inputter type</strong></td>
-            <td><%= @esas_assessment.inputter.inputter_type %></td>
+            <td><strong>Care giver relation</strong></td>
+            <% if @care_giver == nil %>
+              <% if @esas_assessment.clinician_completed == true %>
+                <td><%= @esas_assessment.clinician.occupation.name %></td>
+              <% else %>
+                <td> </td>
+              <% end %>
+            <% else %>
+              <td><%= @care_giver.inputter.inputter_type %></td>
+            <% end %>
           </tr>
         </table>
       </div>

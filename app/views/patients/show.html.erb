@@ -29,8 +29,7 @@
 <!--=== ESAS Chart JS ===-->
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-  google.load('visualization', '1.1', {packages: ['line']});
-  google.setOnLoadCallback(drawChart);
+  setTimeout(function(){google.load('visualization', '1.1', {'callback':'drawChart()', 'packages':['line']})}, 1000);
 
   function drawChart() {
 
@@ -106,7 +105,8 @@
                               <li><strong>Information important to patient:</strong></li>
                               <li><%= @patient.important_to_you %></li>
                               <li><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></li>
-                              <li><strong>Age:</strong> <%= @patient.age %></li>
+                              <li><strong>Date of Birth:</strong> <%= @patient.birth_date.strftime("%B %d, %Y") %></li>
+                              <li><strong>Age:</strong> <%= @age %></li>
                           </ul>
                           <ul class="list-unstyled">
                               <li><a href="http://maps.google.com/?q=<%= @patient.address %>"><i class="fa fa-home"></i><%= @patient.address %></a></li>
@@ -117,7 +117,16 @@
                                 <li><i class="fa fa-heartbeat"></i><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></li>
                               <% end %>
                               <li><i class="fa fa-user-md"></i><strong>Primary Clinician: </strong><%= link_to @patient.clinician.full_name, clinician_path(@patient.clinician) %></li>
-                              <li><i class="fa fa-group"></i><strong>Caregiver name: </strong><%= @patient.caregiver_name %></li>
+                              <li><i class="fa fa-group"></i><strong>Care Givers:</strong></li>
+                                <% @care_givers.each do |care_giver| %>
+                                  <blockquote class="hero-unify margin-bottom-10">
+                                    <p><%= link_to care_giver.full_name, care_giver_path(care_giver) %><span class="pull-right"><small><%= link_to "Edit", edit_care_giver_path(care_giver) %> <%= link_to "Delete", care_giver_path(care_giver), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></small></span></p>
+                                    <p><small><%= care_giver.inputter.inputter_type %>, <%= care_giver.other_information %></small></p>
+                                  </blockquote>
+                                <% end %>
+                                <li><span class="pull-right">
+                                  <%= link_to "Add Care Giver", new_care_giver_path, class: 'btn btn-u btn-success' %>
+                                </span></li>
                           </ul>
                       </div>
 
@@ -139,14 +148,28 @@
                                         <p>Highest score: <%= [notification.pain, notification.tiredness, notification.drowsiness, notification.nausea, notification.lack_of_appetite, notification.shortness_of_breath, notification.depression, notification.anxiety, notification.wellbeing, notification.other_symptom_score].max %>,
                                           Other symptom: <%= notification.other_symptom.symptom_type %></p>
                                         <ul class="list-inline comment-list">
-                                            <li><i class="fa fa-heartbeat"> </i>Submitted to: <%= notification.clinician.full_name %></li>
+                                          <% if notification.care_giver == nil %>
+                                            <% if notification.clinician_completed == true %>
+                                              <li><i class="fa fa-heartbeat"> </i>Completed by: <%= notification.clinician.full_name %></li>
+                                            <% else %>
+                                            <% end %>
+                                          <% else %>
+                                            <li><i class="fa fa-heartbeat"> </i>Completed by: <%= notification.care_giver.full_name %></li>
+                                          <% end %>
                                         </ul>
                                       <% else %>
                                         <% if notification.is_a?(PrfsAssessment) %>
                                           <strong><%= link_to "PRFS Assessment", prfs_assessment_path(notification) %><small class="pull-right"> <%= time_ago_in_words(notification.created_at) %></small></strong> 
                                           <p>Activity and Function score: <%= notification.activity_and_function %></p>
                                           <ul class="list-inline comment-list">
-                                              <li><i class="fa fa-heartbeat"> </i>Submitted to: <%= notification.clinician.full_name %></li>
+                                            <% if notification.care_giver == nil %>
+                                              <% if notification.clinician_completed == true %>
+                                                <li><i class="fa fa-heartbeat"> </i>Completed by: <%= notification.clinician.full_name %></li>
+                                              <% else %>
+                                              <% end %>
+                                            <% else %>
+                                              <li><i class="fa fa-heartbeat"> </i>Completed by: <%= notification.care_giver.full_name %></li>
+                                            <% end %>
                                           </ul>
                                         <% else %>
                                           <strong><%= link_to "Comment", comment_path(notification) %><small class="pull-right"> <%= time_ago_in_words(notification.created_at) %></small></strong>
@@ -174,10 +197,10 @@
                       <div class="headline"><h3>Administrative Information</h3></div>
                         <div class="margin-bottom-30">
                             <p><strong>Shared with:</strong></p>
-                            <% @patient.shared_with.each do |p| %>
-                              <p><%= link_to Clinician.find_by(id: p).full_name, clinician_path(p) %></p>
+                            <% @patient.shared_with.each do |patient| %>
+                              <p><%= link_to Clinician.find_by(id: patient).full_name, clinician_path(patient) %></p>
                             <% end %>
-                            <p><strong>First Diagnosis Date:</strong> &nbsp; <%= @patient.diagnosis_date.strftime("%B %d, %Y") %></p>
+                            <p><strong>First Diagnosis Date:</strong> &nbsp; <%= @patient.diagnosis_date.strftime("%B, %Y") %></p>
                             <p><strong>Patient deceased:</strong> &nbsp; <%= @patient.patient_deceased %></p>
                             <p><strong>Patient archived:</strong> &nbsp; &nbsp; <%= @patient.patient_archived %></p>
                             <p><strong>Care Notes:</strong></p>
@@ -205,19 +228,27 @@
                               <li><strong>Information Important to You:</strong></li>
                               <li><%= @patient.important_to_you %></li>
                               <li><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></li>
-                              <li><strong>Age:</strong> <%= @patient.age %></li>
+                              <li><strong>Age:</strong> <%= @patient.birth_date %></li>
                           </ul>
                           <ul class="list-unstyled">
                               <li><a href="http://maps.google.com/?q=<%= @patient.address %>"><i class="fa fa-home"></i><%= @patient.address %></a></li>
                               <li><a href="mailto:<%= User.find_by(id: @patient.user_id).email %>"><i class="fa fa-envelope-o"></i><%= User.find_by(id: @patient.user_id).email %></a></li>
                               <li><i class="fa fa-phone"></i><%= @patient.phone_number %></li>
                               <% if @esas_assessments.last == nil %>
-                                <li><i class="fa fa-heartbeat"></i><strong>Other symptom:</strong> <%= OtherSymptom.find_by(id: @patient.other_symptom).symptom_type %></li>
                               <% else %>
                                 <li><i class="fa fa-heartbeat"></i><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></li>
                               <% end %>
                               <li><i class="fa fa-user-md"></i><strong>Primary Clinician: </strong><%= link_to @patient.clinician.full_name, clinician_path(@patient.clinician) %></li>
-                              <li><i class="fa fa-group"></i><strong>Caregiver name: </strong><%= @patient.caregiver_name %></li>
+                              <li><i class="fa fa-group"></i><strong>Care Givers:</strong></li>
+                                <% @care_givers.each do |care_giver| %>
+                                  <blockquote class="hero-unify margin-bottom-10">
+                                    <p><%= link_to care_giver.full_name, care_giver_path(care_giver) %><span class="pull-right"><small><%= link_to "Edit", edit_care_giver_path(care_giver) %> <%= link_to "Delete", care_giver_path(care_giver), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></small></span></p>
+                                    <p><small><%= care_giver.inputter.inputter_type %>, <%= care_giver.other_information %></small></p>
+                                  </blockquote>
+                                <% end %>
+                                <li><span class="pull-right">
+                                  <%= link_to "Add Care Giver", new_care_giver_path, class: 'btn btn-u btn-success' %>
+                                </span></li>
                           </ul>
                       </div>
 

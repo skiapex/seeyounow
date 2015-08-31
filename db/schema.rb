@@ -16,6 +16,18 @@ ActiveRecord::Schema.define(version: 20150603181116) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "care_givers", force: true do |t|
+    t.integer "patient_id"
+    t.integer "inputter_id"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "phone_number"
+    t.text    "other_information"
+  end
+
+  add_index "care_givers", ["inputter_id"], name: "index_care_givers_on_inputter_id", using: :btree
+  add_index "care_givers", ["patient_id"], name: "index_care_givers_on_patient_id", using: :btree
+
   create_table "care_groups", force: true do |t|
     t.string "name"
     t.string "province"
@@ -59,8 +71,6 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.integer  "clinician_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "inputter_name"
-    t.integer  "inputter_id"
     t.integer  "pain"
     t.string   "pain_comment"
     t.integer  "tiredness"
@@ -86,10 +96,12 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.integer  "anxiety"
     t.string   "anxiety_comment"
     t.integer  "resolved_by"
+    t.integer  "care_giver_id"
+    t.boolean  "clinician_completed",         default: false
   end
 
+  add_index "esas_assessments", ["care_giver_id"], name: "index_esas_assessments_on_care_giver_id", using: :btree
   add_index "esas_assessments", ["clinician_id"], name: "index_esas_assessments_on_clinician_id", using: :btree
-  add_index "esas_assessments", ["inputter_id"], name: "index_esas_assessments_on_inputter_id", using: :btree
   add_index "esas_assessments", ["other_symptom_id"], name: "index_esas_assessments_on_other_symptom_id", using: :btree
   add_index "esas_assessments", ["patient_id"], name: "index_esas_assessments_on_patient_id", using: :btree
 
@@ -162,7 +174,6 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.integer  "user_id"
     t.string   "diagnosis"
     t.integer  "gender_id"
-    t.string   "age"
     t.string   "address"
     t.string   "phone_number"
     t.string   "caregiver_name"
@@ -174,6 +185,7 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.datetime "diagnosis_date"
     t.text     "important_to_you"
     t.integer  "care_group_id"
+    t.datetime "birth_date"
   end
 
   add_index "patients", ["care_group_id"], name: "index_patients_on_care_group_id", using: :btree
@@ -186,14 +198,14 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.integer  "clinician_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "inputter_name"
-    t.integer  "inputter_id"
     t.string   "prfs_comment"
     t.integer  "activity_and_function"
+    t.integer  "care_giver_id"
+    t.boolean  "clinician_completed",   default: false
   end
 
+  add_index "prfs_assessments", ["care_giver_id"], name: "index_prfs_assessments_on_care_giver_id", using: :btree
   add_index "prfs_assessments", ["clinician_id"], name: "index_prfs_assessments_on_clinician_id", using: :btree
-  add_index "prfs_assessments", ["inputter_id"], name: "index_prfs_assessments_on_inputter_id", using: :btree
   add_index "prfs_assessments", ["patient_id"], name: "index_prfs_assessments_on_patient_id", using: :btree
 
   create_table "specialities", force: true do |t|

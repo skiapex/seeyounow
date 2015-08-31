@@ -4,8 +4,8 @@ class CliniciansController < ApplicationController
 
   def index
     @current_group = current_clinician.care_group_id
-    @clinicians = Clinician.all.order("care_group_id asc")
-    @care_groups = CareGroup.all.order("province asc")
+    @clinicians = Clinician.where.not(first_name: "System").order("care_group_id asc")
+    @care_groups = CareGroup.where.not(name: "System Admin").order("province asc")
   end
 
   def show

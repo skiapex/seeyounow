@@ -6,14 +6,20 @@ class PatientsController < ApplicationController
     # @patients = Patient.all
     @patients = current_clinician.patients.order("first_name asc")
     @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
+    @shared = Patient.where(shared_with: "{#{current_clinician.id}}").order("first_name asc")
   end
 
   def show
     @patient = Patient.find_by(id: params["id"])
+
+    @age = Date.today.year - @patient.birth_date.year
+    @age -= 1 if Date.today < @patient.birth_date + @age.years #for days before birthday
+
     @esas_assessments = EsasAssessment.where(patient_id: @patient.id).order("created_at desc")
     @prfs_assessments = PrfsAssessment.where(patient_id: @patient.id).order("created_at desc")
     @comments = Comment.where(patient_id: @patient.id).order("created_at desc")
     @notes = Note.where(patient_id: @patient.id).order("created_at desc")
+    @care_givers = CareGiver.where(patient_id: @patient.id).order("first_name asc")
 
     @notifications = @esas_assessments + @prfs_assessments + @comments
     
@@ -71,7 +77,7 @@ class PatientsController < ApplicationController
       # It's mandatory to specify the nested attributes that should be whitelisted.
       # If you use `permit` with just the key that points to the nested attributes hash,
       # it will return an empty hash.
-      params.require(:patient).permit( :first_name,:last_name,:user_id,:diagnosis,:diagnosis_date,:gender_id,:age,:address,:phone_number,:caregiver_name,:other_symptom,:goals_of_care,:important_to_you,:shared_with,:care_group,:patient_deceased,:patient_archived, user_attributes: [ :email, :password, :patient_id, :clinician_id ])
+      params.require(:patient).permit( :first_name,:last_name,:user_id,:diagnosis,:diagnosis_date,:gender_id,:birth_date,:address,:phone_number,:caregiver_name,:other_symptom,:goals_of_care,:important_to_you,:shared_with,:care_group,:patient_deceased,:patient_archived, user_attributes: [ :email, :password, :patient_id, :clinician_id ])
     end
 
 end

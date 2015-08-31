@@ -36,14 +36,17 @@
 
           <% if current_clinician %>
           <% else %>
-            <div class="form-group">
-              <%= form.text_field :inputter_name, class: "form-control", placeholder: "Inputter name", control_col: "col-sm-6", label: "Inputter Name" %>
-            </div>
+            <p>Select the care giver that is inputting this assesment</p>
 
             <div class="form-group">
-              <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control", control_col: "col-sm-3", label: "Inputter Type" %>
+              <%= form.collection_select :care_giver_id, CareGiver.where(patient_id: current_user.patient.id).order("first_name asc"), :id, :full_name, {:include_blank => "Self completed by patient"}, class: "form-control", control_col: "col-sm-6" %>
             </div>
+            <span class="pull-right">
+              <%= link_to "Add Care Giver", new_care_giver_path, class: 'btn btn-u btn-success' %>
+            </span>
           <% end %>
+
+          <hr style="margin-top: 1px; margin-bottom: 6px;" />
 
           <div class="form-group">
             <%= form.select :activity_and_function, @select_options, class: "form-control", control_col: "col-sm-2" %>
