@@ -63,7 +63,7 @@
 
           <div class="form-group">
             <%= form.label :birth_date %>
-            <%= form.date_select(:birth_date, :start_year => 1910) %>
+            <%= form.date_select(:birth_date, :start_year => 1910, :end_year => Date.today.year) %>
           </div>
 
           <div class="form-group">
