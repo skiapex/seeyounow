@@ -41,7 +41,7 @@
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
 
-          <div class="form-group">
+          div class="form-group">
             <%= form.select :pain, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Pain Score" %>
           </div>
 
@@ -61,7 +61,7 @@
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
-          <p>Drowsiness - sleepiness</p>
+          <p>Drowsiness - feeling sleepy</p>
 
             <div class="form-group">
             <%= form.select :drowsiness, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Drowsiness Score"  %>
@@ -124,8 +124,7 @@
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
-          <p>Wellbeing: overall comfort, both physical and otherwise; truthfully answering the question,
-“How are you?”</p>
+          <p>Wellbeing: overall comfort, both physical and otherwise; truthfully answering the question, “How are you?”.  With '0' being the 'best wellbeing' and '10' being the 'worst possible wellbing'</p>
 
           <div class="form-group">
             <%= form.select :wellbeing, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Wellbeing Score"  %>
@@ -139,15 +138,15 @@
           <p>One blank scale is available for patients to use to assess an “other problem” as needed</p>
 
           <div class="form-group">
-            <%= form.collection_select :other_symptom_id, OtherSymptom.all.order("symptom_type asc"), :id, :symptom_type, :selected => form.object.other_symptom_id, class: "form-control", control_col: "col-sm-4" %>
+            <%= form.collection_select :other_symptom_id, OtherSymptom.all.order("symptom_type asc"), :id, :symptom_type, {:selected => @no_other_symptom}, class: "form-control", control_col: "col-sm-4" %>
           </div>
 
           <div class="form-group">
-            <%= form.select :other_symptom_score, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2"  %>
+            <%= form.select :other_symptom_score, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Other Symptom Score"  %>
           </div>
 
           <div class="form-group">
-            <%= form.text_field :other_symptom_comment, class: "form-control", placeholder: "Leave a comment", label: "Tiredness Comment" %>
+            <%= form.text_field :other_symptom_comment, class: "form-control", placeholder: "Leave a comment", label: "Other Symptom Comment" %>
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
