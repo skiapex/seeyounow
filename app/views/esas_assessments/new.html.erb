@@ -51,7 +51,7 @@
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
 
           <div class="form-group">
-            <%= form.select :pain, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Pain Score" %>
+            <%= form.range_field :pain, :in => 0..10, :step => 1, class: "form-control", control_col: "col-sm-6", label: "Pain Score" %>
           </div>
 
           <div class="form-group">

@@ -176,7 +176,6 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.integer  "gender_id"
     t.string   "address"
     t.string   "phone_number"
-    t.string   "caregiver_name"
     t.text     "goals_of_care"
     t.string   "shared_with"
     t.boolean  "patient_deceased", default: false
