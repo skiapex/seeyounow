@@ -6,7 +6,8 @@ class Clinician < ActiveRecord::Base
   has_many :comments
   has_many :notes
 	belongs_to :gender
-	has_many :patients #, through: :esas_assessments
+	has_many :patients ,:through=> :care_group_assignments
+  has_many :care_group_assignments, :dependent => :destroy
 	belongs_to :occupation
   belongs_to :speciality
 	belongs_to :user
@@ -30,5 +31,4 @@ class Clinician < ActiveRecord::Base
   	validates :gender_id, presence: true
   	validates :office_number, presence: true
   	validates :mobile_number, presence: true
-  	validates :emergency_message, presence: true
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603181116) do
+ActiveRecord::Schema.define(version: 20150901195629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,20 @@ ActiveRecord::Schema.define(version: 20150603181116) do
   add_index "care_givers", ["inputter_id"], name: "index_care_givers_on_inputter_id", using: :btree
   add_index "care_givers", ["patient_id"], name: "index_care_givers_on_patient_id", using: :btree
 
+  create_table "care_group_assignments", force: true do |t|
+    t.integer  "clinician_id"
+    t.integer  "patient_id"
+    t.datetime "created_at"
+  end
+
+  add_index "care_group_assignments", ["clinician_id"], name: "index_care_group_assignments_on_clinician_id", using: :btree
+  add_index "care_group_assignments", ["patient_id"], name: "index_care_group_assignments_on_patient_id", using: :btree
+
   create_table "care_groups", force: true do |t|
     t.string "name"
     t.string "province"
     t.string "city"
+    t.text   "emergency_message"
   end
 
   create_table "clinicians", force: true do |t|
@@ -41,10 +51,9 @@ ActiveRecord::Schema.define(version: 20150603181116) do
     t.integer "gender_id"
     t.string  "office_number"
     t.string  "mobile_number"
-    t.text    "emergency_message"
     t.integer "care_group_id"
     t.integer "user_id"
-    t.boolean "administrator",     default: false
+    t.boolean "administrator", default: false
     t.integer "speciality_id"
   end
 
@@ -168,7 +177,6 @@ ActiveRecord::Schema.define(version: 20150603181116) do
   end
 
   create_table "patients", force: true do |t|
-    t.integer  "clinician_id"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "user_id"
@@ -188,7 +196,6 @@ ActiveRecord::Schema.define(version: 20150603181116) do
   end
 
   add_index "patients", ["care_group_id"], name: "index_patients_on_care_group_id", using: :btree
-  add_index "patients", ["clinician_id"], name: "index_patients_on_clinician_id", using: :btree
   add_index "patients", ["gender_id"], name: "index_patients_on_gender_id", using: :btree
   add_index "patients", ["user_id"], name: "index_patients_on_user_id", using: :btree
 

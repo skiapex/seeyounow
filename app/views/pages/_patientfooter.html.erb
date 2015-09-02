@@ -25,11 +25,11 @@
                             <ul class="list-unstyled latest-list">
                                 <li>
                                     <% if current_clinician %>
-                                        <a><%= current_clinician.emergency_message %></a>
+                                        <a><%= current_clinician.care_group.emergency_message %></a>
                                         <small><%= current_clinician.care_group.name %> Care Group</small>
                                     <% else %>
-                                        <a><%= current_user.patient.clinician.emergency_message %></a>
-                                        <small><%= current_user.patient.clinician.care_group.name %> Care Group</small>
+                                        <a><%= current_user.patient.care_group.emergency_message %></a>
+                                        <small><%= current_user.patient.care_group.name %> Care Group</small>
                                     <% end %>
                                 </li>
                             </ul>
@@ -75,8 +75,8 @@
                                         <a><%= current_clinician.emergency_message %></a>
                                         <small><%= current_clinician.care_group.name %> Care Group</small>
                                     <% else %>
-                                        <a><%= current_user.patient.clinician.emergency_message %></a>
-                                        <small><%= current_user.patient.clinician.care_group.name %> Care Group</small>
+                                        <a><%= current_user.patient.care_group.emergency_message %></a>
+                                        <small><%= current_user.patient.care_group.name %> Care Group</small>
                                     <% end %>
                                 </li>
                             </ul>

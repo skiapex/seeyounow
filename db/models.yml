@@ -6,13 +6,11 @@ Clinician:
   gender_id: integer
   office_number: string
   mobile_number: string
-  emergency_message: text
   care_group_id: integer
   administrator: boolean
   user_id: integer
 
 Patient:
-  clinician_id: integer
   first_name: string
   last_name: string
   user_id: integer
@@ -29,6 +27,11 @@ Patient:
   care_group_id: integer
   patient_deceased: boolean
   patient_archived: boolean
+
+CareGroupAssignment:
+  clinician_id: integer
+  patient_id: integer
+  created_at: datetime
 
 Gender:
   gender_type: string
@@ -142,6 +145,7 @@ CareGroup:
   name: string
   city: string
   province: string
+  emergency_message: text
 
 User:
   email: string

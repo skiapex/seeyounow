@@ -116,7 +116,7 @@
                               <% else %>
                                 <li><i class="fa fa-heartbeat"></i><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></li>
                               <% end %>
-                              <li><i class="fa fa-user-md"></i><strong>Primary Clinician: </strong><%= link_to @patient.clinician.full_name, clinician_path(@patient.clinician) %></li>
+                              <li><i class="fa fa-user-md"></i><strong>Care Group: </strong><%= link_to @patient.care_group.name, care_group_path(@care_group) %></li>
                               <li><i class="fa fa-group"></i><strong>Care Givers:</strong></li>
                                 <% @care_givers.each do |care_giver| %>
                                   <blockquote class="hero-unify margin-bottom-10">
@@ -197,8 +197,8 @@
                       <div class="headline"><h3>Administrative Information</h3></div>
                         <div class="margin-bottom-30">
                             <p><strong>Shared with:</strong></p>
-                            <% @patient.shared_with.each do |patient| %>
-                              <p><%= link_to Clinician.find_by(id: patient).full_name, clinician_path(patient) %></p>
+                            <% @patient.clinicians.each do |clinician| %>
+                              <p><%= clinician.full_name %></p>
                             <% end %>
                             <p><strong>First Diagnosis Date:</strong> &nbsp; <%= @patient.diagnosis_date.strftime("%B, %Y") %></p>
                             <p><strong>Patient deceased:</strong> &nbsp; <%= @patient.patient_deceased %></p>
@@ -238,7 +238,7 @@
                               <% else %>
                                 <li><i class="fa fa-heartbeat"></i><strong>Last other symptom:</strong> <%= @esas_assessments.last.other_symptom.symptom_type %></li>
                               <% end %>
-                              <li><i class="fa fa-user-md"></i><strong>Primary Clinician: </strong><%= link_to @patient.clinician.full_name, clinician_path(@patient.clinician) %></li>
+                              <li><i class="fa fa-user-md"></i><strong>Care Group: </strong><%= link_to @patient.care_group.name, care_group_path(@care_group) %></li>
                               <li><i class="fa fa-group"></i><strong>Care Givers:</strong></li>
                                 <% @care_givers.each do |care_giver| %>
                                   <blockquote class="hero-unify margin-bottom-10">

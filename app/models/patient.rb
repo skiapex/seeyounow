@@ -3,7 +3,8 @@
         	has_many :esas_assessments, dependent: :destroy
           has_many :prfs_assessments, dependent: :destroy
         	belongs_to :gender
-        	belongs_to :clinician
+        	has_many :clinicians ,:through=> :care_group_assignments
+          has_many :care_group_assignments
         	belongs_to :user
           has_many :comments, dependent: :destroy
           has_many :notes, dependent: :destroy

@@ -166,7 +166,7 @@
                         <% if current_clinician %>
                         <% else %>
                           <i class="fa fa-ambulance"></i>
-                          <li><%= link_to "Emergency Message", clinician_path(current_user.patient.clinician) %></li>
+                          <li><%= link_to "Emergency Message", clinician_path(Clinician.find_by(care_group_id: current_user.patient.care_group.id)) %></li>
                         <% end %>
                       </li>
                       <li class="topbar-devider"></li>
