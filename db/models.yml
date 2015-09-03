@@ -23,10 +23,10 @@ Patient:
   other_symptom: integer
   goals_of_care: text
   important_to_you: text
-  shared_with: string
   care_group_id: integer
   patient_deceased: boolean
   patient_archived: boolean
+  notification_level: integer
 
 CareGroupAssignment:
   clinician_id: integer

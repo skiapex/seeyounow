@@ -32,6 +32,7 @@ group :development do
   gem 'tzinfo-data', platforms: [:mingw, :mswin]
   gem 'pg'
   #gem 'sqlite3'
+  gem 'meta_request'
 end
 
 group :production do

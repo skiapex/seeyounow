@@ -185,14 +185,14 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.string   "address"
     t.string   "phone_number"
     t.text     "goals_of_care"
-    t.string   "shared_with"
-    t.boolean  "patient_deceased", default: false
-    t.boolean  "patient_archived", default: false
+    t.boolean  "patient_deceased",   default: false
+    t.boolean  "patient_archived",   default: false
     t.integer  "other_symptom"
     t.datetime "diagnosis_date"
     t.text     "important_to_you"
     t.integer  "care_group_id"
     t.datetime "birth_date"
+    t.integer  "notification_level"
   end
 
   add_index "patients", ["care_group_id"], name: "index_patients_on_care_group_id", using: :btree

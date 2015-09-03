@@ -52,7 +52,7 @@
                                 <div class="profile-post color-one">
                                     <span class="profile-post-numb"></span>
                                     <div class="profile-post-in">
-                                        <p><strong>Name:</strong> <%= @clinician.first_name %> <%= @clinician.last_name %></p>
+                                        <p><strong>Name:</strong> <%= @clinician.full_name %></p>
                                         <p><strong>Occupation:</strong> <%= @clinician.occupation.name %></p>
                                         <% if @clinician.speciality == nil %>
                                         <% else %>

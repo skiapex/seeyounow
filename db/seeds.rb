@@ -39,6 +39,8 @@ puts "Deleting all Speciality from the database..."
 Speciality.delete_all
 puts "Deleting all CareGiver from the database..."
 CareGiver.delete_all
+puts "Deleting all CareGroupAssignment from the database..."
+CareGroupAssignment.delete_all
 
 
 puts "Creating gender types..."
@@ -230,15 +232,15 @@ jenniferpebenito = Clinician.create(first_name: "Jennifer", last_name: "Pe Benit
 # Create the patients
 puts "Creating patients..."
 
-gailh = Patient.create(first_name: "Gail", last_name: "H", user_id: usergailh.id, diagnosis: "Ovarian cancer", diagnosis_date: "2013-03-01 00:00:01 -0400", gender_id: female.id, birth_date: "1946-08-28 00:00:01 -0400", address: "Hanover Road, Brampton, Ontario", phone_number: "1111111", goals_of_care: "stay at home as long as possible; fiercely independent and lives alone", important_to_you: "does not get along with sister Donna who should not be allowed in at the end", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
-amrikg = Patient.create(first_name: "Amrik", last_name: "G", user_id: useramrikg.id, diagnosis: "Pseudomyxoma Peritonei and Dementia", diagnosis_date: "2014-01-26 00:00:01 -0400", gender_id: male.id, birth_date: "1926-08-28 00:00:01 -0400", address: "116 Eagleridge Drive, Brampton, Ontario", phone_number: "905-753-9323", other_symptom: nil, goals_of_care: "palliate", important_to_you: "Has increasing Dementia and he has lived along time with this diagnosis which no signs of terminal course; will likely die of dementia vs PMP", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
-atnafug = Patient.create(first_name: "Atnafu", last_name: "G", user_id: useratnafug.id, diagnosis: "Leukemia", diagnosis_date: "2008-08-26 00:00:01 -0400", gender_id: male.id, birth_date: "1940-08-28 00:00:01 -0400", address: "1 Luella Cres, Brampton, Ontario", phone_number: "416-509-3740", other_symptom: nil, goals_of_care: "on chemo pill and doing very well", important_to_you: "Originates from Ethiopia; here with wife living with son and his grandkids", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
-harbanss = Patient.create(first_name: "Harbans", last_name: "S", user_id: userharbanss.id, diagnosis: "B Cell Lymphoma", diagnosis_date: "2014-11-26 00:00:01 -0400", gender_id: male.id, birth_date: "1943-08-28 00:00:01 -0400", address: "4 Idaho Road, Brampton, Ontario", phone_number: "416-984-0173", other_symptom: nil, goals_of_care: "He wishes to die at home", important_to_you: "Wife does not want us to talk about his prognosis. She knows but would prefer to not hear anything of it.", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: true, patient_archived: false)
-lihwah = Patient.create(first_name: "Li Hwa", last_name: "H", user_id: userlihwah.id, diagnosis: "Non small cell Lung Cancer", diagnosis_date: "2006-08-26 00:00:01 -0400", gender_id: female.id, birth_date: "1959-08-28 00:00:01 -0400", address: "45 Solway Avenue, Brampton, Ontario", phone_number: "905-846-5907", other_symptom: nil, goals_of_care: "comfort and ongoing chemo; not interested in anymore lung biopsies as they pick up dead cells only times 3", important_to_you: "Dr. Nada rajah is her FD and she is not quite ready to switch to our service", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
-nalinim = Patient.create(first_name: "Nalini", last_name: "M", user_id: usernalinim.id, diagnosis: "Metastatic colorectal cancer", diagnosis_date: "2015-01-26 00:00:01 -0400", gender_id: female.id, birth_date: "1974-08-28 00:00:01 -0400", address: "28 Lent Cres, Brampton, Ontario", phone_number: "289-752-8191", other_symptom: nil, goals_of_care: "She is aiming for cure. Will be having tumours surgically removed from the liver. Any treatments will be considered.", important_to_you: "She will likely set the pace of our visits ongoing", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
-ritab = Patient.create(first_name: "Rita", last_name: "B", user_id: userritab.id, diagnosis: "Metastatic Breast Cancer in 2005", diagnosis_date: "2014-08-26 00:00:01 -0400", gender_id: female.id, birth_date: "1955-08-28 00:00:01 -0400", address: "147 Coastline Drive, Brampton, Ontario", phone_number: "905-453-5424", other_symptom: nil, goals_of_care: "palliate", important_to_you: "Strong Sikh religion and knows it is her god who will decide when it is time to go", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
-walterh = Patient.create(first_name: "Walter", last_name: "H", user_id: userwalterh.id, diagnosis: "Metastatic Rectal Cancer", diagnosis_date: "2011-11-26 00:00:01 -0400", gender_id: male.id, birth_date: "1961-08-28 00:00:01 -0400", address: "13 Burt Drive, Brampton, Ontario", phone_number: "905-453-3651", other_symptom: nil, goals_of_care: "Be painfree and so far continue with chemotherapy despite side effects", important_to_you: "Originates from Newfoundland; has 3 kids", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: true, patient_archived: true)
-royele = Patient.create(first_name: "Royel", last_name: "E", user_id: userroyele.id, diagnosis: "Large B Cell Lymphoma", diagnosis_date: "2014-10-26 00:00:01 -0400", gender_id: male.id, birth_date: "1946-08-28 00:00:01 -0400", address: "40 Woodsend Run, Brampton, Ontario", phone_number: "647-222-1636", other_symptom: nil, goals_of_care: "palliate", important_to_you: "installed the Bell phones in our Brameast plaza; loved this work", shared_with: [judymaynard.id, amandamaclennen.id, jenniferpebenito.id], care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+gailh = Patient.create(first_name: "Gail", last_name: "H", user_id: usergailh.id, diagnosis: "Ovarian cancer", diagnosis_date: "2013-03-01 00:00:01 -0400", gender_id: female.id, birth_date: "1946-08-28 00:00:01 -0400", address: "Hanover Road, Brampton, Ontario", phone_number: "1111111", goals_of_care: "stay at home as long as possible; fiercely independent and lives alone", important_to_you: "does not get along with sister Donna who should not be allowed in at the end", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+amrikg = Patient.create(first_name: "Amrik", last_name: "G", user_id: useramrikg.id, diagnosis: "Pseudomyxoma Peritonei and Dementia", diagnosis_date: "2014-01-26 00:00:01 -0400", gender_id: male.id, birth_date: "1926-08-28 00:00:01 -0400", address: "116 Eagleridge Drive, Brampton, Ontario", phone_number: "905-753-9323", other_symptom: nil, goals_of_care: "palliate", important_to_you: "Has increasing Dementia and he has lived along time with this diagnosis which no signs of terminal course; will likely die of dementia vs PMP", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+atnafug = Patient.create(first_name: "Atnafu", last_name: "G", user_id: useratnafug.id, diagnosis: "Leukemia", diagnosis_date: "2008-08-26 00:00:01 -0400", gender_id: male.id, birth_date: "1940-08-28 00:00:01 -0400", address: "1 Luella Cres, Brampton, Ontario", phone_number: "416-509-3740", other_symptom: nil, goals_of_care: "on chemo pill and doing very well", important_to_you: "Originates from Ethiopia; here with wife living with son and his grandkids", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+harbanss = Patient.create(first_name: "Harbans", last_name: "S", user_id: userharbanss.id, diagnosis: "B Cell Lymphoma", diagnosis_date: "2014-11-26 00:00:01 -0400", gender_id: male.id, birth_date: "1943-08-28 00:00:01 -0400", address: "4 Idaho Road, Brampton, Ontario", phone_number: "416-984-0173", other_symptom: nil, goals_of_care: "He wishes to die at home", important_to_you: "Wife does not want us to talk about his prognosis. She knows but would prefer to not hear anything of it.", care_group_id: brameast.id, patient_deceased: true, patient_archived: false)
+lihwah = Patient.create(first_name: "Li Hwa", last_name: "H", user_id: userlihwah.id, diagnosis: "Non small cell Lung Cancer", diagnosis_date: "2006-08-26 00:00:01 -0400", gender_id: female.id, birth_date: "1959-08-28 00:00:01 -0400", address: "45 Solway Avenue, Brampton, Ontario", phone_number: "905-846-5907", other_symptom: nil, goals_of_care: "comfort and ongoing chemo; not interested in anymore lung biopsies as they pick up dead cells only times 3", important_to_you: "Dr. Nada rajah is her FD and she is not quite ready to switch to our service", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+nalinim = Patient.create(first_name: "Nalini", last_name: "M", user_id: usernalinim.id, diagnosis: "Metastatic colorectal cancer", diagnosis_date: "2015-01-26 00:00:01 -0400", gender_id: female.id, birth_date: "1974-08-28 00:00:01 -0400", address: "28 Lent Cres, Brampton, Ontario", phone_number: "289-752-8191", other_symptom: nil, goals_of_care: "She is aiming for cure. Will be having tumours surgically removed from the liver. Any treatments will be considered.", important_to_you: "She will likely set the pace of our visits ongoing", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+ritab = Patient.create(first_name: "Rita", last_name: "B", user_id: userritab.id, diagnosis: "Metastatic Breast Cancer in 2005", diagnosis_date: "2014-08-26 00:00:01 -0400", gender_id: female.id, birth_date: "1955-08-28 00:00:01 -0400", address: "147 Coastline Drive, Brampton, Ontario", phone_number: "905-453-5424", other_symptom: nil, goals_of_care: "palliate", important_to_you: "Strong Sikh religion and knows it is her god who will decide when it is time to go", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+walterh = Patient.create(first_name: "Walter", last_name: "H", user_id: userwalterh.id, diagnosis: "Metastatic Rectal Cancer", diagnosis_date: "2011-11-26 00:00:01 -0400", gender_id: male.id, birth_date: "1961-08-28 00:00:01 -0400", address: "13 Burt Drive, Brampton, Ontario", phone_number: "905-453-3651", other_symptom: nil, goals_of_care: "Be painfree and so far continue with chemotherapy despite side effects", important_to_you: "Originates from Newfoundland; has 3 kids", care_group_id: brameast.id, patient_deceased: true, patient_archived: true)
+royele = Patient.create(first_name: "Royel", last_name: "E", user_id: userroyele.id, diagnosis: "Large B Cell Lymphoma", diagnosis_date: "2014-10-26 00:00:01 -0400", gender_id: male.id, birth_date: "1946-08-28 00:00:01 -0400", address: "40 Woodsend Run, Brampton, Ontario", phone_number: "647-222-1636", other_symptom: nil, goals_of_care: "palliate", important_to_you: "installed the Bell phones in our Brameast plaza; loved this work", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
 
 puts "Creating care givers..."
 # Create the are givers for patients
@@ -261,6 +263,45 @@ EsasAssessment.create(patient_id: gailh.id, clinician_id: judymaynard.id, clinic
 
 # Create the scores for an PRFS assessment
 PrfsAssessment.create(patient_id: gailh.id, clinician_id: judymaynard.id, clinician_completed: true, created_at: "2015-08-26 21:01:01 -0400", care_giver_id: nil, activity_and_function: 2, prfs_comment: "still getting out with friends at mall occasionally; still driving; had bad fall and black eye last week in parking lot")
+
+
+puts "Creating care group assignments..."
+# Create the patient clinician relationship
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: gailh.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: gailh.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: gailh.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: amrikg.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: amrikg.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: amrikg.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: atnafug.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: atnafug.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: atnafug.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: harbanss.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: harbanss.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: harbanss.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: lihwah.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: lihwah.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: lihwah.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: nalinim.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: nalinim.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: nalinim.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: ritab.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: ritab.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: ritab.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: walterh.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: walterh.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: walterh.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: royele.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: royele.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: royele.id)
 
 
 puts "Creating comments..."

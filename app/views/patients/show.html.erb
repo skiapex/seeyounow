@@ -197,12 +197,13 @@
                       <div class="headline"><h3>Administrative Information</h3></div>
                         <div class="margin-bottom-30">
                             <p><strong>Shared with:</strong></p>
-                            <% @patient.clinicians.each do |clinician| %>
-                              <p><%= clinician.full_name %></p>
+                            <% @shared.each do |care_group_assignments| %>
+                              <p><%= care_group_assignments.clinician.full_name %></p>
                             <% end %>
                             <p><strong>First Diagnosis Date:</strong> &nbsp; <%= @patient.diagnosis_date.strftime("%B, %Y") %></p>
                             <p><strong>Patient deceased:</strong> &nbsp; <%= @patient.patient_deceased %></p>
                             <p><strong>Patient archived:</strong> &nbsp; &nbsp; <%= @patient.patient_archived %></p>
+                            <p><strong>Priority alert notification setting:</strong> &nbsp; &nbsp; <%= @patient.notification_level %></p>
                             <p><strong>Care Notes:</strong></p>
                               <% @notes.each do |note| %>
                                 <blockquote class="hero-unify margin-bottom-10">

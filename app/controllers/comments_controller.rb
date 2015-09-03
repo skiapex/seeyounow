@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new
     if current_clinician
     else
-      @patient = Patient.find_by(user_id: current_user.id).shared_with
+      @patient = CareGroupAssignment.where(patient_id: current_user.patient.id)
       @clinicians = Clinician.where(id: @patient)
     end
 

@@ -91,6 +91,12 @@
             <%= form.collection_select :care_group, CareGroup.all, :id, :name, class: "form-control" %>
           </div>
 
+          <% if current_clinician %>
+            <div class="form-group">
+              <%= form.select :notification_level, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Priority alert notification level"  %>
+            </div>
+          <% end %>
+
           <div class="form-group">
             <%= form.label :patient_deceased %>
             <%= form.check_box :patient_deceased %>
