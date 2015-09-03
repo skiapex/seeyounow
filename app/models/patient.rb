@@ -4,7 +4,6 @@ class Patient < ActiveRecord::Base
   has_many :prfs_assessments, dependent: :destroy
 	belongs_to :gender
 	has_many :clinicians ,:through=> :care_group_assignments
-  accepts_nested_attributes_for :clinicians
   has_many :care_group_assignments
 	belongs_to :user
   has_many :comments, dependent: :destroy

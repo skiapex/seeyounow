@@ -104,7 +104,7 @@
 
     <div class="form-group">
       <%= form.label :clinician_id %>
-      <%= form.collection_select :clinician_id, Clinician.where(id: @patient).order("first_name asc"), :id, :full_name, class: "form-control" %>
+      <%= form.collection_select :clinician_id, @care_group_assignments.clinician.order("first_name asc"), :id, :full_name, class: "form-control" %>
     </div>
 
     <div class="form-group">

@@ -74,7 +74,7 @@
             <% Clinician.where(care_group_id: @care_group.id).each do |clinician| %>
               <%= check_box_tag "patient[clinician_ids][]", clinician.id, @patient.clinician_ids.include?(clinician.id), id: dom_id(clinician) %>
               <%= label_tag dom_id(clinician), clinician.full_name %><br>
-            <% end %>
+            <% end %><!-- 
 
             <%= collection_select(:patient, :clinician_ids, 
               Clinician.where(care_group_id: @care_group.id).order("first_name asc"), 
@@ -83,7 +83,7 @@
             <%= form.fields_for :care_group_assignments do |gf| %>
               <%= gf.label :clinician_id, "Select a clinician" %>
               <%= gf.collection_select(:clinician_id, Clinician.where(care_group_id: @care_group.id).order("first_name asc"), :id, :full_name, {}, {:multiple => true}) %>
-            <% end %>
+            <% end %> -->
           </div>
 
           <div class="form-group">
