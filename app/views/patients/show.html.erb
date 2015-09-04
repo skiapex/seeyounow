@@ -198,7 +198,7 @@
                         <div class="margin-bottom-30">
                             <p><strong>Shared with:</strong></p>
                             <% @shared.each do |care_group_assignments| %>
-                              <p><%= care_group_assignments.clinician.full_name %></p>
+                              <p><%= link_to care_group_assignments.clinician.full_name, clinician_path(care_group_assignments.clinician) %></p>
                             <% end %>
                             <p><strong>First Diagnosis Date:</strong> &nbsp; <%= @patient.diagnosis_date.strftime("%B, %Y") %></p>
                             <p><strong>Patient deceased:</strong> &nbsp; <%= @patient.patient_deceased %></p>
@@ -229,7 +229,8 @@
                               <li><strong>Information Important to You:</strong></li>
                               <li><%= @patient.important_to_you %></li>
                               <li><strong>Gender:</strong> <%= @patient.gender.gender_type if @patient.gender %></li>
-                              <li><strong>Age:</strong> <%= @patient.birth_date %></li>
+                              <li><strong>Date of Birth:</strong> <%= @patient.birth_date.strftime("%B %d, %Y") %></li>
+                              <li><strong>Age:</strong> <%= @age %></li>
                           </ul>
                           <ul class="list-unstyled">
                               <li><a href="http://maps.google.com/?q=<%= @patient.address %>"><i class="fa fa-home"></i><%= @patient.address %></a></li>
@@ -255,6 +256,19 @@
 
                   </div>
                   <!--End Patient Information-->
+
+                  <!--Administrative Information-->
+                  <div class="col-sm-4">
+                      <div class="headline"><h3>Circle of Care</h3></div>
+                        <div class="margin-bottom-30">
+                            <% @shared.each do |care_group_assignments| %>
+                              <p><%= link_to care_group_assignments.clinician.full_name, clinician_path(care_group_assignments.clinician) %></p>
+                              <p><small><%= care_group_assignments.clinician.occupation.name %>, <%= care_group_assignments.clinician.speciality.name %></small></p>
+                            <% end %>  
+                        </div>
+                      </div>        
+                  </div>
+                  <!--End Administrative Information-->
 
                 <% end %><!--End Patient View -->
 

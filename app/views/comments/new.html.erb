@@ -84,7 +84,7 @@
 
 <% if current_clinician %>
 
-  <%= form_for [@patient, @comment] do |form| %>
+  <%= form_for @comment do |form| %>
     <div class="form-group">
       <%= form.label :patient_id %>
       <%= form.collection_select :patient_id, current_clinician.patients.order("first_name asc"), :id, :full_name, class: "form-control" %>
@@ -100,11 +100,11 @@
 
 <% else %>
 
-  <%= form_for [@clinician, @comment] do |form| %>
+  <%= form_for @comment do |form| %>
 
     <div class="form-group">
       <%= form.label :clinician_id %>
-      <%= form.collection_select :clinician_id, @care_group_assignments.clinician.order("first_name asc"), :id, :full_name, class: "form-control" %>
+      <%= form.collection_select :clinician_id, @patient.clinicians.order("first_name asc"), :id, :full_name, class: "form-control" %>
     </div>
 
     <div class="form-group">

@@ -19,7 +19,7 @@ class FeedbacksController < ApplicationController
       if current_clinician
         @feedback.full_name = current_user.clinician.full_name
       else
-        @feedback.full_name = current_user.id
+        @feedback.full_name = Patient.find_by(user_id: current_user.id).full_name
       end 
 
         if @feedback.save

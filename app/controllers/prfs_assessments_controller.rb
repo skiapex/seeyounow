@@ -27,7 +27,7 @@ class PrfsAssessmentsController < ApplicationController
       @prfs_assessment.clinician_completed = true
     else
       @prfs_assessment.patient = current_user.patient
-      @prfs_assessment.clinician = current_user.patient.clinician
+      @prfs_assessment.clinician = current_user.patient.clinicians.first
       @prfs_assessment.clinician_completed = false
     end
     if @prfs_assessment.save

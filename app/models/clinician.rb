@@ -6,8 +6,8 @@ class Clinician < ActiveRecord::Base
   has_many :comments
   has_many :notes
 	belongs_to :gender
-	has_many :patients ,:through=> :care_group_assignments
-  has_many :care_group_assignments, :dependent => :destroy
+	has_many :patients , through: :care_group_assignments
+  has_many :care_group_assignments
 	belongs_to :occupation
   belongs_to :speciality
 	belongs_to :user

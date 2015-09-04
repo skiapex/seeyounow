@@ -28,7 +28,7 @@ class EsasAssessmentsController < ApplicationController
       @esas_assessment.clinician_completed = true
     else
       @esas_assessment.patient = current_user.patient
-      @esas_assessment.clinician = current_user.patient.clinician
+      @esas_assessment.clinician = current_user.patient.clinicians.first
       @esas_assessment.clinician_completed = false
     end
     

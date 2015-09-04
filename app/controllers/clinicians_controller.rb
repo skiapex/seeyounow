@@ -57,7 +57,7 @@ class CliniciansController < ApplicationController
       # It's mandatory to specify the nested attributes that should be whitelisted.
       # If you use `permit` with just the key that points to the nested attributes hash,
       # it will return an empty hash.
-      params.require(:clinician).permit( :first_name,:last_name,:occupation_id, :speciality_id,:gender_id, :office_number, :mobile_number, :emergency_message, :care_group_id, :administrator, :user_id, user_attributes: [ :email, :password, :patient_id, :clinician_id ])
+      params.require(:clinician).permit(:first_name,:last_name,:occupation_id, :speciality_id,:gender_id, :office_number, :mobile_number, :emergency_message, :care_group_id, :administrator, :user_id, user_attributes: [ :email, :password, :patient_id, :clinician_id ])
     end
 
 end

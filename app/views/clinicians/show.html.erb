@@ -34,13 +34,11 @@
                       <div class="container content-sm">
                           <div class="headline-center margin-bottom-10">
                               <h2>Emergency Message</h2>
-                              <h3><p><%= @clinician.emergency_message %></p></h3>
+                              <h3><p><%= @clinician.care_group.emergency_message %></p></h3>
                           </div>
                       </div>
                   </div>
                   <!--=== End Goals of Care Block ===-->
-
-                  <% if current_clinician %>
 
                   <!--Patient Information-->
                   <div class="col-sm-6">
@@ -58,6 +56,7 @@
                                         <% else %>
                                           <p><strong>Speciality:</strong> <%= @clinician.speciality.name %></p>
                                         <% end%>
+                  <% if current_clinician %>
                                         <p><strong>Gender:</strong> <%= @clinician.gender.gender_type %></p>
                                         <p><strong>Email:</strong> <%= User.find_by(id: @clinician.user_id).email %></p>
                                         <p><strong>Office number:</strong> <%= @clinician.office_number %></p>
@@ -99,7 +98,12 @@
                   <!--End Administrative Information-->
 
                   <% else %>
-
+                                    </div>
+                                </div>
+                          </div>
+                      </div>        
+                  </div>
+                  <!--End Patient Information-->
 
                   <% end %>
 

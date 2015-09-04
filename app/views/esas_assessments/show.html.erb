@@ -72,7 +72,7 @@
       <%= link_to "Edit", edit_esas_assessment_path, class: 'btn btn-u btn-success' %>
     </span>
   <% end %>
-  <p><strong>Primary Clinician:</strong> <%= @esas_assessment.clinician.full_name %></p>
+  <p><strong>Care Group:</strong> <%= @esas_assessment.clinician.care_group.name %></p>
 </h4>
 <h4 span class="time"><strong>Completed:</strong> <%= @esas_assessment.updated_at.strftime("%B %d, %Y") %> at <%= @esas_assessment.updated_at.strftime("%H:%M") %>
 

@@ -1,3 +1,7 @@
+<head>
+    <title>SeeYouNow | Edit Feedback</title>
+</head>
+
 <% if @feedback.errors.any? %>
   <div class="alert alert-warning">
     <h2>Some errors kept this assessment from being saved:</h2>
@@ -11,7 +15,7 @@
 
 <h3 class="page-header">
     Edit feedback written by 
-        <%= link_to @feedback.full_name, feedback_path(@feedback) %><small class="pull-right"> <%= time_ago_in_words(@feedback.created_at) %></small>
+        <%= @feedback.full_name %><small class="pull-right"> <%= time_ago_in_words(@feedback.created_at) %></small>
 </h3>
 
 <%= form_for @feedback do |form| %>

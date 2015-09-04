@@ -4,9 +4,9 @@
 
 <h3 class="page-header">
   <% if current_clinician %>
-    Conversation wth <%= link_to "#{@patient.first_name} #{@patient.last_name}", patient_path(@patient.id) %>
+    Conversation wth <%= link_to @patient.full_name, patient_path(@patient.id) %>
   <% else %>
-    Conversation wth <%= link_to "#{@clinician.full_name}", patient_path(@patient.id) %>
+    Conversation wth <%= link_to @clinician.full_name, clinician_path(@clinician.id) %>
   <% end %>
   <span class="pull-right">
     <%= link_to "New comment", new_comment_path, class: 'btn btn-u btn-success' %>

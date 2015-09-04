@@ -3,9 +3,7 @@ class PatientsController < ApplicationController
   skip_before_action :require_admin
 
   def index
-    # @patients = Patient.all
-    @shared = current_clinician.care_group_assignments
-    @patients = @shared.patient.order("first_name asc")
+    @patients = current_clinician.patients.order("first_name asc")
     @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
     @shared = current_clinician.care_group_assignments
   end

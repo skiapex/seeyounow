@@ -6,8 +6,8 @@ class CareGroupsController < ApplicationController
 
   def show
     @care_group = CareGroup.find_by(id: params["id"])
-    @clinicians = Clinician.where(care_group_id: @care_group.id).order("last_name asc")
-    @patients = Patient.where(care_group_id: @care_group.id).order("last_name asc")
+    @clinicians = Clinician.where(care_group_id: @care_group.id)
+    @patients = Patient.where(care_group_id: @care_group.id)
   end
 
   def new
