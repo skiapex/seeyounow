@@ -1,3 +1,3 @@
-== Buyflix
+== SeeYouNow
 
-Sample project for KIEI-925
+The SeeYouNow platform has been developed in partnership with doctors and nurses working in palliative and chronic care.  It aims to provide a communication channel between patients and clinicians and between clinicians.
