@@ -192,6 +192,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_median
+  autoprefixer-rails
   bcrypt
   bootstrap-sass (~> 3.3.3)
   bootstrap_form

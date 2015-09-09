@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Responsive Bootstrap App Landing Page Template">
-<meta name="keywords" content="Kane, Bootstrap, Landing page, Template, App, Mobile, Android, iOS">
-<meta name="author" content="Mizanur Rahman">
+<meta name="description" content="SeeYouNow Information Page">
+<meta name="keywords" content="SeeYouNow, Medical, eHealth, Palliative, Chronic, Mobile, Android, iOS, Nursing, Health Care">
+<meta name="author" content="Paul Carter">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <!-- SITE TITLE -->
-<title>Kane - Responsive App Landing Page</title>
+<title>SeeYouNow | Landing Page</title>
 
 <!-- =========================
       FAV AND TOUCH ICONS  
 ============================== -->
-<link rel="icon" href="images/favicon.ico">
+<%= favicon_link_tag 'favicon.ico'  %>
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
@@ -22,12 +22,13 @@
      STYLESHEETS   
 ============================== -->
 <!-- BOOTSTRAP -->
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
 <!-- FONT ICONS -->
 <link rel="stylesheet" href="assets/elegant-icons/style.css">
 <link rel="stylesheet" href="assets/app-icons/styles.css">
-<!--[if lte IE 7]><script src="lte-ie7.js"></script><![endif]-->
+<!--[if lte IE 7]><script src="lte-ie7', 'data-turbolinks-track' => true %><![endif]-->
 
 <!-- WEB FONTS -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,100italic,400,300italic' rel='stylesheet' type='text/css'>
@@ -59,8 +60,8 @@
 
 
 <!--[if lt IE 9]>
-			<script src="js/html5shiv.js"></script>
-			<script src="js/respond.min.js"></script>
+			<%= javascript_include_tag 'html5shiv', 'data-turbolinks-track' => true %>
+			<%= javascript_include_tag 'respond.min', 'data-turbolinks-track' => true %>
 <![endif]-->
 
 <!-- JQUERY -->
@@ -1055,21 +1056,22 @@
      SCRIPTS 
 ============================== -->
 
-<script src="js/bootstrap.min.js"></script>
-<script src="js/smoothscroll.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/jquery.localScroll.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/nivo-lightbox.min.js"></script>
-<script src="js/simple-expand.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/retina.min.js"></script>
-<script src="js/jquery.nav.js"></script>
-<script src="js/matchMedia.js"></script>
-<script src="js/jquery.ajaxchimp.min.js"></script>
-<script src="js/jquery.fitvids.js"></script>
-<script src="js/custom.js"></script>
+<%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'smoothscroll', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.scrollTo.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.localScroll.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'owl.carousel.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'nivo-lightbox.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'simple-expand.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'wow.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.stellar.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'retina.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.nav', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'matchMedia', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.ajaxchimp.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.fitvids', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'custom', 'data-turbolinks-track' => true %>
 
 </body>
 </html>
