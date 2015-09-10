@@ -27,6 +27,7 @@ Patient:
   patient_deceased: boolean
   patient_archived: boolean
   notification_level: integer
+  data_viewable: boolean
 
 CareGroupAssignment:
   clinician_id: integer
