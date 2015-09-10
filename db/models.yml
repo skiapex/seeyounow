@@ -101,14 +101,11 @@ PrfsAssessment:
 
 Comment:
   patient_id: integer
+  clinician_id: integer
   from: integer
   created_at: datetime
   updated_at: datetime
   general_comment: string
-
-CommentAssociation:
-  clinician_id: integer
-  comment_id: integer
 
 Note:
   patient_id: integer

@@ -4,14 +4,9 @@
 
 <h3 class="page-header">
   <% if current_clinician %>
-    Conversation wth <%= link_to @patient.full_name, patient_path(@patient.id) %>, 
-    <% @clinicians.each do |shared| %>
-      <%= link_to shared.clinician.full_name, clinician_path(shared.clinician) %>, 
-    <% end %>
+    Conversation wth <%= link_to @patient.full_name, patient_path(@patient.id) %>
   <% else %>
-    Conversation wth <% @clinicians.each do |shared| %>
-      <%= link_to shared.clinician.full_name, clinician_path(shared.clinician) %>, 
-    <% end %>
+    Conversation wth <%= link_to @clinician.full_name, clinician_path(@clinician.id) %>
   <% end %>
   <span class="pull-right">
     <%= link_to "New comment", new_comment_path, class: 'btn btn-u btn-success' %>
@@ -36,16 +31,18 @@
                           </div>
                           <div id="scrollbar4" class="panel-body contentHolder">
                             <% @comments.each_with_index do |comment, index| %>
+                              <% if comment.clinician == @clinician %>
                                 <div class="comment">
                                     <div class="overflow-h">
                                       <% if comment.from == comment.patient.user_id %>
                                         <strong><%= link_to "#{comment.patient.first_name} #{comment.patient.last_name}", comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong>
                                       <% else %>
-                                        <strong><%= link_to Clinician.find_by(user_id: comment.from).full_name, comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong>
+                                        <strong><%= link_to "#{comment.clinician.full_name }", comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong>
                                       <% end %>
                                           <p><%= comment.general_comment %></p>
                                     </div>    
                                 </div>
+                              <% end %>
                             <% end %>
                           </div>
                       </div>    

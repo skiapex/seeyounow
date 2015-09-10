@@ -63,15 +63,6 @@ ActiveRecord::Schema.define(version: 20150901195629) do
   add_index "clinicians", ["speciality_id"], name: "index_clinicians_on_speciality_id", using: :btree
   add_index "clinicians", ["user_id"], name: "index_clinicians_on_user_id", using: :btree
 
-  create_table "comment_associations", force: true do |t|
-    t.integer  "clinician_id"
-    t.integer  "comment_id"
-    t.datetime "created_at"
-  end
-
-  add_index "comment_associations", ["clinician_id"], name: "index_comment_associations_on_clinician_id", using: :btree
-  add_index "comment_associations", ["comment_id"], name: "index_comment_associations_on_comment_id", using: :btree
-
   create_table "comments", force: true do |t|
     t.integer  "patient_id"
     t.integer  "clinician_id"
@@ -202,7 +193,6 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.integer  "care_group_id"
     t.datetime "birth_date"
     t.integer  "notification_level"
-    t.boolean  "data_viewable",      default: false
   end
 
   add_index "patients", ["care_group_id"], name: "index_patients_on_care_group_id", using: :btree
@@ -237,7 +227,6 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.string  "timezone"
     t.integer "patient_id"
     t.integer "clinician_id"
-    t.boolean "terms_agreement", default: false
   end
 
   add_index "users", ["clinician_id"], name: "index_users_on_clinician_id", using: :btree

@@ -3,8 +3,7 @@ class Clinician < ActiveRecord::Base
 	belongs_to :care_group
 	has_many :esas_assessments
   has_many :prfs_assessments
-  has_many :comments, through: :comment_associations
-  has_many :comment_associations
+  has_many :comments
   has_many :notes
 	belongs_to :gender
 	has_many :patients , through: :care_group_assignments
