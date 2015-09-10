@@ -6,7 +6,7 @@
 </head> 
 
 <h1 class="page-header">
-  <%= @clinician.first_name %> <%= @clinician.last_name %>
+  <%= @clinician.full_name %>
   <span class="pull-right">
     <%= link_to "Edit", edit_clinician_path, class: 'btn btn-u btn-success' %>
   </span>
@@ -50,7 +50,6 @@
                                 <div class="profile-post color-one">
                                     <span class="profile-post-numb"></span>
                                     <div class="profile-post-in">
-                                        <p><strong>Name:</strong> <%= @clinician.full_name %></p>
                                         <p><strong>Occupation:</strong> <%= @clinician.occupation.name %></p>
                                         <% if @clinician.speciality == nil %>
                                         <% else %>
