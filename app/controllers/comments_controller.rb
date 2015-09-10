@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def index
     if current_clinician
-      @comments = current_clinician.comments
+      @comments = current_clinician.comment_associations
     else
       @comments = Patient.find_by(user_id: current_user.id).comments
     end
@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
   def show
     @comment = Comment.find_by(id: params["id"])
     @patient = @comment.patient
-    @clinician = @comment.clinician
+    @clinicians = @comment.comment_associations
     @comments = @patient.comments.order("created_at desc")
   end
 
@@ -41,7 +41,6 @@ class CommentsController < ApplicationController
 
     @comment = Comment.new(comment_params)
     if current_clinician
-      @comment.clinician = current_user.clinician
       @comment.from = current_user.clinician.user_id
       if @comment.save
 
