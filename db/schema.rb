@@ -193,6 +193,7 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.integer  "care_group_id"
     t.datetime "birth_date"
     t.integer  "notification_level"
+    t.boolean  "data_viewable",      default: false
   end
 
   add_index "patients", ["care_group_id"], name: "index_patients_on_care_group_id", using: :btree
@@ -227,6 +228,7 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.string  "timezone"
     t.integer "patient_id"
     t.integer "clinician_id"
+    t.boolean "terms_agreement", default: false
   end
 
   add_index "users", ["clinician_id"], name: "index_users_on_clinician_id", using: :btree

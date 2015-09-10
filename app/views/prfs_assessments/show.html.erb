@@ -90,15 +90,13 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Symptom</th>
-                            <th class="hidden-sm">Intensity</th>
+                            <th class="hidden-sm">Score</th>
                             <th>Comment</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Pain</td>
                             <td class="hidden-sm"><%= @prfs_assessment.activity_and_function %></td>
                             <td><%= @prfs_assessment.prfs_comment %></td>
                             <% if (@prfs_assessment.activity_and_function.between?(1, 2)) %>
