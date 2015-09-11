@@ -24,7 +24,10 @@
        ['Depression', <%= @esas_assessment.depression %>, <% if @esas_assessment.depression >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
        ['Anxiety', <%= @esas_assessment.anxiety %>, <% if @esas_assessment.anxiety >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
        ['Wellbeing', <%= @esas_assessment.wellbeing %>, <% if @esas_assessment.wellbeing >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
-       ['<%= @esas_assessment.other_symptom.symptom_type.capitalize %>', <%= @esas_assessment.other_symptom_score %>, <% if @esas_assessment.other_symptom_score >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+      <% if @esas_assessment.other_symptom_score == 0 %>
+      <% else %>
+        ['<%= @esas_assessment.other_symptom.symptom_type.capitalize %>', <%= @esas_assessment.other_symptom_score %>, <% if @esas_assessment.other_symptom_score >= 8 %>'#db3445'<% else %>'#3498db'<% end %> ],
+      <% end %>
     ]);
 
     var options = {
@@ -319,24 +322,27 @@
                               <% end %>
                             <% end %>
                         </tr>
-                        <tr>
-                            <td><%= @esas_assessment.other_symptom.symptom_type.capitalize %></td>
-                            <td class="hidden-sm"><%= @esas_assessment.other_symptom_score %></td>
-                            <td><%= @esas_assessment.other_symptom_comment %></td>
-                            <% if (@esas_assessment.other_symptom_score.between?(1, 4)) %>
-                              <td><span class="label label-success">Low</span></td>
-                            <% else %>
-                              <% if (@esas_assessment.other_symptom_score.between?(5, 7)) %>
-                                <td><span class="label label-warning">Moderate</span></td>
+                        <% if (@esas_assessment.other_symptom_score == 0) %>
+                        <% else %>
+                          <tr>
+                              <td><%= @esas_assessment.other_symptom.symptom_type.capitalize %></td>
+                              <td class="hidden-sm"><%= @esas_assessment.other_symptom_score %></td>
+                              <td><%= @esas_assessment.other_symptom_comment %></td>
+                              <% if (@esas_assessment.other_symptom_score.between?(1, 4)) %>
+                                <td><span class="label label-success">Low</span></td>
                               <% else %>
-                                <% if (@esas_assessment.other_symptom_score.between?(8, 10)) %>
-                                  <td><span class="label label-danger">High!</span></td>
+                                <% if (@esas_assessment.other_symptom_score.between?(5, 7)) %>
+                                  <td><span class="label label-warning">Moderate</span></td>
                                 <% else %>
-                                  <td><span class="label label-info">None</span></td>
+                                  <% if (@esas_assessment.other_symptom_score.between?(8, 10)) %>
+                                    <td><span class="label label-danger">High!</span></td>
+                                  <% else %>
+                                    <td><span class="label label-info">None</span></td>
+                                  <% end %>
                                 <% end %>
                               <% end %>
-                            <% end %>
-                        </tr>
+                          </tr>
+                        <% end %>
                     </tbody>
                 </table>
             </div>

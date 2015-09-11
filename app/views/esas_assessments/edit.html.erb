@@ -32,7 +32,7 @@
 
             <%= form.form_group :priority_resolved do %>
               <%= form.check_box :priority_resolved, label: "High priority symptoms treated" %>
-            <% end %>
+          <% end %>
 
             <div class="form-group">
               <%= form.select :resolved_by, @resolved_by, class: "form-control", control_col: "col-sm-2", label: "Treated by" %>
@@ -41,7 +41,7 @@
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
 
-          div class="form-group">
+          <div class="form-group">
             <%= form.select :pain, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Pain Score" %>
           </div>
 
