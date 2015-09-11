@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<head>
+    <title>SeeYouNow | Occupations</title>
+</head>
+
+<h3 class="page-header">
+  Occupations
+  <span class="pull-right">
+    <%= link_to "Add Occupation", new_occupation_path, class: 'btn btn-u btn-success' %>
+  </span>
+</h3>
+
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
+
+                <div class="row margin-bottom-20"><!--start row-->
+                  <!--Occupations list-->
+                  <div class="col-sm-6">
+                      <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-stethoscope"></i>List of Occupations</h2>
+                              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                          </div>
+                          <div id="scrollbar" class="panel-body contentHolder">
+                            <% @occupations.each_with_index do |occupation, index| %>
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"><%= index+1 %></span>
+                                    <div class="profile-post-in">
+                                        <h3 class="heading-xs"><a><%= occupation.name %></a></h3>
+                                        <p>
+                                          <% if occupation.acronym == nil %>
+                                          <% else %>
+                                            Acronym: <%= occupation.acronym %>, 
+                                          <% end %>
+                                          <% if occupation.pronym == nil %>
+                                          <% else %>
+                                            Pronym: <%= occupation.pronym %>
+                                          <% end %>
+                                          <i class="pull-right"><%= link_to "Edit", edit_occupation_path(occupation) %> <%= link_to "Delete", occupation_path(occupation), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                          </div>
+                      </div>        
+                  </div>
+                  <!--End Occupations list-->
+
+                  <!--Information-->
+                  <div class="col-sm-6">
+                      <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-info"></i>Information</h2>
+                          </div>
+                          <div id="scrollbar" class="panel-body contentHolder">
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"></span>
+                                    <div class="profile-post-in">
+                                        <p>This is a list of occupations that can be selected for clinicians.</p>
+                                    </div>
+                                </div>
+                          </div>
+                      </div>        
+                  </div>
+                  <!--End Information-->
+
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html>

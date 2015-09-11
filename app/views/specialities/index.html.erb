@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<head>
+    <title>SeeYouNow | Specialities</title>
+</head>
+
+<h3 class="page-header">
+  Specialitys
+  <span class="pull-right">
+    <%= link_to "Add Speciality", new_speciality_path, class: 'btn btn-u btn-success' %>
+  </span>
+</h3>
+
+<body>
+<!--=== Profile ===-->
+    <div class="profile container content">
+      <div class="row">
+            <div class="col-md-12">
+              <!--Profile Body-->
+              <div class="profile-body">
+
+                <div class="row margin-bottom-20"><!--start row-->
+                  <!--Specialitys list-->
+                  <div class="col-sm-6">
+                      <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-stethoscope"></i>List of Specialitys</h2>
+                              <a href="#"><i class="fa fa-cog pull-right"></i></a>
+                          </div>
+                          <div id="scrollbar" class="panel-body contentHolder">
+                            <% @specialities.each_with_index do |speciality, index| %>
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"><%= index+1 %></span>
+                                    <div class="profile-post-in">
+                                        <h3 class="heading-xs"><a><%= speciality.name %></a></h3>
+                                        <p><%= speciality.occupation.name %><i class="pull-right"><%= link_to "Edit", edit_speciality_path(speciality) %> <%= link_to "Delete", speciality_path(speciality), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                          </div>
+                      </div>        
+                  </div>
+                  <!--End Specialitys list-->
+
+                  <!--Information-->
+                  <div class="col-sm-6">
+                      <div class="panel panel-profile no-bg">
+                          <div class="panel-heading overflow-h">
+                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-info"></i>Information</h2>
+                          </div>
+                          <div id="scrollbar" class="panel-body contentHolder">
+                                <div class="profile-post color-one">
+                                    <span class="profile-post-numb"></span>
+                                    <div class="profile-post-in">
+                                        <p>This is a list of specialities that can be selected for different clinician occupations.</p>
+                                    </div>
+                                </div>
+                          </div>
+                      </div>        
+                  </div>
+                  <!--End Information-->
+
+                </div><!--/end row-->
+              </div><!--End Profile Body-->
+            </div>
+        </div><!--/end row-->
+    </div><!--/container-->    
+    <!--=== End Profile ===-->
+
+</body>
+</html>

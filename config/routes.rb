@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :notes
   resources :feedbacks
   resources :care_givers
+  resources :specialities
+  resources :occupations
 
   get '/home', to: 'pages#home'
 

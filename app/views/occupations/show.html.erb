@@ -1,0 +1,44 @@
+<!-- Use view helpers (e.g. link_to and image_tag) -->
+<!-- and implement real data -->
+
+<head>
+    <title>SeeYouNow | Occupation</title>
+</head>
+
+<h4 class="page-header">
+  <p><strong><%= @occupation.name %></strong></p>
+    <span class="pull-right">
+    <%= link_to "Edit", edit_occupation_path, class: 'btn btn-u btn-success' %>
+    </span>
+    <span class="pull-right">
+    <%= link_to "Delete", occupation_path, method: :delete, data: {confirm: 'Are you sure you want to delete'}, class: 'btn btn-u btn-success' %>
+    </span>
+</h4>
+
+<head>
+
+<div class="container content">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i> Information</h3>
+        </div>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <td><strong>Name</strong></td>
+            <td><%= @occupation.name %></td>
+          </tr>
+          <tr>
+            <td><strong>Acronym</strong></td>
+            <td><%= @occupation.acronym %></td>
+          </tr>
+          <tr>
+            <td><strong>Pronym</strong></td>
+            <td><%= @occupation.pronym %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

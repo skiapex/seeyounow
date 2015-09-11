@@ -167,9 +167,9 @@ ActiveRecord::Schema.define(version: 20150901195629) do
   add_index "notification_settings", ["clinician_id"], name: "index_notification_settings_on_clinician_id", using: :btree
 
   create_table "occupations", force: true do |t|
-    t.string "name"
-    t.string "acronym"
-    t.string "pronym"
+    t.text "name"
+    t.text "acronym"
+    t.text "pronym"
   end
 
   create_table "other_symptoms", force: true do |t|

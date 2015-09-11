@@ -38,9 +38,9 @@ Gender:
   gender_type: string
 
 Occupation:
-  name: string
-  acronym: string
-  pronym: string
+  name: text
+  acronym: text
+  pronym: text
 
 Inputter:
   inputter_type: string
