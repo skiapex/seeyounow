@@ -28,8 +28,7 @@
             		          </div>
             		          <div id="scrollbar" class="panel-body contentHolder">
             		          
-            		          <% @patients.each_with_index do |patient, index| %>
-            		          	<% if patient.patient_deceased == false %>
+            		          <% @patients.where(patient_deceased: false).each_with_index do |patient, index| %>
             		              <div class="profile-post color-one">
             		                  <span class="profile-post-numb"><%= index+1 %></span>
             		                  <div class="profile-post-in">
@@ -37,7 +36,6 @@
             		                      <p><%= patient.diagnosis %><i class="pull-right"><%= link_to "Edit", edit_patient_path(patient) %> <%= link_to "Delete", patient_path(patient), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
             		                  </div>
             		              </div>
-            		            <% end %>
             		          <% end %>
             		          </div>
             		      </div>        
@@ -51,8 +49,7 @@
                                   <a href="#"><i class="fa fa-cog pull-right"></i></a>
                               </div>
                               <div id="scrollbar" class="panel-body contentHolder">
-                              <% @patients.each_with_index do |patient, index| %>
-                                <% if patient.patient_deceased == true %>
+                              <% @patients.where(patient_deceased: true).each_with_index do |patient, index| %>
                                   <div class="profile-post color-five">
                                       <span class="profile-post-numb"><%= index+1 %></span>
                                       <div class="profile-post-in">
@@ -60,7 +57,6 @@
                                           <p><%= patient.diagnosis %></p>
                                       </div>
                                   </div>
-                                <% end %>
                               <% end %>
                               </div>
                           </div>        

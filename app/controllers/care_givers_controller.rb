@@ -16,7 +16,10 @@ class CareGiversController < ApplicationController
 
   def new
     @care_giver = CareGiver.new
-    @care_givers = Patient.find_by(user_id: current_user).care_givers
+    if current_clinician
+    else
+      @care_givers = Patient.find_by(user_id: current_user).care_givers
+    end
   end
 
   def create

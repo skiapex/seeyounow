@@ -70,6 +70,7 @@ Rails.application.config.assets.precompile += %w( html5shiv.js )
 Rails.application.config.assets.precompile += %w( respond.min.js )
 Rails.application.config.assets.precompile += %w( jquery.scrollTo.min.js )
 Rails.application.config.assets.precompile += %w( jquery.localScroll.min.js )
+Rails.application.config.assets.precompile += %w( jquery.easing.1.3.js )
 
 #Import Headers
 Rails.application.config.assets.precompile += %w( header-default.css )

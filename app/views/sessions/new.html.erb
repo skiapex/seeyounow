@@ -105,10 +105,10 @@
 <!-- JS Global Compulsory -->           
 <%= javascript_include_tag 'jquery.min', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'jquery-migrate.min', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'bootstrap.min.js', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
 <!-- JS Implementing Plugins -->           
-<%= javascript_include_tag 'back-to-top.js', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'jquery.countdown.js', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'back-to-top', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'jquery.countdown', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'jquery.backstretch.min', 'data-turbolinks-track' => true %>
 <script type="text/javascript">
     $.backstretch([
@@ -120,9 +120,9 @@
     });
 </script>
 <!-- JS Customization -->
-<%= javascript_include_tag 'custom.js', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'custom', 'data-turbolinks-track' => true %>
 <!-- JS Page Level -->           
-<%= javascript_include_tag 'app.js', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'app', 'data-turbolinks-track' => true %>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();      
