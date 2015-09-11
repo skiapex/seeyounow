@@ -5,45 +5,69 @@
 
 <% if current_user.email == "info@seeyounow.ca" %>
 
-  <!--=== Feedback ===-->
+  <!--=== First Row ===-->
   <div class="profile container content">
-    <div class="row">           
-          <div class="col-md-7">
-              <!--Profile Body-->
-              <div class="profile-body">
-                  <!--Service Block v3-->
-                      
-                  <div class="row">
-                      <!--Priority-->
-                      <div class="col-sm-12 sm-margin-bottom-30">
-                          <div class="panel panel-profile no-bg">
-                          <div class="panel-heading overflow-h">
-                              <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Feedback</h2>
-                              <i class="pull-right">Number: <%= @feedbacks.count %></i>
-                          </div>
-                          <div id="scrollbar" class="panel-body contentHolder">
-                            <% @feedbacks.order("created_at desc").each_with_index do |feedback, index| %>
-                                <div class="profile-post color-one">
-                                    <span class="profile-post-numb"><%= index+1 %></span>
-                                    <div class="profile-post-in">
-                                        <small class="pull-right"><em><%= time_ago_in_words(feedback.created_at) %> ago</em></small>
-                                        <h3 class="heading-xs"><a><%= link_to feedback.full_name, feedback_path(feedback) %></a></h3>
-                                        <p><%= feedback.feedback_comment %>
-                                        <i class="pull-right"><%= link_to "Edit", edit_feedback_path(feedback) %> <%= link_to "Delete", feedback_path(feedback), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
-                                    </div>
+      <div class="row">          
+            <div class="col-md-12">
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                    <div class="row">
+                        <!--Notifications-->
+                        <div class="col-sm-7 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Feedback</h2>
+                                    <i class="pull-right">Number: <%= @feedbacks.count %></i>
                                 </div>
-                            <% end %>
+                                <div id="scrollbar" class="panel-body contentHolder">
+                                  <% @feedbacks.order("created_at desc").each_with_index do |feedback, index| %>
+                                      <div class="profile-post color-one">
+                                          <span class="profile-post-numb"><%= index+1 %></span>
+                                          <div class="profile-post-in">
+                                              <small class="pull-right"><em><%= time_ago_in_words(feedback.created_at) %> ago</em></small>
+                                              <h3 class="heading-xs"><a><%= link_to feedback.full_name, feedback_path(feedback) %></a></h3>
+                                              <p><%= feedback.feedback_comment %>
+                                              <i class="pull-right"><%= link_to "Edit", edit_feedback_path(feedback) %> <%= link_to "Delete", feedback_path(feedback), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                          </div>
+                                      </div>
+                                  <% end %>
+                                </div>
+                              </div> 
                           </div>
-                      </div> 
-                      </div>
-                      <!--End Priority-->
-                  </div><!--/end row-->
-              </div>
-          </div>
-    </div>
-  </div><!--/container-->    
-  <!--=== Feedback ===-->
+                          <!--End Feedback-->
 
+                          <!--Users-->
+                          <div class="col-sm-5">
+                              <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Users</h2>
+                                    <i class="pull-right">Number: <%= @users.count %></i>
+                                </div>
+                                <div id="scrollbar" class="panel-body contentHolder">
+                                  <% @users.each_with_index do |user, index| %>
+                                      <div class="profile-post color-one">
+                                          <span class="profile-post-numb"><%= index+1 %></span>
+                                          <div class="profile-post-in">
+                                              <h3 class="heading-xs"><a><%= link_to user.email, user_path(user) %></a></h3>
+                                              <p>
+                                              <i class="pull-right"><%= link_to "Edit", edit_user_path(user) %> <%= link_to "Delete", user_path(user), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                          </div>
+                                      </div>
+                                  <% end %>
+                                </div>
+                              </div> 
+                          </div>
+                          <!--End Users-->
+
+                  </div><!--/end row-->       
+                </div>
+                <!--End Profile Body-->
+            </div> 
+      </div> 
+  </div><!--/container-->   
+  <!--=== End First Row ===-->
+  <!--=== Second Row ===-->
   <div class="profile container content">
       <div class="row">          
             <div class="col-md-12">
@@ -139,6 +163,165 @@
             </div> 
       </div> 
   </div><!--/container-->
+  <!--=== End Second Row ===-->
+
+  <!--=== Third Row ===-->
+  <div class="profile container content">
+      <div class="row">          
+            <div class="col-md-12">
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                    <div class="row">
+                        <!--Care Groups-->
+                        <div class="col-sm-5 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Care Groups</h2>
+                                    <i class="pull-right">Number: <%= @care_groups.count %></i>
+                                </div>
+                                <div id="scrollbar" class="panel-body contentHolder">
+                                  <% @care_groups.order("name asc").each_with_index do |care_group, index| %>
+                                      <div class="profile-post color-one">
+                                          <span class="profile-post-numb"><%= index+1 %></span>
+                                          <div class="profile-post-in">
+                                              <small class="pull-right"><em><%= care_group.city %>, <%= care_group.province %></em></small>
+                                              <h3 class="heading-xs"><a><%= link_to care_group.name, care_group_path(care_group) %></a></h3>
+                                              <p>Clinicians: <%= Clinician.where(care_group_id: care_group.id).count %>, Patients: <%= Patient.where(care_group_id: care_group.id).count %>
+                                              <i class="pull-right"><%= link_to "Edit", edit_care_group_path(care_group) %> <%= link_to "Delete", care_group_path(care_group), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                          </div>
+                                      </div>
+                                  <% end %>
+                                </div>
+                              </div> 
+                          </div>
+                          <!--End Care Groups-->
+
+                          <!--Clinicians-->
+                          <div class="col-sm-7">
+                              <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Clinicians</h2>
+                                    <i class="pull-right">Number: <%= @clinicians.count %></i>
+                                </div>
+                                <div id="scrollbar" class="panel-body contentHolder">
+                                  <% @clinicians.each_with_index do |clinician, index| %>
+                                      <div class="profile-post color-one">
+                                          <span class="profile-post-numb"><%= index+1 %></span>
+                                          <div class="profile-post-in">
+                                            <small class="pull-right"><em><%= clinician.care_group.name %></em></small>
+                                              <h3 class="heading-xs"><a><%= link_to clinician.full_name, clinician_path(clinician) %></a></h3>
+                                              <p><%= clinician.occupation.name %>, <%= clinician.speciality.name %>, Patients: 
+                                                <% if clinician.patients.group(:patient_deceased).count.values[0] == nil %>
+                                                  0
+                                                <% else %>
+                                                  <%= clinician.patients.group(:patient_deceased).count.values[0] %>
+                                                <% end %>
+                                              <i class="pull-right"><%= link_to "Edit", edit_clinician_path(clinician) %> <%= link_to "Delete", clinician_path(clinician), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                          </div>
+                                      </div>
+                                  <% end %>
+                                </div>
+                              </div> 
+                          </div>
+                          <!--End Clinicians-->
+
+                  </div><!--/end row-->       
+                </div>
+                <!--End Profile Body-->
+            </div> 
+      </div> 
+  </div><!--/container-->   
+  <!--=== End Third Row ===-->
+
+  <!--=== Fourth Row ===-->
+  <div class="profile container content">
+      <div class="row">          
+            <div class="col-md-12">
+                <!--Profile Body-->
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                    <div class="row">
+                        <!--Patients-->
+                        <div class="col-sm-5 sm-margin-bottom-30">
+                            <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Patients</h2>
+                                    <i class="pull-right">Current: <%= @patients.where(patient_deceased: false).count %>    Deceased: <%= @patients.where(patient_deceased: true).count %></i>
+                                </div>
+                                <div id="scrollbar" class="panel-body contentHolder">
+                                  <% @patients.order("last_name asc").each_with_index do |patient, index| %>
+                                      <div class="profile-post color-one">
+                                          <span class="profile-post-numb"><%= index+1 %></span>
+                                          <div class="profile-post-in">
+                                              <small class="pull-right"><em><%= patient.care_group.name %></em></small>
+                                              <h3 class="heading-xs"><a><%= link_to patient.full_name, patient_path(patient) %></a></h3>
+                                              <p>Clinicians: <%= patient.care_group_assignments.count %>
+                                                <% if patient.patient_deceased == true %>
+                                                  , Patient deceased
+                                                <% end %>
+                                              <i class="pull-right"><%= link_to "Edit", edit_patient_path(patient) %> <%= link_to "Delete", patient_path(patient), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                          </div>
+                                      </div>
+                                  <% end %>
+                                </div>
+                              </div> 
+                          </div>
+                          <!--End Patients-->
+
+                          <!--Occupations-->
+                          <div class="col-sm-3">
+                              <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Occupations</h2>
+                                    <i class="pull-right">Number: <%= @occupations.count %></i>
+                                </div>
+                                <div id="scrollbar" class="panel-body contentHolder">
+                                  <% @occupations.order("name asc").each_with_index do |occupation, index| %>
+                                      <div class="profile-post color-one">
+                                          <span class="profile-post-numb"><%= index+1 %></span>
+                                          <div class="profile-post-in">
+                                              <h3 class="heading-xs"><a><%= link_to occupation.name, occupation_path(occupation) %></a></h3>
+                                              <p>Specialities: <%= Speciality.where(occupation_id: occupation.id).count %>
+                                              <i class="pull-right"><%= link_to "Edit", edit_occupation_path(occupation) %> <%= link_to "Delete", occupation_path(occupation), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                          </div>
+                                      </div>
+                                  <% end %>
+                                </div>
+                              </div> 
+                          </div>
+                          <!--End Occupations-->
+
+                          <!--Speciality-->
+                          <div class="col-sm-4">
+                              <div class="panel panel-profile">
+                                <div class="panel-heading overflow-h">
+                                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bed"></i>Specialities</h2>
+                                    <i class="pull-right">Number: <%= @specialities.count %></i>
+                                </div>
+                                <div id="scrollbar" class="panel-body contentHolder">
+                                  <% @specialities.order("occupation_id asc").each_with_index do |speciality, index| %>
+                                      <div class="profile-post color-one">
+                                          <span class="profile-post-numb"><%= index+1 %></span>
+                                          <div class="profile-post-in">
+                                              <h3 class="heading-xs"><a><%= link_to speciality.name, speciality_path(speciality) %></a></h3>
+                                              <p>Occupation: <%= speciality.occupation.name %>
+                                              <i class="pull-right"><%= link_to "Edit", edit_speciality_path(speciality) %> <%= link_to "Delete", speciality_path(speciality), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
+                                          </div>
+                                      </div>
+                                  <% end %>
+                                </div>
+                              </div> 
+                          </div>
+                          <!--End Speciality-->
+
+                  </div><!--/end row-->       
+                </div>
+                <!--End Profile Body-->
+            </div> 
+      </div> 
+  </div><!--/container-->   
+  <!--=== End Fourth Row ===-->
 
 <% else %><!--Non-System Admin Section-->
 

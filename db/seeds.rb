@@ -102,6 +102,8 @@ chpcn = Occupation.create(name: "Certified in Hospice and Palliative Care Nurse"
 puts "Creating specialities..."
 # Create different specialist physicians
 gp = Speciality.create(name: "Family Physician", occupation_id: physician.id)
+firstyear = Speciality.create(name: "Resident of Family Medicine; first year", occupation_id: physician.id)
+secondyear = Speciality.create(name: "Resident of Family Medicine; second year", occupation_id: physician.id)
 anesthetist = Speciality.create(name: "Anesthetist", occupation_id: physician.id)
 cardiologist = Speciality.create(name: "Cardiologist", occupation_id: physician.id)
 immunologist = Speciality.create(name: "Clinical Immunologist-allergist", occupation_id: physician.id)

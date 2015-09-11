@@ -15,8 +15,11 @@ class PagesController < ApplicationController
       @care_groups = CareGroup.all
       @feedbacks = Feedback.all
       @clinicians = Clinician.all
+      @occupations = Occupation.all
+      @specialities = Speciality.all
       @patients = Patient.all
       @other_symptoms = OtherSymptom.all
+      @users = User.all
       @notifications = @esas_assessments + @prfs_assessments + @comments
     else
       if current_clinician
