@@ -57,7 +57,7 @@ class PrfsAssessmentsController < ApplicationController
   end
 
   def destroy
-    find_prfs_assessment
+    @prfs_assessment = PrfsAssessment.find_by(id: params["id"])    
     @prfs_assessment.destroy
 
     redirect_to prfs_assessments_path, notice: "PRFS assessment deleted!"
