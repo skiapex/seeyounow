@@ -1,12 +1,12 @@
 <h2 class="page-header">
-  Email Address
+  User details
   <span class="pull-right">
     <%= link_to "Edit", edit_user_path, class: 'btn btn-u btn-success' %>
   </span>
 </h2>
-<%= @user.email %>
+Email/Username: <strong><%= @user.email %></strong> 
     	<% if @user.patient == nil %>
-    		<%= link_to @user.clinician.first_name, clinician_path(@user.clinician) %>
+    		<p><%= link_to @user.clinician.full_name, clinician_path(@user.clinician) %> <%= link_to @user.clinician.care_group.name, care_group_path(@user.clinician.care_group) %></p>
     	<% else %>
-    		<!-- <%= link_to @user.patient.first_name, patient_path(@user.patient) %> -->
+    		<p>Name: <%= link_to @user.patient.full_name, patient_path(@user.patient) %>, Care group: <%= link_to @user.patient.care_group.name, care_group_path(@user.patient.care_group) %></p>
     	<% end %>
