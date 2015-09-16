@@ -20,8 +20,8 @@ Rails.application.routes.draw do
 
   get '/home', to: 'pages#home'
 
-  get "/login", to: "sessions#new"
-  get "/logout", to: "sessions#destroy"
+  get "login", to: "sessions#new", as: 'login'
+  get "logout", to: "sessions#destroy", as: 'logout'
 
    get "/info", to: "sessions#information"
 
