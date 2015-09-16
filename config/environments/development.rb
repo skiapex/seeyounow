@@ -36,4 +36,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+  #default_url_options appropriate for a development environment - from Devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

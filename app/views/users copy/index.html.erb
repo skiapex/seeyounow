@@ -1,0 +1,17 @@
+<head>
+    <title>SeeYouNow | Users Index</title>
+</head>	
+
+<h3 class="page-header">
+  All Users
+  <span class="pull-right">
+    <%= link_to "New User", new_user_path, class: 'btn btn-u btn-success' %>
+  </span>
+</h3>
+
+<ul>
+  <% @users.each do |user| %>
+    <li><%= link_to user.email, user_path(user) %>
+    <%= link_to "Edit", edit_user_path(user) %> <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: 'Confirm Deletion?' } %></li>
+  <% end %>
+</ul>

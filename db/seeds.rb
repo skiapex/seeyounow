@@ -206,15 +206,15 @@ puts "Creating users..."
 useradmin = User.create(email: "info@seeyounow.ca", password: "W0930jk72")
 
 # Patient users
-usergailh = User.create(email: "gahis", password: "password")
-useramrikg = User.create(email: "Amgos", password: "password")
-useratnafug = User.create(email: "Atgob", password: "password")
-userharbanss = User.create(email: "hamat", password: "password")
-userlihwah = User.create(email: "lihsi", password: "password")
-usernalinim = User.create(email: "NaMah", password: "password")
-userritab = User.create(email: "Ribhu", password: "password")
-userwalterh = User.create(email: "Wahus", password: "password")
-userroyele = User.create(email: "roedw", password: "password")
+usergailh = User.create!(email: "me@home.com", password: "watching the telly")
+useramrikg = User.create(email: "Amgos@me.ca", password: "password")
+useratnafug = User.create(email: "Atgob@me.ca", password: "password")
+userharbanss = User.create(email: "hamat@me.ca", password: "password")
+userlihwah = User.create(email: "lihsi@me.ca", password: "password")
+usernalinim = User.create(email: "NaMah@me.ca", password: "password")
+userritab = User.create(email: "Ribhu@me.ca", password: "password")
+userwalterh = User.create(email: "Wahus@me.ca", password: "password")
+userroyele = User.create(email: "roedw@me.ca", password: "password")
 
 # Clinician users
 userjudymaynard = User.create(email: "judy.maynard@medportal.ca", password: "password")

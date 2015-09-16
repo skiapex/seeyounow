@@ -26,6 +26,7 @@ gem 'compass' #, '~> 1.0.3'
 gem 'faker', '~> 1.4.3'
 gem 'raygun4ruby'
 gem 'statsmix'
+gem 'devise'
 
 group :development do
   gem 'spring'

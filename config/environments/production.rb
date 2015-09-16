@@ -77,4 +77,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+  #default_url_options appropriate for a production environment - from Devise
+  config.action_mailer.default_url_options = { :host => 'seeyounow.ca' }
 end
