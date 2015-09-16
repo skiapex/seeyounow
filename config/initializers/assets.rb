@@ -36,6 +36,7 @@ Rails.application.config.assets.precompile += %w( nivo-lightbox.css )
 Rails.application.config.assets.precompile += %w( animate.min.css )
 Rails.application.config.assets.precompile += %w( blue.min.css )
 Rails.application.config.assets.precompile += %w( responsive.css )
+Rails.application.config.assets.precompile += %w( one.style.css )
 
 #Import Javascript Plugins
 Rails.application.config.assets.precompile += %w( jquery-migrate.min.js )
@@ -71,12 +72,36 @@ Rails.application.config.assets.precompile += %w( respond.min.js )
 Rails.application.config.assets.precompile += %w( jquery.scrollTo.min.js )
 Rails.application.config.assets.precompile += %w( jquery.localScroll.min.js )
 Rails.application.config.assets.precompile += %w( jquery.easing.1.3.js )
+Rails.application.config.assets.precompile += %w( smoothScroll.js )
+Rails.application.config.assets.precompile += %w( jquery.easing.min.js )
+Rails.application.config.assets.precompile += %w( pace.min.js )
+Rails.application.config.assets.precompile += %w( jquery.parallax.js )
+Rails.application.config.assets.precompile += %w( jquery.form.min.js )
+Rails.application.config.assets.precompile += %w( jquery.validate.min.js )
+Rails.application.config.assets.precompile += %w( jquery.themepunch.tools.min.js )
+Rails.application.config.assets.precompile += %w( jquery.themepunch.revolution.min.js )
+Rails.application.config.assets.precompile += %w( jquery.cubeportfolio.min.js )
+
+Rails.application.config.assets.precompile += %w( one.app.js )
+Rails.application.config.assets.precompile += %w( contact.js )
+Rails.application.config.assets.precompile += %w( pace-loader.js )
+Rails.application.config.assets.precompile += %w( revolution-slider.js )
+Rails.application.config.assets.precompile += %w( cube-portfolio-lightbox.js )
 
 #Import Headers
 Rails.application.config.assets.precompile += %w( header-default.css )
 
 #Import Footers
 Rails.application.config.assets.precompile += %w( footer-default.css )
+Rails.application.config.assets.precompile += %w( footer-v7.css )
+Rails.application.config.assets.precompile += %w( pace-flash.css )
+Rails.application.config.assets.precompile += %w( cubeportfolio.min.css )
+Rails.application.config.assets.precompile += %w( custom-cubeportfolio.css )
+
+#Import IE Javascript Plugins
+Rails.application.config.assets.precompile += %w( respond.js )
+Rails.application.config.assets.precompile += %w( placeholder-IE-fixes.js )
+Rails.application.config.assets.precompile += %w( sky-forms-ie8.js )
 
 #Import Google Font
 Rails.application.config.assets.precompile += %w( http://fonts.googleapis.com/css?family=Open+Sans:300,400 )
