@@ -16,13 +16,13 @@ class SessionsController < ApplicationController
         redirect_to root_path, notice: "Login successful!"
       end
     else
-      redirect_to login_path, alert: "Email or password incorrect"
+      redirect_to new_session_path, alert: "Email or password incorrect"
     end
   end
 
   def destroy
     session["user_id"] = nil
-    redirect_to login_path, notice: "Logout successful!"
+    redirect_to new_session_path, notice: "Logout successful!"
   end
 
   def information

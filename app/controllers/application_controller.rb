@@ -4,46 +4,43 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 
   protect_from_forgery with: :exception
-
+  helper_method :current_user
   before_action :require_user
+  helper_method :current_clinician
   before_action :require_clinician
   helper_method :admin
   before_action :require_admin
 
-  private
+  def current_user
+    User.find_by(id: session["user_id"])
+  end
 
-    def current_user
-      @current_user ||= User.find_by(id: session["user_id"]) if session[:user_id]
+  def require_user
+    if current_user.nil?
+      redirect_to new_session_path
     end
-    helper_method :current_user
+  end
 
-    def require_user
-      if current_user.nil?
-        redirect_to new_session_path
-      end
-    end
+  def current_clinician
+    Clinician.find_by(user_id: User.find_by(id: session["user_id"]))
+  end
 
-    def current_clinician
-      Clinician.find_by(user_id: User.find_by(id: session["user_id"]))
+  def require_clinician
+    if current_clinician.nil?
+      redirect_to new_session_path
     end
-    helper_method :current_clinician
+  end
 
-    def require_clinician
-      if current_clinician.nil?
-        redirect_to new_session_path
-      end
+  def admin
+    if Clinician.find_by(user_id: User.find_by(id: session["user_id"])).administrator = true
+      Clinician.find_by(user_id: User.find_by(id: session["user_id"])).administrator
     end
+  end
 
-    def admin
-      if Clinician.find_by(user_id: User.find_by(id: session["user_id"])).administrator = true
-        Clinician.find_by(user_id: User.find_by(id: session["user_id"])).administrator
-      end
+  def require_admin
+    if admin.nil?
+      redirect_to new_session_path
     end
-
-    def require_admin
-      if admin.nil?
-        redirect_to new_session_path
-      end
-    end
+  end
 
 end
