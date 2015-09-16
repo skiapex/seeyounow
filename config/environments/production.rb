@@ -79,7 +79,7 @@ Rails.application.configure do
   config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
   #added this to redirects not-HTTPS requests to the corresponding HTTPS path and applies some additional improvements to make sure your HTTPS request is secure
-  #config.force_ssl = true
+  config.force_ssl = true
   #he following code enables Rack::SSL and all its filters only in case the request comes from a HTTPS connection
-  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
+  # config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
 end
