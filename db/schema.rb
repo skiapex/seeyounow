@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901195629) do
+ActiveRecord::Schema.define(version: 20150916053406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20150901195629) do
 
   create_table "care_groups", force: true do |t|
     t.string "name"
-    t.string "province"
     t.string "city"
+    t.string "province"
     t.text   "emergency_message"
   end
 
@@ -48,13 +48,13 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.string  "first_name"
     t.string  "last_name"
     t.integer "occupation_id"
+    t.integer "speciality_id"
     t.integer "gender_id"
     t.string  "office_number"
     t.string  "mobile_number"
     t.integer "care_group_id"
-    t.integer "user_id"
     t.boolean "administrator", default: false
-    t.integer "speciality_id"
+    t.integer "user_id"
   end
 
   add_index "clinicians", ["care_group_id"], name: "index_clinicians_on_care_group_id", using: :btree
@@ -78,8 +78,10 @@ ActiveRecord::Schema.define(version: 20150901195629) do
   create_table "esas_assessments", force: true do |t|
     t.integer  "patient_id"
     t.integer  "clinician_id"
+    t.boolean  "clinician_completed",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "care_giver_id"
     t.integer  "pain"
     t.string   "pain_comment"
     t.integer  "tiredness"
@@ -94,6 +96,8 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.string   "shortness_of_breath_comment"
     t.integer  "depression"
     t.string   "depression_comment"
+    t.integer  "anxiety"
+    t.string   "anxiety_comment"
     t.integer  "wellbeing"
     t.string   "wellbeing_comment"
     t.integer  "other_symptom_id"
@@ -102,11 +106,7 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.string   "esas_comment"
     t.string   "resolution"
     t.boolean  "priority_resolved",           default: false
-    t.integer  "anxiety"
-    t.string   "anxiety_comment"
     t.integer  "resolved_by"
-    t.integer  "care_giver_id"
-    t.boolean  "clinician_completed",         default: false
   end
 
   add_index "esas_assessments", ["care_giver_id"], name: "index_esas_assessments_on_care_giver_id", using: :btree
@@ -115,9 +115,9 @@ ActiveRecord::Schema.define(version: 20150901195629) do
   add_index "esas_assessments", ["patient_id"], name: "index_esas_assessments_on_patient_id", using: :btree
 
   create_table "feedbacks", force: true do |t|
+    t.string   "full_name"
     t.datetime "created_at"
     t.text     "feedback_comment"
-    t.string   "full_name"
   end
 
   create_table "genders", force: true do |t|
@@ -181,17 +181,17 @@ ActiveRecord::Schema.define(version: 20150901195629) do
     t.string   "last_name"
     t.integer  "user_id"
     t.string   "diagnosis"
+    t.datetime "diagnosis_date"
     t.integer  "gender_id"
+    t.datetime "birth_date"
     t.string   "address"
     t.string   "phone_number"
-    t.text     "goals_of_care"
-    t.boolean  "patient_deceased",   default: false
-    t.boolean  "patient_archived",   default: false
     t.integer  "other_symptom"
-    t.datetime "diagnosis_date"
+    t.text     "goals_of_care"
     t.text     "important_to_you"
     t.integer  "care_group_id"
-    t.datetime "birth_date"
+    t.boolean  "patient_deceased",   default: false
+    t.boolean  "patient_archived",   default: false
     t.integer  "notification_level"
     t.boolean  "data_viewable",      default: false
   end
@@ -203,12 +203,12 @@ ActiveRecord::Schema.define(version: 20150901195629) do
   create_table "prfs_assessments", force: true do |t|
     t.integer  "patient_id"
     t.integer  "clinician_id"
+    t.boolean  "clinician_completed",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "prfs_comment"
-    t.integer  "activity_and_function"
     t.integer  "care_giver_id"
-    t.boolean  "clinician_completed",   default: false
+    t.integer  "activity_and_function"
+    t.string   "prfs_comment"
   end
 
   add_index "prfs_assessments", ["care_giver_id"], name: "index_prfs_assessments_on_care_giver_id", using: :btree
@@ -223,12 +223,12 @@ ActiveRecord::Schema.define(version: 20150901195629) do
   add_index "specialities", ["occupation_id"], name: "index_specialities_on_occupation_id", using: :btree
 
   create_table "users", force: true do |t|
+    t.string  "timezone"
+    t.boolean "terms_agreement", default: false
     t.string  "email"
     t.string  "password_digest"
-    t.string  "timezone"
     t.integer "patient_id"
     t.integer "clinician_id"
-    t.boolean "terms_agreement", default: false
   end
 
   add_index "users", ["clinician_id"], name: "index_users_on_clinician_id", using: :btree
