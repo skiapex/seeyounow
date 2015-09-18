@@ -1,9 +1,8 @@
 class PagesController < ApplicationController
-  layout false, only: [:landing]
   skip_before_action :require_clinician
   skip_before_action :require_admin
 
-  def landing
+  def index
     @clinicians = Clinician.all
     @esas_assessments = current_clinician.esas_assessments
   end
