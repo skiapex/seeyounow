@@ -59,11 +59,9 @@
         </div>
         <hr>
 
-        <p><%= link_to "forgotten password?", new_password_reset_path %></p>
-
         <div class="checkbox">
             <label>
-                <%= check_box_tag :remember_me, 1, params[:remember_me] %> 
+                <input type="checkbox"> 
                 <p>Always stay signed in</p>
             </label>            
         </div>

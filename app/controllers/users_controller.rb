@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :require_user, only: [:new]
-  skip_before_action :require_clinician, only: [:edit, :update, :new]
-  skip_before_action :require_admin, only: [:edit, :update, :new]
+  skip_before_action :require_clinician, only: [:edit, :update]
+  skip_before_action :require_admin, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -19,6 +18,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+    @user.patient.clinician = current_user.clinician
 
     if @user.save
       redirect_to user_path(@user), notice: "User created!"
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       # It's mandatory to specify the nested attributes that should be whitelisted.
       # If you use `permit` with just the key that points to the nested attributes hash,
       # it will return an empty hash.
-      params.require(:user).permit(:email, :password, :password_confirmation, :auth_token, :password_reset_token, :password_reset_sent_at)
+      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 
 end

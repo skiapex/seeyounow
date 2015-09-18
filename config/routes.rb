@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :prfs_assessments
   resources :users
   resources :sessions
-  resources :password_resets
   resources :comments
   resources :notification_settings
   resources :other_symptoms
@@ -21,9 +20,8 @@ Rails.application.routes.draw do
 
   get '/home', to: 'pages#home'
 
-  get "/login", to: "sessions#new", :as => "login"
-  get "/logout", to: "sessions#destroy", :as => "logout"
-  get "signup" => "users#new", :as => "signup"
+  get "/login", to: "sessions#new"
+  get "/logout", to: "sessions#destroy"
 
    get "/info", to: "sessions#information"
 

@@ -223,13 +223,15 @@ ActiveRecord::Schema.define(version: 20150916053406) do
   add_index "specialities", ["occupation_id"], name: "index_specialities_on_occupation_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "timezone"
-    t.boolean  "terms_agreement",        default: false
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "auth_token"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
+    t.string  "timezone"
+    t.boolean "terms_agreement", default: false
+    t.string  "email"
+    t.string  "password_digest"
+    t.integer "patient_id"
+    t.integer "clinician_id"
   end
+
+  add_index "users", ["clinician_id"], name: "index_users_on_clinician_id", using: :btree
+  add_index "users", ["patient_id"], name: "index_users_on_patient_id", using: :btree
 
 end
