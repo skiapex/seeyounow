@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params["id"])
     @user.update(user_params)
-    redirect_to user_path(@user), notice: "User updated!"
+    redirect_to root_path, notice: "User updated!"
   end
 
   def destroy
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       # It's mandatory to specify the nested attributes that should be whitelisted.
       # If you use `permit` with just the key that points to the nested attributes hash,
       # it will return an empty hash.
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 
 end
