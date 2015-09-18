@@ -10,7 +10,9 @@
 </h2>
 Email/Username: <strong><%= @user.email %></strong> 
     	<% if @user.patient == nil %>
-    		<p><%= link_to @user.clinician.full_name, clinician_path(@user.clinician) %> <%= link_to @user.clinician.care_group.name, care_group_path(@user.clinician.care_group) %></p>
+    		<p>Name: <%= link_to @user.clinician.full_name, clinician_path(@user.clinician) %>, Care group: <%= link_to @user.clinician.care_group.name, care_group_path(@user.clinician.care_group) %></p>
+        <p>Agreed to Provider Agreement: <%= @user.terms_agreement %></p>
     	<% else %>
     		<p>Name: <%= link_to @user.patient.full_name, patient_path(@user.patient) %>, Care group: <%= link_to @user.patient.care_group.name, care_group_path(@user.patient.care_group) %></p>
+        <p>Agreed to User Agreement: <%= @user.terms_agreement %></p>
     	<% end %>

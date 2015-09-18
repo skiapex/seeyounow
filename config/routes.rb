@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :specialities
   resources :occupations
 
+  get '/information', to: 'pages#landing'
+
   get '/home', to: 'pages#home'
 
   get "/login", to: "sessions#new"
