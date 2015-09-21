@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_clinician
-    Clinician.find_by(user_id: User.find_by(id: session["user_id"]))
+    current_user.clinician
   end
 
   def require_clinician
@@ -33,8 +33,8 @@ class ApplicationController < ActionController::Base
   end
 
   def admin
-    if Clinician.find_by(user_id: User.find_by(id: session["user_id"])).administrator = true
-      Clinician.find_by(user_id: User.find_by(id: session["user_id"])).administrator
+    if current_clinician.administrator = true
+      current_clinician.administrator
     end
   end
 
