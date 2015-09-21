@@ -98,6 +98,7 @@ lpn = Occupation.create(name: "Licensed Practical Nurse", pronym: nil, acronym: 
 rpsyn = Occupation.create(name: "Registered Psychiatric Nurse", pronym: nil, acronym: "RPN")
 hcadmin = Occupation.create(name: "Healthcare Administrator", pronym: nil, acronym: nil)
 chpcn = Occupation.create(name: "Certified in Hospice and Palliative Care Nurse", pronym: nil, acronym: "RN, CHPCN")
+cns = Occupation.create(name: "Clinican Nurse Specialist", pronym: nil, acronym: "RN, CNS")
 
 puts "Creating specialities..."
 # Create different specialist physicians
@@ -188,12 +189,19 @@ chpcn_perioperative_nursing = Speciality.create(name: "Perioperative Nursing", o
 chpcn_palliative_nursing = Speciality.create(name: "Palliative Nursing", occupation_id: chpcn.id)
 chpcn_psychiatric_nursing = Speciality.create(name: "Psychiatric and Mental Health Nursing", occupation_id: chpcn.id)
 chpcn_rehabilitation_nursing = Speciality.create(name: "Rehabilitation Nursing", occupation_id: chpcn.id)
-cns = Speciality.create(name: "Clinican Nurse Specialist", occupation_id: chpcn.id)
+chpcn_cns = Speciality.create(name: "Clinican Nurse Specialist", occupation_id: chpcn.id)
+
+cns_palliative = Speciality.create(name: "Clinical Nurse Specialist in Palliative Care", occupation_id: cns.id)
 
 primary_health_care = Speciality.create(name: "Primary Health Care", occupation_id: nursepractitioner.id)
 adult = Speciality.create(name: "Adult", occupation_id: nursepractitioner.id)
 pediatric = Speciality.create(name: "Pediatric Care", occupation_id: nursepractitioner.id)
 anaesthesia = Speciality.create(name: "Anaesthesia", occupation_id: nursepractitioner.id)
+
+social_supervisor = Speciality.create(name: "Social work supervisor", occupation_id: social.id)
+social_coord = Speciality.create(name: "Co-ordinator of social work", occupation_id: social.id)
+social_medical = Speciality.create(name: "Medical social worker", occupation_id: social.id)
+social_psychiatric = Speciality.create(name: "Psychiatric social worker", occupation_id: social.id)
 
 puts "Creating care groups..."
 # Create different care groups
@@ -203,23 +211,26 @@ systemadministration = CareGroup.create(name: "System Admin", city: "North Vanco
 # Create the users
 puts "Creating users..."
 #system administrator
-useradmin = User.create(email: "info@seeyounow.ca", password: "W0930jk72")
+useradmin = User.create(email: "info@seeyounow.ca", password: "W0930jk72", auth_token: SecureRandom.urlsafe_base64(n=43))
 
 # Patient users
-usergailh = User.create(email: "gahis", password: "password")
-useramrikg = User.create(email: "Amgos", password: "password")
-useratnafug = User.create(email: "Atgob", password: "password")
-userharbanss = User.create(email: "hamat", password: "password")
-userlihwah = User.create(email: "lihsi", password: "password")
-usernalinim = User.create(email: "NaMah", password: "password")
-userritab = User.create(email: "Ribhu", password: "password")
-userwalterh = User.create(email: "Wahus", password: "password")
-userroyele = User.create(email: "roedw", password: "password")
+usergailh = User.create(email: "gahis", password: "password", auth_token: SecureRandom.urlsafe_base64)
+useramrikg = User.create(email: "Amgos", password: "password", auth_token: SecureRandom.urlsafe_base64)
+useratnafug = User.create(email: "Atgob", password: "password", auth_token: SecureRandom.urlsafe_base64)
+userharbanss = User.create(email: "hamat", password: "password", auth_token: SecureRandom.urlsafe_base64)
+userlihwah = User.create(email: "lihsi", password: "password", auth_token: SecureRandom.urlsafe_base64)
+usernalinim = User.create(email: "NaMah", password: "password", auth_token: SecureRandom.urlsafe_base64)
+userritab = User.create(email: "Ribhu", password: "password", auth_token: SecureRandom.urlsafe_base64)
+userwalterh = User.create(email: "Wahus", password: "password", auth_token: SecureRandom.urlsafe_base64)
+userroyele = User.create(email: "roedw", password: "password", auth_token: SecureRandom.urlsafe_base64)
+usernabok = User.create(email: "nabok", password: "password", auth_token: SecureRandom.urlsafe_base64)
+userdemcl = User.create(email: "Demcl", password: "password", auth_token: SecureRandom.urlsafe_base64)
 
 # Clinician users
-userjudymaynard = User.create(email: "judy.maynard@medportal.ca", password: "password")
-useramandamaclennen = User.create(email: "palliate.brameast@rogers.com", password: "password")
-userjenniferpebenito = User.create(email: "ebrameast@rogers.com", password: "password")
+userjudymaynard = User.create(email: "judy.maynard@medportal.ca", password: "password", auth_token: SecureRandom.urlsafe_base64)
+useramandamaclennen = User.create(email: "palliate.brameast@rogers.com", password: "password", auth_token: SecureRandom.urlsafe_base64)
+userjenniferpebenito = User.create(email: "ebrameast@rogers.com", password: "password", auth_token: SecureRandom.urlsafe_base64)
+userfionaalmeida = User.create(email: "fiona.almeida@medportal.ca", password: "password", auth_token: SecureRandom.urlsafe_base64)
 
 # Create the clinicians
 puts "Creating clinicians..."
@@ -229,7 +240,8 @@ administrator = Clinician.create(first_name: "System", last_name: "Admin", occup
 
 judymaynard = Clinician.create(first_name: "Judy", last_name: "Maynard", occupation_id: physician.id, speciality_id: gp.id, gender_id: female.id, office_number: "(905) 792-2212", mobile_number: "(416) 232-5094", care_group_id: brameast.id, administrator: true, user_id: userjudymaynard.id)
 amandamaclennen = Clinician.create(first_name: "Amanda", last_name: "MacLennen", occupation_id: rn.id, speciality_id: palliative_nursing.id, gender_id: female.id, office_number: "(905) 792-2212", mobile_number: "(416) 371-0733", care_group_id: brameast.id, administrator: true, user_id: useramandamaclennen.id)
-jenniferpebenito = Clinician.create(first_name: "Jennifer", last_name: "Pe Benito", occupation_id: rn.id, speciality_id: palliative_nursing.id, gender_id: female.id, office_number: "(905) 792-2212", mobile_number: "(416) 371-0733", care_group_id: brameast.id, administrator: true, user_id: userjenniferpebenito.id)
+jenniferpebenito = Clinician.create(first_name: "Jennifer", last_name: "Pe Benito", occupation_id: social.id, speciality_id: social_medical.id, gender_id: female.id, office_number: "(905) 792-2212", mobile_number: "(416) 371-0733", care_group_id: brameast.id, administrator: true, user_id: userjenniferpebenito.id)
+fionaalmeida = Clinician.create(first_name: "Fiona", last_name: "Almeida", occupation_id: physician.id, speciality_id: firstyear.id, gender_id: female.id, office_number: "(905) 792-2212", mobile_number: "(416) 232-5094", care_group_id: brameast.id, administrator: true, user_id: userfionaalmeida.id)
 
 # Create the patients
 puts "Creating patients..."
@@ -243,6 +255,8 @@ nalinim = Patient.create(first_name: "Nalini", last_name: "M", user_id: usernali
 ritab = Patient.create(first_name: "Rita", last_name: "B", user_id: userritab.id, diagnosis: "Metastatic Breast Cancer in 2005", diagnosis_date: "2014-08-26 00:00:01 -0400", gender_id: female.id, birth_date: "1955-08-28 00:00:01 -0400", address: "147 Coastline Drive, Brampton, Ontario", phone_number: "905-453-5424", other_symptom: nil, goals_of_care: "palliate", important_to_you: "Strong Sikh religion and knows it is her god who will decide when it is time to go", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
 walterh = Patient.create(first_name: "Walter", last_name: "H", user_id: userwalterh.id, diagnosis: "Metastatic Rectal Cancer", diagnosis_date: "2011-11-26 00:00:01 -0400", gender_id: male.id, birth_date: "1961-08-28 00:00:01 -0400", address: "13 Burt Drive, Brampton, Ontario", phone_number: "905-453-3651", other_symptom: nil, goals_of_care: "Be painfree and so far continue with chemotherapy despite side effects", important_to_you: "Originates from Newfoundland; has 3 kids", care_group_id: brameast.id, patient_deceased: true, patient_archived: true)
 royele = Patient.create(first_name: "Royel", last_name: "E", user_id: userroyele.id, diagnosis: "Large B Cell Lymphoma", diagnosis_date: "2014-10-26 00:00:01 -0400", gender_id: male.id, birth_date: "1946-08-28 00:00:01 -0400", address: "40 Woodsend Run, Brampton, Ontario", phone_number: "647-222-1636", other_symptom: nil, goals_of_care: "palliate", important_to_you: "installed the Bell phones in our Brameast plaza; loved this work", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+nabok = Patient.create(first_name: "Nadeem", last_name: "B", user_id: usernabok.id, diagnosis: "Cirrhosis and Hepatic Encephalopathy", diagnosis_date: "2010-09-26 00:00:01 -0400", gender_id: female.id, birth_date: "1971-10-12 00:00:01 -0400", address: "12 Fountainview Way (basement), Brampton, Ontario", phone_number: "647-970-5060", other_symptom: nil, goals_of_care: "hoping for liver transplant but otherwise comfort measures", important_to_you: "?social/relationship issues with wife; has a 10 year old daughter; basement home very cluttered", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
+demcl = Patient.create(first_name: "Dennise", last_name: "M", user_id: userdemcl.id, diagnosis: "Metastatic Breast Cancer", diagnosis_date: "2005-09-15 00:00:01 -0400", gender_id: female.id, birth_date: "1959-10-29 00:00:01 -0400", address: "103 Woodsend Run ( basement), Brampton, Ontario", phone_number: "905-462-1553", other_symptom: nil, goals_of_care: "support at home with end of life care", important_to_you: "Christian faith; not keen on taking medications in general; friend Colleen will stay with her nights sometimes and inform children if there is change in status", care_group_id: brameast.id, patient_deceased: false, patient_archived: false)
 
 puts "Creating care givers..."
 # Create the are givers for patients
@@ -257,14 +271,17 @@ CareGiver.create(patient_id: nalinim.id, inputter_id: husband.id, first_name: "U
 CareGiver.create(patient_id: ritab.id, inputter_id: husband.id, first_name: "Unknown", last_name: "X", phone_number: nil, other_information: nil)
 CareGiver.create(patient_id: walterh.id, inputter_id: other.id, first_name: "Patty", last_name: "X", phone_number: nil, other_information: nil)
 CareGiver.create(patient_id: royele.id, inputter_id: wife.id, first_name: "Caroline", last_name: "E", phone_number: nil, other_information: nil)
+CareGiver.create(patient_id: demcl.id, inputter_id: friend.id, first_name: "Colleen", last_name: "X", phone_number: nil, other_information: "Will stay with her nights sometimes and inform children if there is change in status")
 
 
 puts "Creating assessment scores..."
 # Create the scores for an ESAS assessment
-EsasAssessment.create(patient_id: gailh.id, clinician_id: judymaynard.id, clinician_completed: true, created_at: "2015-08-26 20:47:01 -0400", care_giver_id: nil, pain: 8, pain_comment: "using hydromorph contin 6 mg BID and does not want to use breakthrough unless absolutely necessary", tiredness: 8, tiredness_comment: "sleeping more and more", drowsiness: 1, drowsiness_comment: nil, nausea: 3, nausea_comment: "tumours in belly take her appetite away", lack_of_appetite: 3, lack_of_appetite_comment: nil, shortness_of_breath: 4, shortness_of_breath_comment: "no room for lungs to expand as belly gets bigger", depression: 0, depression_comment: nil, anxiety: 3, anxiety_comment: "sometimes abit anxious about falling if she goes out", wellbeing: 4, wellbeing_comment: "Doing better than she ever thought she would be doing at this stage", other_symptom_id: none.id, other_symptom_score: 0, other_symptom_comment: nil, esas_comment: "Severity at the time of assessment of each symptom rated from 0 to 10 on a numerical scale, 0 meaning that the symptom is absent and 10 that it is of the worst possible severity", resolution: nil, priority_resolved: false)
+EsasAssessment.create(patient_id: gailh.id, clinician_id: judymaynard.id, clinician_completed: true, created_at: "2015-08-26 20:47:01 -0400", care_giver_id: nil, pain: 8, pain_comment: "using hydromorph contin 6 mg BID and does not want to use breakthrough unless absolutely necessary", tiredness: 8, tiredness_comment: "sleeping more and more", drowsiness: 1, drowsiness_comment: nil, nausea: 3, nausea_comment: "tumours in belly take her appetite away", lack_of_appetite: 3, lack_of_appetite_comment: nil, shortness_of_breath: 4, shortness_of_breath_comment: "no room for lungs to expand as belly gets bigger", depression: 0, depression_comment: nil, anxiety: 3, anxiety_comment: "sometimes abit anxious about falling if she goes out", wellbeing: 4, wellbeing_comment: "Doing better than she ever thought she would be doing at this stage", other_symptom_id: none.id, other_symptom_score: 0, other_symptom_comment: nil, esas_comment: "Doing better than she ever thought she would be doing at this stage", resolution: nil, priority_resolved: false)
+EsasAssessment.create(patient_id: gailh.id, clinician_id: judymaynard.id, clinician_completed: false, created_at: "2015-09-10 14:37:01 -0400", care_giver_id: nil, pain: 7, pain_comment: nil, tiredness: 5, tiredness_comment: nil, drowsiness: 4, drowsiness_comment: nil, nausea: 2, nausea_comment: nil, lack_of_appetite: 1, lack_of_appetite_comment: nil, shortness_of_breath: 6, shortness_of_breath_comment: nil, depression: 0, depression_comment: nil, anxiety: 2, anxiety_comment: "especially when I go out driving to see friends", wellbeing: 5, wellbeing_comment: nil, other_symptom_id: none.id, other_symptom_score: 0, other_symptom_comment: nil, esas_comment: "doing better than expected", resolution: nil, priority_resolved: false)
 
 # Create the scores for an PRFS assessment
 PrfsAssessment.create(patient_id: gailh.id, clinician_id: judymaynard.id, clinician_completed: true, created_at: "2015-08-26 21:01:01 -0400", care_giver_id: nil, activity_and_function: 2, prfs_comment: "still getting out with friends at mall occasionally; still driving; had bad fall and black eye last week in parking lot")
+PrfsAssessment.create(patient_id: demcl.id, clinician_id: judymaynard.id, clinician_completed: true, created_at: "2015-09-10 14:18:01 -0400", care_giver_id: nil, activity_and_function: 4, prfs_comment: "up to bathroom but very SOB")
 
 
 puts "Creating care group assignments..."
@@ -304,6 +321,10 @@ CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: walterh
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: royele.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: royele.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: royele.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: nabok.id)
+
+CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: demcl.id)
 
 
 puts "Creating comments..."
