@@ -13,12 +13,12 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = user.auth_token
       end
 
-      clinician = Clinician.find_by(user_id: User.find_by(email: params["email"]).id)
-      if clinician
+      # clinician = Clinician.find_by(user_id: User.find_by(email: params["email"]).id)
+      # if clinician
+      #   redirect_to root_path, notice: "Login successful!"
+      # else
         redirect_to root_path, notice: "Login successful!"
-      else
-        redirect_to root_path, notice: "Login successful!"
-      end
+      # end
     else
       redirect_to new_session_path, alert: "Email or password incorrect"
     end

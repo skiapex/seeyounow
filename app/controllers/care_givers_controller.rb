@@ -12,6 +12,18 @@ class CareGiversController < ApplicationController
   def show
     @care_giver = CareGiver.find_by(id: params["id"])
     @patient = @care_giver.patient
+
+    if current_clinician
+      if @patient.clinicians.include?(current_clinician)
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    else
+      if @patient.id == current_user.patient.id
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    end
   end
 
   def new

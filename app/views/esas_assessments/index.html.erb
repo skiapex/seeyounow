@@ -28,7 +28,7 @@
                               <a href="#"><i class="fa fa-cog pull-right"></i></a>
                           </div>
                           <div id="scrollbar" class="panel-body contentHolder">
-                            <% @esas_assessments.order("patient_id, created_at DESC").select('ON (patient_id) *').uniq.limit(99).each_with_index do |esas_assessment, index| %>
+                            <% @esas_assessments.order("esas_assessments.patient_id, esas_assessments.created_at DESC").select('ON (esas_assessments.patient_id) *').uniq.limit(99).each_with_index do |esas_assessment, index| %>
                               <% if esas_assessment.patient.patient_archived == true %>
                               <% else %>
                                 <div class="profile-post color-one">

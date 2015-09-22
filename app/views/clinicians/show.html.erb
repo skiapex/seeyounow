@@ -27,15 +27,19 @@
               <!--Profile Body-->
               <div class="profile-body">
 
-                <div class="row margin-bottom-20"><!--start row-->
+                <div class="row margin-bottom-10"><!--start row-->
 
                   <!--=== Goals of Care Block ===-->
                   <div class="bg-color-light">
-                      <div class="container content-sm">
+                      <div class="container content">
+                        <div class="row">
+                        <div class="col-md-11">
                           <div class="headline-center margin-bottom-10">
                               <h2>Emergency Message</h2>
-                              <h3><p><%= @clinician.care_group.emergency_message %></p></h3>
+                              <p><%= @clinician.care_group.emergency_message %></p>
                           </div>
+                        </div>        
+                        </div>
                       </div>
                   </div>
                   <!--=== End Goals of Care Block ===-->

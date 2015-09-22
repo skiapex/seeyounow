@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   get '/information', to: 'pages#landing'
 
   get '/home', to: 'pages#home'
+  get '/terms', to: 'pages#terms'
+  get '/privacy', to: 'pages#privacy'
+
+
 
   get "/login", to: "sessions#new", :as => "login"
   get "/logout", to: "sessions#destroy", :as => "logout"

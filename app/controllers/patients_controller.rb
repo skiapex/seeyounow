@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  skip_before_action :require_clinician
+  skip_before_action :require_clinician, only: [:show,:new,:update,:edit,:create]
   skip_before_action :require_admin
 
   def index
@@ -8,25 +8,39 @@ class PatientsController < ApplicationController
     @shared = current_clinician.care_group_assignments
   end
 
-  def show
-    puts params.inspect
-    @patient = Patient.find_by(id: params["id"])
-    @clinician = Clinician.find_by(id: params["id"])
+    def show
+      puts params.inspect
+      @patient = Patient.find_by(id: params["id"])
+      @clinician = Clinician.find_by(id: params["id"])
 
-    @age = Date.today.year - @patient.birth_date.year
-    @age -= 1 if Date.today < @patient.birth_date + @age.years #for days before birthday
+      @age = Date.today.year - @patient.birth_date.year
+      @age -= 1 if Date.today < @patient.birth_date + @age.years #for days before birthday
 
-    @esas_assessments = EsasAssessment.where(patient_id: @patient.id).order("created_at desc")
-    @prfs_assessments = PrfsAssessment.where(patient_id: @patient.id).order("created_at desc")
-    @comments = Comment.where(patient_id: @patient.id).order("created_at desc")
-    @notes = Note.where(patient_id: @patient.id).order("created_at desc")
-    @care_givers = CareGiver.where(patient_id: @patient.id).order("first_name asc")
+      @esas_assessments = EsasAssessment.where(patient_id: @patient.id).order("created_at desc")
+      @prfs_assessments = PrfsAssessment.where(patient_id: @patient.id).order("created_at desc")
+      @comments = Comment.where(patient_id: @patient.id).order("created_at desc")
+      @notes = Note.where(patient_id: @patient.id).order("created_at desc")
+      @care_givers = CareGiver.where(patient_id: @patient.id).order("first_name asc")
 
-    @notifications = @esas_assessments + @prfs_assessments + @comments
-    
-    @gender = @patient.gender
-    @care_group = @patient.care_group
-    @shared = @patient.care_group_assignments
+      @notifications = @esas_assessments + @prfs_assessments + @comments
+      
+      @gender = @patient.gender
+      @care_group = @patient.care_group
+      @shared = @patient.care_group_assignments
+
+      if current_clinician
+        if @patient.clinicians.include?(current_clinician)
+        else
+          redirect_to patients_path, notice: "You tried to access information you do not have authorization for"
+        end
+      else
+        if @patient.id == current_user.patient.id
+        else
+          redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+        end
+      end
+
+
   end
 
     def new
@@ -57,6 +71,18 @@ class PatientsController < ApplicationController
   def edit
 		@patient = Patient.find_by(id: params["id"])
     @care_group = @patient.care_group
+
+    if current_clinician
+      if @patient.clinicians.include?(current_clinician)
+      else
+        redirect_to patients_path, notice: "You tried to access information you do not have authorization for"
+      end
+    else
+      if @patient.id == current_user.patient.id
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    end
 	end
 
 	def update

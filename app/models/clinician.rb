@@ -1,13 +1,13 @@
 class Clinician < ActiveRecord::Base
   #acts_as_messageable
 	belongs_to :care_group
-	has_many :esas_assessments
-  has_many :prfs_assessments
   has_many :comments
   has_many :notes
 	belongs_to :gender
 	has_many :patients , through: :care_group_assignments
   has_many :care_group_assignments
+  has_many :esas_assessments, :through => :patients
+  has_many :prfs_assessments, :through => :patients
 	belongs_to :occupation
   belongs_to :speciality
 	belongs_to :user

@@ -14,6 +14,18 @@ class NotesController < ApplicationController
     @patient = @note.patient
     @clinician = @note.clinician
     @notes = @patient.notes.order("created_at desc")
+
+    if current_clinician
+      if @patient.clinicians.include?(current_clinician)
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    else
+      if @patient.id == current_user.patient.id
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    end
   end
 
   def new

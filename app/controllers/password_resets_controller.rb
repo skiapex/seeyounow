@@ -1,7 +1,7 @@
 class PasswordResetsController < ApplicationController
-	 layout false
+	layout false
 
-	skip_before_action :require_user
+  skip_before_action :require_user
   skip_before_action :require_clinician
   skip_before_action :require_admin
 

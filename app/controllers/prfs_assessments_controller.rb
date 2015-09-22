@@ -13,6 +13,18 @@ class PrfsAssessmentsController < ApplicationController
   def show
     @prfs_assessment = PrfsAssessment.find_by(id: params["id"])
     @care_giver = @prfs_assessment.care_giver
+
+    if current_clinician
+      if @prfs_assessment.patient.clinicians.include?(current_clinician)
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    else
+      if @prfs_assessment.patient.id == current_user.patient.id
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    end
   end
 
   def new

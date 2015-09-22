@@ -15,6 +15,18 @@ class CommentsController < ApplicationController
     @patient = @comment.patient
     @clinician = @comment.clinician
     @comments = @patient.comments.order("created_at desc")
+
+    if current_clinician
+      if @comment.patient.clinicians.include?(current_clinician)
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    else
+      if @comment.patient.id == current_user.patient.id
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    end
   end
 
   def new

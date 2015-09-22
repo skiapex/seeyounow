@@ -24,9 +24,10 @@ class PagesController < ApplicationController
       @notifications = @esas_assessments + @prfs_assessments + @comments
     else
       if current_clinician
-        @esas_assessments = current_clinician.esas_assessments.order("created_at desc")
-        @prfs_assessments = current_clinician.prfs_assessments.order("created_at desc")
-        @comments = current_clinician.comments.order("created_at desc")
+        @patients = current_clinician.patients
+        @esas_assessments = current_clinician.esas_assessments
+        @prfs_assessments = current_clinician.prfs_assessments
+        @comments = current_clinician.comments
         @notifications = @esas_assessments + @prfs_assessments + @comments
       else
         @esas_assessments = current_user.patient.esas_assessments.order("created_at desc")
@@ -34,6 +35,14 @@ class PagesController < ApplicationController
         @comments = Patient.find_by(user_id: User.find_by(id: current_user)).comments.order("created_at desc")
       end
     end
+  end
+
+  def terms
+    
+  end
+
+  def privacy
+    
   end
 
   def new

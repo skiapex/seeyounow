@@ -1,5 +1,5 @@
 class EsasAssessmentsController < ApplicationController
-  skip_before_action :require_clinician
+  skip_before_action :require_clinician, only: [:new, :create, :show, :edit, :update]
   skip_before_action :require_admin
 
   def index
@@ -13,6 +13,18 @@ class EsasAssessmentsController < ApplicationController
   def show
     @esas_assessment = EsasAssessment.find_by(id: params["id"])
     @care_giver = @esas_assessment.care_giver
+
+    if current_clinician
+      if @esas_assessment.patient.clinicians.include?(current_clinician)
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    else
+      if @esas_assessment.patient.id == current_user.patient.id
+      else
+        redirect_to root_path, notice: "You tried to access information you do not have authorization for"
+      end
+    end
   end
 
   def new

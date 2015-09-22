@@ -88,9 +88,9 @@
                     <div class="col-md-4 map-img md-margin-bottom-40">
                         <div class="headline"><h2>Useful Links</h2></div>
                         <ul class="list-unstyled link-list">
-                            <li><a href="#">About us</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="http://unbouncepages.com/seeyounow/">About us</a><i class="fa fa-angle-right"></i></li>
                             <li><a href="#">Recent Publications</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">Care Community</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="http://healthycanadians.gc.ca/health-system-systeme-sante/services/palliative-pallatifs/index-eng.php">Care Community</a><i class="fa fa-angle-right"></i></li>
                             <li><%= link_to "Recommend Changes", new_feedback_path, :target => "_blank" %><i class="fa fa-angle-right"></i></li>
                         </ul>
                     </div><!--/col-md-3-->
@@ -109,7 +109,7 @@
                     <div class="col-md-6">                     
                         <p>
                             &copy;2015 SeeYouNow. All Rights Reserved.
-                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                           <%= link_to "Privacy Policy", privacy_path, :target => "_blank" %> | <%= link_to "Terms of Service", terms_path, :target => "_blank" %>
                         </p>
                     </div>
 
