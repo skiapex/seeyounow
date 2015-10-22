@@ -211,7 +211,12 @@
                                           <div class="profile-post-in">
                                             <small class="pull-right"><em><%= clinician.care_group.name %></em></small>
                                               <h3 class="heading-xs"><a><%= link_to clinician.full_name, clinician_path(clinician) %></a></h3>
-                                              <p><%= clinician.occupation.name %>, <%= clinician.speciality.name %>, Patients: 
+                                              <p><%= clinician.occupation.name %>, 
+                                                <% if clinician.speciality == nil %>
+                                                <% else %>
+                                                  <%= clinician.speciality.name %>,
+                                                <% end %>
+                                                 Patients: 
                                                 <% if clinician.patients.group(:patient_deceased).count.values[0] == nil %>
                                                   0
                                                 <% else %>
