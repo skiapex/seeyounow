@@ -27,7 +27,7 @@ class PagesController < ApplicationController
         @patients = current_clinician.patients
         @esas_assessments = current_clinician.esas_assessments
         @prfs_assessments = current_clinician.prfs_assessments
-        @comments = current_clinician.comments
+        @comments = current_clinician.comments.order("created_at desc")
         @notifications = @esas_assessments + @prfs_assessments + @comments
       else
         @esas_assessments = current_user.patient.esas_assessments.order("created_at desc")
