@@ -289,42 +289,59 @@ puts "Creating care group assignments..."
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: gailh.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: gailh.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: gailh.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: gailh.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: amrikg.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: amrikg.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: amrikg.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: amrikg.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: atnafug.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: atnafug.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: atnafug.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: atnafug.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: harbanss.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: harbanss.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: harbanss.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: harbanss.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: lihwah.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: lihwah.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: lihwah.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: lihwah.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: nalinim.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: nalinim.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: nalinim.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: nalinim.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: ritab.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: ritab.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: ritab.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: ritab.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: walterh.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: walterh.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: walterh.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: walterh.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: royele.id)
 CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: royele.id)
 CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: royele.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: royele.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: nabok.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: nabok.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: nabok.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: nabok.id)
 
 CareGroupAssignment.create(clinician_id: judymaynard.id, patient_id: demcl.id)
+CareGroupAssignment.create(clinician_id: jenniferpebenito.id, patient_id: demcl.id)
+CareGroupAssignment.create(clinician_id: amandamaclennen.id, patient_id: demcl.id)
+CareGroupAssignment.create(clinician_id: fionaalmeida.id, patient_id: demcl.id)
+
+
 
 
 
@@ -688,8 +705,6 @@ EsasAssessment.create(patient_id: apwinderbrar.id, clinician_id: r.id, clinician
 EsasAssessment.create(patient_id: apwinderbrar.id, clinician_id: r.id, clinician_completed: true, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_giver_id: nil, pain: rand(3...6), pain_comment: Faker::Lorem.sentence(0, false, 4), tiredness: rand(3...6), tiredness_comment: Faker::Lorem.sentence(0, false, 3), drowsiness: rand(5...7), drowsiness_comment: Faker::Lorem.sentence(0, false, 2), nausea: rand(0...8), nausea_comment: Faker::Lorem.sentence(0, false, 8), lack_of_appetite: rand(4...7), lack_of_appetite_comment: Faker::Lorem.sentence(0, false, 1), shortness_of_breath: rand(0...4), shortness_of_breath_comment: Faker::Lorem.sentence(0, false, 5), depression: rand(3...5), depression_comment: Faker::Lorem.sentence(0, false, 6), anxiety: rand(2...5), anxiety_comment: Faker::Lorem.sentence(0, false, 6), wellbeing: rand(2...4), wellbeing_comment: Faker::Lorem.sentence(0, false, 3), other_symptom_id: constipation.id, other_symptom_score: rand(6...10), other_symptom_comment: Faker::Lorem.sentence(0, false, 6), esas_comment: Faker::Lorem.sentence(0, false, 8), resolution: nil, priority_resolved: true)
 EsasAssessment.create(patient_id: apwinderbrar.id, clinician_id: r.id, clinician_completed: true, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_giver_id: nil, pain: rand(3...6), pain_comment: Faker::Lorem.sentence(0, false, 4), tiredness: rand(3...6), tiredness_comment: Faker::Lorem.sentence(0, false, 3), drowsiness: rand(5...7), drowsiness_comment: Faker::Lorem.sentence(0, false, 2), nausea: rand(0...8), nausea_comment: Faker::Lorem.sentence(0, false, 8), lack_of_appetite: rand(4...7), lack_of_appetite_comment: Faker::Lorem.sentence(0, false, 1), shortness_of_breath: rand(0...4), shortness_of_breath_comment: Faker::Lorem.sentence(0, false, 5), depression: rand(3...5), depression_comment: Faker::Lorem.sentence(0, false, 6), anxiety: rand(2...5), anxiety_comment: Faker::Lorem.sentence(0, false, 6), wellbeing: rand(2...4), wellbeing_comment: Faker::Lorem.sentence(0, false, 3), other_symptom_id: constipation.id, other_symptom_score: rand(6...10), other_symptom_comment: Faker::Lorem.sentence(0, false, 6), esas_comment: Faker::Lorem.sentence(0, false, 8), resolution: nil, priority_resolved: false)
 EsasAssessment.create(patient_id: apwinderbrar.id, clinician_id: r.id, clinician_completed: true, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_giver_id: nil, pain: rand(3...6), pain_comment: Faker::Lorem.sentence(0, false, 4), tiredness: rand(3...6), tiredness_comment: Faker::Lorem.sentence(0, false, 3), drowsiness: rand(5...7), drowsiness_comment: Faker::Lorem.sentence(0, false, 2), nausea: rand(0...8), nausea_comment: Faker::Lorem.sentence(0, false, 8), lack_of_appetite: rand(4...7), lack_of_appetite_comment: Faker::Lorem.sentence(0, false, 1), shortness_of_breath: rand(0...4), shortness_of_breath_comment: Faker::Lorem.sentence(0, false, 5), depression: rand(3...5), depression_comment: Faker::Lorem.sentence(0, false, 6), anxiety: rand(2...5), anxiety_comment: Faker::Lorem.sentence(0, false, 6), wellbeing: rand(2...4), wellbeing_comment: Faker::Lorem.sentence(0, false, 3), other_symptom_id: constipation.id, other_symptom_score: rand(6...10), other_symptom_comment: Faker::Lorem.sentence(0, false, 6), esas_comment: Faker::Lorem.sentence(0, false, 8), resolution: nil, priority_resolved: true)
-
-
 
 EsasAssessment.create(patient_id: b.id, clinician_id: o.id, clinician_completed: true, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_giver_id: nil, pain: rand(3...6), pain_comment: Faker::Lorem.sentence(0, false, 4), tiredness: rand(3...6), tiredness_comment: Faker::Lorem.sentence(0, false, 3), drowsiness: rand(5...7), drowsiness_comment: Faker::Lorem.sentence(0, false, 2), nausea: rand(0...8), nausea_comment: Faker::Lorem.sentence(0, false, 8), lack_of_appetite: rand(4...7), lack_of_appetite_comment: Faker::Lorem.sentence(0, false, 1), shortness_of_breath: rand(0...4), shortness_of_breath_comment: Faker::Lorem.sentence(0, false, 5), depression: rand(3...5), depression_comment: Faker::Lorem.sentence(0, false, 6), anxiety: rand(2...5), anxiety_comment: Faker::Lorem.sentence(0, false, 6), wellbeing: rand(2...4), wellbeing_comment: Faker::Lorem.sentence(0, false, 3), other_symptom_id: constipation.id, other_symptom_score: rand(6...10), other_symptom_comment: Faker::Lorem.sentence(0, false, 6), esas_comment: Faker::Lorem.sentence(0, false, 8), resolution: nil, priority_resolved: true)
 EsasAssessment.create(patient_id: b.id, clinician_id: o.id, clinician_completed: true, created_at: Faker::Time.between(25.days.ago, Time.now, :day), care_giver_id: nil, pain: rand(3...6), pain_comment: Faker::Lorem.sentence(0, false, 4), tiredness: rand(3...6), tiredness_comment: Faker::Lorem.sentence(0, false, 3), drowsiness: rand(5...7), drowsiness_comment: Faker::Lorem.sentence(0, false, 2), nausea: rand(0...8), nausea_comment: Faker::Lorem.sentence(0, false, 8), lack_of_appetite: rand(4...7), lack_of_appetite_comment: Faker::Lorem.sentence(0, false, 1), shortness_of_breath: rand(0...4), shortness_of_breath_comment: Faker::Lorem.sentence(0, false, 5), depression: rand(3...5), depression_comment: Faker::Lorem.sentence(0, false, 6), anxiety: rand(2...5), anxiety_comment: Faker::Lorem.sentence(0, false, 6), wellbeing: rand(2...4), wellbeing_comment: Faker::Lorem.sentence(0, false, 3), other_symptom_id: constipation.id, other_symptom_score: rand(6...10), other_symptom_comment: Faker::Lorem.sentence(0, false, 6), esas_comment: Faker::Lorem.sentence(0, false, 8), resolution: nil, priority_resolved: false)

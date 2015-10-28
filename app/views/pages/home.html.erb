@@ -351,7 +351,9 @@
                                     <% if [priority.pain, priority.tiredness, priority.drowsiness, priority.nausea, priority.lack_of_appetite, priority.shortness_of_breath, priority.depression, priority.anxiety, priority.wellbeing, priority.other_symptom_score].max >= 8 and priority.priority_resolved == false %>
                                         <div class="alert-blocks alert-blocks-error alert-dismissable">
                                             <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                            <i class="icon-custom rounded-x icon-bg-red fa fa-line-chart"></i>
+                                            <a href="/esas_assessments/<%= priority.id %>">
+                                              <i class="icon-custom rounded-x icon-bg-red fa fa-line-chart"></i>
+                                            </a>
                                             <div class="overflow-h">
                                                 <strong class="color-red"><%= link_to "Priority ESAS Assessment", esas_assessment_path(priority) %><small class="pull-right"><em><%= time_ago_in_words(priority.created_at) %> ago</em></small></strong> 
                                                 <p>For patient <%= priority.patient.full_name %></p>
@@ -399,7 +401,9 @@
                                     <% if notification.is_a?(EsasAssessment) %>
                                       <div class="alert-blocks alert-blocks-success alert-dismissable">
                                           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                          <i class="icon-custom rounded-x icon-bg-green fa fa-line-chart"></i>
+                                          <a href="/esas_assessments/<%= notification.id %>">
+                                            <i class="icon-custom rounded-x icon-bg-green fa fa-line-chart"></i>
+                                          </a>
                                           <div class="overflow-h">
                                               <strong class="color-green"><%= link_to "New ESAS Assessment", esas_assessment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
                                               <p>For patient <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
@@ -409,7 +413,9 @@
                                       <% if notification.is_a?(PrfsAssessment) %>
                                         <div class="alert-blocks alert-blocks-info alert-dismissable">
                                           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                          <i class="icon-custom rounded-x icon-bg-blue fa fa-envelope"></i>
+                                          <a href="/esas_assessments/<%= notification.id %>">
+                                            <i class="icon-custom rounded-x icon-bg-blue fa fa-envelope"></i>
+                                          </a>
                                           <div class="overflow-h">
                                               <strong class="color-blue"><%= link_to "New PRFS Assessment", prfs_assessment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
                                               <p>For patient <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
@@ -421,7 +427,9 @@
                                         <% else %>
                                           <div class="alert-blocks alert-dismissable">
                                             <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                            <i class="icon-custom rounded-x icon-bg-dark fa fa-comments"></i>
+                                            <a href="/esas_assessments/<%= notification.id %>">
+                                              <i class="icon-custom rounded-x icon-bg-dark fa fa-comments"></i>
+                                            </a>
                                             <div class="overflow-h">
                                                 <strong class="color-dark"><%= link_to "New Comment", comment_path(notification) %><small class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></small></strong> 
                                                 <p>From <%= notification.patient.first_name %> <%= notification.patient.last_name %></p>
@@ -449,10 +457,10 @@
                                     <% else %>
                                       <div class="comment">
                                           <div class="overflow-h">
-                                              <strong><%= comment.patient.first_name %> <%= comment.patient.last_name %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong> 
+                                              <strong><%= link_to comment.patient.full_name, comment_path(comment) %><small class="pull-right"> <%= time_ago_in_words(comment.created_at) %></small></strong> 
                                               <p><%= comment.general_comment %></p>
                                               <ul class="list-inline comment-list">
-                                                  <li><i class="fa fa-user-md"></i> <a href="#"><%= comment.patient.diagnosis %></a></li>
+                                                  <li><i class="fa fa-user-md"></i> <%= comment.patient.diagnosis %></li>
                                               </ul>
                                           </div>    
                                       </div>
