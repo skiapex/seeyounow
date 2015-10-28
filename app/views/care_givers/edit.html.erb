@@ -18,14 +18,9 @@
 </h3>
 
 <%= form_for @care_giver do |form| %>
-  <% if current_clinician %>
-    <div class="form-group">
-      <%= form.collection_select :patient_id, Clinician.find_by(id: current_clinician.id).patients.order("first_name asc"), :id, :full_name, class: "form-control", control_col: "col-sm-6"  %>
-    </div>
-  <% end %>
 
   <div class="form-group">
-    <%= form.label :inputter_id %>
+    <%= form.label "Relation to patient" %>
     <%= form.collection_select :inputter_id, Inputter.all.order("inputter_type asc"), :id, :inputter_type, class: "form-control" %>
   </div>
 

@@ -52,9 +52,6 @@ class CareGiversController < ApplicationController
 
   def edit
     @care_giver = CareGiver.find_by(id: params["id"])
-    @user = @care_giver.from
-    @clinician = Clinician.find_by(user_id: @user)
-    @patient = Patient.find_by(user_id: @user)
   end
 
   def update
