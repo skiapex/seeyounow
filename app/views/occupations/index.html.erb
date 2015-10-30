@@ -40,7 +40,7 @@
                                           <% end %>
                                           <% if occupation.pronym == nil %>
                                           <% else %>
-                                            Pronym: <%= occupation.pronym %>
+                                            Title: <%= occupation.pronym %>
                                           <% end %>
                                           <i class="pull-right"><%= link_to "Edit", edit_occupation_path(occupation) %> <%= link_to "Delete", occupation_path(occupation), method: :delete, data: {confirm: 'Are you sure you want to delete'} %></i></p>
                                     </div>
