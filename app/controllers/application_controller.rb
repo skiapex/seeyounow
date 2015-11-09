@@ -28,19 +28,31 @@ class ApplicationController < ActionController::Base
 
   def require_clinician
     if current_clinician.nil?
-      redirect_to new_session_path
+      redirect_to root_path
     end
   end
 
   def admin
-    if current_clinician.administrator = true
+    if current_clinician.administrator == true
       current_clinician.administrator
     end
   end
 
   def require_admin
     if admin.nil?
-      redirect_to new_session_path
+      redirect_to root_path
+    end
+  end
+
+  def user_agreement
+    if current_user.terms_agreement == true
+      current_user.terms_agreement
+    end
+  end
+
+  def require_agreement
+    if user_agreement.nil?
+      redirect_to agreement_path
     end
   end
 

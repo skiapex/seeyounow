@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   skip_before_action :require_user
   skip_before_action :require_clinician
   skip_before_action :require_admin
+  skip_before_action :require_agreement
 
   def create
     user = User.find_by(email: params["email"])
@@ -17,8 +18,12 @@ class SessionsController < ApplicationController
       # if clinician
       #   redirect_to root_path, notice: "Login successful!"
       # else
-        redirect_to root_path, notice: "Login successful!"
       # end
+      if user.terms_agreement == true
+        redirect_to root_path, notice: "Login successful!"
+      else
+        redirect_to agreement_path, notice: "Please agree to the user agreement before continuing"
+      end
     else
       redirect_to new_session_path, alert: "Email or password incorrect"
     end

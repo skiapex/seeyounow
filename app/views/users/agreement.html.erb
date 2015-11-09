@@ -206,7 +206,14 @@
                 <li><strong>Severability & Waiver</strong>.  If any provision of this Agreement is held to be invalid by a court of competent jurisdiction, then the remaining provisions will nevertheless remain in full force and effect. The parties agree to renegotiate in good faith those provisions so held to be invalid to be valid, enforceable provisions which provisions will reflect as closely as possible the original intent of the parties, and further agree to be bound by the mutually agreed substitute provision. The failure of SeeYouNow to insist upon or enforce strict performance of any provision of this Agreement or to exercise any rights or remedies under this Agreement will not be construed as a waiver or relinquishment to any extent of SeeYouNow’s right to assert or rely upon any such provisions. </li>
             </ol>
 
-        </div><!--/row-fluid-->  
+        </div><!--/row-fluid-->
+        <%= form_for @user do |form| %>
+          <div class="form-group">
+            <%= form.label "I agree to the terms" %>
+            <%= form.check_box :terms_agreement %>
+          </div>
+          <%= form.button 'Submit', class: "btn btn-success" %>
+        <% end %>     
     </div><!--/container-->   
     <!--=== End Content Part ===-->
 
@@ -340,7 +347,14 @@
               </ol>
             </ol>
 
-        </div><!--/row-fluid-->    
+        </div><!--/row-fluid-->
+        <%= form_for @user do |form| %>
+          <div class="form-group">
+            <%= form.label "I agree to the terms" %>
+            <%= form.check_box :terms_agreement %>
+          </div>
+          <%= form.button 'Submit', class: "btn btn-success" %>
+        <% end %>     
     </div><!--/container-->   
 
   <% end %>
