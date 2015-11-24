@@ -60,7 +60,7 @@
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
-          <p>Tiredness - decreased energy level (but not necessarily sleepy)</p>
+          <p>Tiredness = lack of energy</p>
 
           <div class="form-group">
             <%= form.select :tiredness, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Tiredness Score"  %>
@@ -71,7 +71,7 @@
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
-          <p>Drowsiness - feeling sleepy</p>
+          <p>Drowsiness = feeling sleepy</p>
 
             <div class="form-group">
             <%= form.select :drowsiness, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Drowsiness Score"  %>
@@ -112,7 +112,7 @@
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
-          <p>Depression - sad or blue</p>
+          <p>Depression = feeling sad</p>
 
           <div class="form-group">
             <%= form.select :depression, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Depression Score"  %>
@@ -123,7 +123,7 @@
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
-          <p>Anxiety - nervousness or restlessness</p>
+          <p>Anxiety = feeling nervous</p>
 
           <div class="form-group">
             <%= form.select :anxiety, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Anxiety Score"  %>
@@ -134,7 +134,7 @@
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
-          <p>Wellbeing: overall comfort, both physical and otherwise; truthfully answering the question, “How are you?”.  With '0' being the 'best wellbeing' and '10' being the 'worst possible wellbing'</p>
+          <p>Wellbeing = how you feel overall.  Wellbeing: overall comfort, both physical and otherwise; truthfully answering the question, “How are you?”.  With '0' being the 'best wellbeing' and '10' being the 'worst possible wellbing'</p>
 
           <div class="form-group">
             <%= form.select :wellbeing, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control", control_col: "col-sm-2", label: "Wellbeing Score"  %>
@@ -145,7 +145,7 @@
           </div>
 
           <hr style="margin-top: 1px; margin-bottom: 6px;" />
-          <p>One blank scale is available for patients to use to assess an “other problem” as needed</p>
+          <p>One blank scale is available for patients to use to assess an “other problem” as needed. For example constipation</p>
 
           <div class="form-group">
             <%= form.collection_select :other_symptom_id, OtherSymptom.all.order("symptom_type asc"), :id, :symptom_type, {:selected => @no_other_symptom}, class: "form-control", control_col: "col-sm-4" %>
@@ -166,6 +166,9 @@
           </div>
 
           <%= form.button 'Submit ESAS assessment', class: "btn btn-u btn-success" %>
+
+          <hr style="margin-top: 6px; margin-bottom: 6px;" />
+          <p><small>The “Edmonton Symptom Assessment System Revised” (ESAS-r) is used with the authors and Alberta Health Services’s permission.</small></p>
         <% end %>
       </div><!--End Profile Body-->
     </div>
